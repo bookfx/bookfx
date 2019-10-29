@@ -1,6 +1,6 @@
 # BookFx
 
-![Nuget](https://img.shields.io/nuget/vpre/BookFx)
+[![Nuget](https://img.shields.io/nuget/vpre/BookFx)](https://www.nuget.org/packages/BookFx)
 
 BookFx proposes to use the functional style to describe Excel workbooks.
 To implement this BookFx provides model like the HTML [DOM].
