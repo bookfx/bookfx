@@ -2,25 +2,25 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="280" height="160">
     <foreignObject x="0" y="0" width="280" height="160">
         <body xmlns="http://www.w3.org/1999/xhtml">
-            <col>
-                <title><type>ColBox</type></title>
-                <content>
-                    <value>
-                        <title><type>ValueBox</type><id>title</id></title>
-                    </value>
-                    <row>
-                        <title><type>RowBox</type></title>
-                        <content>
-                            <value>
-                                <title><type>ValueBox</type><string>"Plan"</string></title>
-                            </value>
-                            <value>
-                                <title><type>ValueBox</type><string>"Fact"</string></title>
-                            </value>
-                        </content>
-                    </row>
-                </content>
-            </col>
+            <div class="col">
+                <div class="title"><div class="type">ColBox</div></div>
+                <div class="content">
+                    <div class="value">
+                        <div class="title"><div class="type">ValueBox</div><div class="id">title</div></div>
+                    </div>
+                    <div class="row">
+                        <div class="title"><div class="type">RowBox</div></div>
+                        <div class="content">
+                            <div class="value">
+                                <div class="title"><div class="type">ValueBox</div><div class="string">"Plan"</div></div>
+                            </div>
+                            <div class="value">
+                                <div class="title"><div class="type">ValueBox</div><div class="string">"Fact"</div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <style>
                 * {
                     box-sizing: border-box;
@@ -38,57 +38,57 @@
                     width: max-content;
                 }
 
-                row,
-                col,
-                value,
-                content,
-                title {
+                .row,
+                .col,
+                .value,
+                .content,
+                .title {
                     display: flex;
                 }
 
-                row,
-                col,
-                value {
+                .row,
+                .col,
+                .value {
                     padding: 5px;
                 }
 
-                title:not(:last-child) {
+                .title:not(:last-child) {
                     padding-bottom: 5px;
                 }
 
-                type {
+                .type {
                     color: #007d9a;
                     padding-right: 5px;
                 }
 
-                id {
+                .id {
                     color: black;
                 }
 
-                string {
+                .string {
                     color: #a31515;
                 }
 
-                row,
-                col,
-                value {
+                .row,
+                .col,
+                .value {
                     flex-direction: column;
                     border: 1px solid #ccc;
                 }
 
-                row > content {
+                .row > .content {
                     flex-direction: row;
                 }
 
-                row > content > *:not(:first-child) {
+                .row > .content > *:not(:first-child) {
                     margin-left: 5px;
                 }
 
-                col > content {
+                .col > .content {
                     flex-direction: column;
                 }
 
-                col > content > *:not(:first-child) {
+                .col > .content > *:not(:first-child) {
                     margin-top: 5px;
                 }
             </style>
