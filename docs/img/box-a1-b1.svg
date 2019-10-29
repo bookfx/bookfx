@@ -1,0 +1,104 @@
+<?xml version="1.0" standalone="yes"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="120">
+    <foreignObject x="0" y="0" width="300" height="120">
+        <body xmlns="http://www.w3.org/1999/xhtml">
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>A</th>
+                        <th>B</th>
+                        <th>C</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Box A1</td>
+                        <td>Box B1</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="tabs">
+                <div class="tab active">Sheet1</div>
+            </div>
+            <style>
+                body {
+                    font-family:
+                        -apple-system, BlinkMacSystemFont,
+                        "Segoe UI",
+                        "Roboto",
+                        "Helvetica Neue", "Ubuntu", Arial, sans-serif,
+                        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+                    font-size: 16px;
+                    margin: 0;
+                }
+
+                table {
+                    border-collapse: collapse;
+                    border-spacing: 0;
+                }
+
+                th:first-child {
+                    min-width: 32px;
+                }
+
+                th:not(:first-child) {
+                    min-width: 80px;
+                }
+
+                th,
+                td:first-child {
+                    background-color: #e6e6e6;
+                    text-align: center;
+                    font-weight: normal;
+                    border: 1px solid #a2a2a2;
+                }
+
+                td:not(:first-child) {
+                    border: 1px solid #dfe2e5;
+                    padding: 1px 3px;
+                }
+
+                .tabs {
+                    display: flex;
+                    margin-top: 5px;
+                    padding-left: 48px;
+                    border-top: 1px solid #a2a2a2;
+                }
+
+                .tab {
+                    color: #777;
+                    padding: 4px 8px;
+                    border-right: 1px solid #a2a2a2;
+
+                }
+
+                .tab:first-child {
+                    border-left: 1px solid #a2a2a2;
+                }
+
+                .tab.active {
+                    color: black;
+                    background-color: white;
+                    margin-top: -1px;
+                    border-bottom: 2px solid #a2a2a2;
+                }
+
+                td.box {
+                    font-weight: bold;
+                    text-align: center;
+                    border-right: 1px solid black;
+                    border-bottom: 1px solid black;
+                }
+            </style>
+        </body>
+    </foreignObject>
+</svg>

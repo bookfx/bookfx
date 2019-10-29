@@ -1,0 +1,135 @@
+<?xml version="1.0" standalone="yes"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="870" height="280">
+    <foreignObject x="0" y="0" width="870" height="280">
+        <body xmlns="http://www.w3.org/1999/xhtml">
+            <row>
+                <title><type>Book</type></title>
+                <content>
+                    <row>
+                        <title><type>Sheet</type></title>
+                        <row>
+                            <title><type>RowBox</type></title>
+                            <content>
+                                <value>
+                                    <title><type>ValueBox</type><string>"Code"</string></title>
+                                </value>
+                                <value>
+                                    <title><type>ValueBox</type><string>"Name"</string></title>
+                                </value>
+                                <col>
+                                    <title><type>ColBox</type></title>
+                                    <content>
+                                        <value>
+                                            <title><type>ValueBox</type><string>"Beginning of year"</string></title>
+                                        </value>
+                                        <row>
+                                            <title><type>RowBox</type></title>
+                                            <content>
+                                                <value>
+                                                    <title><type>ValueBox</type><string>"Plan"</string></title>
+                                                </value>
+                                                <value>
+                                                    <title><type>ValueBox</type><string>"Fact"</string></title>
+                                                </value>
+                                            </content>
+                                        </row>
+                                    </content>
+                                </col>
+                                <col>
+                                    <title><type>ColBox</type></title>
+                                    <content>
+                                        <value>
+                                            <title><type>ValueBox</type><string>"End of year"</string></title>
+                                        </value>
+                                        <row>
+                                            <title><type>RowBox</type></title>
+                                            <content>
+                                                <value>
+                                                    <title><type>ValueBox</type><string>"Plan"</string></title>
+                                                </value>
+                                                <value>
+                                                    <title><type>ValueBox</type><string>"Fact"</string></title>
+                                                </value>
+                                            </content>
+                                        </row>
+                                    </content>
+                                </col>
+                            </content>
+                        </row>
+                    </row>
+                </content>
+            </row>
+            <style>
+                * {
+                    box-sizing: border-box;
+                }
+
+                body {
+                    font-family:
+                        -apple-system, BlinkMacSystemFont,
+                        "Segoe UI",
+                        "Roboto",
+                        "Helvetica Neue", "Ubuntu", Arial, sans-serif,
+                        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+                    font-size: 16px;
+                    margin: 0;
+                    width: max-content;
+                }
+
+                row,
+                col,
+                value,
+                content,
+                title {
+                    display: flex;
+                }
+
+                row,
+                col,
+                value {
+                    padding: 5px;
+                }
+
+                title:not(:last-child) {
+                    padding-bottom: 5px;
+                }
+
+                type {
+                    color: #007d9a;
+                    padding-right: 5px;
+                }
+
+                id {
+                    color: black;
+                }
+
+                string {
+                    color: #a31515;
+                }
+
+                row,
+                col,
+                value {
+                    flex-direction: column;
+                    border: 1px solid #ccc;
+                }
+
+                row > content {
+                    flex-direction: row;
+                }
+
+                row > content > *:not(:first-child) {
+                    margin-left: 5px;
+                }
+
+                col > content {
+                    flex-direction: column;
+                }
+
+                col > content > *:not(:first-child) {
+                    margin-top: 5px;
+                }
+            </style>
+        </body>
+    </foreignObject>
+</svg>
