@@ -1,5 +1,7 @@
 # BookFx
 
+![Nuget](https://img.shields.io/nuget/vpre/BookFx)
+
 BookFx proposes to use the functional style to describe Excel workbooks.
 To implement this BookFx provides model like the HTML [DOM].
 It is a tree of renderable nodes.
