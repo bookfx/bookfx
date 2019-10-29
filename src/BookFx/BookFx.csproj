@@ -9,6 +9,7 @@
     <Version>0.1.0-alpha.6</Version>
     <Description>Making complex Excel workbooks out of simple components.</Description>
     <Authors>Zhenya Gusev</Authors>
+    <Copyright>Copyright (c) 2019 Zhenya Gusev</Copyright>
     <PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
   </PropertyGroup>
 
