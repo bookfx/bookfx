@@ -11,10 +11,15 @@
     <Authors>Zhenya Gusev</Authors>
     <Copyright>Copyright © 2019 Zhenya Gusev</Copyright>
     <PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
-    <PackageIconUrl>https://raw.githubusercontent.com/bookfx/bookfx/master/icon/icon-64.png</PackageIconUrl>
+    <PackageIcon>icon.png</PackageIcon>
     <PackageTags>excel;xlsx;openxml;ooxml</PackageTags>
     <PackageProjectUrl>https://github.com/bookfx/bookfx</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/bookfx/bookfx.git</RepositoryUrl>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\icon\icon.png" Pack="true" Visible="false" PackagePath="" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="EPPlus" Version="4.5.3.2" />
