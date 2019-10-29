@@ -9,10 +9,11 @@
     <Version>0.1.0-alpha.6</Version>
     <Description>Making complex Excel workbooks out of simple components.</Description>
     <Authors>Zhenya Gusev</Authors>
-    <Copyright>Copyright (c) 2019 Zhenya Gusev</Copyright>
+    <Copyright>Copyright © 2019 Zhenya Gusev</Copyright>
     <PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
     <PackageIconUrl>https://raw.githubusercontent.com/bookfx/bookfx/master/icon/icon-64.png</PackageIconUrl>
     <PackageTags>excel;xlsx;openxml;ooxml</PackageTags>
+    <PackageProjectUrl>https://github.com/bookfx/bookfx</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>
