@@ -12,6 +12,7 @@
     <Copyright>Copyright (c) 2019 Zhenya Gusev</Copyright>
     <PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
     <PackageIconUrl>https://raw.githubusercontent.com/bookfx/bookfx/master/icon/icon-64.png</PackageIconUrl>
+    <PackageTags>excel;xlsx;openxml;ooxml</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
