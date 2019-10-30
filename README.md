@@ -108,7 +108,7 @@ Make.Row("Box A1", "Box B1").ToSheet().ToBook().ToBytes()
 Here is the complete list of boxes. To getting started we need only the first three.
 
 Type | Creating | Destination
-- | - | -
+-- | - | -
 `ValueBox` | `Make.Value()` | Values, formulas and empty ranges.
 `RowBox` | `Make.Row()` | From left to right box placement.
 `ColBox` | `Make.Col()` | From top to bottom box placement.
