@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Collections.Immutable;
     using System.Linq;
+    using JetBrains.Annotations;
     using static F;
     using Unit = System.ValueTuple;
 
@@ -58,6 +59,18 @@
                 .GroupBy(x => x)
                 .Where(x => x.Count() > 1)
                 .Select(x => x.Key);
+
+        // todo test
+        [Pure]
+        public static IEnumerable<(T Prev, T Next)> Neighbors<T>(this IEnumerable<T> list)
+        {
+            var collection = list.ToCollection();
+
+            return Enumerable.Zip(
+                collection,
+                collection.Skip(1),
+                (x1, x2) => (x1, x2));
+        }
 
         private static IReadOnlyCollection<T> ToCollection<T>(this IEnumerable<T> enumerable) =>
             enumerable is IReadOnlyCollection<T> collection
