@@ -5,6 +5,7 @@
     using BookFx.Renders;
     using FluentAssertions;
     using Xunit;
+    using static BookFx.Functional.F;
 
     public class BoxDescendantsRenderTests
     {
@@ -53,13 +54,13 @@
             });
 
         [Fact]
-        public void DescendantsRender_RowBoxAnd1NullValueChild_OneSetNull() =>
+        public void DescendantsRender_RowBoxAnd1UnitValueChild_OneSetNull() =>
             Packer.OnSheet(excelSheet =>
             {
                 // A_C
                 var box = Make.Row(
                         Make.Value("A"),
-                        Make.Value(null),
+                        Make.Value(Unit()),
                         Make.Value("C"))
                     .Get
                     .LayOutUnsafe();

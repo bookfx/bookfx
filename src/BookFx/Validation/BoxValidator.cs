@@ -1,7 +1,5 @@
 ﻿namespace BookFx.Validation
 {
-    using System;
-    using System.Collections.Immutable;
     using System.Linq;
     using BookFx.Cores;
     using BookFx.Epplus;
@@ -11,31 +9,13 @@
 
     internal static class BoxValidator
     {
-        private static readonly ImmutableHashSet<Type> DisallowedValueTypes =
-            ImmutableHashSet.Create(
-                typeof(Book),
-                typeof(BookCore),
-                typeof(Sheet),
-                typeof(SheetCore),
-                typeof(RowBox),
-                typeof(ColBox),
-                typeof(StackBox),
-                typeof(ValueBox),
-                typeof(ProtoBox),
-                typeof(BoxCore),
-                typeof(BoxStyle),
-                typeof(BoxStyleCore),
-                typeof(BoxBorder),
-                typeof(BoxBorderCore));
-
         public static Tee<BoxCore> Validate =>
             HarvestErrors(
                 RowSpanSize,
                 ColSpanSize,
                 RowSizeRange,
                 ColSizeRange,
-                Style,
-                ValueType);
+                Style);
 
         public static Tee<BoxCore> RowSpanSize =>
             box => box.RowSpan
@@ -75,13 +55,5 @@
                     some: result => result.Match(
                         invalid: errors => Errors.Box.Aggregate(box, errors),
                         valid: _ => Valid(box)));
-
-        public static Tee<BoxCore> ValueType =>
-            box => box.Value
-                .Map(value => value.GetType())
-                .Where(DisallowedValueTypes.Contains)
-                .Match(
-                    none: () => Valid(box),
-                    some: type => Errors.Box.ValueTypeIsDisallowed(type));
     }
 }

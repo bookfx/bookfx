@@ -66,10 +66,11 @@
         [Fact]
         public void Boxes_InvalidBoxes_1ErrorWith2Inners()
         {
+            var invalidSize = TrackSize.Some(-1);
             var sheet = Make.Sheet(
                     Make.Row(
-                        Make.Value(ValueBox.Empty),
-                        Make.Value(ValueBox.Empty)
+                        Make.Value().SizeRows(invalidSize),
+                        Make.Value().SizeRows(invalidSize)
                     )
                 )
                 .Get
