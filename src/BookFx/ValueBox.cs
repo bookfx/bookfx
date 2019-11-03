@@ -22,16 +22,37 @@
         public static implicit operator ValueBox(BoxCore core) => new ValueBox(core);
 
         [Pure]
-        public static implicit operator ValueBox(string? value) => Value(value);
+        public static implicit operator ValueBox(string value) => Value(value);
 
         [Pure]
         public static implicit operator ValueBox(bool value) => Value(value);
 
         [Pure]
+        public static implicit operator ValueBox(byte value) => Value(value);
+
+        [Pure]
+        public static implicit operator ValueBox(sbyte value) => Value(value);
+
+        [Pure]
+        public static implicit operator ValueBox(short value) => Value(value);
+
+        [Pure]
+        public static implicit operator ValueBox(ushort value) => Value(value);
+
+        [Pure]
         public static implicit operator ValueBox(int value) => Value(value);
 
         [Pure]
+        public static implicit operator ValueBox(uint value) => Value(value);
+
+        [Pure]
         public static implicit operator ValueBox(long value) => Value(value);
+
+        [Pure]
+        public static implicit operator ValueBox(ulong value) => Value(value);
+
+        [Pure]
+        public static implicit operator ValueBox(float value) => Value(value);
 
         [Pure]
         public static implicit operator ValueBox(double value) => Value(value);
@@ -41,6 +62,9 @@
 
         [Pure]
         public static implicit operator ValueBox(DateTime value) => Value(value);
+
+        [Pure]
+        public static implicit operator ValueBox(Guid value) => Value(value);
 
         [Pure]
         public new ValueBox Name(string name) => Get.With(name: Some(name));

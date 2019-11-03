@@ -1,11 +1,13 @@
 ﻿namespace BookFx
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using BookFx.Cores;
     using BookFx.Functional;
     using JetBrains.Annotations;
     using static BookFx.Functional.F;
+    using Unit = System.ValueTuple;
 
     /// <summary>
     /// This is the entry point of BookFx.
@@ -170,10 +172,122 @@
             Stack(others.Prepend(child));
 
         /// <summary>
-        /// Creates an empty <see cref="ValueBox"/>.
+        /// Creates an empty <see cref="ValueBox"/>. The box content will not be set.
         /// </summary>
         [Pure]
         public static ValueBox Value() => ValueBox.Empty;
+
+        /// <summary>
+        /// Creates a <see cref="ValueBox"/> with <see cref="Unit"/>. The box content will be cleared.
+        /// </summary>
+        /// <param name="value"><see cref="Unit"/>.</param>
+        [Pure]
+        public static ValueBox Value(Unit value) => BoxCore.Create(type: BoxType.Value, value: value);
+
+        /// <summary>
+        /// Creates a <see cref="ValueBox"/> with <see cref="string"/> or formula.
+        /// </summary>
+        /// <param name="value">Value of <see cref="string"/> or formula. The formula must begin with '='.</param>
+        [Pure]
+        public static ValueBox Value(string value) => BoxCore.Create(type: BoxType.Value, value: value);
+
+        /// <summary>
+        /// Creates a <see cref="ValueBox"/> with <see cref="bool"/>.
+        /// </summary>
+        /// <param name="value">Value of <see cref="bool"/>.</param>
+        [Pure]
+        public static ValueBox Value(bool value) => BoxCore.Create(type: BoxType.Value, value: value);
+
+        /// <summary>
+        /// Creates a <see cref="ValueBox"/> with <see cref="byte"/>.
+        /// </summary>
+        /// <param name="value">Value of <see cref="byte"/>.</param>
+        [Pure]
+        public static ValueBox Value(byte value) => BoxCore.Create(type: BoxType.Value, value: value);
+
+        /// <summary>
+        /// Creates a <see cref="ValueBox"/> with <see cref="sbyte"/>.
+        /// </summary>
+        /// <param name="value">Value of <see cref="sbyte"/>.</param>
+        [Pure]
+        public static ValueBox Value(sbyte value) => BoxCore.Create(type: BoxType.Value, value: value);
+
+        /// <summary>
+        /// Creates a <see cref="ValueBox"/> with <see cref="short"/>.
+        /// </summary>
+        /// <param name="value">Value of <see cref="short"/>.</param>
+        [Pure]
+        public static ValueBox Value(short value) => BoxCore.Create(type: BoxType.Value, value: value);
+
+        /// <summary>
+        /// Creates a <see cref="ValueBox"/> with <see cref="ushort"/>.
+        /// </summary>
+        /// <param name="value">Value of <see cref="ushort"/>.</param>
+        [Pure]
+        public static ValueBox Value(ushort value) => BoxCore.Create(type: BoxType.Value, value: value);
+
+        /// <summary>
+        /// Creates a <see cref="ValueBox"/> with <see cref="int"/>.
+        /// </summary>
+        /// <param name="value">Value of <see cref="int"/>.</param>
+        [Pure]
+        public static ValueBox Value(int value) => BoxCore.Create(type: BoxType.Value, value: value);
+
+        /// <summary>
+        /// Creates a <see cref="ValueBox"/> with <see cref="uint"/>.
+        /// </summary>
+        /// <param name="value">Value of <see cref="uint"/>.</param>
+        [Pure]
+        public static ValueBox Value(uint value) => BoxCore.Create(type: BoxType.Value, value: value);
+
+        /// <summary>
+        /// Creates a <see cref="ValueBox"/> with long <see cref="long"/>.
+        /// </summary>
+        /// <param name="value">Value of <see cref="long"/>.</param>
+        [Pure]
+        public static ValueBox Value(long value) => BoxCore.Create(type: BoxType.Value, value: value);
+
+        /// <summary>
+        /// Creates a <see cref="ValueBox"/> with long <see cref="ulong"/>.
+        /// </summary>
+        /// <param name="value">Value of <see cref="ulong"/>.</param>
+        [Pure]
+        public static ValueBox Value(ulong value) => BoxCore.Create(type: BoxType.Value, value: value);
+
+        /// <summary>
+        /// Creates a <see cref="ValueBox"/> with long <see cref="float"/>.
+        /// </summary>
+        /// <param name="value">Value of <see cref="float"/>.</param>
+        [Pure]
+        public static ValueBox Value(float value) => BoxCore.Create(type: BoxType.Value, value: value);
+
+        /// <summary>
+        /// Creates a <see cref="ValueBox"/> with long <see cref="double"/>.
+        /// </summary>
+        /// <param name="value">Value of <see cref="double"/>.</param>
+        [Pure]
+        public static ValueBox Value(double value) => BoxCore.Create(type: BoxType.Value, value: value);
+
+        /// <summary>
+        /// Creates a <see cref="ValueBox"/> with long <see cref="decimal"/>.
+        /// </summary>
+        /// <param name="value">Value of <see cref="decimal"/>.</param>
+        [Pure]
+        public static ValueBox Value(decimal value) => BoxCore.Create(type: BoxType.Value, value: value);
+
+        /// <summary>
+        /// Creates a <see cref="ValueBox"/> with long <see cref="DateTime"/>.
+        /// </summary>
+        /// <param name="value">Value of <see cref="DateTime"/>.</param>
+        [Pure]
+        public static ValueBox Value(DateTime value) => BoxCore.Create(type: BoxType.Value, value: value);
+
+        /// <summary>
+        /// Creates a <see cref="ValueBox"/> with long <see cref="Guid"/>.
+        /// </summary>
+        /// <param name="value">Value of <see cref="Guid"/>.</param>
+        [Pure]
+        public static ValueBox Value(Guid value) => BoxCore.Create(type: BoxType.Value, value: value);
 
         /// <summary>
         /// Creates a <see cref="ValueBox"/> with value.
