@@ -218,25 +218,5 @@
 
             result.ErrorsUnsafe().Single().Inners.Should().HaveCount(2);
         }
-
-        [Fact]
-        public void ValueType_RowBox_Invalid()
-        {
-            var box = Make.Value(Make.Row()).Get.LayOutUnsafe();
-
-            var result = BoxValidator.ValueType(box);
-
-            result.IsValid.Should().BeFalse();
-        }
-
-        [Fact]
-        public void ValueType_ValueBox_Invalid()
-        {
-            var box = Make.Value(Make.Value()).Get.LayOutUnsafe();
-
-            var result = BoxValidator.ValueType(box);
-
-            result.IsValid.Should().BeFalse();
-        }
     }
 }

@@ -290,14 +290,6 @@
         public static ValueBox Value(Guid value) => BoxCore.Create(type: BoxType.Value, value: value);
 
         /// <summary>
-        /// Creates a <see cref="ValueBox"/> with value.
-        /// </summary>
-        /// <param name="value">Value of any type or formula. The formula must begin with '='.</param>
-        [Pure]
-        public static ValueBox Value(object? value) =>
-            BoxCore.Create(type: BoxType.Value, value: AcceptValue(value));
-
-        /// <summary>
         /// Creates a <see cref="ValueBox"/> with value and style.
         /// </summary>
         /// <param name="value">Value of any type or formula. The formula must begin with '='.</param>

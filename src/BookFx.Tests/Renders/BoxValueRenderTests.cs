@@ -9,7 +9,6 @@
     using FsCheck.Xunit;
     using OfficeOpenXml;
     using Xunit;
-    using static BookFx.Functional.F;
 
     [Properties(MaxTest = 10)]
     public class BoxValueRenderTests
@@ -29,26 +28,14 @@
                 Make.Value(),
                 range => range.Formula.Should().Be(OldFormula));
 
-        [Fact]
-        public void ValueRender_NullValue_Null() =>
-            CheckValue(
-                Make.Value(null),
-                range => range.Value.Should().BeNull());
-
-        [Fact]
-        public void ValueRender_NoneValue_Null() =>
-            CheckValue(
-                Make.Value(None),
-                range => range.Value.Should().BeNull());
-
         [Property]
         public void ValueRender_EscapedValue_Set(NonNull<string> value) =>
             CheckValue(
                 Make.Value($"'{value.Get}"),
                 range => range.Value.Should().Be(value.Get));
 
-        [Property(Arbitrary = new[] { typeof(GeneralValueArb) })]
-        public void ValueRender_Object_Set(object value) =>
+        [Property(Arbitrary = new[] { typeof(GeneralStringValueArb) })]
+        public void ValueRender_Object_Set(string value) =>
             CheckValue(
                 Make.Value(value),
                 range => range.Value.Should().Be(value));

@@ -76,6 +76,7 @@
                         invalid: errors => Errors.Box.Aggregate(box, errors),
                         valid: _ => Valid(box)));
 
+        // todo: del because it is impossible to make invalid
         public static Tee<BoxCore> ValueType =>
             box => box.Value
                 .Map(value => value.GetType())
