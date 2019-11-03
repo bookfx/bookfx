@@ -440,17 +440,6 @@
         public static ValueBox Value(Guid value, BoxStyle style) =>
             BoxCore.Create(type: BoxType.Value, value: value, style: style.Get);
 
-        // todo del
-
-        /// <summary>
-        /// Creates a <see cref="ValueBox"/> with value and style.
-        /// </summary>
-        /// <param name="value">Value of any type or formula. The formula must begin with '='.</param>
-        /// <param name="style">An instance of <see cref="BoxStyle"/>.</param>
-        [Pure]
-        public static ValueBox Value(object? value, BoxStyle style) =>
-            BoxCore.Create(type: BoxType.Value, value: AcceptValue(value), style: style.Get);
-
         /// <summary>
         /// Creates a <see cref="ProtoBox"/>.
         /// </summary>
@@ -523,11 +512,5 @@
         [Pure]
         public static BoxBorder Border(BorderPart part, BorderStyle style) =>
             BoxBorder.Empty.Restrict(part).Style(style);
-
-        // todo del
-
-        [Pure]
-        private static object AcceptValue(object? value) =>
-            value == null || value is Option.None ? Unit() : value;
     }
 }
