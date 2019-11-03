@@ -1,6 +1,5 @@
 ﻿namespace BookFx
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using BookFx.Cores;
@@ -182,10 +181,6 @@
                 new ColSizesAreInvalidError(others.Prepend(size));
 
             [Pure]
-            public static BoxValueTypeDisallowedError ValueTypeIsDisallowed(Type type) =>
-                new BoxValueTypeDisallowedError(type);
-
-            [Pure]
             public static AggregateError Aggregate(
                 BoxCore box,
                 IEnumerable<Error> inners) =>
@@ -257,14 +252,6 @@
 
                 private static string ShouldPart() =>
                     $"Column size should be from {MinColSize} to {MaxColSize}.";
-            }
-
-            public sealed class BoxValueTypeDisallowedError : Error
-            {
-                public BoxValueTypeDisallowedError(Type type)
-                    : base($"Value type is «{type}». It is disallowed.")
-                {
-                }
             }
 
             public sealed class AggregateError : Error
