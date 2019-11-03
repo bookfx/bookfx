@@ -29,19 +29,8 @@
 
         public static TR Match<T, TR>(this IEnumerable<T> list, Func<TR> empty, Func<T, IEnumerable<T>, TR> more)
         {
-            using var enumerator = list.GetEnumerator();
-
-            return enumerator.MoveNext()
-                ? more(enumerator.Current, Others(enumerator))
-                : empty();
-
-            IEnumerable<T> Others(IEnumerator<T> e)
-            {
-                while (e.MoveNext())
-                {
-                    yield return e.Current;
-                }
-            }
+            var collection = list.ToCollection();
+            return collection.Any() ? more(collection.First(), collection.Skip(1)) : empty();
         }
 
         public static TR Match<T, TR>(
@@ -69,5 +58,10 @@
                 .GroupBy(x => x)
                 .Where(x => x.Count() > 1)
                 .Select(x => x.Key);
+
+        private static IReadOnlyCollection<T> ToCollection<T>(this IEnumerable<T> enumerable) =>
+            enumerable is IReadOnlyCollection<T> collection
+                ? collection
+                : enumerable.ToArray();
     }
 }

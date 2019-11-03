@@ -19,7 +19,7 @@
             Enumerable.Range(1, 3).Bind<int, Option<int>>(x => Some(x)).Should().NotBeEmpty();
 
         [Property]
-        public void Match2_UnionBack_Equal(int[] list) =>
+        public void Match2_HeadWithTail_Equal(int[] list) =>
             list
                 .Match(
                     empty: Enumerable.Empty<int>,
@@ -28,8 +28,29 @@
                 .Equal(list);
 
         [Property]
-        public void Match3_UnionBack_Equal(int[] list) =>
+        public void Match2_MapAndHeadWithTail_Equal(int[] list) =>
             list
+                .Map(x => x)
+                .Match(
+                    empty: Enumerable.Empty<int>,
+                    more: (x, xs) => xs.Prepend(x))
+                .Should()
+                .Equal(list);
+
+        [Property]
+        public void Match3_HeadWithTail_Equal(int[] list) =>
+            list
+                .Match(
+                    empty: Enumerable.Empty<int>,
+                    one: x => new[] { x },
+                    more: (x, xs) => xs.Prepend(x))
+                .Should()
+                .Equal(list);
+
+        [Property]
+        public void Match3_MapAndHeadWithTail_Equal(int[] list) =>
+            list
+                .Map(x => x)
                 .Match(
                     empty: Enumerable.Empty<int>,
                     one: x => new[] { x },
