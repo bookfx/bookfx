@@ -11,5 +11,9 @@
         [Property]
         public void Value_MethodGroupWithInt_OverloadFound(int[] ints) =>
             ints.Map(Make.Value).Should().BeAssignableTo<IEnumerable<ValueBox>>();
+
+        [Property]
+        public void Value_MethodGroupWithUint_OverloadFound(uint[] uints) =>
+            uints.Map(Make.Value).Should().BeAssignableTo<IEnumerable<ValueBox>>();
     }
 }
