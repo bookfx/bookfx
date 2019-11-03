@@ -101,21 +101,52 @@
         [Pure]
         public BoxStyle Indent(int size) => Get.With(indent: size);
 
+        /// <summary>
+        /// Set number format.
+        /// </summary>
+        /// <param name="format">Number format.</param>
         [Pure]
         public BoxStyle Format(string format) => Get.With(format: Some(format));
 
+        /// <summary>
+        /// Equivalent to:
+        /// <code>Format("General")</code>
+        /// </summary>
         [Pure]
         public BoxStyle DefaultFormat() => Format("General");
 
+        /// <summary>
+        /// Equivalent to:
+        /// <code>Format("@")</code>
+        /// </summary>
         [Pure]
         public BoxStyle Text() => Format("@");
 
+        /// <summary>
+        /// Equivalent to:
+        /// <code>Format("#,##0")</code>
+        /// </summary>
+        [Pure]
+        public BoxStyle Integer() => Format("#,##0");
+
+        /// <summary>
+        /// Equivalent to:
+        /// <code>Format("#,##0.00")</code>
+        /// </summary>
         [Pure]
         public BoxStyle Money() => Format("#,##0.00");
 
+        /// <summary>
+        /// Equivalent to:
+        /// <code>Format("0%")</code>
+        /// </summary>
         [Pure]
         public BoxStyle Percent() => Format("0%");
 
+        /// <summary>
+        /// Equivalent to:
+        /// <code>Format("dd.mm.yyyy")</code>
+        /// </summary>
         [Pure]
         public BoxStyle DateShort() => Format("dd.mm.yyyy");
     }
