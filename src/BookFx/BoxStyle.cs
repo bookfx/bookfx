@@ -124,6 +124,13 @@
 
         /// <summary>
         /// Equivalent to:
+        /// <code>Format("#,##0")</code>
+        /// </summary>
+        [Pure]
+        public BoxStyle Integer() => Format("#,##0");
+
+        /// <summary>
+        /// Equivalent to:
         /// <code>Format("#,##0.00")</code>
         /// </summary>
         [Pure]
