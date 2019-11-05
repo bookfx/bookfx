@@ -1,0 +1,48 @@
+﻿namespace BookFx.Functional
+{
+    using System;
+    using static F;
+    using Unit = System.ValueTuple;
+
+    /// <summary>
+    /// Stateful computation.
+    /// </summary>
+    public static class Sc
+    {
+        public static TV Run<TS, TV>(this Sc<TS, TV> f, TS state) => f(state).Value;
+
+        public static Sc<TS, Unit> Put<TS>(TS newState) => state => (Unit(), newState);
+
+        public static Sc<TS, TS> Get<TS>() => state => (state, state);
+
+        public static Sc<TS, TR> Select<TS, TV, TR>(
+            this Sc<TS, TV> f,
+            Func<TV, TR> project) =>
+            state0 =>
+            {
+                var (v, state1) = f(state0);
+                return (project(v), state1);
+            };
+
+        public static Sc<TS, TR> SelectMany<TS, TV, TR>(
+            this Sc<TS, TV> sc,
+            Func<TV, Sc<TS, TR>> f) =>
+            state0 =>
+            {
+                var (v, state1) = sc(state0);
+                return f(v)(state1);
+            };
+
+        public static Sc<TS, TR> SelectMany<TS, TV, TR1, TR>(
+            this Sc<TS, TV> f,
+            Func<TV, Sc<TS, TR1>> bind,
+            Func<TV, TR1, TR> project) =>
+            state0 =>
+            {
+                var (v, state1) = f(state0);
+                var (r1, state2) = bind(v)(state1);
+                var r = project(v, r1);
+                return (r, state2);
+            };
+    }
+}
