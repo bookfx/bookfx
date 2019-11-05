@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using BookFx.Functional;
 
     internal static class EnumerableResultCacheExt
     {
@@ -10,13 +11,13 @@
         public static (int, Cache) Max<T>(
             this IEnumerable<T> list,
             (int, Cache) seed,
-            Func<T, Cache, (int, Cache)> selector) =>
+            Func<T, Sc<Cache, int>> selector) =>
             list.Aggregate(
                 seed,
                 (acc, curr) =>
                 {
                     var (accValue, accCache) = acc;
-                    var (currValue, newCache) = selector(curr, accCache);
+                    var (currValue, newCache) = selector(curr)(accCache);
                     return (Math.Max(accValue, currValue), newCache);
                 });
 
@@ -24,13 +25,13 @@
         public static (int, Cache) Sum<T>(
             this IEnumerable<T> list,
             (int, Cache) seed,
-            Func<T, Cache, (int, Cache)> selector) =>
+            Func<T, Sc<Cache, int>> selector) =>
             list.Aggregate(
                 seed,
                 (acc, curr) =>
                 {
                     var (accValue, accCache) = acc;
-                    var (currValue, newCache) = selector(curr, accCache);
+                    var (currValue, newCache) = selector(curr)(accCache);
                     return (accValue + currValue, newCache);
                 });
 

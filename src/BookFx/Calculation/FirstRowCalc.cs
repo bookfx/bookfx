@@ -2,10 +2,11 @@
 {
     using System;
     using BookFx.Cores;
+    using BookFx.Functional;
 
     internal static class FirstRowCalc
     {
-        public static (int Result, Cache Cache) Perform(BoxCore box, Cache cache, Structure structure) =>
+        public static Sc<Cache, int> Perform(BoxCore box, Structure structure) =>
             throw new NotImplementedException();
     }
 }

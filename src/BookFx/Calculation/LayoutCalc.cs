@@ -26,7 +26,7 @@
 
         private static (BoxCore, Cache) LayOut(BoxCore box, Cache cache, Structure structure)
         {
-            var (placement, newCache) = PlacementCalcNew.Perform(box, cache, structure);
+            var (placement, newCache) = PlacementCalcNew.Perform(box, structure)(cache);
 
             return box.Match(
                     row: x => LayOutComposite(x, placement, newCache, structure),
