@@ -1,6 +1,7 @@
 ﻿namespace BookFx.Tests.Renders
 {
     using BookFx.Calculation;
+    using BookFx.Cores;
     using BookFx.Epplus;
     using BookFx.Renders;
     using FluentAssertions;
@@ -16,7 +17,7 @@
         public void RowSizesRender_SomeRowSize_Set(float size) =>
             Packer.OnSheet(excelSheet =>
             {
-                var box = Make.Value().SizeRows(size).Get.LayOutUnsafe();
+                var box = Make.Value().SizeRows(size).Get.LayOut();
 
                 box.RowSizesRender()(excelSheet);
 
@@ -27,7 +28,7 @@
         public void RowSizesRender_NoneRowSize_Set() =>
             Packer.OnSheet(excelSheet =>
             {
-                var box = Make.Value().SizeRows(TrackSize.None).Get.LayOutUnsafe();
+                var box = Make.Value().SizeRows(TrackSize.None).Get.LayOut();
 
                 box.RowSizesRender()(excelSheet);
 
@@ -38,7 +39,7 @@
         public void RowSizesRender_FitRowSize_Set() =>
             Packer.OnSheet(excelSheet =>
             {
-                var box = Make.Value().SizeRows(TrackSize.Fit).Get.LayOutUnsafe();
+                var box = Make.Value().SizeRows(TrackSize.Fit).Get.LayOut();
 
                 box.RowSizesRender()(excelSheet);
 
@@ -49,7 +50,7 @@
         public void RowSizesRender_TooManyRowSizes_Invalid() =>
             Packer.OnSheet(excelSheet =>
             {
-                var box = Make.Value().SizeRows(TrackSize.Fit, TrackSize.Fit).Get.LayOutUnsafe();
+                var box = Make.Value().SizeRows(TrackSize.Fit, TrackSize.Fit).Get.LayOut();
 
                 var result = box.RowSizesRender()(excelSheet);
 

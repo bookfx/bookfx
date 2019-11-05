@@ -35,14 +35,13 @@
 
         [Pure]
         public Result<Position> GetPosition(byte[] book, Reference rangeRef) =>
-            GetRange(book, rangeRef).Bind(range => range.GetPosition());
+            GetRange(book, rangeRef).Map(range => range.GetPosition());
 
         [Pure]
         public Result<Position> GetPosition(byte[] book, Reference baseRef, Reference slotRef) =>
             from basePosition in GetPosition(book, baseRef)
             from slotPosition in GetPosition(book, slotRef)
-            from relatingSlotPosition in slotPosition.RelatingTo(basePosition)
-            select relatingSlotPosition;
+            select slotPosition.RelatingTo(basePosition);
 
         [Pure]
         public Result<ExcelWorksheet> GetSheet(byte[] book, Option<string> sheetName)

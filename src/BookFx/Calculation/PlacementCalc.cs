@@ -16,11 +16,11 @@
 
         private static readonly Mover DontMove = placement => placement.Position;
 
-        private delegate Result<Position> Mover(Placement placement);
+        private delegate Position Mover(Placement placement);
 
-        public static Result<BoxCore> WithPlacement(this BoxCore box) => box.WithPlacement(None, Position.Initial);
+        public static BoxCore WithPlacement(this BoxCore box) => box.WithPlacement(None, Position.Initial);
 
-        private static Result<BoxCore> WithPlacement(this BoxCore box, Option<BoxCore> parent, Position position) =>
+        private static BoxCore WithPlacement(this BoxCore box, Option<BoxCore> parent, Position position) =>
             box.Match(
                 row: x => x.CompositeWithPlacement(position, MoveRight),
                 col: x => x.CompositeWithPlacement(position, MoveDown),
@@ -28,35 +28,28 @@
                 value: x => x.ValueWithPlacement(position, parent),
                 proto: x => x.ProtoWithPlacement(position));
 
-        private static Result<BoxCore> CompositeWithPlacement(this BoxCore box, Position position, Mover move)
+        private static BoxCore CompositeWithPlacement(this BoxCore box, Position position, Mover move)
         {
-            return PlaceChildren()
-                .HarvestErrors()
-                .Map(children => box
-                    .With(children: children)
-                    .With(placement: Placement.At(position, box.MinDimension)));
+            return box
+                    .With(children: PlaceChildren())
+                    .With(placement: Placement.At(position, box.MinDimension));
 
-            IEnumerable<Result<BoxCore>> PlaceChildren()
+            IEnumerable<BoxCore> PlaceChildren()
             {
-                var nextPosition = Valid(position);
+                var nextPosition = position;
 
                 foreach (var child in box.Children)
                 {
-                    var placed = nextPosition.Bind(childPosition => child.WithPlacement(box, childPosition));
+                    var placed = child.WithPlacement(box, nextPosition);
 
                     yield return placed;
 
-                    if (!placed.IsValid)
-                    {
-                        yield break;
-                    }
-
-                    nextPosition = placed.Map(x => x.Placement).Bind(move.Invoke);
+                    nextPosition = move(placed.Placement);
                 }
             }
         }
 
-        private static Result<BoxCore> ValueWithPlacement(
+        private static BoxCore ValueWithPlacement(
             this BoxCore box,
             Position position,
             Option<BoxCore> parent) =>
@@ -82,23 +75,12 @@
                             proto: _ => 1))
                         .GetOrElse(1))));
 
-        private static Result<BoxCore> ProtoWithPlacement(this BoxCore box, Position position)
-        {
-            return box
-                .Slots
-                .Map(PlaceSlot)
-                .HarvestErrors()
-                .Map(PlaceBox);
-
-            Result<SlotCore> PlaceSlot(SlotCore slot) =>
-                from absolutePosition in slot.Position.ValueUnsafe().AbsoluteFrom(position)
-                from slotBox in slot.Box.WithPlacement(parent: box, absolutePosition)
-                select slot.With(box: slotBox);
-
-            BoxCore PlaceBox(IEnumerable<SlotCore> slots) =>
-                box.With(
-                    slots: slots,
-                    placement: Placement.At(position, box.MinDimension));
-        }
+        private static BoxCore ProtoWithPlacement(this BoxCore box, Position position) =>
+            box.With(
+                slots: box.Slots.Map(slot => slot.With(
+                    box: slot.Box.WithPlacement(
+                        parent: box,
+                        position: slot.Position.ValueUnsafe().AbsoluteFrom(position)))),
+                placement: Placement.At(position, box.MinDimension));
     }
 }
