@@ -5,7 +5,7 @@
     using BookFx.Functional;
     using Cache = System.Collections.Immutable.ImmutableDictionary<
         (BookFx.Cores.BoxCore, BookFx.Calculation.Measure),
-        BookFx.Functional.Result<int>
+        int
     >;
 
     internal static class LayoutCalc
@@ -20,7 +20,7 @@
             box.WithMinDimension().WithPlacement();
 
         // todo rename to LayOut
-        public static Result<BoxCore> LayOutNew(this BoxCore rootBox)
+        public static BoxCore LayOutNew(this BoxCore rootBox)
         {
             var structure = Structure.Create(rootBox);
             var cache = Cache.Empty;
@@ -28,39 +28,39 @@
             return result;
         }
 
-        private static (Result<BoxCore>, Cache) LayOut(BoxCore box, Cache cache, Structure structure) =>
-            PlacementCalcNew
-                .Perform(box, cache, structure)
-                .Bind((placement, newCache) => box.Match(
+        private static (BoxCore, Cache) LayOut(BoxCore box, Cache cache, Structure structure)
+        {
+            var (placement, newCache) = PlacementCalcNew.Perform(box, cache, structure);
+
+            return box.Match(
                     row: x => LayOutComposite(x, placement, newCache, structure),
                     col: x => LayOutComposite(x, placement, newCache, structure),
                     stack: x => LayOutComposite(x, placement, newCache, structure),
                     value: x => (LayOutValue(x, placement), newCache),
-                    proto: x => (LayOutProto(x, placement), newCache)));
+                    proto: x => (LayOutProto(x, placement), newCache));
+        }
 
-        private static (Result<BoxCore>, Cache) LayOutComposite(
+        private static (BoxCore, Cache) LayOutComposite(
             BoxCore box,
             Placement placement,
             Cache cache,
             Structure structure)
         {
-            var (childResults, newCache) = box
+            var (children, newCache) = box
                 .Children
                 .AggMap(cache, (child, accCache) => LayOut(child, accCache, structure));
 
-            var result = childResults
-                .HarvestErrors()
-                .Map(children => box
-                    .With(children: children)
-                    .With(placement: placement));
+            var result = box
+                .With(children: children)
+                .With(placement: placement);
 
             return (result, newCache);
         }
 
-        private static Result<BoxCore> LayOutValue(BoxCore box, Placement placement) =>
+        private static BoxCore LayOutValue(BoxCore box, Placement placement) =>
             box.With(placement: placement);
 
-        private static Result<BoxCore> LayOutProto(BoxCore box, Placement placement) =>
+        private static BoxCore LayOutProto(BoxCore box, Placement placement) =>
             throw new NotImplementedException(); // todo
     }
 }

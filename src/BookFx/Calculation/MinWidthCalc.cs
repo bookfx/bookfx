@@ -2,15 +2,14 @@
 {
     using BookFx.Cores;
     using BookFx.Functional;
-    using static BookFx.Functional.F;
     using Cache = System.Collections.Immutable.ImmutableDictionary<
         (BookFx.Cores.BoxCore, BookFx.Calculation.Measure),
-        BookFx.Functional.Result<int>
+        int
     >;
 
     internal static class MinWidthCalc
     {
-        public static (Result<int> Result, Cache Cache) MinWidth(BoxCore box, Cache cache) =>
+        public static (int Result, Cache Cache) MinWidth(BoxCore box, Cache cache) =>
             cache.GetOrEval(
                 box,
                 Measure.MinWidth,
@@ -21,25 +20,25 @@
                     value: _ => (ValueMinWidth(box), cache),
                     proto: _ => (ProtoMinWidth(box), cache)));
 
-        private static (Result<int>, Cache) RowMinWidth(BoxCore box, Cache cache) =>
+        private static (int, Cache) RowMinWidth(BoxCore box, Cache cache) =>
             box.Children.Sum(
-                seed: (Valid(0), cache),
+                seed: (0, cache),
                 selector: MinWidth);
 
-        private static (Result<int>, Cache) ColMinWidth(BoxCore box, Cache cache) =>
+        private static (int, Cache) ColMinWidth(BoxCore box, Cache cache) =>
             box.Children.Max(
-                seed: (Valid(0), cache),
+                seed: (0, cache),
                 selector: MinWidth);
 
-        private static (Result<int>, Cache) StackMinWidth(BoxCore box, Cache cache) =>
+        private static (int, Cache) StackMinWidth(BoxCore box, Cache cache) =>
             box.Children.Max(
-                seed: (Valid(0), cache),
+                seed: (0, cache),
                 selector: MinWidth);
 
-        private static Result<int> ValueMinWidth(BoxCore box) =>
+        private static int ValueMinWidth(BoxCore box) =>
             box.ColSpan.GetOrElse(1);
 
-        private static Result<int> ProtoMinWidth(BoxCore box) =>
+        private static int ProtoMinWidth(BoxCore box) =>
             box.Proto.Bind(x => x.Range).ValueUnsafe().Columns;
     }
 }

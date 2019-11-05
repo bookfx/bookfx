@@ -2,15 +2,14 @@
 {
     using BookFx.Cores;
     using BookFx.Functional;
-    using static BookFx.Functional.F;
     using Cache = System.Collections.Immutable.ImmutableDictionary<
         (BookFx.Cores.BoxCore, BookFx.Calculation.Measure),
-        BookFx.Functional.Result<int>
+        int
     >;
 
     internal static class MinHeightCalc
     {
-        public static (Result<int> Result, Cache Cache) MinHeight(BoxCore box, Cache cache) =>
+        public static (int Result, Cache Cache) MinHeight(BoxCore box, Cache cache) =>
             cache.GetOrEval(
                 box,
                 Measure.MinHight,
@@ -21,25 +20,25 @@
                     value: _ => (ValueMinHeight(box), cache),
                     proto: _ => (ProtoMinHeight(box), cache)));
 
-        private static (Result<int>, Cache) RowMinHeight(BoxCore box, Cache cache) =>
+        private static (int, Cache) RowMinHeight(BoxCore box, Cache cache) =>
             box.Children.Max(
-                seed: (Valid(0), cache),
+                seed: (0, cache),
                 selector: MinHeight);
 
-        private static (Result<int>, Cache) ColMinHeight(BoxCore box, Cache cache) =>
+        private static (int, Cache) ColMinHeight(BoxCore box, Cache cache) =>
             box.Children.Sum(
-                seed: (Valid(0), cache),
+                seed: (0, cache),
                 selector: MinHeight);
 
-        private static (Result<int>, Cache) StackMinHeight(BoxCore box, Cache cache) =>
+        private static (int, Cache) StackMinHeight(BoxCore box, Cache cache) =>
             box.Children.Max(
-                seed: (Valid(0), cache),
+                seed: (0, cache),
                 selector: MinHeight);
 
-        private static Result<int> ValueMinHeight(BoxCore box) =>
+        private static int ValueMinHeight(BoxCore box) =>
             box.RowSpan.GetOrElse(1);
 
-        private static Result<int> ProtoMinHeight(BoxCore box) =>
+        private static int ProtoMinHeight(BoxCore box) =>
             box.Proto.Bind(x => x.Range).ValueUnsafe().Rows;
     }
 }

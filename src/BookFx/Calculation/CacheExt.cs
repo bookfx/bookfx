@@ -5,23 +5,23 @@
     using BookFx.Functional;
     using Cache = System.Collections.Immutable.ImmutableDictionary<
         (BookFx.Cores.BoxCore, BookFx.Calculation.Measure),
-        BookFx.Functional.Result<int>
+        int
     >;
 
     internal static class CacheExt
     {
-        public static (Result<int>, Cache) GetOrEval(
+        public static (int, Cache) GetOrEval(
             this Cache cache,
             BoxCore box,
             Measure measure,
-            Func<Result<int>> eval) =>
+            Func<int> eval) =>
             cache.GetOrEval(box, measure, () => (eval(), cache));
 
-        public static (Result<int>, Cache) GetOrEval(
+        public static (int, Cache) GetOrEval(
             this Cache cache,
             BoxCore box,
             Measure measure,
-            Func<(Result<int>, Cache)> eval) =>
+            Func<(int, Cache)> eval) =>
             cache
                 .TryGetValue((box, measure))
                 .Map(result => (result, cache))
