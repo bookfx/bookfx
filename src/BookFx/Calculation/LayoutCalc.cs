@@ -1,6 +1,5 @@
 ﻿namespace BookFx.Calculation
 {
-    using System;
     using BookFx.Cores;
     using BookFx.Functional;
 
@@ -28,8 +27,8 @@
                 row: x => LayOutComposite(x, placement, structure),
                 col: x => LayOutComposite(x, placement, structure),
                 stack: x => LayOutComposite(x, placement, structure),
-                value: x => Sc<Cache>.Return(LayOutValue(x, placement)),
-                proto: x => Sc<Cache>.Return(LayOutProto(x, placement)))
+                value: x => LayOutValue(x, placement),
+                proto: x => LayOutProto(x, placement, structure))
             select placed;
 
         private static Sc<Cache, BoxCore> LayOutComposite(BoxCore box, Placement placement, Structure structure) =>
@@ -38,10 +37,15 @@
                 .With(children: children)
                 .With(placement: placement);
 
-        private static BoxCore LayOutValue(BoxCore box, Placement placement) =>
-            box.With(placement: placement);
+        private static Sc<Cache, BoxCore> LayOutValue(BoxCore box, Placement placement) =>
+            Sc<Cache>.Return(box.With(placement: placement));
 
-        private static BoxCore LayOutProto(BoxCore box, Placement placement) =>
-            throw new NotImplementedException(); // todo
+        private static Sc<Cache, BoxCore> LayOutProto(BoxCore box, Placement placement, Structure structure) =>
+            from slots in box.Slots.Traverse(slot =>
+                from slotBox in LayOut(slot.Box, structure)
+                select slot.With(box: slotBox))
+            select box.With(
+                slots: slots,
+                placement: placement);
     }
 }
