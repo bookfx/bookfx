@@ -1,10 +1,5 @@
 ﻿namespace BookFx.Calculation
 {
-    using Cache = System.Collections.Immutable.ImmutableDictionary<
-        (BookFx.Cores.BoxCore, BookFx.Calculation.Measure),
-        int
-    >;
-
     // todo del
     internal static class ResultCacheExt
     {

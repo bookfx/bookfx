@@ -3,10 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using Cache = System.Collections.Immutable.ImmutableDictionary<
-        (BookFx.Cores.BoxCore, BookFx.Calculation.Measure),
-        int
-    >;
 
     internal static class EnumerableResultCacheExt
     {

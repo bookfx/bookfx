@@ -2,10 +2,6 @@
 {
     using BookFx.Cores;
     using BookFx.Functional;
-    using Cache = System.Collections.Immutable.ImmutableDictionary<
-        (BookFx.Cores.BoxCore, BookFx.Calculation.Measure),
-        int
-    >;
 
     internal static class MinWidthCalc
     {

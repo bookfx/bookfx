@@ -1,10 +1,6 @@
 ﻿namespace BookFx.Calculation
 {
     using BookFx.Cores;
-    using Cache = System.Collections.Immutable.ImmutableDictionary<
-        (BookFx.Cores.BoxCore, BookFx.Calculation.Measure),
-        int
-    >;
 
     // todo rename to PlacementCalc
     internal static class PlacementCalcNew

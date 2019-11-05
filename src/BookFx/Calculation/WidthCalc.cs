@@ -2,10 +2,6 @@
 {
     using System;
     using BookFx.Cores;
-    using Cache = System.Collections.Immutable.ImmutableDictionary<
-        (BookFx.Cores.BoxCore, BookFx.Calculation.Measure),
-        int
-    >;
 
     internal static class WidthCalc
     {
