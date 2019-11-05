@@ -6,25 +6,14 @@
 
     internal static class CacheExt
     {
-        public static (int, Cache) GetOrEval(
+        // todo test
+        public static Sc<Cache, int> GetOrCompute(
             this Cache cache,
-            BoxCore box,
-            Measure measure,
-            Func<int> eval) =>
-            cache.GetOrEval(box, measure, () => (eval(), cache));
-
-        public static (int, Cache) GetOrEval(
-            this Cache cache,
-            BoxCore box,
-            Measure measure,
-            Func<(int, Cache)> eval) =>
+            (BoxCore Box, Measure Measure) key,
+            Func<Sc<Cache, int>> computation) =>
             cache
-                .TryGetValue((box, measure))
-                .Map(result => (result, cache))
-                .GetOrElse(() =>
-                {
-                    var (result, newCache) = eval();
-                    return (result, newCache.Add((box, measure), result));
-                });
+                .TryGetValue(key)
+                .Map(Sc<Cache>.Return)
+                .GetOrElse(computation);
     }
 }

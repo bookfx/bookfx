@@ -7,28 +7,30 @@
     internal static class MinHeightCalc
     {
         public static Sc<Cache, int> MinHeight(BoxCore box) =>
-            cache =>
-                cache.GetOrEval(
-                    box,
-                    Measure.MinHight,
-                    () => box.Match(
-                        row: _ => RowMinHeight(box)(cache),
-                        col: _ => ColMinHeight(box)(cache),
-                        stack: _ => StackMinHeight(box)(cache),
-                        value: _ => (ValueMinHeight(box), cache),
-                        proto: _ => (ProtoMinHeight(box), cache)));
+            from cache in Sc<Cache>.Get
+            from result in cache.GetOrCompute(
+                key: (box, Measure.MinHight),
+                computation: () => box.Match(
+                    row: _ => OfRow(box),
+                    col: _ => OfCol(box),
+                    stack: _ => OfStack(box),
+                    value: _ => OfValue(box),
+                    proto: _ => OfProto(box)))
+            select result;
 
-        private static Sc<Cache, int> RowMinHeight(BoxCore box) =>
+        private static Sc<Cache, int> OfRow(BoxCore box) =>
             box.Children.Map(MinHeight).Compose(seed: 0, Math.Max);
 
-        private static Sc<Cache, int> ColMinHeight(BoxCore box) =>
+        private static Sc<Cache, int> OfCol(BoxCore box) =>
             box.Children.Map(MinHeight).Compose(seed: 0, (x, y) => x + y);
 
-        private static Sc<Cache, int> StackMinHeight(BoxCore box) =>
+        private static Sc<Cache, int> OfStack(BoxCore box) =>
             box.Children.Map(MinHeight).Compose(seed: 0, Math.Max);
 
-        private static int ValueMinHeight(BoxCore box) => box.RowSpan.GetOrElse(1);
+        private static Sc<Cache, int> OfValue(BoxCore box) =>
+            Sc<Cache>.Return(box.RowSpan.GetOrElse(1));
 
-        private static int ProtoMinHeight(BoxCore box) => box.Proto.Bind(x => x.Range).ValueUnsafe().Rows;
+        private static Sc<Cache, int> OfProto(BoxCore box) =>
+            Sc<Cache>.Return(box.Proto.Bind(x => x.Range).ValueUnsafe().Rows);
     }
 }
