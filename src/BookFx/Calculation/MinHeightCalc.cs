@@ -1,5 +1,6 @@
 ﻿namespace BookFx.Calculation
 {
+    using System;
     using BookFx.Cores;
     using BookFx.Functional;
 
@@ -18,22 +19,13 @@
                         proto: _ => (ProtoMinHeight(box), cache)));
 
         private static Sc<Cache, int> RowMinHeight(BoxCore box) =>
-            cache =>
-                box.Children.Max(
-                    seed: (0, cache),
-                    selector: MinHeight);
+            box.Children.Map(MinHeight).Compose(seed: 0, Math.Max);
 
         private static Sc<Cache, int> ColMinHeight(BoxCore box) =>
-            cache =>
-                box.Children.Sum(
-                    seed: (0, cache),
-                    selector: MinHeight);
+            box.Children.Map(MinHeight).Compose(seed: 0, (x, y) => x + y);
 
         private static Sc<Cache, int> StackMinHeight(BoxCore box) =>
-            cache =>
-                box.Children.Max(
-                    seed: (0, cache),
-                    selector: MinHeight);
+            box.Children.Map(MinHeight).Compose(seed: 0, Math.Max);
 
         private static int ValueMinHeight(BoxCore box) => box.RowSpan.GetOrElse(1);
 

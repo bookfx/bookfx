@@ -1,5 +1,6 @@
 ﻿namespace BookFx.Calculation
 {
+    using System;
     using BookFx.Cores;
     using BookFx.Functional;
 
@@ -18,22 +19,13 @@
                         proto: _ => (ProtoMinWidth(box), cache)));
 
         private static Sc<Cache, int> RowMinWidth(BoxCore box) =>
-            cache =>
-                box.Children.Sum(
-                    seed: (0, cache),
-                    selector: MinWidth);
+            box.Children.Map(MinWidth).Compose(seed: 0, (x, y) => x + y);
 
         private static Sc<Cache, int> ColMinWidth(BoxCore box) =>
-            cache =>
-                box.Children.Max(
-                    seed: (0, cache),
-                    selector: MinWidth);
+            box.Children.Map(MinWidth).Compose(seed: 0, Math.Max);
 
         private static Sc<Cache, int> StackMinWidth(BoxCore box) =>
-            cache =>
-                box.Children.Max(
-                    seed: (0, cache),
-                    selector: MinWidth);
+            box.Children.Map(MinWidth).Compose(seed: 0, Math.Max);
 
         private static int ValueMinWidth(BoxCore box) => box.ColSpan.GetOrElse(1);
 
