@@ -19,13 +19,6 @@
         public static BoxCore LayOut(this BoxCore box) =>
             box.WithMinDimension().WithPlacement();
 
-        // todo inline
-        public static SheetCore LayOutUnsafe(this SheetCore sheet) =>
-            sheet.LayOut();
-
-        // todo inline
-        public static BoxCore LayOutUnsafe(this BoxCore box) => box.LayOut();
-
         // todo rename to LayOut
         public static Result<BoxCore> LayOutNew(this BoxCore rootBox)
         {
