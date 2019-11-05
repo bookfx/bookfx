@@ -1,8 +1,8 @@
-﻿namespace BookFx.Tests.Calculation
+﻿namespace BookFx.Tests.Validation
 {
-    using BookFx.Calculation;
     using BookFx.Cores;
     using BookFx.Epplus;
+    using BookFx.Validation;
     using FluentAssertions;
     using Xunit;
 

@@ -1,4 +1,4 @@
-﻿namespace BookFx.Calculation
+﻿namespace BookFx.Validation
 {
     using BookFx.Cores;
     using BookFx.Epplus;
