@@ -22,8 +22,7 @@
                 from c in firstCol.Result
                 from h in height.Result
                 from w in width.Result
-                from placement in Placement.At(r, c, h, w)
-                select placement;
+                select Placement.At(r, c, h, w);
 
             return (result, width.Cache);
         }

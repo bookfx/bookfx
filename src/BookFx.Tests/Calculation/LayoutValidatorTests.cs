@@ -24,7 +24,7 @@
 
         private static BoxCore GetBoxAt(int row, int col)
         {
-            var position = Position.AtUnsafe(row, col);
+            var position = Position.At(row, col);
             var dimension = Dimension.Of(1, 1);
             return BoxCore.Create(BoxType.Value).With(placement: Placement.At(position, dimension));
         }

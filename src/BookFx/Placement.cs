@@ -1,7 +1,5 @@
 ﻿namespace BookFx
 {
-    using BookFx.Functional;
-
     internal readonly struct Placement
     {
         public static readonly Placement Empty = default;
@@ -24,10 +22,8 @@
 
         public static Placement At(Position position, Dimension dimension) => new Placement(position, dimension);
 
-        public static Result<Placement> At(int row, int col, int height, int width) =>
-            Position
-                .At(row, col)
-                .Map(position => At(position, Dimension.Of(height, width)));
+        public static Placement At(int row, int col, int height, int width) =>
+            At(Position.At(row, col), Dimension.Of(height, width));
 
         public override string ToString() =>
             Dimension.IsCell

@@ -18,7 +18,7 @@
                 .Get
                 .WithMinDimension()
                 .WithPlacement()
-                .Map(x => x.Placement)
+                .Placement
                 .Should()
                 .Be(Placement.At(1, 1, 1, 1));
 
@@ -30,7 +30,7 @@
                 .Get
                 .WithMinDimension()
                 .WithPlacement()
-                .Map(x => x.Placement)
+                .Placement
                 .Should()
                 .Be(Placement.At(1, 1, height: rowSpan.Get, width: colSpan.Get));
 
@@ -40,7 +40,6 @@
                 .Get
                 .WithMinDimension()
                 .WithPlacement()
-                .ValueUnsafe()
                 .Placement
                 .IsAbsent
                 .Should()
@@ -62,11 +61,11 @@
                 .Get;
 
             var placedParent = box.WithMinDimension().WithPlacement();
-            var placedA = placedParent.Map(x => x.Children[0]);
-            var placedB = placedParent.Map(x => x.Children[1]);
+            var placedA = placedParent.Children[0];
+            var placedB = placedParent.Children[1];
 
             placedParent
-                .Map(x => x.Placement)
+                .Placement
                 .Should()
                 .Be(Placement.At(
                     row: 1,
@@ -75,7 +74,7 @@
                     width: aColSpan.Get + bColSpan.Get));
 
             placedA
-                .Map(x => x.Placement)
+                .Placement
                 .Should()
                 .Be(Placement.At(
                     row: 1,
@@ -84,7 +83,7 @@
                     width: aColSpan.Get));
 
             placedB
-                .Map(x => x.Placement)
+                .Placement
                 .Should()
                 .Be(Placement.At(
                     row: 1,
@@ -104,10 +103,10 @@
                 .Get;
 
             var placedParent = box.WithMinDimension().WithPlacement();
-            var placedA = placedParent.Map(x => x.Children[0]);
+            var placedA = placedParent.Children[0];
 
             placedA
-                .Map(x => x.Placement)
+                .Placement
                 .Should()
                 .Be(Placement.At(
                     row: 1,
@@ -122,7 +121,6 @@
                 .Get
                 .WithMinDimension()
                 .WithPlacement()
-                .ValueUnsafe()
                 .Placement
                 .IsAbsent
                 .Should()
@@ -145,11 +143,11 @@
                 .Get;
 
             var placedParent = box.WithMinDimension().WithPlacement();
-            var placedA = placedParent.Map(x => x.Children[0]);
-            var placedB = placedParent.Map(x => x.Children[1]);
+            var placedA = placedParent.Children[0];
+            var placedB = placedParent.Children[1];
 
             placedParent
-                .Map(x => x.Placement)
+                .Placement
                 .Should()
                 .Be(Placement.At(
                     row: 1,
@@ -158,7 +156,7 @@
                     width: Math.Max(aColSpan.Get, bColSpan.Get)));
 
             placedA
-                .Map(x => x.Placement)
+                .Placement
                 .Should()
                 .Be(Placement.At(
                     row: 1,
@@ -167,7 +165,7 @@
                     width: aColSpan.Get));
 
             placedB
-                .Map(x => x.Placement)
+                .Placement
                 .Should()
                 .Be(Placement.At(
                     row: aRowSpan.Get + 1,
@@ -188,10 +186,10 @@
                 .Get;
 
             var placedParent = box.WithMinDimension().WithPlacement();
-            var placedA = placedParent.Map(x => x.Children[0]);
+            var placedA = placedParent.Children[0];
 
             placedA
-                .Map(x => x.Placement)
+                .Placement
                 .Should()
                 .Be(Placement.At(
                     row: 1,
@@ -206,7 +204,6 @@
                 .Get
                 .WithMinDimension()
                 .WithPlacement()
-                .ValueUnsafe()
                 .Placement
                 .IsAbsent
                 .Should()
@@ -228,11 +225,11 @@
                 .Get;
 
             var placedParent = box.WithMinDimension().WithPlacement();
-            var placedA = placedParent.Map(x => x.Children[0]);
-            var placedB = placedParent.Map(x => x.Children[1]);
+            var placedA = placedParent.Children[0];
+            var placedB = placedParent.Children[1];
 
             placedParent
-                .Map(x => x.Placement)
+                .Placement
                 .Should()
                 .Be(Placement.At(
                     row: 1,
@@ -241,7 +238,7 @@
                     width: Math.Max(aColSpan.Get, bColSpan.Get)));
 
             placedA
-                .Map(x => x.Placement)
+                .Placement
                 .Should()
                 .Be(Placement.At(
                     row: 1,
@@ -250,7 +247,7 @@
                     width: aColSpan.Get));
 
             placedB
-                .Map(x => x.Placement)
+                .Placement
                 .Should()
                 .Be(Placement.At(
                     row: 1,
@@ -272,10 +269,10 @@
                 .Get;
 
             var placedParent = box.WithMinDimension().WithPlacement();
-            var placedA = placedParent.Map(x => x.Children[0]);
+            var placedA = placedParent.Children[0];
 
             placedA
-                .Map(x => x.Placement)
+                .Placement
                 .Should()
                 .Be(Placement.At(
                     row: 1,
@@ -305,7 +302,10 @@
             var result = box.ValueUnsafe().WithPlacement();
 
             result
-                .Map(x => x.Slots.Single().Box.Placement)
+                .Slots
+                .Single()
+                .Box
+                .Placement
                 .Should()
                 .Be(Placement.At(row: 2, col: 1, height: 1, width: 1));
         }

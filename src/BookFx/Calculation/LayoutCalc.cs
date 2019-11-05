@@ -10,18 +10,21 @@
 
     internal static class LayoutCalc
     {
-        public static Result<BookCore> LayOut(this BookCore book) =>
-            book.Sheets.Traverse(LayOut).Map(book.WithSheets);
+        public static BookCore LayOut(this BookCore book) =>
+            book.WithSheets(book.Sheets.Map(LayOut));
 
-        public static Result<SheetCore> LayOut(this SheetCore sheet) =>
-            sheet.Box.Traverse(LayOut).Map(sheet.WithBox);
+        public static SheetCore LayOut(this SheetCore sheet) =>
+            sheet.WithBox(sheet.Box.Map(LayOut));
 
-        public static Result<BoxCore> LayOut(this BoxCore box) => box.WithMinDimension().WithPlacement();
+        public static BoxCore LayOut(this BoxCore box) =>
+            box.WithMinDimension().WithPlacement();
 
+        // todo inline
         public static SheetCore LayOutUnsafe(this SheetCore sheet) =>
-            sheet.LayOut().ValueUnsafe();
+            sheet.LayOut();
 
-        public static BoxCore LayOutUnsafe(this BoxCore box) => box.LayOut().ValueUnsafe();
+        // todo inline
+        public static BoxCore LayOutUnsafe(this BoxCore box) => box.LayOut();
 
         // todo rename to LayOut
         public static Result<BoxCore> LayOutNew(this BoxCore rootBox)

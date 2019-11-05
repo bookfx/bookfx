@@ -24,9 +24,9 @@
                 .ToOption()
                 .Bind(x => x.Proto)
                 .Bind(x => x.Range)
-                .Bind(x => x.GetPosition().ToOption())
+                .Map(x => x.GetPosition())
                 .Should()
-                .Be(Position.At(row: 1, col: 1).ToOption());
+                .Be(Some(Position.At(row: 1, col: 1)));
         }
 
         [Fact]
@@ -52,7 +52,7 @@
                 .Bind(x => x.Slots.Head())
                 .Bind(x => x.Position)
                 .Should()
-                .Be(Position.At(row: 2, col: 1).ToOption());
+                .Be(Some(Position.At(row: 2, col: 1)));
         }
     }
 }

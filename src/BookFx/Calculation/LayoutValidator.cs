@@ -7,7 +7,22 @@
 
     internal static class LayoutValidator
     {
-        public static Tee<BoxCore> Validate =>
+        public static Tee<BookCore> Validate =>
+            book => book
+                .Sheets
+                .Traverse(Sheet.Invoke)
+                .Map(_ => book);
+
+        public static Tee<SheetCore> Sheet =>
+            sheet => sheet
+                .Box
+                .AsEnumerable()
+                .Traverse(RootBox.Invoke)
+                .Match(
+                    invalid: errors => Errors.Sheet.Aggregate(sheet, errors),
+                    valid: _ => Valid(sheet));
+
+        public static Tee<BoxCore> RootBox =>
             box => box
                 .SelfAndDescendants()
                 .Map(Position.Invoke)
