@@ -19,39 +19,24 @@
         public static BoxCore LayOutNew(this BoxCore rootBox)
         {
             var structure = Structure.Create(rootBox);
-            var cache = Cache.Empty;
-            var (result, _) = LayOut(rootBox, cache, structure);
-            return result;
+            return LayOut(rootBox, structure).Run(Cache.Empty);
         }
 
-        private static (BoxCore, Cache) LayOut(BoxCore box, Cache cache, Structure structure)
-        {
-            var (placement, newCache) = PlacementCalcNew.Perform(box, structure)(cache);
+        private static Sc<Cache, BoxCore> LayOut(BoxCore box, Structure structure) =>
+            from placement in PlacementCalcNew.Perform(box, structure)
+            from placed in box.Match(
+                row: x => LayOutComposite(x, placement, structure),
+                col: x => LayOutComposite(x, placement, structure),
+                stack: x => LayOutComposite(x, placement, structure),
+                value: x => Sc<Cache>.Return(LayOutValue(x, placement)),
+                proto: x => Sc<Cache>.Return(LayOutProto(x, placement)))
+            select placed;
 
-            return box.Match(
-                    row: x => LayOutComposite(x, placement, newCache, structure),
-                    col: x => LayOutComposite(x, placement, newCache, structure),
-                    stack: x => LayOutComposite(x, placement, newCache, structure),
-                    value: x => (LayOutValue(x, placement), newCache),
-                    proto: x => (LayOutProto(x, placement), newCache));
-        }
-
-        private static (BoxCore, Cache) LayOutComposite(
-            BoxCore box,
-            Placement placement,
-            Cache cache,
-            Structure structure)
-        {
-            var (children, newCache) = box
-                .Children
-                .AggMap(cache, (child, accCache) => LayOut(child, accCache, structure));
-
-            var result = box
+        private static Sc<Cache, BoxCore> LayOutComposite(BoxCore box, Placement placement, Structure structure) =>
+            from children in box.Children.Traverse(child => LayOut(child, structure))
+            select box
                 .With(children: children)
                 .With(placement: placement);
-
-            return (result, newCache);
-        }
 
         private static BoxCore LayOutValue(BoxCore box, Placement placement) =>
             box.With(placement: placement);
