@@ -18,7 +18,7 @@
                             .Map(prev =>
                                 from prevFirstCol in FirstCol(prev, structure)
                                 from prevWidth in Width(prev, structure)
-                                select prevFirstCol + prevWidth + 1)
+                                select prevFirstCol + prevWidth)
                             .OrElse(FirstCol(parent, structure))
                             .GetOrElse(ScOf(1)),
                         col: _ => FirstCol(parent, structure),

@@ -19,7 +19,7 @@
                             .Map(prev =>
                                 from prevFirstRow in FirstRow(prev, structure)
                                 from prevHeight in Height(prev, structure)
-                                select prevFirstRow + prevHeight + 1)
+                                select prevFirstRow + prevHeight)
                             .OrElse(FirstRow(parent, structure))
                             .GetOrElse(ScOf(1)),
                         stack: _ => FirstRow(parent, structure),
