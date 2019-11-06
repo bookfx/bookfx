@@ -6,7 +6,6 @@
 
     internal static class EnumerableScExt
     {
-        // todo test
         public static Sc<TS, IEnumerable<TR>> Traverse<TS, TV, TR>(this IEnumerable<TV> xs, Func<TV, Sc<TS, TR>> f) =>
             xs.Aggregate(
                 seed: Sc<TS>.Return(Enumerable.Empty<TR>()),

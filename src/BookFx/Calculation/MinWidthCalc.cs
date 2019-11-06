@@ -10,7 +10,7 @@
             from cache in Sc<Cache>.Get
             from result in cache.GetOrCompute(
                 key: (box, Measure.MinWidth),
-                computation: () => box.Match(
+                sc: () => box.Match(
                     row: _ => OfRow(box),
                     col: _ => OfCol(box),
                     stack: _ => OfStack(box),

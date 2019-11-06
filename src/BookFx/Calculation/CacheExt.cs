@@ -9,12 +9,12 @@
         public static Sc<Cache, int> GetOrCompute(
             this Cache cache,
             (BoxCore Box, Measure Measure) key,
-            Func<Sc<Cache, int>> computation) =>
+            Func<Sc<Cache, int>> sc) =>
             cache
                 .TryGetValue(key)
                 .Map(Sc<Cache>.Return)
                 .GetOrElse(() =>
-                    from result in computation()
+                    from result in sc()
                     from unused in Sc.Put(cache.Add(key, result))
                     select result);
     }
