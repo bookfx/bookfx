@@ -38,7 +38,7 @@
                 .With(placement: placement);
 
         private static Sc<Cache, BoxCore> LayOutValue(BoxCore box, Placement placement) =>
-            Sc<Cache>.Return(box.With(placement: placement));
+            Sc<Cache>.ScOf(box.With(placement: placement));
 
         private static Sc<Cache, BoxCore> LayOutProto(BoxCore box, Placement placement, Structure structure) =>
             from slots in box.Slots.Traverse(slot =>

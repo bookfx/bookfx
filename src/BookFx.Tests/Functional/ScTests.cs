@@ -9,12 +9,12 @@
     {
         [Property]
         public void Select_IdentityFunctorLaw_Obey(object state, object value) =>
-            Sc<object>.Return(value).Select(x => x).Run(state).Should().Be(value);
+            Sc<object>.ScOf(value).Select(x => x).Run(state).Should().Be(value);
 
         [Property]
         public void Select_CompositionFunctorLaw_Obey(int state, int value)
         {
-            var functor = Sc<object>.Return(value);
+            var functor = Sc<object>.ScOf(value);
 
             static int A(int x) => x - 2;
 
@@ -28,7 +28,7 @@
         [Property]
         public void Get_Always_ReturnsState(object state) =>
             (
-                from result in Sc<object>.Get
+                from result in Sc<object>.GetState
                 select result
             )
             .Run(state)
@@ -38,7 +38,7 @@
         [Property]
         public void Return_Always_ReturnsValue(object state, object value) =>
             (
-                from result in Sc<object>.Return(value)
+                from result in Sc<object>.ScOf(value)
                 select result
             )
             .Run(state)
@@ -48,8 +48,8 @@
         [Property]
         public void PutGet_Always_ReturnsValue(object state, object newState) =>
             (
-                from unit in Sc<object>.Put(newState)
-                from result in Sc<object>.Get
+                from unit in Sc<object>.PutState(newState)
+                from result in Sc<object>.GetState
                 select result
             )
             .Run(state)

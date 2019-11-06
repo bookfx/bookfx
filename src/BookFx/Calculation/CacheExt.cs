@@ -12,10 +12,10 @@
             Func<Sc<Cache, int>> sc) =>
             cache
                 .TryGetValue(key)
-                .Map(Sc<Cache>.Return)
+                .Map(Sc<Cache>.ScOf)
                 .GetOrElse(() =>
                     from result in sc()
-                    from unused in Sc.Put(cache.Add(key, result))
+                    from unused in Sc.PutState(cache.Add(key, result))
                     select result);
     }
 }

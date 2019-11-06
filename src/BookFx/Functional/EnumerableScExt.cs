@@ -10,7 +10,7 @@
         [Pure]
         public static Sc<TS, IEnumerable<TR>> Traverse<TS, TV, TR>(this IEnumerable<TV> xs, Func<TV, Sc<TS, TR>> f) =>
             xs.Aggregate(
-                seed: Sc<TS>.Return(Enumerable.Empty<TR>()),
+                seed: Sc<TS>.ScOf(Enumerable.Empty<TR>()),
                 func: (sc, x) =>
                     from rs in sc
                     from r in f(x)

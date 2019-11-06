@@ -11,9 +11,9 @@
     {
         public static TV Run<TS, TV>(this Sc<TS, TV> f, TS state) => f(state).Value;
 
-        public static Sc<TS, Unit> Put<TS>(TS newState) => state => (Unit(), newState);
+        public static Sc<TS, Unit> PutState<TS>(TS newState) => state => (Unit(), newState);
 
-        public static Sc<TS, TS> Get<TS>() => state => (state, state);
+        public static Sc<TS, TS> GetState<TS>() => state => (state, state);
 
         public static Sc<TS, TR> Select<TS, TV, TR>(
             this Sc<TS, TV> f,

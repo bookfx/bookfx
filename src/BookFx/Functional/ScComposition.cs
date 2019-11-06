@@ -13,7 +13,7 @@
             TV seed,
             Func<TV, TV, TV> f) =>
             scs.Aggregate(
-                seed: Sc<TS>.Return(seed),
+                seed: Sc<TS>.ScOf(seed),
                 func: (accSc, currSc) =>
                     from acc in accSc
                     from curr in currSc

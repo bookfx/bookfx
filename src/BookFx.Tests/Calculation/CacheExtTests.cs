@@ -33,7 +33,7 @@
             var cache = Cache.Empty.Add(key, 3);
             var sc =
                 from unused in cache.GetOrCompute(key, ThrowSc)
-                from result in Sc<Cache>.Get
+                from result in Sc<Cache>.GetState
                 select result;
 
             var newCache = sc.Run(cache);
@@ -63,7 +63,7 @@
             var cache = Cache.Empty;
             var sc =
                 from unused in cache.GetOrCompute(key, () => RowSpanSc(box))
-                from result in Sc<Cache>.Get
+                from result in Sc<Cache>.GetState
                 select result;
 
             var newCache = sc.Run(cache);
@@ -75,6 +75,6 @@
             throw new InvalidOperationException();
 
         private static Sc<Cache, int> RowSpanSc(BoxCore box) =>
-            Sc<Cache>.Return(box.RowSpan.GetOrElse(1));
+            Sc<Cache>.ScOf(box.RowSpan.GetOrElse(1));
     }
 }

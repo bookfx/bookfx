@@ -10,9 +10,9 @@
     public class ScCompositionTests
     {
         [Property]
-        public void Compose_MaxOfReturns_Expected(int[] list, object state) =>
+        public void Compose_MaxOfScs_Expected(int[] list, object state) =>
             list
-                .Map(Sc<object>.Return)
+                .Map(Sc<object>.ScOf)
                 .Compose(int.MinValue, Math.Max)
                 .Run(state)
                 .Should()
@@ -23,7 +23,7 @@
         {
             var sc =
                 from unused in list.Map(LogSc).Compose(int.MinValue, Math.Max)
-                from log in Sc<ImmutableList<int>>.Get
+                from log in Sc<ImmutableList<int>>.GetState
                 select log;
 
             var result = sc.Run(ImmutableList<int>.Empty);
@@ -32,8 +32,8 @@
         }
 
         private static Sc<ImmutableList<int>, int> LogSc(int value) =>
-            from log in Sc<ImmutableList<int>>.Get
-            from unused in Sc<ImmutableList<int>>.Put(log.Add(value))
+            from log in Sc<ImmutableList<int>>.GetState
+            from unused in Sc<ImmutableList<int>>.PutState(log.Add(value))
             select value;
     }
 }

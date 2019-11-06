@@ -11,15 +11,15 @@
         private static Sc<Cache, int> OfValue(BoxCore box, Structure structure) =>
             box
                 .RowSpan
-                .Map(Sc<Cache>.Return)
+                .Map(Sc<Cache>.ScOf)
                 .OrElse(() => structure
                     .Parent(box)
                     .Map(
                         row: MinHeightCalc.MinHeight,
-                        col: _ => Sc<Cache>.Return(1),
+                        col: _ => Sc<Cache>.ScOf(1),
                         stack: MinHeightCalc.MinHeight,
                         value: _ => throw new InvalidOperationException(),
-                        proto: _ => Sc<Cache>.Return(1)))
-                .GetOrElse(Sc<Cache>.Return(1));
+                        proto: _ => Sc<Cache>.ScOf(1)))
+                .GetOrElse(Sc<Cache>.ScOf(1));
     }
 }
