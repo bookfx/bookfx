@@ -49,7 +49,7 @@
             var key = (box, Measure);
             var cache = Cache.Empty;
 
-            var result = cache.GetOrCompute(key, () => RowSpanComputation(box, Measure)).Run(cache);
+            var result = cache.GetOrCompute(key, () => RowSpanComputation(box)).Run(cache);
 
             result.Should().Be(expected);
         }
@@ -63,7 +63,7 @@
             var cache = Cache.Empty;
 
             var computation =
-                from unused in cache.GetOrCompute(key, () => RowSpanComputation(box, Measure))
+                from unused in cache.GetOrCompute(key, () => RowSpanComputation(box))
                 from result in Sc<Cache>.Get
                 select result;
             var newCache = computation.Run(cache);
@@ -74,7 +74,7 @@
         private static Sc<Cache, int> ThrowComputation() =>
             throw new InvalidOperationException();
 
-        private static Sc<Cache, int> RowSpanComputation(BoxCore box, Measure measure) =>
-            cache => (box.RowSpan.ValueUnsafe(), cache.Add((box, measure), box.RowSpan.ValueUnsafe()));
+        private static Sc<Cache, int> RowSpanComputation(BoxCore box) =>
+            Sc<Cache>.Return(box.RowSpan.GetOrElse(1));
     }
 }

@@ -6,7 +6,6 @@
 
     internal static class CacheExt
     {
-        // todo test
         public static Sc<Cache, int> GetOrCompute(
             this Cache cache,
             (BoxCore Box, Measure Measure) key,
@@ -14,6 +13,9 @@
             cache
                 .TryGetValue(key)
                 .Map(Sc<Cache>.Return)
-                .GetOrElse(computation);
+                .GetOrElse(() =>
+                    from result in computation()
+                    from unused in Sc.Put(cache.Add(key, result))
+                    select result);
     }
 }
