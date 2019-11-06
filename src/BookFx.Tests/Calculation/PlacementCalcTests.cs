@@ -16,8 +16,7 @@
         public void WithPlacement_ValueEmpty_R1C1() =>
             ValueBox.Empty
                 .Get
-                .WithMinDimension()
-                .WithPlacement()
+                .LayOut()
                 .Placement
                 .Should()
                 .Be(Placement.At(1, 1, 1, 1));
@@ -28,8 +27,7 @@
                 .SpanRows(rowSpan.Get)
                 .SpanCols(colSpan.Get)
                 .Get
-                .WithMinDimension()
-                .WithPlacement()
+                .LayOut()
                 .Placement
                 .Should()
                 .Be(Placement.At(1, 1, height: rowSpan.Get, width: colSpan.Get));
@@ -38,8 +36,7 @@
         public void WithPlacement_RowEmpty_Empty() =>
             RowBox.Empty
                 .Get
-                .WithMinDimension()
-                .WithPlacement()
+                .LayOut()
                 .Placement
                 .IsAbsent
                 .Should()
@@ -60,7 +57,7 @@
                 )
                 .Get;
 
-            var placedParent = box.WithMinDimension().WithPlacement();
+            var placedParent = box.LayOut();
             var placedA = placedParent.Children[0];
             var placedB = placedParent.Children[1];
 
@@ -102,7 +99,7 @@
                     Make.Value("B").SpanRows(bRowSpan.Get))
                 .Get;
 
-            var placedParent = box.WithMinDimension().WithPlacement();
+            var placedParent = box.LayOut();
             var placedA = placedParent.Children[0];
 
             placedA
@@ -119,8 +116,7 @@
         public void WithPlacement_ColEmpty_Empty() =>
             ColBox.Empty
                 .Get
-                .WithMinDimension()
-                .WithPlacement()
+                .LayOut()
                 .Placement
                 .IsAbsent
                 .Should()
@@ -142,7 +138,7 @@
                 )
                 .Get;
 
-            var placedParent = box.WithMinDimension().WithPlacement();
+            var placedParent = box.LayOut();
             var placedA = placedParent.Children[0];
             var placedB = placedParent.Children[1];
 
@@ -185,7 +181,7 @@
                     Make.Value("B").SpanCols(bColSpan.Get))
                 .Get;
 
-            var placedParent = box.WithMinDimension().WithPlacement();
+            var placedParent = box.LayOut();
             var placedA = placedParent.Children[0];
 
             placedA
@@ -202,8 +198,7 @@
         public void WithPlacement_StackEmpty_Empty() =>
             StackBox.Empty
                 .Get
-                .WithMinDimension()
-                .WithPlacement()
+                .LayOut()
                 .Placement
                 .IsAbsent
                 .Should()
@@ -224,7 +219,7 @@
                 )
                 .Get;
 
-            var placedParent = box.WithMinDimension().WithPlacement();
+            var placedParent = box.LayOut();
             var placedA = placedParent.Children[0];
             var placedB = placedParent.Children[1];
 
@@ -268,7 +263,7 @@
                     Make.Value("B").SpanRows(bRowSpan.Get).SpanCols(bColSpan.Get))
                 .Get;
 
-            var placedParent = box.WithMinDimension().WithPlacement();
+            var placedParent = box.LayOut();
             var placedA = placedParent.Children[0];
 
             placedA
@@ -296,10 +291,9 @@
                 .ToBytes();
             var bank = new ProtoBank(List(protoBook));
             var box = bank
-                .PlugProtos(Make.Proto(protoBook, protoRef).Add(slotRef, "Slot value").Get)
-                .Map(x => x.WithMinDimension());
+                .PlugProtos(Make.Proto(protoBook, protoRef).Add(slotRef, "Slot value").Get);
 
-            var result = box.ValueUnsafe().WithPlacement();
+            var result = box.ValueUnsafe().LayOut();
 
             result
                 .Slots
