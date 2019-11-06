@@ -13,7 +13,7 @@
     public class PlacementCalcTests
     {
         [Fact]
-        public void WithPlacement_ValueEmpty_R1C1() =>
+        public void LayOut_ValueEmpty_R1C1() =>
             ValueBox.Empty
                 .Get
                 .LayOut()
@@ -22,7 +22,7 @@
                 .Be(Placement.At(1, 1, 1, 1));
 
         [Property]
-        public void WithPlacement_ValueWithSpans_AsSpans(PositiveInt rowSpan, PositiveInt colSpan) =>
+        public void LayOut_ValueWithSpans_AsSpans(PositiveInt rowSpan, PositiveInt colSpan) =>
             Make.Value("A")
                 .SpanRows(rowSpan.Get)
                 .SpanCols(colSpan.Get)
@@ -33,7 +33,7 @@
                 .Be(Placement.At(1, 1, height: rowSpan.Get, width: colSpan.Get));
 
         [Fact]
-        public void WithPlacement_RowEmpty_Empty() =>
+        public void LayOut_RowEmpty_Empty() =>
             RowBox.Empty
                 .Get
                 .LayOut()
@@ -43,7 +43,7 @@
                 .BeTrue();
 
         [Property]
-        public void WithPlacement_RowWith2Children_Expected(
+        public void LayOut_RowWith2Children_Expected(
             PositiveInt aRowSpan,
             PositiveInt aColSpan,
             PositiveInt bRowSpan,
@@ -90,7 +90,7 @@
         }
 
         [Property]
-        public void WithPlacement_RowWithChildWithAutoSpan_ChildIsStretched(PositiveInt bRowSpan)
+        public void LayOut_RowWithChildWithAutoSpan_ChildIsStretched(PositiveInt bRowSpan)
         {
             // AB
             var box = Make
@@ -113,7 +113,7 @@
         }
 
         [Fact]
-        public void WithPlacement_ColEmpty_Empty() =>
+        public void LayOut_ColEmpty_Empty() =>
             ColBox.Empty
                 .Get
                 .LayOut()
@@ -123,7 +123,7 @@
                 .BeTrue();
 
         [Property]
-        public void WithPlacement_ColWith2Children_Expected(
+        public void LayOut_ColWith2Children_Expected(
             PositiveInt aRowSpan,
             PositiveInt aColSpan,
             PositiveInt bRowSpan,
@@ -171,7 +171,7 @@
         }
 
         [Property]
-        public void WithPlacement_ColWithChildWithAutoSpan_ChildIsStretched(PositiveInt bColSpan)
+        public void LayOut_ColWithChildWithAutoSpan_ChildIsStretched(PositiveInt bColSpan)
         {
             // A
             // B
@@ -195,7 +195,7 @@
         }
 
         [Fact]
-        public void WithPlacement_StackEmpty_Empty() =>
+        public void LayOut_StackEmpty_Empty() =>
             StackBox.Empty
                 .Get
                 .LayOut()
@@ -205,7 +205,7 @@
                 .BeTrue();
 
         [Property]
-        public void WithPlacement_StackWith2Children_Expected(
+        public void LayOut_StackWith2Children_Expected(
             PositiveInt aRowSpan,
             PositiveInt aColSpan,
             PositiveInt bRowSpan,
@@ -252,7 +252,7 @@
         }
 
         [Property]
-        public void WithPlacement_StackWithChildWithAutoSpan_ChildIsStretched(
+        public void LayOut_StackWithChildWithAutoSpan_ChildIsStretched(
             PositiveInt bRowSpan,
             PositiveInt bColSpan)
         {
@@ -277,7 +277,7 @@
         }
 
         [Fact]
-        public void WithPlacement_ProtoWithSlot_SlotBoxPlaced()
+        public void LayOut_ProtoWithSlot_SlotBoxPlaced()
         {
             const string protoRef = "ProtoRef";
             const string slotRef = "SlotRef";
