@@ -2,8 +2,8 @@
 {
     public enum Measure
     {
-        Row,
-        Col,
+        FirstRow,
+        FirstCol,
         Hight,
         Width,
         MinHight,
