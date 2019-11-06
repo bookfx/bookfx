@@ -35,7 +35,7 @@
                 prev: rootBox
                     .SelfAndDescendants()
                     .Bind(parent => parent
-                        .ImmediateDescendants()
+                        .Children
                         .Neighbors())
                     .ToImmutableDictionary(x => x.Next, x => x.Prev));
 
