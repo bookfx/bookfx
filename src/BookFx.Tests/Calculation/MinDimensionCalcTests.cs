@@ -15,28 +15,28 @@
     public class MinDimensionCalcTests
     {
         [Fact]
-        public void WithMinDimension_ValueEmpty_1x1() => GetMinDimension(ValueBox.Empty.Get).Should().Be((1, 1));
+        public void MinDimension_ValueEmpty_1x1() => GetMinDimension(ValueBox.Empty.Get).Should().Be((1, 1));
 
         [Fact]
-        public void WithMinDimension_Value_1x1() => GetMinDimension(Make.Value("A").Get).Should().Be((1, 1));
+        public void MinDimension_Value_1x1() => GetMinDimension(Make.Value("A").Get).Should().Be((1, 1));
 
         [Property]
-        public void WithMinDimension_ValueWithSpans_AsSpans(PositiveInt rowSpan, PositiveInt colSpan) =>
+        public void MinDimension_ValueWithSpans_AsSpans(PositiveInt rowSpan, PositiveInt colSpan) =>
             GetMinDimension(Make.Value("A").SpanRows(rowSpan.Get).SpanCols(colSpan.Get).Get)
                 .Should()
                 .Be((rowSpan.Get, colSpan.Get));
 
         [Fact]
-        public void WithMinDimension_RowEmpty_Empty() => GetMinDimension(Make.Row().Get).Should().Be((0, 0));
+        public void MinDimension_RowEmpty_Empty() => GetMinDimension(Make.Row().Get).Should().Be((0, 0));
 
         [Property]
-        public void WithMinDimension_RowWithChild_AsSpans(PositiveInt rowSpan, PositiveInt colSpan) =>
+        public void MinDimension_RowWithChild_AsSpans(PositiveInt rowSpan, PositiveInt colSpan) =>
             GetMinDimension(Make.Row(Make.Value("A").SpanRows(rowSpan.Get).SpanCols(colSpan.Get)).Get)
                 .Should()
                 .Be((rowSpan.Get, colSpan.Get));
 
         [Property]
-        public void WithMinDimension_RowWith2ChildrenWithSpans_Expected(
+        public void MinDimension_RowWith2ChildrenWithSpans_Expected(
             PositiveInt aRowSpan,
             PositiveInt aColSpan,
             PositiveInt bRowSpan,
@@ -55,11 +55,11 @@
         }
 
         [Fact]
-        public void WithMinDimension_RowWith2ChildrenWithoutSpans_1x2() =>
+        public void MinDimension_RowWith2ChildrenWithoutSpans_1x2() =>
             GetMinDimension(Make.Row(Make.Value("A"), Make.Value("B")).Get).Should().Be((1, 2));
 
         [Fact]
-        public void WithMinDimension_RowWithRowWithValue_All1x1()
+        public void MinDimension_RowWithRowWithValue_All1x1()
         {
             var box = Make.Row(Make.Row(Make.Value("A"))).Get;
 
@@ -72,16 +72,16 @@
         }
 
         [Fact]
-        public void WithMinDimension_ColEmpty_Empty() => GetMinDimension(ColBox.Empty.Get).Should().Be((0, 0));
+        public void MinDimension_ColEmpty_Empty() => GetMinDimension(ColBox.Empty.Get).Should().Be((0, 0));
 
         [Property]
-        public void WithMinDimension_ColWithChild_AsSpans(PositiveInt rowSpan, PositiveInt colSpan) =>
+        public void MinDimension_ColWithChild_AsSpans(PositiveInt rowSpan, PositiveInt colSpan) =>
             GetMinDimension(Make.Col(Make.Value("A").SpanRows(rowSpan.Get).SpanCols(colSpan.Get)).Get)
                 .Should()
                 .Be((rowSpan.Get, colSpan.Get));
 
         [Property]
-        public void WithMinDimension_ColWith2ChildrenWithSpans_Expected(
+        public void MinDimension_ColWith2ChildrenWithSpans_Expected(
             PositiveInt aRowSpan,
             PositiveInt aColSpan,
             PositiveInt bRowSpan,
@@ -100,7 +100,7 @@
         }
 
         [Fact]
-        public void WithMinDimension_ColWith2ChildrenWithoutSpans_2x1() =>
+        public void MinDimension_ColWith2ChildrenWithoutSpans_2x1() =>
             GetMinDimension(Make
                     .Col(Make.Value("A"), Make.Value("B"))
                     .Get)
@@ -108,10 +108,10 @@
                 .Be((2, 1));
 
         [Fact]
-        public void WithMinDimension_StackEmpty_Empty() => GetMinDimension(StackBox.Empty.Get).Should().Be((0, 0));
+        public void MinDimension_StackEmpty_Empty() => GetMinDimension(StackBox.Empty.Get).Should().Be((0, 0));
 
         [Property]
-        public void WithMinDimension_StackWithChild_AsSpans(PositiveInt rowSpan, PositiveInt colSpan) =>
+        public void MinDimension_StackWithChild_AsSpans(PositiveInt rowSpan, PositiveInt colSpan) =>
             GetMinDimension(Make
                     .Stack(Make.Value("A")
                         .SpanRows(rowSpan.Get)
@@ -122,7 +122,7 @@
                 .Be((rowSpan.Get, colSpan.Get));
 
         [Property]
-        public void WithMinDimension_StackWith2ChildrenWithSpans_Expected(
+        public void MinDimension_StackWith2ChildrenWithSpans_Expected(
             PositiveInt aRowSpan,
             PositiveInt aColSpan,
             PositiveInt bRowSpan,
@@ -139,11 +139,11 @@
                     Math.Max(aColSpan.Get, bColSpan.Get)));
 
         [Fact]
-        public void WithMinDimension_StackWith2ChildrenWithoutSpans_1x1() =>
+        public void MinDimension_StackWith2ChildrenWithoutSpans_1x1() =>
             GetMinDimension(Make.Stack(Make.Value("A"), Make.Value("B")).Get).Should().Be((1, 1));
 
         [Property(Arbitrary = new[] { typeof(ValidColumnNumberArb) }, MaxTest = 5)]
-        public void WithMinDimension_ProtoWithoutSlots_AsProto(int protoHeight, int protoWidth)
+        public void MinDimension_ProtoWithoutSlots_AsProto(int protoHeight, int protoWidth)
         {
             const string protoRef = "ProtoRef";
             var protoBook = Make
@@ -163,7 +163,7 @@
         }
 
         [Fact]
-        public void WithMinDimension_ProtoWithSlotBox1x1_SlotBox1x1()
+        public void MinDimension_ProtoWithSlotBox1x1_SlotBox1x1()
         {
             const string protoRef = "ProtoRef";
             var protoBook = Make
