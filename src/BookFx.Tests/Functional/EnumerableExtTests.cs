@@ -96,5 +96,13 @@
         [Fact]
         public void Find_EmptyDecimals_None() =>
             Enumerable.Empty<decimal>().Find(_ => true).Should().Be((Option<decimal>)None);
+
+        [Property]
+        public void Neighbors_Always_PrevsAreListWithoutLast(object[] list) =>
+            list.Neighbors().Map(x => x.Prev).Should().BeEquivalentTo(list.Take(list.Length - 1));
+
+        [Property]
+        public void Neighbors_Always_NextsAreListTail(object[] list) =>
+            list.Neighbors().Map(x => x.Next).Should().BeEquivalentTo(list.Skip(1));
     }
 }

@@ -60,7 +60,6 @@
                 .Where(x => x.Count() > 1)
                 .Select(x => x.Key);
 
-        // todo test
         [Pure]
         public static IEnumerable<(T Prev, T Next)> Neighbors<T>(this IEnumerable<T> list)
         {
