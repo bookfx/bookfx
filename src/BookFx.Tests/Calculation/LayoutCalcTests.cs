@@ -303,5 +303,41 @@
                 .Should()
                 .Be(Placement.At(row: 2, col: 1, height: 1, width: 1));
         }
+
+        [Fact]
+        public void LayOut_NonuniqueChildren_Placed()
+        {
+            var child = Make.Value();
+            var box = Make.Row(child, child).Get;
+
+            var result = box.LayOut();
+
+            result.Placement.Should().Be(Placement.At(row: 1, col: 1, height: 1, width: 2));
+        }
+
+        [Fact]
+        public void LayOut_NonUniqueChildren_Placed()
+        {
+            var child1 = Make.Value();
+            var child2 = Make.Value();
+            var box = Make.Row(child1, child2, child1, child2).Get;
+
+            var result = box.LayOut();
+
+            result.Placement.Should().Be(Placement.At(row: 1, col: 1, height: 1, width: 2));
+        }
+
+        [Fact]
+        public void LayOut_SameBoxInDifferentParents_Placed()
+        {
+            var child = Make.Value();
+            var parent1 = Make.Row(child);
+            var parent2 = Make.Row(child);
+            var box = Make.Row(parent1, parent2).Get;
+
+            var result = box.LayOut();
+
+            result.Placement.Should().Be(Placement.At(row: 1, col: 1, height: 1, width: 2));
+        }
     }
 }
