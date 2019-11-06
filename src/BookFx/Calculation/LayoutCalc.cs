@@ -11,11 +11,7 @@
         public static SheetCore LayOut(this SheetCore sheet) =>
             sheet.WithBox(sheet.Box.Map(LayOut));
 
-        public static BoxCore LayOut(this BoxCore box) =>
-            box.WithMinDimension().WithPlacement();
-
-        // todo rename to LayOut
-        public static BoxCore LayOutNew(this BoxCore rootBox)
+        public static BoxCore LayOut(this BoxCore rootBox)
         {
             var structure = Structure.Create(rootBox);
             return LayOut(rootBox, structure).Run(Cache.Empty);

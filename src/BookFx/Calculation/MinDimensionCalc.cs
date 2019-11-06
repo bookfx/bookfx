@@ -1,13 +1,17 @@
 ﻿namespace BookFx.Calculation
 {
+    using System;
     using System.Collections.Immutable;
     using System.Linq;
     using BookFx.Cores;
     using BookFx.Epplus;
     using BookFx.Functional;
 
+    // todo del
+    [Obsolete]
     internal static class MinDimensionCalc
     {
+        [Obsolete]
         public static BoxCore WithMinDimension(this BoxCore box)
         {
             var children = box.Children.Map(x => x.WithMinDimension()).ToImmutableList();

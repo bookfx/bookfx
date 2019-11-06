@@ -6,6 +6,8 @@
     using BookFx.Functional;
     using static BookFx.Functional.F;
 
+    // todo del
+    [Obsolete]
     internal static class PlacementCalc
     {
         private static readonly Mover MoveRight =
@@ -18,6 +20,7 @@
 
         private delegate Position Mover(Placement placement);
 
+        [Obsolete]
         public static BoxCore WithPlacement(this BoxCore box) => box.WithPlacement(None, Position.Initial);
 
         private static BoxCore WithPlacement(this BoxCore box, Option<BoxCore> parent, Position position) =>
