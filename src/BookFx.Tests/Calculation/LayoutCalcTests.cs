@@ -324,7 +324,7 @@
 
             var result = box.LayOut();
 
-            result.Placement.Should().Be(Placement.At(row: 1, col: 1, height: 1, width: 2));
+            result.Placement.Should().Be(Placement.At(row: 1, col: 1, height: 1, width: 4));
         }
 
         [Fact]
