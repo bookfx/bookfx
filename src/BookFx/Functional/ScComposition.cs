@@ -7,13 +7,12 @@
 
     internal static class ScComposition
     {
-        // todo test
         [Pure]
         public static Sc<TS, TV> Compose<TS, TV>(
-            this IEnumerable<Sc<TS, TV>> computations,
+            this IEnumerable<Sc<TS, TV>> scs,
             TV seed,
             Func<TV, TV, TV> f) =>
-            computations.Aggregate(
+            scs.Aggregate(
                 seed: Sc<TS>.Return(seed),
                 func: (accSc, currSc) =>
                     from acc in accSc
