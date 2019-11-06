@@ -13,18 +13,14 @@
             from result in cache.GetOrCompute(
                 key: (box, Measure.Width),
                 sc: () => box.Match(
-                    row: _ => OfRow(box),
-                    col: _ => OfCol(box),
-                    stack: _ => OfStack(box),
+                    row: _ => OfComposite(box),
+                    col: _ => OfComposite(box),
+                    stack: _ => OfComposite(box),
                     value: _ => OfValue(box, structure),
-                    proto: _ => OfProto(box)))
+                    proto: _ => OfComposite(box)))
             select result;
 
-        private static Sc<Cache, int> OfRow(BoxCore box) => MinWidth(box);
-
-        private static Sc<Cache, int> OfCol(BoxCore box) => MinWidth(box);
-
-        private static Sc<Cache, int> OfStack(BoxCore box) => MinWidth(box);
+        private static Sc<Cache, int> OfComposite(BoxCore box) => MinWidth(box);
 
         private static Sc<Cache, int> OfValue(BoxCore box, Structure structure) =>
             box
@@ -39,7 +35,5 @@
                         value: _ => throw new InvalidOperationException(),
                         proto: _ => ScOf(1)))
                 .GetOrElse(ScOf(1));
-
-        private static Sc<Cache, int> OfProto(BoxCore box) => MinWidth(box);
     }
 }
