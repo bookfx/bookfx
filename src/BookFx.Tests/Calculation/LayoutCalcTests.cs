@@ -10,7 +10,7 @@
     using Xunit;
     using static BookFx.Functional.F;
 
-    public class PlacementCalcTests
+    public class LayoutCalcTests
     {
         [Fact]
         public void LayOut_ValueEmpty_R1C1() =>
