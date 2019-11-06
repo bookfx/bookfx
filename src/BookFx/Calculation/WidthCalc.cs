@@ -24,7 +24,7 @@
 
         private static Sc<Cache, int> OfValue(BoxCore box, Structure structure) =>
             box
-                .RowSpan
+                .ColSpan
                 .Map(ScOf)
                 .OrElse(() => structure
                     .Parent(box)
