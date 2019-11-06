@@ -6,7 +6,7 @@
 
     internal static class FirstRowCalc
     {
-        public static Sc<Cache, int> Perform(BoxCore box, Structure structure) =>
+        public static Sc<Cache, int> FirstRow(BoxCore box, Structure structure) =>
             throw new NotImplementedException();
     }
 }

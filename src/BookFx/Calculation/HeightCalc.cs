@@ -6,7 +6,7 @@
 
     internal static class HeightCalc
     {
-        public static Sc<Cache, int> Perform(BoxCore box, Structure structure) =>
+        public static Sc<Cache, int> Height(BoxCore box, Structure structure) =>
             throw new NotImplementedException();
     }
 }

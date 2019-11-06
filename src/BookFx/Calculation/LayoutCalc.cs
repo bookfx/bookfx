@@ -22,7 +22,7 @@
         }
 
         private static Sc<Cache, BoxCore> LayOut(BoxCore box, Structure structure) =>
-            from placement in PlacementCalcNew.Perform(box, structure)
+            from placement in PlacementCalcNew.Placement(box, structure)
             from placed in box.Match(
                 row: x => LayOutComposite(x, placement, structure),
                 col: x => LayOutComposite(x, placement, structure),

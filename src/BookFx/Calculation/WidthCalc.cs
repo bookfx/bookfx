@@ -6,7 +6,7 @@
 
     internal static class WidthCalc
     {
-        public static Sc<Cache, int> Perform(BoxCore box, Structure structure) =>
+        public static Sc<Cache, int> Width(BoxCore box, Structure structure) =>
             throw new NotImplementedException();
     }
 }
