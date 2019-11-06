@@ -13,8 +13,9 @@
 
         public static BoxCore LayOut(this BoxCore rootBox)
         {
-            var structure = Structure.Create(rootBox);
-            return LayOut(rootBox, structure).Run(Cache.Empty);
+            var uniqueRootBox = rootBox.MakeUnique();
+            var structure = Structure.Create(uniqueRootBox);
+            return LayOut(uniqueRootBox, structure).Run(Cache.Empty);
         }
 
         private static Sc<Cache, BoxCore> LayOut(BoxCore box, Structure structure) =>
