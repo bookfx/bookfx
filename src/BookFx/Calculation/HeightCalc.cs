@@ -3,6 +3,8 @@
     using System;
     using BookFx.Cores;
     using BookFx.Functional;
+    using static BookFx.Functional.Sc<Cache>;
+    using static MinHeightCalc;
 
     internal static class HeightCalc
     {
@@ -11,15 +13,15 @@
         private static Sc<Cache, int> OfValue(BoxCore box, Structure structure) =>
             box
                 .RowSpan
-                .Map(Sc<Cache>.ScOf)
+                .Map(ScOf)
                 .OrElse(() => structure
                     .Parent(box)
                     .Map(
-                        row: MinHeightCalc.MinHeight,
-                        col: _ => Sc<Cache>.ScOf(1),
-                        stack: MinHeightCalc.MinHeight,
+                        row: MinHeight,
+                        col: _ => ScOf(1),
+                        stack: MinHeight,
                         value: _ => throw new InvalidOperationException(),
-                        proto: _ => Sc<Cache>.ScOf(1)))
-                .GetOrElse(Sc<Cache>.ScOf(1));
+                        proto: _ => ScOf(1)))
+                .GetOrElse(ScOf(1));
     }
 }
