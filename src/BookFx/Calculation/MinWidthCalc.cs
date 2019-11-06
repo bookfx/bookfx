@@ -3,11 +3,12 @@
     using System;
     using BookFx.Cores;
     using BookFx.Functional;
+    using static BookFx.Functional.Sc<Cache>;
 
     internal static class MinWidthCalc
     {
         public static Sc<Cache, int> MinWidth(BoxCore box) =>
-            from cache in Sc<Cache>.GetState
+            from cache in GetState
             from result in cache.GetOrCompute(
                 key: (box, Measure.MinWidth),
                 sc: () => box.Match(
@@ -28,9 +29,9 @@
             box.Children.Map(MinWidth).Compose(seed: 0, Math.Max);
 
         private static Sc<Cache, int> OfValue(BoxCore box) =>
-            Sc<Cache>.ScOf(box.ColSpan.GetOrElse(1));
+            ScOf(box.ColSpan.GetOrElse(1));
 
         private static Sc<Cache, int> OfProto(BoxCore box) =>
-            Sc<Cache>.ScOf(box.Proto.Bind(x => x.Range).ValueUnsafe().Columns);
+            ScOf(box.Proto.Bind(x => x.Range).ValueUnsafe().Columns);
     }
 }
