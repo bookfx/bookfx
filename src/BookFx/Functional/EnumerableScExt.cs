@@ -9,11 +9,20 @@
     {
         [Pure]
         public static Sc<TS, IEnumerable<TR>> Traverse<TS, TV, TR>(this IEnumerable<TV> xs, Func<TV, Sc<TS, TR>> f) =>
-            xs.Aggregate(
-                seed: Sc<TS>.ScOf(Enumerable.Empty<TR>()),
-                func: (sc, x) =>
-                    from rs in sc
-                    from r in f(x)
-                    select rs.Append(r));
+            state =>
+            {
+                var rs = Enumerable.Empty<TR>();
+                var accState = state;
+
+                foreach (var x in xs)
+                {
+                    var sc = f(x);
+                    var (r, newState) = sc(accState);
+                    accState = newState;
+                    rs = rs.Append(r);
+                }
+
+                return (rs, accState);
+            };
     }
 }

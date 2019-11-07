@@ -1,9 +1,11 @@
 ﻿namespace BookFx.Tests.Functional
 {
     using System.Collections.Immutable;
+    using System.Linq;
     using BookFx.Functional;
     using FluentAssertions;
     using FsCheck.Xunit;
+    using Xunit;
 
     public class EnumerableScExtTests
     {
@@ -23,6 +25,15 @@
 
             result.Should().Equal(list);
         }
+
+        [Fact]
+        public void Traverse_100K_NoStackOverflow() =>
+            Enumerable
+                .Range(1, 100_000)
+                .Traverse(Sc<int>.ScOf)
+                .Run(0)
+                .Should()
+                .HaveCount(100_000);
 
         private static Sc<ImmutableList<int>, int> LogSc(int value) =>
             from log in Sc<ImmutableList<int>>.GetState
