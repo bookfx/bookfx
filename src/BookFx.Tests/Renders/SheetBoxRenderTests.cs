@@ -1,6 +1,7 @@
 ﻿namespace BookFx.Tests.Renders
 {
     using BookFx.Calculation;
+    using BookFx.Cores;
     using BookFx.Epplus;
     using BookFx.Renders;
     using FluentAssertions;
@@ -12,7 +13,7 @@
         public void RootRender_EmptyInRootRange_EmptySheet() =>
             Packer.OnSheet(excelSheet =>
             {
-                var box = Make.Row().Get.LayOutUnsafe();
+                var box = Make.Row().Get.LayOut();
 
                 box.RootRender()(excelSheet);
 
@@ -23,7 +24,7 @@
         public void RootRender_ValueInRootRange_SheetWithValue() =>
             Packer.OnSheet(excelSheet =>
             {
-                var box = Make.Value("A").Get.LayOutUnsafe();
+                var box = Make.Value("A").Get.LayOut();
 
                 box.RootRender()(excelSheet);
 
@@ -36,7 +37,7 @@
             {
                 // AA-
                 // ---
-                var box = Make.Value("A").SpanCols(2).Get.LayOutUnsafe();
+                var box = Make.Value("A").SpanCols(2).Get.LayOut();
 
                 box.RootRender()(excelSheet);
 
@@ -54,7 +55,7 @@
                 // A-
                 // A-
                 // --
-                var box = Make.Value("A").SpanRows(2).Get.LayOutUnsafe();
+                var box = Make.Value("A").SpanRows(2).Get.LayOut();
 
                 box.RootRender()(excelSheet);
 

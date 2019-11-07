@@ -10,44 +10,40 @@
     using Xunit;
     using static BookFx.Functional.F;
 
-    public class PlacementCalcTests
+    public class LayoutCalcTests
     {
         [Fact]
-        public void WithPlacement_ValueEmpty_R1C1() =>
+        public void LayOut_ValueEmpty_R1C1() =>
             ValueBox.Empty
                 .Get
-                .WithMinDimension()
-                .WithPlacement()
-                .Map(x => x.Placement)
+                .LayOut()
+                .Placement
                 .Should()
                 .Be(Placement.At(1, 1, 1, 1));
 
         [Property]
-        public void WithPlacement_ValueWithSpans_AsSpans(PositiveInt rowSpan, PositiveInt colSpan) =>
+        public void LayOut_ValueWithSpans_AsSpans(PositiveInt rowSpan, PositiveInt colSpan) =>
             Make.Value("A")
                 .SpanRows(rowSpan.Get)
                 .SpanCols(colSpan.Get)
                 .Get
-                .WithMinDimension()
-                .WithPlacement()
-                .Map(x => x.Placement)
+                .LayOut()
+                .Placement
                 .Should()
                 .Be(Placement.At(1, 1, height: rowSpan.Get, width: colSpan.Get));
 
         [Fact]
-        public void WithPlacement_RowEmpty_Empty() =>
+        public void LayOut_RowEmpty_Empty() =>
             RowBox.Empty
                 .Get
-                .WithMinDimension()
-                .WithPlacement()
-                .ValueUnsafe()
+                .LayOut()
                 .Placement
                 .IsAbsent
                 .Should()
                 .BeTrue();
 
         [Property]
-        public void WithPlacement_RowWith2Children_Expected(
+        public void LayOut_RowWith2Children_Expected(
             PositiveInt aRowSpan,
             PositiveInt aColSpan,
             PositiveInt bRowSpan,
@@ -61,12 +57,12 @@
                 )
                 .Get;
 
-            var placedParent = box.WithMinDimension().WithPlacement();
-            var placedA = placedParent.Map(x => x.Children[0]);
-            var placedB = placedParent.Map(x => x.Children[1]);
+            var placedParent = box.LayOut();
+            var placedA = placedParent.Children[0];
+            var placedB = placedParent.Children[1];
 
             placedParent
-                .Map(x => x.Placement)
+                .Placement
                 .Should()
                 .Be(Placement.At(
                     row: 1,
@@ -75,7 +71,7 @@
                     width: aColSpan.Get + bColSpan.Get));
 
             placedA
-                .Map(x => x.Placement)
+                .Placement
                 .Should()
                 .Be(Placement.At(
                     row: 1,
@@ -84,7 +80,7 @@
                     width: aColSpan.Get));
 
             placedB
-                .Map(x => x.Placement)
+                .Placement
                 .Should()
                 .Be(Placement.At(
                     row: 1,
@@ -94,7 +90,7 @@
         }
 
         [Property]
-        public void WithPlacement_RowWithChildWithAutoSpan_ChildIsStretched(PositiveInt bRowSpan)
+        public void LayOut_RowWithChildWithAutoSpan_ChildIsStretched(PositiveInt bRowSpan)
         {
             // AB
             var box = Make
@@ -103,11 +99,11 @@
                     Make.Value("B").SpanRows(bRowSpan.Get))
                 .Get;
 
-            var placedParent = box.WithMinDimension().WithPlacement();
-            var placedA = placedParent.Map(x => x.Children[0]);
+            var placedParent = box.LayOut();
+            var placedA = placedParent.Children[0];
 
             placedA
-                .Map(x => x.Placement)
+                .Placement
                 .Should()
                 .Be(Placement.At(
                     row: 1,
@@ -117,19 +113,17 @@
         }
 
         [Fact]
-        public void WithPlacement_ColEmpty_Empty() =>
+        public void LayOut_ColEmpty_Empty() =>
             ColBox.Empty
                 .Get
-                .WithMinDimension()
-                .WithPlacement()
-                .ValueUnsafe()
+                .LayOut()
                 .Placement
                 .IsAbsent
                 .Should()
                 .BeTrue();
 
         [Property]
-        public void WithPlacement_ColWith2Children_Expected(
+        public void LayOut_ColWith2Children_Expected(
             PositiveInt aRowSpan,
             PositiveInt aColSpan,
             PositiveInt bRowSpan,
@@ -144,12 +138,12 @@
                 )
                 .Get;
 
-            var placedParent = box.WithMinDimension().WithPlacement();
-            var placedA = placedParent.Map(x => x.Children[0]);
-            var placedB = placedParent.Map(x => x.Children[1]);
+            var placedParent = box.LayOut();
+            var placedA = placedParent.Children[0];
+            var placedB = placedParent.Children[1];
 
             placedParent
-                .Map(x => x.Placement)
+                .Placement
                 .Should()
                 .Be(Placement.At(
                     row: 1,
@@ -158,7 +152,7 @@
                     width: Math.Max(aColSpan.Get, bColSpan.Get)));
 
             placedA
-                .Map(x => x.Placement)
+                .Placement
                 .Should()
                 .Be(Placement.At(
                     row: 1,
@@ -167,7 +161,7 @@
                     width: aColSpan.Get));
 
             placedB
-                .Map(x => x.Placement)
+                .Placement
                 .Should()
                 .Be(Placement.At(
                     row: aRowSpan.Get + 1,
@@ -177,7 +171,7 @@
         }
 
         [Property]
-        public void WithPlacement_ColWithChildWithAutoSpan_ChildIsStretched(PositiveInt bColSpan)
+        public void LayOut_ColWithChildWithAutoSpan_ChildIsStretched(PositiveInt bColSpan)
         {
             // A
             // B
@@ -187,11 +181,11 @@
                     Make.Value("B").SpanCols(bColSpan.Get))
                 .Get;
 
-            var placedParent = box.WithMinDimension().WithPlacement();
-            var placedA = placedParent.Map(x => x.Children[0]);
+            var placedParent = box.LayOut();
+            var placedA = placedParent.Children[0];
 
             placedA
-                .Map(x => x.Placement)
+                .Placement
                 .Should()
                 .Be(Placement.At(
                     row: 1,
@@ -201,19 +195,17 @@
         }
 
         [Fact]
-        public void WithPlacement_StackEmpty_Empty() =>
+        public void LayOut_StackEmpty_Empty() =>
             StackBox.Empty
                 .Get
-                .WithMinDimension()
-                .WithPlacement()
-                .ValueUnsafe()
+                .LayOut()
                 .Placement
                 .IsAbsent
                 .Should()
                 .BeTrue();
 
         [Property]
-        public void WithPlacement_StackWith2Children_Expected(
+        public void LayOut_StackWith2Children_Expected(
             PositiveInt aRowSpan,
             PositiveInt aColSpan,
             PositiveInt bRowSpan,
@@ -227,12 +219,12 @@
                 )
                 .Get;
 
-            var placedParent = box.WithMinDimension().WithPlacement();
-            var placedA = placedParent.Map(x => x.Children[0]);
-            var placedB = placedParent.Map(x => x.Children[1]);
+            var placedParent = box.LayOut();
+            var placedA = placedParent.Children[0];
+            var placedB = placedParent.Children[1];
 
             placedParent
-                .Map(x => x.Placement)
+                .Placement
                 .Should()
                 .Be(Placement.At(
                     row: 1,
@@ -241,7 +233,7 @@
                     width: Math.Max(aColSpan.Get, bColSpan.Get)));
 
             placedA
-                .Map(x => x.Placement)
+                .Placement
                 .Should()
                 .Be(Placement.At(
                     row: 1,
@@ -250,7 +242,7 @@
                     width: aColSpan.Get));
 
             placedB
-                .Map(x => x.Placement)
+                .Placement
                 .Should()
                 .Be(Placement.At(
                     row: 1,
@@ -260,7 +252,7 @@
         }
 
         [Property]
-        public void WithPlacement_StackWithChildWithAutoSpan_ChildIsStretched(
+        public void LayOut_StackWithChildWithAutoSpan_ChildIsStretched(
             PositiveInt bRowSpan,
             PositiveInt bColSpan)
         {
@@ -271,11 +263,11 @@
                     Make.Value("B").SpanRows(bRowSpan.Get).SpanCols(bColSpan.Get))
                 .Get;
 
-            var placedParent = box.WithMinDimension().WithPlacement();
-            var placedA = placedParent.Map(x => x.Children[0]);
+            var placedParent = box.LayOut();
+            var placedA = placedParent.Children[0];
 
             placedA
-                .Map(x => x.Placement)
+                .Placement
                 .Should()
                 .Be(Placement.At(
                     row: 1,
@@ -285,7 +277,7 @@
         }
 
         [Fact]
-        public void WithPlacement_ProtoWithSlot_SlotBoxPlaced()
+        public void LayOut_ProtoWithSlot_SlotBoxPlaced()
         {
             const string protoRef = "ProtoRef";
             const string slotRef = "SlotRef";
@@ -299,15 +291,53 @@
                 .ToBytes();
             var bank = new ProtoBank(List(protoBook));
             var box = bank
-                .PlugProtos(Make.Proto(protoBook, protoRef).Add(slotRef, "Slot value").Get)
-                .Map(x => x.WithMinDimension());
+                .PlugProtos(Make.Proto(protoBook, protoRef).Add(slotRef, "Slot value").Get);
 
-            var result = box.ValueUnsafe().WithPlacement();
+            var result = box.ValueUnsafe().LayOut();
 
             result
-                .Map(x => x.Slots.Single().Box.Placement)
+                .Slots
+                .Single()
+                .Box
+                .Placement
                 .Should()
                 .Be(Placement.At(row: 2, col: 1, height: 1, width: 1));
+        }
+
+        [Fact]
+        public void LayOut_NonuniqueChildren_Placed()
+        {
+            var child = Make.Value();
+            var box = Make.Row(child, child).Get;
+
+            var result = box.LayOut();
+
+            result.Placement.Should().Be(Placement.At(row: 1, col: 1, height: 1, width: 2));
+        }
+
+        [Fact]
+        public void LayOut_NonUniqueChildren_Placed()
+        {
+            var child1 = Make.Value();
+            var child2 = Make.Value();
+            var box = Make.Row(child1, child2, child1, child2).Get;
+
+            var result = box.LayOut();
+
+            result.Placement.Should().Be(Placement.At(row: 1, col: 1, height: 1, width: 4));
+        }
+
+        [Fact]
+        public void LayOut_SameBoxInDifferentParents_Placed()
+        {
+            var child = Make.Value();
+            var parent1 = Make.Row(child);
+            var parent2 = Make.Row(child);
+            var box = Make.Row(parent1, parent2).Get;
+
+            var result = box.LayOut();
+
+            result.Placement.Should().Be(Placement.At(row: 1, col: 1, height: 1, width: 2));
         }
     }
 }

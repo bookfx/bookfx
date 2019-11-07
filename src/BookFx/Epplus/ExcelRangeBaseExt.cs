@@ -43,7 +43,7 @@
                         trg: target.Worksheet.Row(trg)))
                 .ForEach(x => x.trg.Height = x.src.Height);
 
-        public static Result<Position> GetPosition(this ExcelRangeBase range) =>
+        public static Position GetPosition(this ExcelRangeBase range) =>
             Position.At(range.Start.Row, range.Start.Column);
 
         public static Dimension GetDimension(this ExcelRangeBase range) =>

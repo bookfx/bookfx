@@ -1,6 +1,7 @@
 ﻿namespace BookFx.Tests.Renders
 {
     using BookFx.Calculation;
+    using BookFx.Cores;
     using BookFx.Epplus;
     using BookFx.Renders;
     using FluentAssertions;
@@ -22,7 +23,7 @@
                         RowBox.Empty,
                         Make.Value("C"))
                     .Get
-                    .LayOutUnsafe();
+                    .LayOut();
                 var excelRange = excelSheet.Cells[FromRow: 1, FromCol: 1, ToRow: 1, ToCol: 2];
 
                 box.DescendantsRender()(excelRange);
@@ -42,7 +43,7 @@
                         Make.Value(),
                         Make.Value("C"))
                     .Get
-                    .LayOutUnsafe();
+                    .LayOut();
                 var excelRange = excelSheet.Cells[FromRow: 1, FromCol: 1, ToRow: 1, ToCol: 3];
                 excelSheet.Cells[1, 2].Value = OldValue;
 
@@ -63,7 +64,7 @@
                         Make.Value(Unit()),
                         Make.Value("C"))
                     .Get
-                    .LayOutUnsafe();
+                    .LayOut();
                 var excelRange = excelSheet.Cells[FromRow: 1, FromCol: 1, ToRow: 1, ToCol: 3];
                 excelSheet.Cells[1, 2].Value = OldValue;
 
@@ -83,7 +84,7 @@
                         Make.Value("A"),
                         Make.Value("B"))
                     .Get
-                    .LayOutUnsafe();
+                    .LayOut();
                 var excelRange = excelSheet.Cells[FromRow: 1, FromCol: 1, ToRow: 1, ToCol: 2];
 
                 box.DescendantsRender()(excelRange);
@@ -102,7 +103,7 @@
                         Make.Value("A"),
                         Make.Value("B").SpanRows(2))
                     .Get
-                    .LayOutUnsafe();
+                    .LayOut();
                 var excelRange = excelSheet.Cells[FromRow: 1, FromCol: 1, ToRow: 2, ToCol: 2];
 
                 box.DescendantsRender()(excelRange);
@@ -124,7 +125,7 @@
                         RowBox.Empty,
                         Make.Value("B"))
                     .Get
-                    .LayOutUnsafe();
+                    .LayOut();
                 var excelRange = excelSheet.Cells[FromRow: 1, FromCol: 1, ToRow: 2, ToCol: 1];
 
                 box.DescendantsRender()(excelRange);
@@ -144,7 +145,7 @@
                         Make.Value("A"),
                         Make.Value("B"))
                     .Get
-                    .LayOutUnsafe();
+                    .LayOut();
                 var excelRange = excelSheet.Cells[FromRow: 1, FromCol: 1, ToRow: 2, ToCol: 1];
 
                 box.DescendantsRender()(excelRange);
@@ -164,7 +165,7 @@
                         Make.Value("A"),
                         Make.Value("B").SpanCols(2))
                     .Get
-                    .LayOutUnsafe();
+                    .LayOut();
                 var excelRange = excelSheet.Cells[FromRow: 1, FromCol: 1, ToRow: 2, ToCol: 2];
 
                 box.DescendantsRender()(excelRange);
