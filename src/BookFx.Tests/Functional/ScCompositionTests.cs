@@ -6,6 +6,7 @@
     using BookFx.Functional;
     using FluentAssertions;
     using FsCheck.Xunit;
+    using Xunit;
 
     public class ScCompositionTests
     {
@@ -30,6 +31,16 @@
 
             result.Should().Equal(list);
         }
+
+        [Fact]
+        public void Compose_100K_NoStackOverflow() =>
+            Enumerable
+                .Range(1, 100_000)
+                .Map(Sc<int>.ScOf)
+                .Compose(0, Math.Max)
+                .Run(0)
+                .Should()
+                .Be(100_000);
 
         private static Sc<ImmutableList<int>, int> LogSc(int value) =>
             from log in Sc<ImmutableList<int>>.GetState

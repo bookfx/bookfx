@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using JetBrains.Annotations;
 
     internal static class ScComposition
@@ -12,11 +11,19 @@
             this IEnumerable<Sc<TS, TV>> scs,
             TV seed,
             Func<TV, TV, TV> f) =>
-            scs.Aggregate(
-                seed: Sc<TS>.ScOf(seed),
-                func: (accSc, currSc) =>
-                    from acc in accSc
-                    from curr in currSc
-                    select f(acc, curr));
+            state =>
+            {
+                var accValue = seed;
+                var accState = state;
+
+                foreach (var sc in scs)
+                {
+                    var (scValue, newState) = sc(accState);
+                    accValue = f(accValue, scValue);
+                    accState = newState;
+                }
+
+                return (accValue, accState);
+            };
     }
 }
