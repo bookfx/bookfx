@@ -3,38 +3,31 @@
     using System;
     using BookFx.Cores;
     using BookFx.Functional;
-    using static BookFx.Functional.Sc<Cache>;
     using static WidthCalc;
 
     internal static class FirstColCalc
     {
-        public static Sc<Cache, int> FirstCol(BoxCore box, Structure structure) =>
-            cache => cache.GetOrCompute(
+        public static int FirstCol(BoxCore box, Structure structure, Cache cache) =>
+            cache.GetOrCompute(
                 key: (box, Measure.FirstCol),
-                sc: () => OfBox(box, structure));
+                f: () => OfBox(box, structure, cache));
 
-        private static Sc<Cache, int> OfBox(BoxCore box, Structure structure) =>
+        private static int OfBox(BoxCore box, Structure structure, Cache cache) =>
             structure
                 .Parent(box)
                 .Map(parent => parent
                     .Match(
                         row: _ => structure
                             .Prev(box)
-                            .Map(prev =>
-                                from prevFirstCol in FirstCol(prev, structure)
-                                from prevWidth in Width(prev, structure)
-                                select prevFirstCol + prevWidth)
-                            .OrElse(FirstCol(parent, structure))
-                            .GetOrElse(ScOf(1)),
-                        col: _ => FirstCol(parent, structure),
-                        stack: _ => FirstCol(parent, structure),
+                            .Map(prev => FirstCol(prev, structure, cache) + Width(prev, structure, cache))
+                            .GetOrElse(() => FirstCol(parent, structure, cache)),
+                        col: _ => FirstCol(parent, structure, cache),
+                        stack: _ => FirstCol(parent, structure, cache),
                         value: _ => throw new InvalidOperationException(),
                         proto: _ =>
-                            from parentFirstCol in FirstCol(parent, structure)
-                            let slotRelativeCol = structure.Slot(box).Position.ValueUnsafe().Col
-                            select parentFirstCol + slotRelativeCol - 1
+                            FirstCol(parent, structure, cache) + structure.Slot(box).Position.ValueUnsafe().Col - 1
                     )
                 )
-                .GetOrElse(ScOf(1));
+                .GetOrElse(1);
     }
 }

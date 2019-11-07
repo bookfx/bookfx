@@ -15,15 +15,15 @@
 
         public static Cache Create(int boxCount) => new Cache(boxCount);
 
-        public (int Result, Cache Cache) GetOrCompute((BoxCore Box, Measure Measure) key, Func<Sc<Cache, int>> sc) =>
+        public int GetOrCompute((BoxCore Box, Measure Measure) key, Func<int> f) =>
             _values[key.Box.Number, (int)key.Measure]
                 .Match(
                     none: () =>
                     {
-                        var (value, _) = sc()(this);
+                        var value = f();
                         _values[key.Box.Number, (int)key.Measure] = value;
-                        return (value, this);
+                        return value;
                     },
-                    some: value => (value, this));
+                    some: value => value);
     }
 }

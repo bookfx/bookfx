@@ -6,7 +6,6 @@
     using BookFx.Functional;
     using FluentAssertions;
     using Xunit;
-    using static BookFx.Functional.Sc<BookFx.Calculation.Cache>;
 
     public class CacheTests
     {
@@ -18,23 +17,12 @@
             const int expected = 3;
             var (box, boxCount) = Make.Value().Get.Number();
             var key = (box, Measure);
-            var cache = Cache.Create(boxCount).GetOrCompute(key, () => ScOf(expected)).Cache;
+            var cache = Cache.Create(boxCount);
+            cache.GetOrCompute(key, () => expected);
 
-            var result = cache.GetOrCompute(key, ThrowSc).Result;
+            var result = cache.GetOrCompute(key, Throw);
 
             result.Should().Be(expected);
-        }
-
-        [Fact]
-        public void GetOrCompute_InCache_NoCacheChanges()
-        {
-            var (box, boxCount) = Make.Value().Get.Number();
-            var key = (box, Measure);
-            var cache = Cache.Create(boxCount).GetOrCompute(key, () => ScOf(3)).Cache;
-
-            var newCache = cache.GetOrCompute(key, ThrowSc).Cache;
-
-            newCache.Should().BeSameAs(cache);
         }
 
         [Fact]
@@ -45,7 +33,7 @@
             var key = (box, Measure);
             var cache = Cache.Create(boxCount);
 
-            var result = cache.GetOrCompute(key, () => RowSpanSc(box)).Result;
+            var result = cache.GetOrCompute(key, () => RowSpan(box));
 
             result.Should().Be(expected);
         }
@@ -58,15 +46,15 @@
             var key = (box, Measure);
             var cache = Cache.Create(boxCount);
 
-            var newCache = cache.GetOrCompute(key, () => RowSpanSc(box)).Cache;
+            cache.GetOrCompute(key, () => RowSpan(box));
 
-            newCache.GetOrCompute(key, ThrowSc).Result.Should().Be(expected);
+            cache.GetOrCompute(key, Throw).Should().Be(expected);
         }
 
-        private static Sc<Cache, int> ThrowSc() =>
+        private static int Throw() =>
             throw new InvalidOperationException();
 
-        private static Sc<Cache, int> RowSpanSc(BoxCore box) =>
-            ScOf(box.RowSpan.GetOrElse(1));
+        private static int RowSpan(BoxCore box) =>
+            box.RowSpan.GetOrElse(1);
     }
 }

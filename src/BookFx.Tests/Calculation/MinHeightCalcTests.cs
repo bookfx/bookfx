@@ -1,7 +1,6 @@
 ﻿namespace BookFx.Tests.Calculation
 {
     using BookFx.Calculation;
-    using BookFx.Functional;
     using FluentAssertions;
     using Xunit;
 
@@ -19,8 +18,9 @@
                 )
                 .Get
                 .Number();
+            var cache = Cache.Create(boxCount);
 
-            var result = MinHeightCalc.MinHeight(box).Run(Cache.Create(boxCount));
+            var result = MinHeightCalc.MinHeight(box, cache);
 
             result.Should().Be(8);
         }

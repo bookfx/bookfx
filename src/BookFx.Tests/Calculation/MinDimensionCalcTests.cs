@@ -183,12 +183,9 @@
         private static (int Height, int Width) GetMinDimension(BoxCore box)
         {
             var (numberedBox, boxCount) = box.Number();
+            var cache = Cache.Create(boxCount);
 
-            return (
-                from minHeight in MinHeightCalc.MinHeight(numberedBox)
-                from minWidth in MinWidthCalc.MinWidth(numberedBox)
-                select (minHeight, minWidth)
-            ).Run(Cache.Create(boxCount));
+            return (MinHeightCalc.MinHeight(numberedBox, cache), MinWidthCalc.MinWidth(numberedBox, cache));
         }
     }
 }
