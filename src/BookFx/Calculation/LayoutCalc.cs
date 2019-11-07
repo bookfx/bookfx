@@ -11,11 +11,11 @@
         public static SheetCore LayOut(this SheetCore sheet) =>
             sheet.WithBox(sheet.Box.Map(LayOut));
 
-        public static BoxCore LayOut(this BoxCore rootBox)
+        public static BoxCore LayOut(this BoxCore box)
         {
-            var uniqueRootBox = rootBox.MakeUnique();
-            var structure = Structure.Create(uniqueRootBox);
-            return LayOut(uniqueRootBox, structure).Run(Cache.Empty);
+            var (numberedBox, boxCount) = box.Number();
+            var structure = Structure.Create(numberedBox);
+            return LayOut(numberedBox, structure).Run(Cache.Create(boxCount));
         }
 
         private static Sc<Cache, BoxCore> LayOut(BoxCore box, Structure structure) =>

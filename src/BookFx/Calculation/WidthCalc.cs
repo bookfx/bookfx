@@ -9,16 +9,14 @@
     internal static class WidthCalc
     {
         public static Sc<Cache, int> Width(BoxCore box, Structure structure) =>
-            from cache in GetState
-            from result in cache.GetOrCompute(
+            cache => cache.GetOrCompute(
                 key: (box, Measure.Width),
                 sc: () => box.Match(
                     row: _ => OfComposite(box),
                     col: _ => OfComposite(box),
                     stack: _ => OfComposite(box),
                     value: _ => OfValue(box, structure),
-                    proto: _ => OfComposite(box)))
-            select result;
+                    proto: _ => OfComposite(box)));
 
         private static Sc<Cache, int> OfComposite(BoxCore box) => MinWidth(box);
 

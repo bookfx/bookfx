@@ -8,16 +8,14 @@
     internal static class MinWidthCalc
     {
         public static Sc<Cache, int> MinWidth(BoxCore box) =>
-            from cache in GetState
-            from result in cache.GetOrCompute(
+            cache => cache.GetOrCompute(
                 key: (box, Measure.MinWidth),
                 sc: () => box.Match(
                     row: _ => OfRow(box),
                     col: _ => OfCol(box),
                     stack: _ => OfStack(box),
                     value: _ => OfValue(box),
-                    proto: _ => OfProto(box)))
-            select result;
+                    proto: _ => OfProto(box)));
 
         private static Sc<Cache, int> OfRow(BoxCore box) =>
             box.Children.Map(MinWidth).Compose(seed: 0, (x, y) => x + y);

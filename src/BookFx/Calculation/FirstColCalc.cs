@@ -9,11 +9,9 @@
     internal static class FirstColCalc
     {
         public static Sc<Cache, int> FirstCol(BoxCore box, Structure structure) =>
-            from cache in GetState
-            from result in cache.GetOrCompute(
+            cache => cache.GetOrCompute(
                 key: (box, Measure.FirstCol),
-                sc: () => OfBox(box, structure))
-            select result;
+                sc: () => OfBox(box, structure));
 
         private static Sc<Cache, int> OfBox(BoxCore box, Structure structure) =>
             structure

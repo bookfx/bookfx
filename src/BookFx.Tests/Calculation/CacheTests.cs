@@ -6,9 +6,9 @@
     using BookFx.Functional;
     using FluentAssertions;
     using Xunit;
-    using static BookFx.Functional.F;
+    using static BookFx.Functional.Sc<BookFx.Calculation.Cache>;
 
-    public class CacheExtTests
+    public class CacheTests
     {
         private const Measure Measure = BookFx.Calculation.Measure.MinHight;
 
@@ -16,11 +16,11 @@
         public void GetOrCompute_InCache_ResultFromCache()
         {
             const int expected = 3;
-            var box = Make.Value().Get;
+            var (box, boxCount) = Make.Value().Get.Number();
             var key = (box, Measure);
-            var cache = Cache.Empty.Add(key, expected);
+            var cache = Cache.Create(boxCount).GetOrCompute(key, () => ScOf(expected)).Cache;
 
-            var result = cache.GetOrCompute(key, ThrowSc).Run(cache);
+            var result = cache.GetOrCompute(key, ThrowSc).Result;
 
             result.Should().Be(expected);
         }
@@ -28,15 +28,11 @@
         [Fact]
         public void GetOrCompute_InCache_NoCacheChanges()
         {
-            var box = Make.Value().Get;
+            var (box, boxCount) = Make.Value().Get.Number();
             var key = (box, Measure);
-            var cache = Cache.Empty.Add(key, 3);
-            var sc =
-                from unused in cache.GetOrCompute(key, ThrowSc)
-                from result in Sc<Cache>.GetState
-                select result;
+            var cache = Cache.Create(boxCount).GetOrCompute(key, () => ScOf(3)).Cache;
 
-            var newCache = sc.Run(cache);
+            var newCache = cache.GetOrCompute(key, ThrowSc).Cache;
 
             newCache.Should().BeSameAs(cache);
         }
@@ -45,11 +41,11 @@
         public void GetOrCompute_EmptyCache_ComputedResult()
         {
             const int expected = 3;
-            var box = Make.Value().SpanRows(expected).Get;
+            var (box, boxCount) = Make.Value().SpanRows(expected).Get.Number();
             var key = (box, Measure);
-            var cache = Cache.Empty;
+            var cache = Cache.Create(boxCount);
 
-            var result = cache.GetOrCompute(key, () => RowSpanSc(box)).Run(cache);
+            var result = cache.GetOrCompute(key, () => RowSpanSc(box)).Result;
 
             result.Should().Be(expected);
         }
@@ -58,23 +54,19 @@
         public void GetOrCompute_EmptyCache_ResultInCache()
         {
             const int expected = 3;
-            var box = Make.Value().SpanRows(expected).Get;
+            var (box, boxCount) = Make.Value().SpanRows(expected).Get.Number();
             var key = (box, Measure);
-            var cache = Cache.Empty;
-            var sc =
-                from unused in cache.GetOrCompute(key, () => RowSpanSc(box))
-                from result in Sc<Cache>.GetState
-                select result;
+            var cache = Cache.Create(boxCount);
 
-            var newCache = sc.Run(cache);
+            var newCache = cache.GetOrCompute(key, () => RowSpanSc(box)).Cache;
 
-            newCache.TryGetValue(key).Should().Be(Some(expected));
+            newCache.GetOrCompute(key, ThrowSc).Result.Should().Be(expected);
         }
 
         private static Sc<Cache, int> ThrowSc() =>
             throw new InvalidOperationException();
 
         private static Sc<Cache, int> RowSpanSc(BoxCore box) =>
-            Sc<Cache>.ScOf(box.RowSpan.GetOrElse(1));
+            ScOf(box.RowSpan.GetOrElse(1));
     }
 }

@@ -180,11 +180,15 @@
             result.Should().Be((1, 1));
         }
 
-        private static (int Height, int Width) GetMinDimension(BoxCore box) =>
-        (
-            from minHeight in MinHeightCalc.MinHeight(box)
-            from minWidth in MinWidthCalc.MinWidth(box)
-            select (minHeight, minWidth)
-        ).Run(Cache.Empty);
+        private static (int Height, int Width) GetMinDimension(BoxCore box)
+        {
+            var (numberedBox, boxCount) = box.Number();
+
+            return (
+                from minHeight in MinHeightCalc.MinHeight(numberedBox)
+                from minWidth in MinWidthCalc.MinWidth(numberedBox)
+                select (minHeight, minWidth)
+            ).Run(Cache.Create(boxCount));
+        }
     }
 }

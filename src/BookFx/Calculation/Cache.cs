@@ -1,25 +1,29 @@
 ﻿namespace BookFx.Calculation
 {
-    using System.Collections.Immutable;
+    using System;
     using BookFx.Cores;
     using BookFx.Functional;
-    using JetBrains.Annotations;
 
     /// <summary>
     /// Cache for layout calculations.
     /// </summary>
     internal class Cache
     {
-        public static readonly Cache Empty = new Cache(ImmutableDictionary<(BoxCore Box, Measure Measure), int>.Empty);
+        private readonly Option<int>[,] _values;
 
-        private readonly ImmutableDictionary<(BoxCore Box, Measure Measure), int> _dictionary;
+        private Cache(int boxCount) => _values = new Option<int>[boxCount, Enum.GetValues(typeof(Measure)).Length];
 
-        private Cache(ImmutableDictionary<(BoxCore Box, Measure Measure), int> dictionary) => _dictionary = dictionary;
+        public static Cache Create(int boxCount) => new Cache(boxCount);
 
-        [Pure]
-        public Cache Add((BoxCore Box, Measure Measure) key, int value) => new Cache(_dictionary.Add(key, value));
-
-        [Pure]
-        public Option<int> TryGetValue((BoxCore Box, Measure Measure) key) => _dictionary.TryGetValue(key);
+        public (int Result, Cache Cache) GetOrCompute((BoxCore Box, Measure Measure) key, Func<Sc<Cache, int>> sc) =>
+            _values[key.Box.Number, (int)key.Measure]
+                .Match(
+                    none: () =>
+                    {
+                        var (value, _) = sc()(this);
+                        _values[key.Box.Number, (int)key.Measure] = value;
+                        return (value, this);
+                    },
+                    some: value => (value, this));
     }
 }
