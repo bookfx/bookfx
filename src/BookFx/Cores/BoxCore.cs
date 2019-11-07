@@ -30,6 +30,7 @@
             IEnumerable<BoxCore> children,
             Option<ProtoCore> proto,
             IEnumerable<SlotCore> slots,
+            int number,
             Dimension minDimension,
             Placement placement)
         {
@@ -50,6 +51,7 @@
             Children = children.ToImmutableList();
             Proto = proto;
             Slots = slots.ToImmutableList();
+            Number = number;
             MinDimension = minDimension;
             Placement = placement;
         }
@@ -88,6 +90,8 @@
 
         public ImmutableList<SlotCore> Slots { get; }
 
+        internal int Number { get; }
+
         internal Dimension MinDimension { get; }
 
         internal Placement Placement { get; }
@@ -115,6 +119,7 @@
                 children: Enumerable.Empty<BoxCore>(),
                 proto: None,
                 slots: Enumerable.Empty<SlotCore>(),
+                number: -1,
                 minDimension: Dimension.Empty,
                 placement: Placement.Empty);
 
@@ -145,6 +150,7 @@
             IEnumerable<BoxCore>? children = null,
             Option<ProtoCore>? proto = null,
             IEnumerable<SlotCore>? slots = null,
+            int? number = null,
             Dimension? minDimension = null,
             Placement? placement = null) =>
             new BoxCore(
@@ -165,6 +171,7 @@
                 children ?? Children,
                 proto ?? Proto,
                 slots ?? Slots,
+                number ?? Number,
                 minDimension ?? MinDimension,
                 placement ?? Placement);
     }
