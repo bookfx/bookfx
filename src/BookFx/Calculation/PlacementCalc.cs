@@ -3,8 +3,7 @@
     using BookFx.Cores;
     using BookFx.Functional;
 
-    // todo rename to PlacementCalc
-    internal static class PlacementCalcNew
+    internal static class PlacementCalc
     {
         public static Sc<Cache, Placement> Placement(BoxCore box, Structure structure) =>
             from firstRow in FirstRowCalc.FirstRow(box, structure)
