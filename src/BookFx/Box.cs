@@ -49,22 +49,21 @@
         public Box Name(string name) => Get.With(name: Some(name));
 
         /// <summary>
-        /// Enables or disables span rows when the box height can be stretched to its contrainer.
-        /// AutoSpanRows is enabled by default.
+        /// <inheritdoc cref="AutoSpan"/>
         /// </summary>
         [Pure]
         public Box AutoSpanRows(bool autoSpanRows = true) => Get.With(rowAutoSpan: autoSpanRows);
 
         /// <summary>
-        /// Enables or disables span cols when the box width can be stretched to its contrainer.
-        /// AutoSpanCols is enabled by default.
+        /// <inheritdoc cref="AutoSpan"/>
         /// </summary>
         [Pure]
         public Box AutoSpanCols(bool autoSpanCols) => Get.With(colAutoSpan: autoSpanCols);
 
         /// <summary>
-        /// Enables or disables span cells when the box can be stretched to its contrainer.
-        /// AutoSpan is enabled by default.
+        /// Enables or disables automatic span when a box can be stretched to its contrainer.
+        /// Applies to the box and its descendants, but AutoSpan of descendants has priority.
+        /// By default is disabled.
         /// </summary>
         [Pure]
         public Box AutoSpan(bool autoSpan = true) => Get.With(rowAutoSpan: autoSpan, colAutoSpan: autoSpan);

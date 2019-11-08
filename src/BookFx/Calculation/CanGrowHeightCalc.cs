@@ -26,6 +26,6 @@
                     .Relations
                     .Parent(box)
                     .Map(parent => AutoSpan(parent, layout)))
-                .GetOrElse(true);
+                .GetOrElse(false);
     }
 }
