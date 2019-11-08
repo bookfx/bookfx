@@ -20,7 +20,7 @@
 
         private static BoxCore LayOut(BoxCore box, Structure structure, Cache cache)
         {
-            var placement = PlacementCalc.Place(box, structure, cache);
+            var placement = Place(box, structure, cache);
 
             return box.Match(
                 row: x => LayOutComposite(x, placement, structure, cache),
@@ -29,6 +29,13 @@
                 value: x => LayOutValue(x, placement),
                 proto: x => LayOutProto(x, placement, structure, cache));
         }
+
+        private static Placement Place(BoxCore box, Structure structure, Cache cache) =>
+            Placement.At(
+                FirstRowCalc.FirstRow(box, structure, cache),
+                FirstColCalc.FirstCol(box, structure, cache),
+                HeightCalc.Height(box, structure, cache),
+                WidthCalc.Width(box, structure, cache));
 
         private static BoxCore LayOutComposite(
             BoxCore box,
