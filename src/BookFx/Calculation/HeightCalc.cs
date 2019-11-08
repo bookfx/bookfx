@@ -19,8 +19,8 @@
                             col: _ =>
                                 parent.Height(layout) - parent.Children.Where(x => x != box).Sum(x => x.Height(layout)),
                             stack: _ => parent.Height(layout),
-                            value: _ => throw new ArgumentException(),
-                            proto: _ => throw new ArgumentException()))
+                            value: _ => throw new InvalidOperationException(),
+                            proto: _ => throw new InvalidOperationException()))
                         .ValueUnsafe()
                     : box.MinHeight(layout));
     }

@@ -19,8 +19,8 @@
                                 parent.Width(layout) - parent.Children.Where(x => x != box).Sum(x => x.Width(layout)),
                             col: _ => parent.Width(layout),
                             stack: _ => parent.Width(layout),
-                            value: _ => throw new ArgumentException(),
-                            proto: _ => throw new ArgumentException()))
+                            value: _ => throw new InvalidOperationException(),
+                            proto: _ => throw new InvalidOperationException()))
                         .ValueUnsafe()
                     : box.MinWidth(layout));
     }
