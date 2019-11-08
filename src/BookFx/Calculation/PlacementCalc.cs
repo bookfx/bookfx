@@ -33,10 +33,10 @@
 
         private static Placement Placement(BoxCore box, Layout layout) =>
             BookFx.Placement.At(
-                FirstRowCalc.FirstRow(box, layout),
-                FirstColCalc.FirstCol(box, layout),
-                HeightCalc.Height(box, layout),
-                WidthCalc.Width(box, layout));
+                box.FirstRow(layout),
+                box.FirstCol(layout),
+                box.Height(layout),
+                box.Width(layout));
 
         private static BoxCore PlaceComposite(BoxCore box, Placement placement, Layout layout) =>
             box.With(

@@ -3,11 +3,10 @@
     using System;
     using BookFx.Cores;
     using BookFx.Functional;
-    using static HeightCalc;
 
     internal static class FirstRowCalc
     {
-        public static int FirstRow(BoxCore box, Layout layout) =>
+        public static int FirstRow(this BoxCore box, Layout layout) =>
             layout.Cache.GetOrCompute(
                 key: (box, Measure.FirstRow),
                 f: () => OfBox(box, layout));
@@ -18,16 +17,16 @@
                 .Parent(box)
                 .Map(parent => parent
                     .Match(
-                        row: _ => FirstRow(parent, layout),
+                        row: _ => parent.FirstRow(layout),
                         col: _ => layout
                             .Relations
                             .Prev(box)
-                            .Map(prev => FirstRow(prev, layout) + Height(prev, layout))
-                            .GetOrElse(() => FirstRow(parent, layout)),
-                        stack: _ => FirstRow(parent, layout),
+                            .Map(prev => prev.FirstRow(layout) + prev.Height( layout))
+                            .GetOrElse(() => parent.FirstRow(layout)),
+                        stack: _ => parent.FirstRow(layout),
                         value: _ => throw new InvalidOperationException(),
                         proto: _ =>
-                            FirstRow(parent, layout) + layout.Relations.Slot(box).Position.ValueUnsafe().Row - 1
+                            parent.FirstRow(layout) + layout.Relations.Slot(box).Position.ValueUnsafe().Row - 1
                     )
                 )
                 .GetOrElse(1);

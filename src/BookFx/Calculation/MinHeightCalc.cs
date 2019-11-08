@@ -6,7 +6,7 @@
 
     internal static class MinHeightCalc
     {
-        public static int MinHeight(BoxCore box, Cache cache) =>
+        public static int MinHeight(this BoxCore box, Cache cache) =>
             cache.GetOrCompute(
                 key: (box, Measure.MinHight),
                 f: () => box.Match(
@@ -17,13 +17,13 @@
                     proto: _ => OfProto(box)));
 
         private static int OfRow(BoxCore box, Cache cache) =>
-            box.Children.Map(child => MinHeight(child, cache)).DefaultIfEmpty(0).Max();
+            box.Children.Map(child => child.MinHeight(cache)).DefaultIfEmpty(0).Max();
 
         private static int OfCol(BoxCore box, Cache cache) =>
-            box.Children.Map(child => MinHeight(child, cache)).Sum();
+            box.Children.Map(child => child.MinHeight(cache)).Sum();
 
         private static int OfStack(BoxCore box, Cache cache) =>
-            box.Children.Map(child => MinHeight(child, cache)).DefaultIfEmpty(0).Max();
+            box.Children.Map(child => child.MinHeight(cache)).DefaultIfEmpty(0).Max();
 
         private static int OfValue(BoxCore box) =>
             box.RowSpan.GetOrElse(1);

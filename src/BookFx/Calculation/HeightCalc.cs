@@ -3,11 +3,10 @@
     using System;
     using BookFx.Cores;
     using BookFx.Functional;
-    using static MinHeightCalc;
 
     internal static class HeightCalc
     {
-        public static int Height(BoxCore box, Layout layout) =>
+        public static int Height(this BoxCore box, Layout layout) =>
             layout.Cache.GetOrCompute(
                 key: (box, Measure.Hight),
                 f: () => box.Match(
@@ -17,7 +16,7 @@
                     value: _ => OfValue(box, layout),
                     proto: _ => OfComposite(box, layout)));
 
-        private static int OfComposite(BoxCore box, Layout layout) => MinHeight(box, layout.Cache);
+        private static int OfComposite(BoxCore box, Layout layout) => box.MinHeight(layout.Cache);
 
         private static int OfValue(BoxCore box, Layout layout) =>
             box
@@ -26,9 +25,9 @@
                     .Relations
                     .Parent(box)
                     .Map(
-                        row: parent => MinHeight(parent, layout.Cache),
+                        row: parent => parent.MinHeight(layout.Cache),
                         col: _ => 1,
-                        stack: parent => MinHeight(parent, layout.Cache),
+                        stack: parent => parent.MinHeight(layout.Cache),
                         value: _ => throw new InvalidOperationException(),
                         proto: _ => 1))
                 .GetOrElse(1);
