@@ -10,7 +10,7 @@
     public static class PlacingBoxArb
     {
         [UsedImplicitly]
-        public static Arbitrary<BoxCore> BoxCore() => BoxGen().ToArbitrary();
+        public static Arbitrary<BoxCore> Box() => BoxGen().ToArbitrary();
 
         private static Gen<BoxCore> BoxGen() => Gen.Sized(BoxGen);
 

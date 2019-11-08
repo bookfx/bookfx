@@ -404,7 +404,7 @@
         }
 
         [Property(Arbitrary = new[] { typeof(PlacingBoxArb) })]
-        public void Place_Always_ChildIsInsideParent(BoxCore root)
+        public void Place_IsNotAbsent_ChildIsInsideParent(BoxCore root)
         {
             var result = root.Place();
 
@@ -412,36 +412,93 @@
 
             static void Assert(BoxCore parent, IEnumerable<BoxCore> children)
             {
-                foreach (var child in children)
+                foreach (var child in children.Where(x => !x.Placement.IsAbsent))
                 {
-                    if (child.Placement.IsAbsent)
-                    {
-                        continue;
-                    }
+                    var fromRow = parent.Placement.Position.Row;
+                    var toRow = parent.Placement.ToRow;
+                    child.Placement.Position.Row.Should().BeInRange(fromRow, toRow);
+                    child.Placement.ToRow.Should().BeInRange(fromRow, toRow);
 
-                    child.Placement.Position.Row.Should()
-                        .BeInRange(
-                            parent.Placement.Position.Row,
-                            parent.Placement.ToRow);
-
-                    child.Placement.Position.Col.Should()
-                        .BeInRange(
-                            parent.Placement.Position.Col,
-                            parent.Placement.ToCol);
-
-                    child.Placement.ToRow.Should()
-                        .BeInRange(
-                            parent.Placement.Position.Row,
-                            parent.Placement.ToRow);
-
-                    child.Placement.ToCol.Should()
-                        .BeInRange(
-                            parent.Placement.Position.Col,
-                            parent.Placement.ToCol);
+                    var fromCol = parent.Placement.Position.Col;
+                    var toCol = parent.Placement.ToCol;
+                    child.Placement.Position.Col.Should().BeInRange(fromCol, toCol);
+                    child.Placement.ToCol.Should().BeInRange(fromCol, toCol);
 
                     Assert(child, child.ImmediateDescendants());
                 }
             }
         }
+
+        [Property(Arbitrary = new[] { typeof(PlacingBoxArb) })]
+        public void Place_ColsWhoseChildrenCanGrow_ChildrenGrewUpToParentHeight(BoxCore root)
+        {
+            var result = root.Place();
+
+            var colsWhoseChildrenCanGrow = result
+                .SelfAndDescendants()
+                .Where(x => x.Type == BoxType.Col)
+                .Where(ChildrenCanGrowHeight);
+
+            foreach (var box in colsWhoseChildrenCanGrow)
+            {
+                box.Children.Sum(x => x.Placement.Dimension.Height).Should().Be(box.Placement.Dimension.Height);
+            }
+        }
+
+        [Property(Arbitrary = new[] { typeof(PlacingBoxArb) })]
+        public void Place_RowsWhoseChildrenCanGrow_ChildrenGrewUpToParentHeight(BoxCore root)
+        {
+            var result = root.Place();
+
+            foreach (var box in result.SelfAndDescendants().Where(x => x.Type == BoxType.Row))
+            {
+                foreach (var child in box.Children.Where(ChildrenCanGrowHeight))
+                {
+                    child.Placement.Dimension.Height.Should().Be(box.Placement.Dimension.Height);
+                }
+            }
+        }
+
+        [Property(Arbitrary = new[] { typeof(PlacingBoxArb) })]
+        public void Place_RowsWhoseChildrenCanGrow_ChildrenGrewUpToParentWidth(BoxCore root)
+        {
+            var result = root.Place();
+
+            var rowsWhoseChildrenCanGrow = result
+                .SelfAndDescendants()
+                .Where(x => x.Type == BoxType.Row)
+                .Where(ChildrenCanGrowWidth);
+
+            foreach (var box in rowsWhoseChildrenCanGrow)
+            {
+                box.Children.Sum(x => x.Placement.Dimension.Width).Should().Be(box.Placement.Dimension.Width);
+            }
+        }
+
+        [Property(Arbitrary = new[] { typeof(PlacingBoxArb) })]
+        public void Place_ColsWhoseChildrenCanGrow_ChildrenGrewUpToParentWidth(BoxCore root)
+        {
+            var result = root.Place();
+
+            foreach (var box in result.SelfAndDescendants().Where(x => x.Type == BoxType.Col))
+            {
+                foreach (var child in box.Children.Where(ChildrenCanGrowWidth))
+                {
+                    child.Placement.Dimension.Width.Should().Be(box.Placement.Dimension.Width);
+                }
+            }
+        }
+
+        private static bool ChildrenCanGrowHeight(BoxCore box) =>
+            box
+                .Descendants()
+                .Where(x => x.Type == BoxType.Value)
+                .Any(x => x.RowSpan.IsNone);
+
+        private static bool ChildrenCanGrowWidth(BoxCore box) =>
+            box
+                .Descendants()
+                .Where(x => x.Type == BoxType.Value)
+                .Any(x => x.ColSpan.IsNone);
     }
 }

@@ -10,7 +10,7 @@
                 box,
                 () => box.Match(
                     row: _ => DependingOnChildren(box, layout),
-                    col: _ => false,
+                    col: _ => DependingOnChildren(box, layout),
                     stack: _ => DependingOnChildren(box, layout),
                     value: _ => box.ColSpan.IsNone,
                     proto: _ => false));

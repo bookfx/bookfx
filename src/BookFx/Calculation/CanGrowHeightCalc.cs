@@ -9,7 +9,7 @@
             layout.Cache.CanGrowHeight(
                 box,
                 () => box.Match(
-                    row: _ => false,
+                    row: _ => DependingOnChildren(box, layout),
                     col: _ => DependingOnChildren(box, layout),
                     stack: _ => DependingOnChildren(box, layout),
                     value: _ => box.RowSpan.IsNone,
