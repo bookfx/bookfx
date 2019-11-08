@@ -4,13 +4,13 @@
     using BookFx.Cores;
     using BookFx.Functional;
 
-    internal class Structure
+    internal class Relations
     {
         private readonly ImmutableDictionary<BoxCore, BoxCore> _parent;
         private readonly ImmutableDictionary<BoxCore, SlotCore> _slot;
         private readonly ImmutableDictionary<BoxCore, BoxCore> _prev;
 
-        private Structure(
+        private Relations(
             ImmutableDictionary<BoxCore, BoxCore> parent,
             ImmutableDictionary<BoxCore, SlotCore> slot,
             ImmutableDictionary<BoxCore, BoxCore> prev)
@@ -20,8 +20,8 @@
             _prev = prev;
         }
 
-        public static Structure Create(BoxCore rootBox) =>
-            new Structure(
+        public static Relations Create(BoxCore rootBox) =>
+            new Relations(
                 parent: rootBox
                     .SelfAndDescendants()
                     .Bind(parent => parent

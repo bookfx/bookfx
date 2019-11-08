@@ -7,22 +7,22 @@
 
     internal static class WidthCalc
     {
-        public static int Width(BoxCore box, Structure structure, Cache cache) =>
+        public static int Width(BoxCore box, Relations relations, Cache cache) =>
             cache.GetOrCompute(
                 key: (box, Measure.Width),
                 f: () => box.Match(
                     row: _ => OfComposite(box, cache),
                     col: _ => OfComposite(box, cache),
                     stack: _ => OfComposite(box, cache),
-                    value: _ => OfValue(box, structure, cache),
+                    value: _ => OfValue(box, relations, cache),
                     proto: _ => OfComposite(box, cache)));
 
         private static int OfComposite(BoxCore box, Cache cache) => MinWidth(box, cache);
 
-        private static int OfValue(BoxCore box, Structure structure, Cache cache) =>
+        private static int OfValue(BoxCore box, Relations relations, Cache cache) =>
             box
                 .ColSpan
-                .OrElse(() => structure
+                .OrElse(() => relations
                     .Parent(box)
                     .Map(
                         row: _ => 1,
