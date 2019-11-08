@@ -31,9 +31,9 @@
         private enum BoolMeasure
         {
             CanGrowHeight,
-            CanGrowWeight,
+            CanGrowWidth,
             ShouldGrowHeight,
-            ShouldGrowWeight,
+            ShouldGrowWidth,
         }
 
         public static Cache Create(int boxCount) => new Cache(boxCount);
@@ -52,11 +52,11 @@
 
         public bool CanGrowHeight(BoxCore box, Func<bool> f) => GetOrCompute(box, BoolMeasure.CanGrowHeight, f);
 
-        public bool CanGrowWeight(BoxCore box, Func<bool> f) => GetOrCompute(box, BoolMeasure.CanGrowWeight, f);
+        public bool CanGrowWidth(BoxCore box, Func<bool> f) => GetOrCompute(box, BoolMeasure.CanGrowWidth, f);
 
         public bool ShouldGrowHeight(BoxCore box, Func<bool> f) => GetOrCompute(box, BoolMeasure.ShouldGrowHeight, f);
 
-        public bool ShouldGrowWeight(BoxCore box, Func<bool> f) => GetOrCompute(box, BoolMeasure.ShouldGrowWeight, f);
+        public bool ShouldGrowWidth(BoxCore box, Func<bool> f) => GetOrCompute(box, BoolMeasure.ShouldGrowWidth, f);
 
         private static T GetOrCompute<T>(Option<T>[,] values, BoxCore box, int measure, Func<T> f) =>
             values[box.Number, measure]
