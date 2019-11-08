@@ -17,7 +17,7 @@
         [InlineData("1234567890123456789012345678901")]
         public void SheetName_ValidNames_Valid(string name)
         {
-            var sheet = Make.Sheet().Name(name).Get.LayOut();
+            var sheet = Make.Sheet().Name(name).Get.Place();
 
             SheetValidator.SheetName(sheet).IsValid.Should().BeTrue();
         }
@@ -36,7 +36,7 @@
         [InlineData("12345678901234567890123456789012asdf")]
         public void SheetName_InvalidNames_Invalid(string name)
         {
-            var sheet = Make.Sheet().Name(name).Get.LayOut();
+            var sheet = Make.Sheet().Name(name).Get.Place();
 
             SheetValidator.SheetName(sheet).IsValid.Should().BeFalse();
         }
@@ -44,7 +44,7 @@
         [Fact]
         public void Boxes_ValidBox_Valid()
         {
-            var sheet = Make.Sheet(Make.Value()).Get.LayOut();
+            var sheet = Make.Sheet(Make.Value()).Get.Place();
 
             var result = SheetValidator.Boxes(sheet);
 
@@ -55,7 +55,7 @@
         public void Boxes_InvalidBox_Invalid()
         {
             const int invalidSpan = -1;
-            var sheet = Make.Sheet(Make.Value().SpanCols(invalidSpan)).Get.LayOut();
+            var sheet = Make.Sheet(Make.Value().SpanCols(invalidSpan)).Get.Place();
 
             var result = SheetValidator.Boxes(sheet);
 
@@ -75,7 +75,7 @@
                     )
                 )
                 .Get
-                .LayOut();
+                .Place();
 
             var result = SheetValidator.Boxes(sheet);
 
@@ -85,7 +85,7 @@
         [Fact]
         public void RootBoxWidth_SmallBox_Valid()
         {
-            var sheet = Make.Sheet(Make.Value().SpanCols(5)).Get.LayOut();
+            var sheet = Make.Sheet(Make.Value().SpanCols(5)).Get.Place();
 
             var result = SheetValidator.RootBoxWidth(sheet);
 
@@ -102,7 +102,7 @@
                     )
                 )
                 .Get
-                .LayOut();
+                .Place();
 
             var result = SheetValidator.RootBoxWidth(sheet);
 
@@ -113,7 +113,7 @@
         [Fact]
         public void RootBoxHeight_SmallBox_Valid()
         {
-            var sheet = Make.Sheet(Make.Value().SpanRows(5)).Get.LayOut();
+            var sheet = Make.Sheet(Make.Value().SpanRows(5)).Get.Place();
 
             var result = SheetValidator.RootBoxHeight(sheet);
 
@@ -130,7 +130,7 @@
                     )
                 )
                 .Get
-                .LayOut();
+                .Place();
 
             var result = SheetValidator.RootBoxHeight(sheet);
 
