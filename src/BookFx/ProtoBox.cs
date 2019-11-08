@@ -20,6 +20,24 @@
         [Pure]
         public ProtoBox Add(Reference slot, Box box) => Get.Add(slot, box.Get);
 
+        /// <summary>
+        /// <inheritdoc cref="Box.AutoSpanRows"/>
+        /// </summary>
+        [Pure]
+        public new ProtoBox AutoSpanRows(bool autoSpanRows = true) => Get.With(rowAutoSpan: autoSpanRows);
+
+        /// <summary>
+        /// <inheritdoc cref="Box.AutoSpanCols"/>
+        /// </summary>
+        [Pure]
+        public new ProtoBox AutoSpanCols(bool autoSpanCols) => Get.With(colAutoSpan: autoSpanCols);
+
+        /// <summary>
+        /// <inheritdoc cref="Box.AutoSpan"/>
+        /// </summary>
+        [Pure]
+        public new ProtoBox AutoSpan(bool autoSpan = true) => Get.With(rowAutoSpan: autoSpan, colAutoSpan: autoSpan);
+
         [Pure]
         public new ProtoBox Name(string name) => Get.With(name: Some(name));
 

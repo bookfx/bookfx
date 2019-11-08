@@ -23,6 +23,24 @@
         [Pure]
         public new StackBox Name(string name) => Get.With(name: Some(name));
 
+        /// <summary>
+        /// <inheritdoc cref="Box.AutoSpanRows"/>
+        /// </summary>
+        [Pure]
+        public new StackBox AutoSpanRows(bool autoSpanRows = true) => Get.With(rowAutoSpan: autoSpanRows);
+
+        /// <summary>
+        /// <inheritdoc cref="Box.AutoSpanCols"/>
+        /// </summary>
+        [Pure]
+        public new StackBox AutoSpanCols(bool autoSpanCols) => Get.With(colAutoSpan: autoSpanCols);
+
+        /// <summary>
+        /// <inheritdoc cref="Box.AutoSpan"/>
+        /// </summary>
+        [Pure]
+        public new StackBox AutoSpan(bool autoSpan = true) => Get.With(rowAutoSpan: autoSpan, colAutoSpan: autoSpan);
+
         [Pure]
         public new StackBox Style(BoxStyle style) => Get.With(style: style.Get);
 
