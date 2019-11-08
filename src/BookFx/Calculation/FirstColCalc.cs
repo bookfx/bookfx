@@ -7,25 +7,27 @@
 
     internal static class FirstColCalc
     {
-        public static int FirstCol(BoxCore box, Relations relations, Cache cache) =>
-            cache.GetOrCompute(
+        public static int FirstCol(BoxCore box, Layout layout) =>
+            layout.Cache.GetOrCompute(
                 key: (box, Measure.FirstCol),
-                f: () => OfBox(box, relations, cache));
+                f: () => OfBox(box, layout));
 
-        private static int OfBox(BoxCore box, Relations relations, Cache cache) =>
-            relations
+        private static int OfBox(BoxCore box, Layout layout) =>
+            layout
+                .Relations
                 .Parent(box)
                 .Map(parent => parent
                     .Match(
-                        row: _ => relations
+                        row: _ => layout
+                            .Relations
                             .Prev(box)
-                            .Map(prev => FirstCol(prev, relations, cache) + Width(prev, relations, cache))
-                            .GetOrElse(() => FirstCol(parent, relations, cache)),
-                        col: _ => FirstCol(parent, relations, cache),
-                        stack: _ => FirstCol(parent, relations, cache),
+                            .Map(prev => FirstCol(prev, layout) + Width(prev, layout))
+                            .GetOrElse(() => FirstCol(parent, layout)),
+                        col: _ => FirstCol(parent, layout),
+                        stack: _ => FirstCol(parent, layout),
                         value: _ => throw new InvalidOperationException(),
                         proto: _ =>
-                            FirstCol(parent, relations, cache) + relations.Slot(box).Position.ValueUnsafe().Col - 1
+                            FirstCol(parent, layout) + layout.Relations.Slot(box).Position.ValueUnsafe().Col - 1
                     )
                 )
                 .GetOrElse(1);

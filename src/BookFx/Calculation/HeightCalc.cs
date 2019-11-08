@@ -7,27 +7,28 @@
 
     internal static class HeightCalc
     {
-        public static int Height(BoxCore box, Relations relations, Cache cache) =>
-            cache.GetOrCompute(
+        public static int Height(BoxCore box, Layout layout) =>
+            layout.Cache.GetOrCompute(
                 key: (box, Measure.Hight),
                 f: () => box.Match(
-                    row: _ => OfComposite(box, cache),
-                    col: _ => OfComposite(box, cache),
-                    stack: _ => OfComposite(box, cache),
-                    value: _ => OfValue(box, relations, cache),
-                    proto: _ => OfComposite(box, cache)));
+                    row: _ => OfComposite(box, layout),
+                    col: _ => OfComposite(box, layout),
+                    stack: _ => OfComposite(box, layout),
+                    value: _ => OfValue(box, layout),
+                    proto: _ => OfComposite(box, layout)));
 
-        private static int OfComposite(BoxCore box, Cache cache) => MinHeight(box, cache);
+        private static int OfComposite(BoxCore box, Layout layout) => MinHeight(box, layout.Cache);
 
-        private static int OfValue(BoxCore box, Relations relations, Cache cache) =>
+        private static int OfValue(BoxCore box, Layout layout) =>
             box
                 .RowSpan
-                .OrElse(() => relations
+                .OrElse(() => layout
+                    .Relations
                     .Parent(box)
                     .Map(
-                        row: parent => MinHeight(parent, cache),
+                        row: parent => MinHeight(parent, layout.Cache),
                         col: _ => 1,
-                        stack: parent => MinHeight(parent, cache),
+                        stack: parent => MinHeight(parent, layout.Cache),
                         value: _ => throw new InvalidOperationException(),
                         proto: _ => 1))
                 .GetOrElse(1);

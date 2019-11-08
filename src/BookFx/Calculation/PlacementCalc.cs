@@ -14,47 +14,40 @@
         public static BoxCore Place(this BoxCore box)
         {
             var (numberedBox, boxCount) = box.Number();
+            var layout = Layout.Create(numberedBox, boxCount);
 
-            return Place(numberedBox, Relations.Create(numberedBox), Cache.Create(boxCount));
+            return Place(numberedBox, layout);
         }
 
-        private static BoxCore Place(BoxCore box, Relations relations, Cache cache)
+        private static BoxCore Place(BoxCore box, Layout layout)
         {
-            var placement = Placement(box, relations, cache);
+            var placement = Placement(box, layout);
 
             return box.Match(
-                row: x => PlaceComposite(x, placement, relations, cache),
-                col: x => PlaceComposite(x, placement, relations, cache),
-                stack: x => PlaceComposite(x, placement, relations, cache),
+                row: x => PlaceComposite(x, placement, layout),
+                col: x => PlaceComposite(x, placement, layout),
+                stack: x => PlaceComposite(x, placement, layout),
                 value: x => PlaceValue(x, placement),
-                proto: x => PlaceProto(x, placement, relations, cache));
+                proto: x => PlaceProto(x, placement, layout));
         }
 
-        private static Placement Placement(BoxCore box, Relations relations, Cache cache) =>
+        private static Placement Placement(BoxCore box, Layout layout) =>
             BookFx.Placement.At(
-                FirstRowCalc.FirstRow(box, relations, cache),
-                FirstColCalc.FirstCol(box, relations, cache),
-                HeightCalc.Height(box, relations, cache),
-                WidthCalc.Width(box, relations, cache));
+                FirstRowCalc.FirstRow(box, layout),
+                FirstColCalc.FirstCol(box, layout),
+                HeightCalc.Height(box, layout),
+                WidthCalc.Width(box, layout));
 
-        private static BoxCore PlaceComposite(
-            BoxCore box,
-            Placement placement,
-            Relations relations,
-            Cache cache) =>
+        private static BoxCore PlaceComposite(BoxCore box, Placement placement, Layout layout) =>
             box.With(
                 placement: placement,
-                children: box.Children.Map(child => Place(child, relations, cache)));
+                children: box.Children.Map(child => Place(child, layout)));
 
         private static BoxCore PlaceValue(BoxCore box, Placement placement) => box.With(placement: placement);
 
-        private static BoxCore PlaceProto(
-            BoxCore box,
-            Placement placement,
-            Relations relations,
-            Cache cache) =>
+        private static BoxCore PlaceProto(BoxCore box, Placement placement, Layout layout) =>
             box.With(
                 placement: placement,
-                slots: box.Slots.Map(slot => slot.With(box: Place(slot.Box, relations, cache))));
+                slots: box.Slots.Map(slot => slot.With(box: Place(slot.Box, layout))));
     }
 }
