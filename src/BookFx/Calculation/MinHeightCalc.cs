@@ -7,9 +7,9 @@
     internal static class MinHeightCalc
     {
         public static int MinHeight(this BoxCore box, Cache cache) =>
-            cache.GetOrCompute(
-                key: (box, Measure.MinHight),
-                f: () => box.Match(
+            cache.MinHeight(
+                box,
+                () => box.Match(
                     row: _ => OfRow(box, cache),
                     col: _ => OfCol(box, cache),
                     stack: _ => OfStack(box, cache),

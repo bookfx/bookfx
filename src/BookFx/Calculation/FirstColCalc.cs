@@ -7,9 +7,7 @@
     internal static class FirstColCalc
     {
         public static int FirstCol(this BoxCore box, Layout layout) =>
-            layout.Cache.GetOrCompute(
-                key: (box, Measure.FirstCol),
-                f: () => OfBox(box, layout));
+            layout.Cache.FirstCol(box, () => OfBox(box, layout));
 
         private static int OfBox(BoxCore box, Layout layout) =>
             layout

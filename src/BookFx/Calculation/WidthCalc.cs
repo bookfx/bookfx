@@ -7,9 +7,9 @@
     internal static class WidthCalc
     {
         public static int Width(this BoxCore box, Layout layout) =>
-            layout.Cache.GetOrCompute(
-                key: (box, Measure.Width),
-                f: () => box.Match(
+            layout.Cache.Width(
+                box,
+                () => box.Match(
                     row: _ => OfComposite(box, layout),
                     col: _ => OfComposite(box, layout),
                     stack: _ => OfComposite(box, layout),

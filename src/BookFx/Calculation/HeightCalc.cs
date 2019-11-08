@@ -7,9 +7,9 @@
     internal static class HeightCalc
     {
         public static int Height(this BoxCore box, Layout layout) =>
-            layout.Cache.GetOrCompute(
-                key: (box, Measure.Hight),
-                f: () => box.Match(
+            layout.Cache.Height(
+                box,
+                () => box.Match(
                     row: _ => OfComposite(box, layout),
                     col: _ => OfComposite(box, layout),
                     stack: _ => OfComposite(box, layout),

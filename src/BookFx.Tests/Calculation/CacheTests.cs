@@ -9,18 +9,15 @@
 
     public class CacheTests
     {
-        private const Measure Measure = BookFx.Calculation.Measure.MinHight;
-
         [Fact]
         public void GetOrCompute_InCache_ResultFromCache()
         {
             const int expected = 3;
             var (box, boxCount) = Make.Value().Get.Number();
-            var key = (box, Measure);
             var cache = Cache.Create(boxCount);
-            cache.GetOrCompute(key, () => expected);
+            cache.MinHeight(box, () => expected);
 
-            var result = cache.GetOrCompute(key, Throw);
+            var result = cache.MinHeight(box, Throw);
 
             result.Should().Be(expected);
         }
@@ -30,10 +27,9 @@
         {
             const int expected = 3;
             var (box, boxCount) = Make.Value().SpanRows(expected).Get.Number();
-            var key = (box, Measure);
             var cache = Cache.Create(boxCount);
 
-            var result = cache.GetOrCompute(key, () => RowSpan(box));
+            var result = cache.MinHeight(box, () => RowSpan(box));
 
             result.Should().Be(expected);
         }
@@ -43,12 +39,11 @@
         {
             const int expected = 3;
             var (box, boxCount) = Make.Value().SpanRows(expected).Get.Number();
-            var key = (box, Measure);
             var cache = Cache.Create(boxCount);
 
-            cache.GetOrCompute(key, () => RowSpan(box));
+            cache.MinHeight(box, () => RowSpan(box));
 
-            cache.GetOrCompute(key, Throw).Should().Be(expected);
+            cache.MinHeight(box, Throw).Should().Be(expected);
         }
 
         private static int Throw() =>

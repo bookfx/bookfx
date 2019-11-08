@@ -7,9 +7,9 @@
     internal static class MinWidthCalc
     {
         public static int MinWidth(this BoxCore box, Cache cache) =>
-            cache.GetOrCompute(
-                key: (box, Measure.MinWidth),
-                f: () => box.Match(
+            cache.MinWidth(
+                box,
+                () => box.Match(
                     row: _ => OfRow(box, cache),
                     col: _ => OfCol(box, cache),
                     stack: _ => OfStack(box, cache),
