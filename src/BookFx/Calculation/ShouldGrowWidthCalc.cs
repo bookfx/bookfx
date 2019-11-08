@@ -1,5 +1,6 @@
 ﻿namespace BookFx.Calculation
 {
+    using System;
     using System.Linq;
     using BookFx.Cores;
     using BookFx.Functional;
@@ -14,9 +15,16 @@
                     layout
                         .Relations
                         .Parent(box)
-                        .Map(parent =>
-                            parent.ShouldGrowWidth(layout) &&
-                            parent.Children.SkipWhile(x => x != box).Skip(1).Any(x => x.CanGrowWidth(layout)))
+                        .Map(parent => parent.Match(
+                            row: _ =>
+                                parent.ShouldGrowWidth(layout) &&
+                                parent.Children.SkipWhile(x => x != box).Skip(1).All(x => !x.CanGrowWidth(layout)),
+                            col: _ =>
+                                parent.ShouldGrowWidth(layout) || box.MinWidth(layout) < parent.MinWidth(layout),
+                            stack: _ =>
+                                parent.ShouldGrowWidth(layout) || box.MinWidth(layout) < parent.MinWidth(layout),
+                            value: _ => throw new InvalidOperationException(),
+                            proto: _ => false))
                         .GetOrElse(false));
     }
 }

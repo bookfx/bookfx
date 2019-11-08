@@ -339,5 +339,65 @@
 
             result.Placement.Should().Be(Placement.At(row: 1, col: 1, height: 1, width: 2));
         }
+
+        [Fact]
+        public void Place_HigherSibling_GrewUp()
+        {
+            const int siblingHigh = 10;
+            var root = Make
+                .Row(
+                    Make.Value(),
+                    Make.Value().SpanRows(siblingHigh))
+                .Get;
+
+            var result = root.Place();
+
+            result.Children[0].Placement.Dimension.Height.Should().Be(siblingHigh);
+        }
+
+        [Fact]
+        public void Place_HigherUncle_GrewUp()
+        {
+            const int uncleHigh = 10;
+            var root = Make
+                .Row(
+                    Make.Col(Make.Value()),
+                    Make.Value().SpanRows(uncleHigh))
+                .Get;
+
+            var result = root.Place();
+
+            result.Children[0].Children[0].Placement.Dimension.Height.Should().Be(uncleHigh);
+        }
+
+        [Fact]
+        public void Place_WiderSibling_GrewUp()
+        {
+            const int siblingWidth = 10;
+            var root = Make
+                .Col(
+                    Make.Value(),
+                    Make.Value().SpanCols(siblingWidth))
+                .Get;
+
+            var result = root.Place();
+
+            result.Children[0].Placement.Dimension.Width.Should().Be(siblingWidth);
+        }
+
+        [Fact]
+        public void Place_WiderUncle_GrewUp()
+        {
+            const int uncleWidth = 10;
+            var root = Make
+                .Col(
+                    Make.Row(Make.Value()),
+                    Make.Value().SpanCols(uncleWidth))
+                .Get;
+
+            var result = root.Place();
+
+            result.Children[0].Children[0].Placement.Dimension.Width.Should().Be(uncleWidth);
+        }
     }
 }

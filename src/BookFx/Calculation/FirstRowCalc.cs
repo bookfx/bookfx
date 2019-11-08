@@ -19,7 +19,7 @@
                         col: _ => layout
                             .Relations
                             .Prev(box)
-                            .Map(prev => prev.FirstRow(layout) + prev.Height( layout))
+                            .Map(prev => prev.FirstRow(layout) + prev.Height(layout))
                             .GetOrElse(() => parent.FirstRow(layout)),
                         stack: _ => parent.FirstRow(layout),
                         value: _ => throw new InvalidOperationException(),
