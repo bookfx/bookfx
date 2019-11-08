@@ -147,6 +147,7 @@ Now let's use `PlanFact` as component.
 Make
     .Row()
     .Add("Code", "Name", PlanFact("Beginning of year"), PlanFact("End of year"))
+    .AutoSpan()
     .Style(Make.Style().Center().Middle().Bold().DefaultBorder())
     .ToSheet()
     .ToBook()
@@ -233,6 +234,9 @@ Coming soon.
     - `Sheet.ToBook`
 - `Box`
     - `Box.Name`
+    - `Box.AutoSpan`
+    - `Box.AutoSpanRows`
+    - `Box.AutoSpanCols`
     - `Box.Style`
     - `Box.SizeRows`
     - `Box.SizeCols`
@@ -245,9 +249,9 @@ Coming soon.
 - `CompositeBox`
     - `CompositeBox.Add`
 - `ValueBox`
+    - `ValueBox.Span`
     - `ValueBox.SpanRows`
     - `ValueBox.SpanCols`
-    - `ValueBox.Span`
     - `ValueBox.Merge`
 - `ProtoBox`
     - `ProtoBox.Add`

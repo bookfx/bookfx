@@ -73,13 +73,19 @@
         public new ValueBox Style(BoxStyle style) => Get.With(style: style.Get);
 
         [Pure]
+        public ValueBox Span(int rows, int cols) => Get.With(rowSpan: rows, colSpan: cols);
+
+        [Pure]
         public ValueBox SpanRows(int count) => Get.With(rowSpan: count);
 
         [Pure]
         public ValueBox SpanCols(int count) => Get.With(colSpan: count);
 
+        /// <summary>
+        /// <inheritdoc cref="Box.AutoSpan"/>
+        /// </summary>
         [Pure]
-        public ValueBox Span(int rows, int cols) => Get.With(rowSpan: rows, colSpan: cols);
+        public new ValueBox AutoSpan(bool autoSpan = true) => Get.With(rowAutoSpan: autoSpan, colAutoSpan: autoSpan);
 
         /// <summary>
         /// <inheritdoc cref="Box.AutoSpanRows"/>
@@ -92,12 +98,6 @@
         /// </summary>
         [Pure]
         public new ValueBox AutoSpanCols(bool autoSpanCols) => Get.With(colAutoSpan: autoSpanCols);
-
-        /// <summary>
-        /// <inheritdoc cref="Box.AutoSpan"/>
-        /// </summary>
-        [Pure]
-        public new ValueBox AutoSpan(bool autoSpan = true) => Get.With(rowAutoSpan: autoSpan, colAutoSpan: autoSpan);
 
         [Pure]
         public ValueBox Merge() => Get.With(merge: true);
