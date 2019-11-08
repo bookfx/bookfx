@@ -1,9 +1,12 @@
 ﻿namespace BookFx.Tests.Calculation
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using BookFx.Calculation;
+    using BookFx.Cores;
     using BookFx.Functional;
+    using BookFx.Tests.Arbitraries;
     using FluentAssertions;
     using FsCheck;
     using FsCheck.Xunit;
@@ -398,6 +401,47 @@
             var result = root.Place();
 
             result.Children[0].Children[0].Placement.Dimension.Width.Should().Be(uncleWidth);
+        }
+
+        [Property(Arbitrary = new[] { typeof(PlacingBoxArb) })]
+        public void Place_Always_ChildIsInsideParent(BoxCore root)
+        {
+            var result = root.Place();
+
+            Assert(result, result.ImmediateDescendants());
+
+            static void Assert(BoxCore parent, IEnumerable<BoxCore> children)
+            {
+                foreach (var child in children)
+                {
+                    if (child.Placement.IsAbsent)
+                    {
+                        continue;
+                    }
+
+                    child.Placement.Position.Row.Should()
+                        .BeInRange(
+                            parent.Placement.Position.Row,
+                            parent.Placement.ToRow);
+
+                    child.Placement.Position.Col.Should()
+                        .BeInRange(
+                            parent.Placement.Position.Col,
+                            parent.Placement.ToCol);
+
+                    child.Placement.ToRow.Should()
+                        .BeInRange(
+                            parent.Placement.Position.Row,
+                            parent.Placement.ToRow);
+
+                    child.Placement.ToCol.Should()
+                        .BeInRange(
+                            parent.Placement.Position.Col,
+                            parent.Placement.ToCol);
+
+                    Assert(child, child.ImmediateDescendants());
+                }
+            }
         }
     }
 }
