@@ -24,6 +24,10 @@
 
         internal const float MaxRowSize = 409f;
 
+        internal const int MinFit = 0;
+
+        internal const int MaxFit = 32767;
+
         internal const int MinScale = 10;
 
         internal const int MaxScale = 400;

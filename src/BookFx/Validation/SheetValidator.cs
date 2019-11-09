@@ -14,6 +14,8 @@
                 HarvestErrors(
                     SheetName,
                     PrintArea,
+                    FitToHeight,
+                    FitToWidth,
                     Scale,
                     FrozenRows,
                     FrozenCols,
@@ -60,6 +62,20 @@
                     empty: () => Valid(sheet),
                     one: _ => Valid(sheet),
                     more: (_, __) => Errors.Sheet.ManyFrozenCols());
+
+        public static Tee<SheetCore> FitToHeight =>
+            sheet => sheet
+                .FitToHeight
+                .Where(fit => fit < MinFit || fit > MaxFit)
+                .Map(scale => Invalid<SheetCore>(Errors.Sheet.FitToHeightIsInvalid(scale)))
+                .GetOrElse(Valid(sheet));
+
+        public static Tee<SheetCore> FitToWidth =>
+            sheet => sheet
+                .FitToWidth
+                .Where(fit => fit < MinFit || fit > MaxFit)
+                .Map(scale => Invalid<SheetCore>(Errors.Sheet.FitToWidthIsInvalid(scale)))
+                .GetOrElse(Valid(sheet));
 
         public static Tee<SheetCore> Scale =>
             sheet => sheet
