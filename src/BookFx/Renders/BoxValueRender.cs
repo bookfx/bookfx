@@ -14,25 +14,28 @@
             {
                 box.Value.ForEach(value =>
                 {
+                    var isMerge = box.Merge.GetOrElse(true) && (excelRange.Columns > 1 || excelRange.Rows > 1);
+                    var valueRange = isMerge ? excelRange.Offset(0, 0, 1, 1) : excelRange;
+
                     switch (value)
                     {
                         case Unit _:
-                            excelRange.Value = null;
+                            valueRange.Value = null;
                             break;
 
                         case string formula when formula.StartsWith("="):
-                            excelRange.Formula = FormulaConverter.R1C1ToA1(
-                                excelRange.Start.Row,
-                                excelRange.Start.Column,
+                            valueRange.Formula = FormulaConverter.R1C1ToA1(
+                                valueRange.Start.Row,
+                                valueRange.Start.Column,
                                 formula.Substring(1));
                             break;
 
                         case string escaped when escaped.StartsWith("'"):
-                            excelRange.Value = escaped.Substring(1);
+                            valueRange.Value = escaped.Substring(1);
                             break;
 
                         default:
-                            excelRange.Value = value;
+                            valueRange.Value = value;
                             break;
                     }
                 });
