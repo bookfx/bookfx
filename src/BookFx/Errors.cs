@@ -81,6 +81,9 @@
             public static ManyFrozenColsError ManyFrozenCols() => new ManyFrozenColsError();
 
             [Pure]
+            public static ManyAutoFiltersError ManyAutoFilters() => new ManyAutoFiltersError();
+
+            [Pure]
             public static AggregateError Aggregate(
                 SheetCore sheet,
                 IEnumerable<Error> inners) =>
@@ -158,6 +161,14 @@
             {
                 public ManyFrozenColsError()
                     : base("Many frozen cols found.")
+                {
+                }
+            }
+
+            public sealed class ManyAutoFiltersError : Error
+            {
+                public ManyAutoFiltersError()
+                    : base("Many auto filters found.")
                 {
                 }
             }

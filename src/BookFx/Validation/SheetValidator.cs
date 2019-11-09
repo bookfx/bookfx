@@ -19,6 +19,7 @@
                     Scale,
                     FrozenRows,
                     FrozenCols,
+                    AutoFilter,
                     Boxes),
                 HarvestErrors(
                     RootBoxWidth,
@@ -62,6 +63,17 @@
                     empty: () => Valid(sheet),
                     one: _ => Valid(sheet),
                     more: (_, __) => Errors.Sheet.ManyFrozenCols());
+
+        public static Tee<SheetCore> AutoFilter =>
+            sheet => sheet
+                .Box
+                .AsEnumerable()
+                .Bind(x => x.Descendants())
+                .Where(x => x.IsAutoFilter)
+                .Match(
+                    empty: () => Valid(sheet),
+                    one: _ => Valid(sheet),
+                    more: (_, __) => Errors.Sheet.ManyAutoFilters());
 
         public static Tee<SheetCore> FitToHeight =>
             sheet => sheet
