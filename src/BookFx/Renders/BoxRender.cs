@@ -15,6 +15,7 @@
                 box.StyleRender(),
                 box.NameRender(),
                 box.ValueRender(),
+                box.AutoFilterRender(),
                 box.PrintAreaRender());
     }
 }
