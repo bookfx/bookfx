@@ -80,5 +80,11 @@
 
         [Pure]
         public new RowBox FreezeCols() => Get.With(isColsFrozen: true);
+
+        /// <summary>
+        /// <inheritdoc cref="Box.AutoFilter"/>
+        /// </summary>
+        [Pure]
+        public new RowBox AutoFilter() => Get.With(isAutoFilter: true);
     }
 }

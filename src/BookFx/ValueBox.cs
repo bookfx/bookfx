@@ -130,5 +130,11 @@
 
         [Pure]
         public new ValueBox FreezeCols() => Get.With(isColsFrozen: true);
+
+        /// <summary>
+        /// <inheritdoc cref="Box.AutoFilter"/>
+        /// </summary>
+        [Pure]
+        public new ValueBox AutoFilter() => Get.With(isAutoFilter: true);
     }
 }

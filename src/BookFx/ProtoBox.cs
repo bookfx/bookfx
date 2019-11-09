@@ -72,5 +72,11 @@
 
         [Pure]
         public new ProtoBox FreezeCols() => Get.With(isColsFrozen: true);
+
+        /// <summary>
+        /// <inheritdoc cref="Box.AutoFilter"/>
+        /// </summary>
+        [Pure]
+        public new ProtoBox AutoFilter() => Get.With(isAutoFilter: true);
     }
 }
