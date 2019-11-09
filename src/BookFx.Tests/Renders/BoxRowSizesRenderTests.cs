@@ -17,7 +17,7 @@
         public void RowSizesRender_SomeRowSize_Set(float size) =>
             Packer.OnSheet(excelSheet =>
             {
-                var box = Make.Value().SizeRows(size).Get.LayOut();
+                var box = Make.Value().SizeRows(size).Get.Place();
 
                 box.RowSizesRender()(excelSheet);
 
@@ -28,7 +28,7 @@
         public void RowSizesRender_NoneRowSize_Set() =>
             Packer.OnSheet(excelSheet =>
             {
-                var box = Make.Value().SizeRows(TrackSize.None).Get.LayOut();
+                var box = Make.Value().SizeRows(TrackSize.None).Get.Place();
 
                 box.RowSizesRender()(excelSheet);
 
@@ -39,7 +39,7 @@
         public void RowSizesRender_FitRowSize_Set() =>
             Packer.OnSheet(excelSheet =>
             {
-                var box = Make.Value().SizeRows(TrackSize.Fit).Get.LayOut();
+                var box = Make.Value().SizeRows(TrackSize.Fit).Get.Place();
 
                 box.RowSizesRender()(excelSheet);
 
@@ -50,7 +50,7 @@
         public void RowSizesRender_TooManyRowSizes_Invalid() =>
             Packer.OnSheet(excelSheet =>
             {
-                var box = Make.Value().SizeRows(TrackSize.Fit, TrackSize.Fit).Get.LayOut();
+                var box = Make.Value().SizeRows(TrackSize.Fit, TrackSize.Fit).Get.Place();
 
                 var result = box.RowSizesRender()(excelSheet);
 

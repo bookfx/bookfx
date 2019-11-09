@@ -13,7 +13,7 @@
         public void RootRender_EmptyInRootRange_EmptySheet() =>
             Packer.OnSheet(excelSheet =>
             {
-                var box = Make.Row().Get.LayOut();
+                var box = Make.Row().Get.Place();
 
                 box.RootRender()(excelSheet);
 
@@ -24,7 +24,7 @@
         public void RootRender_ValueInRootRange_SheetWithValue() =>
             Packer.OnSheet(excelSheet =>
             {
-                var box = Make.Value("A").Get.LayOut();
+                var box = Make.Value("A").Get.Place();
 
                 box.RootRender()(excelSheet);
 
@@ -37,7 +37,7 @@
             {
                 // AA-
                 // ---
-                var box = Make.Value("A").SpanCols(2).Get.LayOut();
+                var box = Make.Value("A").SpanCols(2).Get.Place();
 
                 box.RootRender()(excelSheet);
 
@@ -55,7 +55,7 @@
                 // A-
                 // A-
                 // --
-                var box = Make.Value("A").SpanRows(2).Get.LayOut();
+                var box = Make.Value("A").SpanRows(2).Get.Place();
 
                 box.RootRender()(excelSheet);
 

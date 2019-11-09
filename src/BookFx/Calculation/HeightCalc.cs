@@ -3,31 +3,31 @@
     using System;
     using BookFx.Cores;
     using BookFx.Functional;
-    using static MinHeightCalc;
 
     internal static class HeightCalc
     {
-        public static int Height(BoxCore box, Structure structure, Cache cache) =>
-            cache.GetOrCompute(
-                key: (box, Measure.Hight),
-                f: () => box.Match(
-                    row: _ => OfComposite(box, cache),
-                    col: _ => OfComposite(box, cache),
-                    stack: _ => OfComposite(box, cache),
-                    value: _ => OfValue(box, structure, cache),
-                    proto: _ => OfComposite(box, cache)));
+        public static int Height(this BoxCore box, Layout layout) =>
+            layout.Cache.Height(
+                box,
+                () => box.Match(
+                    row: _ => OfComposite(box, layout),
+                    col: _ => OfComposite(box, layout),
+                    stack: _ => OfComposite(box, layout),
+                    value: _ => OfValue(box, layout),
+                    proto: _ => OfComposite(box, layout)));
 
-        private static int OfComposite(BoxCore box, Cache cache) => MinHeight(box, cache);
+        private static int OfComposite(BoxCore box, Layout layout) => box.MinHeight(layout.Cache);
 
-        private static int OfValue(BoxCore box, Structure structure, Cache cache) =>
+        private static int OfValue(BoxCore box, Layout layout) =>
             box
                 .RowSpan
-                .OrElse(() => structure
+                .OrElse(() => layout
+                    .Relations
                     .Parent(box)
                     .Map(
-                        row: parent => MinHeight(parent, cache),
+                        row: parent => parent.MinHeight(layout.Cache),
                         col: _ => 1,
-                        stack: parent => MinHeight(parent, cache),
+                        stack: parent => parent.MinHeight(layout.Cache),
                         value: _ => throw new InvalidOperationException(),
                         proto: _ => 1))
                 .GetOrElse(1);

@@ -16,7 +16,7 @@
         [Fact]
         public void RowSpanSize_None_Valid()
         {
-            var box = Make.Value().Get.LayOut();
+            var box = Make.Value().Get.Place();
 
             var result = BoxValidator.RowSpanSize(box);
 
@@ -31,7 +31,7 @@
         [InlineData(1_048_576)]
         public void RowSpanSize_ValidSizes_Valid(int size)
         {
-            var box = Make.Value().SpanRows(size).Get.LayOut();
+            var box = Make.Value().SpanRows(size).Get.Place();
 
             var result = BoxValidator.RowSpanSize(box);
 
@@ -46,7 +46,7 @@
         [InlineData(10_000_000)]
         public void RowSpanSize_InvalidSizes_Invalid(int size)
         {
-            var box = Make.Value().SpanRows(size).Get.LayOut();
+            var box = Make.Value().SpanRows(size).Get.Place();
 
             var result = BoxValidator.RowSpanSize(box);
 
@@ -56,7 +56,7 @@
         [Fact]
         public void ColSpanSize_None_Valid()
         {
-            var box = Make.Value().Get.LayOut();
+            var box = Make.Value().Get.Place();
 
             var result = BoxValidator.ColSpanSize(box);
 
@@ -69,7 +69,7 @@
         [InlineData(16_384)]
         public void ColSpanSize_ValidSizes_Valid(int size)
         {
-            var box = Make.Value().SpanCols(size).Get.LayOut();
+            var box = Make.Value().SpanCols(size).Get.Place();
 
             var result = BoxValidator.ColSpanSize(box);
 
@@ -84,7 +84,7 @@
         [InlineData(100_000)]
         public void ColSpanSize_InvalidSizes_Invalid(int size)
         {
-            var box = Make.Value().SpanCols(size).Get.LayOut();
+            var box = Make.Value().SpanCols(size).Get.Place();
 
             var result = BoxValidator.ColSpanSize(box);
 
@@ -94,7 +94,7 @@
         [Fact]
         public void RowSizeRange_No_Valid()
         {
-            var box = Make.Value().Get.LayOut();
+            var box = Make.Value().Get.Place();
 
             var result = BoxValidator.RowSizeRange(box);
 
@@ -104,7 +104,7 @@
         [Fact]
         public void RowSizeRange_NoneAndFit_Valid()
         {
-            var box = Make.Value().SizeRows(TrackSize.None, TrackSize.Fit).Get.LayOut();
+            var box = Make.Value().SizeRows(TrackSize.None, TrackSize.Fit).Get.Place();
 
             var result = BoxValidator.RowSizeRange(box);
 
@@ -114,7 +114,7 @@
         [Property(Arbitrary = new[] { typeof(ValidRowSizeArb) })]
         public void RowSizeRange_ValidSizes_Valid(TrackSize[] sizes)
         {
-            var box = Make.Value().SizeRows(sizes).Get.LayOut();
+            var box = Make.Value().SizeRows(sizes).Get.Place();
 
             var result = BoxValidator.RowSizeRange(box);
 
@@ -128,7 +128,7 @@
         [InlineData(100_000f)]
         public void RowSizeRange_InvalidSizes_Invalid(int size)
         {
-            var box = Make.Value().SizeRows(size).Get.LayOut();
+            var box = Make.Value().SizeRows(size).Get.Place();
 
             var result = BoxValidator.RowSizeRange(box);
 
@@ -138,7 +138,7 @@
         [Fact]
         public void ColSizeRange_No_Valid()
         {
-            var box = Make.Value().Get.LayOut();
+            var box = Make.Value().Get.Place();
 
             var result = BoxValidator.ColSizeRange(box);
 
@@ -148,7 +148,7 @@
         [Fact]
         public void ColSizeRange_NoneAndFit_Valid()
         {
-            var box = Make.Value().SizeCols(TrackSize.None, TrackSize.Fit).Get.LayOut();
+            var box = Make.Value().SizeCols(TrackSize.None, TrackSize.Fit).Get.Place();
 
             var result = BoxValidator.ColSizeRange(box);
 
@@ -158,7 +158,7 @@
         [Property(Arbitrary = new[] { typeof(ValidColSizeArb) })]
         public void ColSizeRange_ValidSizes_Valid(TrackSize[] sizes)
         {
-            var box = Make.Value().SizeCols(sizes).Get.LayOut();
+            var box = Make.Value().SizeCols(sizes).Get.Place();
 
             var result = BoxValidator.ColSizeRange(box);
 
@@ -172,7 +172,7 @@
         [InlineData(100_000f)]
         public void ColSizeRange_InvalidSizes_Invalid(int size)
         {
-            var box = Make.Value().SizeCols(size).Get.LayOut();
+            var box = Make.Value().SizeCols(size).Get.Place();
 
             var result = BoxValidator.ColSizeRange(box);
 
@@ -182,7 +182,7 @@
         [Fact]
         public void Style_ValidStyle_Valid()
         {
-            var box = Make.Value().Style(Make.Style()).Get.LayOut();
+            var box = Make.Value().Style(Make.Style()).Get.Place();
 
             var result = BoxValidator.Style(box);
 
@@ -193,7 +193,7 @@
         public void Style_InvalidStyle_Invalid()
         {
             const float invalidFontSize = -1f;
-            var box = Make.Value().Style(Make.Style().Font(invalidFontSize)).Get.LayOut();
+            var box = Make.Value().Style(Make.Style().Font(invalidFontSize)).Get.Place();
 
             var result = BoxValidator.Style(box);
 
@@ -213,7 +213,7 @@
                     .Indent(-1)
                 )
                 .Get
-                .LayOut();
+                .Place();
 
             var result = BoxValidator.Style(box);
 

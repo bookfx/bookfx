@@ -42,7 +42,7 @@
         public void ColSizesRender_SomeColSize_Set(float size, double expected) =>
             Packer.OnSheet(excelSheet =>
             {
-                var box = Make.Value().SizeCols(size).Get.LayOut();
+                var box = Make.Value().SizeCols(size).Get.Place();
 
                 box.ColSizesRender()(excelSheet);
 
@@ -53,7 +53,7 @@
         public void ColSizesRender_NoneColSize_Set() =>
             Packer.OnSheet(excelSheet =>
             {
-                var box = Make.Value().SizeCols(TrackSize.None).Get.LayOut();
+                var box = Make.Value().SizeCols(TrackSize.None).Get.Place();
 
                 box.ColSizesRender()(excelSheet);
 
@@ -65,7 +65,7 @@
             Packer.OnSheet(excelSheet =>
             {
                 excelSheet.Cells[1, 1].Value = Guid.NewGuid().ToString();
-                var box = Make.Value().SizeCols(TrackSize.Fit).Get.LayOut();
+                var box = Make.Value().SizeCols(TrackSize.Fit).Get.Place();
 
                 box.ColSizesRender()(excelSheet);
 
@@ -78,7 +78,7 @@
             {
                 excelSheet.Cells[1, 1].Value = "A";
                 excelSheet.Cells[1, 1, 2, 1].Merge = true;
-                var box = Make.Value().SizeCols(TrackSize.Fit).Get.LayOut();
+                var box = Make.Value().SizeCols(TrackSize.Fit).Get.Place();
 
                 box.ColSizesRender()(excelSheet);
 
@@ -89,7 +89,7 @@
         public void ColSizesRender_TooManyColSizes_Invalid() =>
             Packer.OnSheet(excelSheet =>
             {
-                var box = Make.Value().SizeCols(TrackSize.Fit, TrackSize.Fit).Get.LayOut();
+                var box = Make.Value().SizeCols(TrackSize.Fit, TrackSize.Fit).Get.Place();
 
                 var result = box.ColSizesRender()(excelSheet);
 

@@ -35,8 +35,8 @@
         private static Result<BookCore> Calculate(BookCore book, ProtoBank bank) =>
             Valid(book)
                 .Bind(bank.PlugProtos)
-                .Map(LayoutCalc.LayOut)
-                .Bind(LayoutValidator.Validate.Invoke)
+                .Map(PlacementCalc.Place)
+                .Bind(PlacementValidator.Validate.Invoke)
                 .Bind(SheetListCalc.AddSheetIfEmpty)
                 .Bind(SheetListCalc.NameSheetsIfUnnamed);
 

@@ -5,7 +5,7 @@
     using BookFx.Functional;
     using static BookFx.Functional.F;
 
-    internal static class LayoutValidator
+    internal static class PlacementValidator
     {
         public static Tee<BookCore> Validate =>
             book => book

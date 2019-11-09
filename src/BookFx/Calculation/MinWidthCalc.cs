@@ -6,10 +6,10 @@
 
     internal static class MinWidthCalc
     {
-        public static int MinWidth(BoxCore box, Cache cache) =>
-            cache.GetOrCompute(
-                key: (box, Measure.MinWidth),
-                f: () => box.Match(
+        public static int MinWidth(this BoxCore box, Cache cache) =>
+            cache.MinWidth(
+                box,
+                () => box.Match(
                     row: _ => OfRow(box, cache),
                     col: _ => OfCol(box, cache),
                     stack: _ => OfStack(box, cache),
@@ -17,13 +17,13 @@
                     proto: _ => OfProto(box)));
 
         private static int OfRow(BoxCore box, Cache cache) =>
-            box.Children.Map(child => MinWidth(child, cache)).Sum();
+            box.Children.Map(child => child.MinWidth(cache)).Sum();
 
         private static int OfCol(BoxCore box, Cache cache) =>
-            box.Children.Map(child => MinWidth(child, cache)).DefaultIfEmpty(0).Max();
+            box.Children.Map(child => child.MinWidth(cache)).DefaultIfEmpty(0).Max();
 
         private static int OfStack(BoxCore box, Cache cache) =>
-            box.Children.Map(child => MinWidth(child, cache)).DefaultIfEmpty(0).Max();
+            box.Children.Map(child => child.MinWidth(cache)).DefaultIfEmpty(0).Max();
 
         private static int OfValue(BoxCore box) =>
             box.ColSpan.GetOrElse(1);
