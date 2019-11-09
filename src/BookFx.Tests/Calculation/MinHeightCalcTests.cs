@@ -18,9 +18,9 @@
                 )
                 .Get
                 .Number();
-            var cache = Cache.Create(boxCount);
+            var layout = Layout.Create(box, boxCount);
 
-            var result = MinHeightCalc.MinHeight(box, cache);
+            var result = box.MinHeight(layout);
 
             result.Should().Be(8);
         }

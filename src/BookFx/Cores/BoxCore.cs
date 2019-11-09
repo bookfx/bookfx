@@ -26,6 +26,8 @@
             Option<object> value,
             Option<int> rowSpan,
             Option<int> colSpan,
+            Option<bool> rowAutoSpan,
+            Option<bool> colAutoSpan,
             Option<bool> merge,
             IEnumerable<BoxCore> children,
             Option<ProtoCore> proto,
@@ -46,6 +48,8 @@
             Value = value;
             RowSpan = rowSpan;
             ColSpan = colSpan;
+            RowAutoSpan = rowAutoSpan;
+            ColAutoSpan = colAutoSpan;
             Merge = merge;
             Children = children.ToImmutableList();
             Proto = proto;
@@ -80,6 +84,10 @@
 
         public Option<int> ColSpan { get; }
 
+        public Option<bool> RowAutoSpan { get; }
+
+        public Option<bool> ColAutoSpan { get; }
+
         public Option<bool> Merge { get; }
 
         public ImmutableList<BoxCore> Children { get; }
@@ -111,6 +119,8 @@
                 value: value ?? None,
                 rowSpan: None,
                 colSpan: None,
+                rowAutoSpan: None,
+                colAutoSpan: None,
                 merge: None,
                 children: Enumerable.Empty<BoxCore>(),
                 proto: None,
@@ -141,6 +151,8 @@
             Option<object>? value = null,
             Option<int>? rowSpan = null,
             Option<int>? colSpan = null,
+            Option<bool>? rowAutoSpan = null,
+            Option<bool>? colAutoSpan = null,
             Option<bool>? merge = null,
             IEnumerable<BoxCore>? children = null,
             Option<ProtoCore>? proto = null,
@@ -161,6 +173,8 @@
                 value ?? Value,
                 rowSpan ?? RowSpan,
                 colSpan ?? ColSpan,
+                rowAutoSpan ?? RowAutoSpan,
+                colAutoSpan ?? ColAutoSpan,
                 merge ?? Merge,
                 children ?? Children,
                 proto ?? Proto,

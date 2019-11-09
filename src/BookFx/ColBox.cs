@@ -23,6 +23,24 @@
         [Pure]
         public new ColBox Name(string name) => Get.With(name: Some(name));
 
+        /// <summary>
+        /// <inheritdoc cref="Box.AutoSpan"/>
+        /// </summary>
+        [Pure]
+        public new ColBox AutoSpan(bool autoSpan = true) => Get.With(rowAutoSpan: autoSpan, colAutoSpan: autoSpan);
+
+        /// <summary>
+        /// <inheritdoc cref="Box.AutoSpanRows"/>
+        /// </summary>
+        [Pure]
+        public new ColBox AutoSpanRows(bool autoSpanRows = true) => Get.With(rowAutoSpan: autoSpanRows);
+
+        /// <summary>
+        /// <inheritdoc cref="Box.AutoSpanCols"/>
+        /// </summary>
+        [Pure]
+        public new ColBox AutoSpanCols(bool autoSpanCols) => Get.With(colAutoSpan: autoSpanCols);
+
         [Pure]
         public new ColBox Style(BoxStyle style) => Get.With(style: style.Get);
 

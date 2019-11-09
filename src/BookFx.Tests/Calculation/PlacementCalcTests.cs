@@ -1,9 +1,12 @@
 ﻿namespace BookFx.Tests.Calculation
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using BookFx.Calculation;
+    using BookFx.Cores;
     using BookFx.Functional;
+    using BookFx.Tests.Arbitraries;
     using FluentAssertions;
     using FsCheck;
     using FsCheck.Xunit;
@@ -339,5 +342,163 @@
 
             result.Placement.Should().Be(Placement.At(row: 1, col: 1, height: 1, width: 2));
         }
+
+        [Fact]
+        public void Place_HigherSibling_GrewUp()
+        {
+            const int siblingHigh = 10;
+            var root = Make
+                .Row(
+                    Make.Value(),
+                    Make.Value().SpanRows(siblingHigh))
+                .Get;
+
+            var result = root.Place();
+
+            result.Children[0].Placement.Dimension.Height.Should().Be(siblingHigh);
+        }
+
+        [Fact]
+        public void Place_HigherUncle_GrewUp()
+        {
+            const int uncleHigh = 10;
+            var root = Make
+                .Row(
+                    Make.Col(Make.Value()),
+                    Make.Value().SpanRows(uncleHigh))
+                .Get;
+
+            var result = root.Place();
+
+            result.Children[0].Children[0].Placement.Dimension.Height.Should().Be(uncleHigh);
+        }
+
+        [Fact]
+        public void Place_WiderSibling_GrewUp()
+        {
+            const int siblingWidth = 10;
+            var root = Make
+                .Col(
+                    Make.Value(),
+                    Make.Value().SpanCols(siblingWidth))
+                .Get;
+
+            var result = root.Place();
+
+            result.Children[0].Placement.Dimension.Width.Should().Be(siblingWidth);
+        }
+
+        [Fact]
+        public void Place_WiderUncle_GrewUp()
+        {
+            const int uncleWidth = 10;
+            var root = Make
+                .Col(
+                    Make.Row(Make.Value()),
+                    Make.Value().SpanCols(uncleWidth))
+                .Get;
+
+            var result = root.Place();
+
+            result.Children[0].Children[0].Placement.Dimension.Width.Should().Be(uncleWidth);
+        }
+
+        [Property(Arbitrary = new[] { typeof(PlacingBoxArb) })]
+        public void Place_IsNotAbsent_ChildIsInsideParent(BoxCore root)
+        {
+            var result = root.Place();
+
+            Assert(result, result.ImmediateDescendants());
+
+            static void Assert(BoxCore parent, IEnumerable<BoxCore> children)
+            {
+                foreach (var child in children.Where(x => !x.Placement.IsAbsent))
+                {
+                    var fromRow = parent.Placement.Position.Row;
+                    var toRow = parent.Placement.ToRow;
+                    child.Placement.Position.Row.Should().BeInRange(fromRow, toRow);
+                    child.Placement.ToRow.Should().BeInRange(fromRow, toRow);
+
+                    var fromCol = parent.Placement.Position.Col;
+                    var toCol = parent.Placement.ToCol;
+                    child.Placement.Position.Col.Should().BeInRange(fromCol, toCol);
+                    child.Placement.ToCol.Should().BeInRange(fromCol, toCol);
+
+                    Assert(child, child.ImmediateDescendants());
+                }
+            }
+        }
+
+        [Property(Arbitrary = new[] { typeof(PlacingBoxArb) })]
+        public void Place_ColsWhoseChildrenCanGrow_ChildrenGrewUpToParentHeight(BoxCore root)
+        {
+            var result = root.Place();
+
+            var colsWhoseChildrenCanGrow = result
+                .SelfAndDescendants()
+                .Where(x => x.Type == BoxType.Col)
+                .Where(ChildrenCanGrowHeight);
+
+            foreach (var box in colsWhoseChildrenCanGrow)
+            {
+                box.Children.Sum(x => x.Placement.Dimension.Height).Should().Be(box.Placement.Dimension.Height);
+            }
+        }
+
+        [Property(Arbitrary = new[] { typeof(PlacingBoxArb) })]
+        public void Place_RowsWhoseChildrenCanGrow_ChildrenGrewUpToParentHeight(BoxCore root)
+        {
+            var result = root.Place();
+
+            foreach (var box in result.SelfAndDescendants().Where(x => x.Type == BoxType.Row))
+            {
+                foreach (var child in box.Children.Where(ChildrenCanGrowHeight))
+                {
+                    child.Placement.Dimension.Height.Should().Be(box.Placement.Dimension.Height);
+                }
+            }
+        }
+
+        [Property(Arbitrary = new[] { typeof(PlacingBoxArb) })]
+        public void Place_RowsWhoseChildrenCanGrow_ChildrenGrewUpToParentWidth(BoxCore root)
+        {
+            var result = root.Place();
+
+            var rowsWhoseChildrenCanGrow = result
+                .SelfAndDescendants()
+                .Where(x => x.Type == BoxType.Row)
+                .Where(ChildrenCanGrowWidth);
+
+            foreach (var box in rowsWhoseChildrenCanGrow)
+            {
+                box.Children.Sum(x => x.Placement.Dimension.Width).Should().Be(box.Placement.Dimension.Width);
+            }
+        }
+
+        [Property(Arbitrary = new[] { typeof(PlacingBoxArb) })]
+        public void Place_ColsWhoseChildrenCanGrow_ChildrenGrewUpToParentWidth(BoxCore root)
+        {
+            var result = root.Place();
+
+            foreach (var box in result.SelfAndDescendants().Where(x => x.Type == BoxType.Col))
+            {
+                foreach (var child in box.Children.Where(ChildrenCanGrowWidth))
+                {
+                    child.Placement.Dimension.Width.Should().Be(box.Placement.Dimension.Width);
+                }
+            }
+        }
+
+        private static bool ChildrenCanGrowHeight(BoxCore box) =>
+            box
+                .Descendants()
+                .Where(x => x.Type == BoxType.Value)
+                .Any(x => x.RowSpan.IsNone);
+
+        private static bool ChildrenCanGrowWidth(BoxCore box) =>
+            box
+                .Descendants()
+                .Where(x => x.Type == BoxType.Value)
+                .Any(x => x.ColSpan.IsNone);
     }
 }

@@ -30,6 +30,7 @@
 
         private static Box CalendarTitleBox(Year year) =>
             Value(year.Number)
+                .AutoSpan()
                 .Style(Style.YearTitle);
 
         private static Box CalendarBodyBox(Year year, CultureInfo culture) =>
@@ -45,6 +46,7 @@
 
         private static Box MonthTitleBox(CultureInfo culture, Month month) =>
             Value(culture.MonthName(month))
+                .AutoSpan()
                 .Style(Style.MonthTitle);
 
         private static Box MonthBodyBox(CultureInfo culture, Month month) =>

@@ -15,6 +15,7 @@
                     .Add(Data("00002", "Second long name with auto fit", 1200, 1240, 1600, 1690))
                     .Name("Data"))
                 .Add(Total())
+                .AutoSpan()
                 .Style(Style().DefaultBorder())
                 .SetPrintArea()
                 .ToSheet()

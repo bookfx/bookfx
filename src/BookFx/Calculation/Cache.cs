@@ -9,11 +9,16 @@
     /// </summary>
     internal class Cache
     {
-        private readonly Option<int>[,] _values;
+        private readonly Option<int>[,] _ints;
+        private readonly Option<bool>[,] _bools;
 
-        private Cache(int boxCount) => _values = new Option<int>[boxCount, Enum.GetValues(typeof(Measure)).Length];
+        private Cache(int boxCount)
+        {
+            _ints = new Option<int>[boxCount, Enum.GetValues(typeof(IntMeasure)).Length];
+            _bools = new Option<bool>[boxCount, Enum.GetValues(typeof(BoolMeasure)).Length];
+        }
 
-        private enum Measure
+        private enum IntMeasure
         {
             FirstRow,
             FirstCol,
@@ -23,29 +28,51 @@
             MinWidth,
         }
 
+        private enum BoolMeasure
+        {
+            CanGrowHeight,
+            CanGrowWidth,
+            ShouldGrowHeight,
+            ShouldGrowWidth,
+        }
+
         public static Cache Create(int boxCount) => new Cache(boxCount);
 
-        public int FirstRow(BoxCore box, Func<int> f) => GetOrCompute(box, Measure.FirstRow, f);
+        public int FirstRow(BoxCore box, Func<int> f) => GetOrCompute(box, IntMeasure.FirstRow, f);
 
-        public int FirstCol(BoxCore box, Func<int> f) => GetOrCompute(box, Measure.FirstCol, f);
+        public int FirstCol(BoxCore box, Func<int> f) => GetOrCompute(box, IntMeasure.FirstCol, f);
 
-        public int Height(BoxCore box, Func<int> f) => GetOrCompute(box, Measure.Height, f);
+        public int Height(BoxCore box, Func<int> f) => GetOrCompute(box, IntMeasure.Height, f);
 
-        public int Width(BoxCore box, Func<int> f) => GetOrCompute(box, Measure.Width, f);
+        public int Width(BoxCore box, Func<int> f) => GetOrCompute(box, IntMeasure.Width, f);
 
-        public int MinHeight(BoxCore box, Func<int> f) => GetOrCompute(box, Measure.MinHeight, f);
+        public int MinHeight(BoxCore box, Func<int> f) => GetOrCompute(box, IntMeasure.MinHeight, f);
 
-        public int MinWidth(BoxCore box, Func<int> f) => GetOrCompute(box, Measure.MinWidth, f);
+        public int MinWidth(BoxCore box, Func<int> f) => GetOrCompute(box, IntMeasure.MinWidth, f);
 
-        private int GetOrCompute(BoxCore box, Measure measure, Func<int> f) =>
-            _values[box.Number, (int)measure]
+        public bool CanGrowHeight(BoxCore box, Func<bool> f) => GetOrCompute(box, BoolMeasure.CanGrowHeight, f);
+
+        public bool CanGrowWidth(BoxCore box, Func<bool> f) => GetOrCompute(box, BoolMeasure.CanGrowWidth, f);
+
+        public bool ShouldGrowHeight(BoxCore box, Func<bool> f) => GetOrCompute(box, BoolMeasure.ShouldGrowHeight, f);
+
+        public bool ShouldGrowWidth(BoxCore box, Func<bool> f) => GetOrCompute(box, BoolMeasure.ShouldGrowWidth, f);
+
+        private static T GetOrCompute<T>(Option<T>[,] values, BoxCore box, int measure, Func<T> f) =>
+            values[box.Number, measure]
                 .Match(
                     none: () =>
                     {
                         var value = f();
-                        _values[box.Number, (int)measure] = value;
+                        values[box.Number, measure] = value;
                         return value;
                     },
                     some: value => value);
+
+        private int GetOrCompute(BoxCore box, IntMeasure measure, Func<int> f) =>
+            GetOrCompute(_ints, box, (int)measure, f);
+
+        private bool GetOrCompute(BoxCore box, BoolMeasure measure, Func<bool> f) =>
+            GetOrCompute(_bools, box, (int)measure, f);
     }
 }
