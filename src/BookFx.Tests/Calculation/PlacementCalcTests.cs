@@ -93,13 +93,14 @@
         }
 
         [Property]
-        public void Place_RowWithChildWithAutoSpan_ChildIsStretched(PositiveInt bRowSpan)
+        public void Place_AutoSpanAndRowWithChild_ChildIsStretched(PositiveInt bRowSpan)
         {
             // AB
             var box = Make
                 .Row(
                     Make.Value("A"),
                     Make.Value("B").SpanRows(bRowSpan.Get))
+                .AutoSpan()
                 .Get;
 
             var placedParent = box.Place();
@@ -174,7 +175,7 @@
         }
 
         [Property]
-        public void Place_ColWithChildWithAutoSpan_ChildIsStretched(PositiveInt bColSpan)
+        public void Place_AutoSpanAndColWithChild_ChildIsStretched(PositiveInt bColSpan)
         {
             // A
             // B
@@ -182,6 +183,7 @@
                 .Col(
                     Make.Value("A"),
                     Make.Value("B").SpanCols(bColSpan.Get))
+                .AutoSpan()
                 .Get;
 
             var placedParent = box.Place();
@@ -255,7 +257,7 @@
         }
 
         [Property]
-        public void Place_StackWithChildWithAutoSpan_ChildIsStretched(
+        public void Place_AutoSpanAndStackWithChild_ChildIsStretched(
             PositiveInt bRowSpan,
             PositiveInt bColSpan)
         {
@@ -264,6 +266,7 @@
                 .Stack(
                     Make.Value("A"),
                     Make.Value("B").SpanRows(bRowSpan.Get).SpanCols(bColSpan.Get))
+                .AutoSpan()
                 .Get;
 
             var placedParent = box.Place();
@@ -344,13 +347,14 @@
         }
 
         [Fact]
-        public void Place_HigherSibling_GrewUp()
+        public void Place_AutoSpanAndHigherSibling_GrewUp()
         {
             const int siblingHigh = 10;
             var root = Make
                 .Row(
                     Make.Value(),
                     Make.Value().SpanRows(siblingHigh))
+                .AutoSpanRows()
                 .Get;
 
             var result = root.Place();
@@ -359,13 +363,14 @@
         }
 
         [Fact]
-        public void Place_HigherUncle_GrewUp()
+        public void Place_AutoSpanAndHigherUncle_GrewUp()
         {
             const int uncleHigh = 10;
             var root = Make
                 .Row(
                     Make.Col(Make.Value()),
                     Make.Value().SpanRows(uncleHigh))
+                .AutoSpanRows()
                 .Get;
 
             var result = root.Place();
@@ -374,13 +379,14 @@
         }
 
         [Fact]
-        public void Place_WiderSibling_GrewUp()
+        public void Place_AutoSpanAndWiderSibling_GrewUp()
         {
             const int siblingWidth = 10;
             var root = Make
                 .Col(
                     Make.Value(),
                     Make.Value().SpanCols(siblingWidth))
+                .AutoSpanCols()
                 .Get;
 
             var result = root.Place();
@@ -389,13 +395,14 @@
         }
 
         [Fact]
-        public void Place_WiderUncle_GrewUp()
+        public void Place_AutoSpanAndWiderUncle_GrewUp()
         {
             const int uncleWidth = 10;
             var root = Make
                 .Col(
                     Make.Row(Make.Value()),
                     Make.Value().SpanCols(uncleWidth))
+                .AutoSpanCols()
                 .Get;
 
             var result = root.Place();
@@ -406,9 +413,11 @@
         [Property(Arbitrary = new[] { typeof(PlacingBoxArb) })]
         public void Place_IsNotAbsent_ChildIsInsideParent(BoxCore root)
         {
-            var result = root.Place();
+            var rootWithoutAutoSpan = root.Place();
+            var rootWithAutoSpan = root.With(rowAutoSpan: true, colAutoSpan: true).Place();
 
-            Assert(result, result.ImmediateDescendants());
+            Assert(rootWithoutAutoSpan, rootWithoutAutoSpan.ImmediateDescendants());
+            Assert(rootWithAutoSpan, rootWithAutoSpan.ImmediateDescendants());
 
             static void Assert(BoxCore parent, IEnumerable<BoxCore> children)
             {
@@ -432,7 +441,7 @@
         [Property(Arbitrary = new[] { typeof(PlacingBoxArb) })]
         public void Place_ColsWhoseChildrenCanGrow_ChildrenGrewUpToParentHeight(BoxCore root)
         {
-            var result = root.Place();
+            var result = root.With(rowAutoSpan: true).Place();
 
             var colsWhoseChildrenCanGrow = result
                 .SelfAndDescendants()
@@ -448,7 +457,7 @@
         [Property(Arbitrary = new[] { typeof(PlacingBoxArb) })]
         public void Place_RowsWhoseChildrenCanGrow_ChildrenGrewUpToParentHeight(BoxCore root)
         {
-            var result = root.Place();
+            var result = root.With(rowAutoSpan: true).Place();
 
             foreach (var box in result.SelfAndDescendants().Where(x => x.Type == BoxType.Row))
             {
@@ -462,7 +471,7 @@
         [Property(Arbitrary = new[] { typeof(PlacingBoxArb) })]
         public void Place_RowsWhoseChildrenCanGrow_ChildrenGrewUpToParentWidth(BoxCore root)
         {
-            var result = root.Place();
+            var result = root.With(colAutoSpan: true).Place();
 
             var rowsWhoseChildrenCanGrow = result
                 .SelfAndDescendants()
@@ -478,7 +487,7 @@
         [Property(Arbitrary = new[] { typeof(PlacingBoxArb) })]
         public void Place_ColsWhoseChildrenCanGrow_ChildrenGrewUpToParentWidth(BoxCore root)
         {
-            var result = root.Place();
+            var result = root.With(colAutoSpan: true).Place();
 
             foreach (var box in result.SelfAndDescendants().Where(x => x.Type == BoxType.Col))
             {

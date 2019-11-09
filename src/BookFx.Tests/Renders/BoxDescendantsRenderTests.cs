@@ -1,7 +1,6 @@
 ﻿namespace BookFx.Tests.Renders
 {
     using BookFx.Calculation;
-    using BookFx.Cores;
     using BookFx.Epplus;
     using BookFx.Renders;
     using FluentAssertions;
@@ -94,25 +93,6 @@
             });
 
         [Fact]
-        public void DescendantsRender_RowBoxAndAutoSpan_Spanned() =>
-            Packer.OnSheet(excelSheet =>
-            {
-                // AB
-                // AB
-                var box = Make.Row(
-                        Make.Value("A"),
-                        Make.Value("B").SpanRows(2))
-                    .Get
-                    .Place();
-                var excelRange = excelSheet.Cells[FromRow: 1, FromCol: 1, ToRow: 2, ToCol: 2];
-
-                box.DescendantsRender()(excelRange);
-
-                excelSheet.Cells[Row: 1, Col: 1].Value.Should().Be("A");
-                excelSheet.Cells[Row: 2, Col: 1].Value.Should().Be("A");
-            });
-
-        [Fact]
         public void DescendantsRender_ColBoxAnd1EmptyChild_OneSkipped() =>
             Packer.OnSheet(excelSheet =>
             {
@@ -152,26 +132,6 @@
 
                 excelSheet.Cells[1, 1].Value.Should().Be("A");
                 excelSheet.Cells[2, 1].Value.Should().Be("B");
-            });
-
-        [Fact]
-        public void DescendantsRender_ColBoxAndAutoSpan_Spanned() =>
-            Packer.OnSheet(excelSheet =>
-            {
-                // AA
-                // BB
-                var box = Make
-                    .Col(
-                        Make.Value("A"),
-                        Make.Value("B").SpanCols(2))
-                    .Get
-                    .Place();
-                var excelRange = excelSheet.Cells[FromRow: 1, FromCol: 1, ToRow: 2, ToCol: 2];
-
-                box.DescendantsRender()(excelRange);
-
-                excelSheet.Cells[Row: 1, Col: 1].Value.Should().Be("A");
-                excelSheet.Cells[Row: 1, Col: 2].Value.Should().Be("A");
             });
     }
 }

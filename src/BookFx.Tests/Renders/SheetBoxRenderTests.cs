@@ -1,7 +1,6 @@
 ﻿namespace BookFx.Tests.Renders
 {
     using BookFx.Calculation;
-    using BookFx.Cores;
     using BookFx.Epplus;
     using BookFx.Renders;
     using FluentAssertions;

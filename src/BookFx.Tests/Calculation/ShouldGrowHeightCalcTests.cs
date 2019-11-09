@@ -7,12 +7,13 @@
     public class ShouldGrowHeightCalcTests
     {
         [Fact]
-        public void ShouldGrowHeight_HigherSibling_True()
+        public void ShouldGrowHeight_AutoSpanAndHigherSibling_True()
         {
             var (root, boxCount) = Make
                 .Row(
                     Make.Value(),
                     Make.Value().SpanRows(10))
+                .AutoSpanRows()
                 .Get
                 .Number();
             var layout = Layout.Create(root, boxCount);
@@ -23,12 +24,13 @@
         }
 
         [Fact]
-        public void ShouldGrowHeight_HigherUncle_True()
+        public void ShouldGrowHeight_AutoSpanAndHigherUncle_True()
         {
             var (root, boxCount) = Make
                 .Row(
                     Make.Col(Make.Value()),
                     Make.Value().SpanRows(10))
+                .AutoSpanRows()
                 .Get
                 .Number();
             var layout = Layout.Create(root, boxCount);

@@ -39,7 +39,7 @@
         /// <inheritdoc cref="Box.AutoSpanCols"/>
         /// </summary>
         [Pure]
-        public new ColBox AutoSpanCols(bool autoSpanCols) => Get.With(colAutoSpan: autoSpanCols);
+        public new ColBox AutoSpanCols(bool autoSpanCols = true) => Get.With(colAutoSpan: autoSpanCols);
 
         [Pure]
         public new ColBox Style(BoxStyle style) => Get.With(style: style.Get);
