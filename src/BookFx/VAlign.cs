@@ -8,5 +8,7 @@
         Top,
         Middle,
         Bottom,
+        Distributed,
+        Justify,
     }
 }
