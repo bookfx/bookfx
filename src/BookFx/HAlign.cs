@@ -5,8 +5,13 @@
     [PublicAPI]
     public enum HAlign
     {
-        Left = 1,
-        Center = 2,
-        Right = 4,
+        General,
+        Left,
+        Center,
+        CenterContinuous,
+        Right,
+        Fill,
+        Distributed,
+        Justify,
     }
 }
