@@ -42,7 +42,7 @@
                 box.RootRender()(excelSheet);
 
                 excelSheet.Cells[Row: 1, Col: 1].Value.Should().Be("A");
-                excelSheet.Cells[Row: 1, Col: 2].Value.Should().Be("A");
+                excelSheet.Cells[Row: 1, Col: 2].Value.Should().Be(null);
                 excelSheet.Cells[Row: 1, Col: 3].Value.Should().Be(null);
                 excelSheet.Cells[Row: 2, Col: 1].Value.Should().Be(null);
                 excelSheet.Cells[Row: 2, Col: 3].Value.Should().Be(null);
@@ -60,7 +60,7 @@
                 box.RootRender()(excelSheet);
 
                 excelSheet.Cells[Row: 1, Col: 1].Value.Should().Be("A");
-                excelSheet.Cells[Row: 2, Col: 1].Value.Should().Be("A");
+                excelSheet.Cells[Row: 2, Col: 1].Value.Should().Be(null);
                 excelSheet.Cells[Row: 3, Col: 1].Value.Should().Be(null);
                 excelSheet.Cells[Row: 1, Col: 2].Value.Should().Be(null);
                 excelSheet.Cells[Row: 3, Col: 2].Value.Should().Be(null);
