@@ -23,6 +23,7 @@
             bool isColsHidden,
             bool isRowsFrozen,
             bool isColsFrozen,
+            bool isAutoFilter,
             Option<object> value,
             Option<int> rowSpan,
             Option<int> colSpan,
@@ -43,6 +44,7 @@
             IsColsHidden = isColsHidden;
             IsRowsFrozen = isRowsFrozen;
             IsColsFrozen = isColsFrozen;
+            IsAutoFilter = isAutoFilter;
             RowSizes = rowSizes.ToImmutableList();
             ColSizes = colSizes.ToImmutableList();
             Value = value;
@@ -77,6 +79,8 @@
         public bool IsRowsFrozen { get; }
 
         public bool IsColsFrozen { get; }
+
+        public bool IsAutoFilter { get; }
 
         public Option<object> Value { get; }
 
@@ -116,6 +120,7 @@
                 isColsHidden: false,
                 isRowsFrozen: false,
                 isColsFrozen: false,
+                isAutoFilter: false,
                 value: value ?? None,
                 rowSpan: None,
                 colSpan: None,
@@ -148,6 +153,7 @@
             bool? isColsHidden = null,
             bool? isRowsFrozen = null,
             bool? isColsFrozen = null,
+            bool? isAutoFilter = null,
             Option<object>? value = null,
             Option<int>? rowSpan = null,
             Option<int>? colSpan = null,
@@ -170,6 +176,7 @@
                 isColsHidden ?? IsColsHidden,
                 isRowsFrozen ?? IsRowsFrozen,
                 isColsFrozen ?? IsColsFrozen,
+                isAutoFilter ?? IsAutoFilter,
                 value ?? Value,
                 rowSpan ?? RowSpan,
                 colSpan ?? ColSpan,

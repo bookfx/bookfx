@@ -80,5 +80,11 @@
 
         [Pure]
         public new StackBox FreezeCols() => Get.With(isColsFrozen: true);
+
+        /// <summary>
+        /// <inheritdoc cref="Box.AutoFilter"/>
+        /// </summary>
+        [Pure]
+        public new StackBox AutoFilter() => Get.With(isAutoFilter: true);
     }
 }

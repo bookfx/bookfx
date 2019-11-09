@@ -100,6 +100,12 @@
         [Pure]
         public Box FreezeCols() => Get.With(isColsFrozen: true);
 
+        /// <summary>
+        /// Adds auto filter to the box bottom.
+        /// </summary>
+        [Pure]
+        public Box AutoFilter() => Get.With(isAutoFilter: true);
+
         [Pure]
         public Sheet ToSheet() => Sheet(this);
     }

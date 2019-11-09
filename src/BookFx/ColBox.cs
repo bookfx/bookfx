@@ -80,5 +80,11 @@
 
         [Pure]
         public new ColBox FreezeCols() => Get.With(isColsFrozen: true);
+
+        /// <summary>
+        /// <inheritdoc cref="Box.AutoFilter"/>
+        /// </summary>
+        [Pure]
+        public new ColBox AutoFilter() => Get.With(isAutoFilter: true);
     }
 }
