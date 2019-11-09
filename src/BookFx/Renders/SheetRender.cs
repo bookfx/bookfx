@@ -24,6 +24,10 @@
                     excelSheet.View.PageBreakView = pageView == PageView.Break;
                 });
 
+                excelSheet.PrinterSettings.FitToHeight = sheet.FitToHeight.GetOrElse(0);
+                excelSheet.PrinterSettings.FitToWidth = sheet.FitToWidth.GetOrElse(0);
+                excelSheet.PrinterSettings.FitToPage = sheet.FitToHeight.IsSome || sheet.FitToWidth.IsSome;
+
                 sheet.Scale.ForEach(scale => excelSheet.View.ZoomScale = scale);
 
                 return Unit();

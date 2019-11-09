@@ -12,6 +12,8 @@
             name: None,
             box: None,
             pageView: None,
+            fitToHeight: None,
+            fitToWidth: None,
             scale: None,
             protoBook: None,
             protoName: None,
@@ -21,6 +23,8 @@
             Option<string> name,
             Option<BoxCore> box,
             Option<PageView> pageView,
+            Option<int> fitToHeight,
+            Option<int> fitToWidth,
             Option<int> scale,
             Option<byte[]> protoBook,
             Option<string> protoName,
@@ -29,6 +33,8 @@
             Name = name;
             Box = box;
             PageView = pageView;
+            FitToHeight = fitToHeight;
+            FitToWidth = fitToWidth;
             Scale = scale;
             ProtoBook = protoBook;
             ProtoName = protoName;
@@ -40,6 +46,10 @@
         public Option<BoxCore> Box { get; }
 
         public Option<PageView> PageView { get; }
+
+        public Option<int> FitToHeight { get; }
+
+        public Option<int> FitToWidth { get; }
 
         public Option<int> Scale { get; }
 
@@ -60,6 +70,8 @@
             Option<string>? name = null,
             Option<BoxCore>? box = null,
             Option<PageView>? pageView = null,
+            Option<int>? fitToHeight = null,
+            Option<int>? fitToWidth = null,
             Option<int>? scale = null,
             Option<byte[]>? protoBook = null,
             Option<string>? protoName = null,
@@ -68,6 +80,8 @@
                 name ?? Name,
                 box ?? Box,
                 pageView ?? PageView,
+                fitToHeight ?? FitToHeight,
+                fitToWidth ?? FitToWidth,
                 scale ?? Scale,
                 protoBook ?? ProtoBook,
                 protoName ?? ProtoName,

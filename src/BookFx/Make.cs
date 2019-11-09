@@ -48,7 +48,7 @@
         /// <param name="name">
         /// A name of creating sheet.
         /// Name length should be from 1 to 31
-        /// and name should be free of following characters':', '\', '/', '?', '*', '[' or ']'.
+        /// and name should be free of following characters: ':', '\', '/', '?', '*', '[' or ']'.
         /// </param>
         [Pure]
         public static Sheet Sheet(string name) => SheetCore.Create().With(name: Some(name));
@@ -59,7 +59,7 @@
         /// <param name="name">
         /// A name of creating sheet.
         /// Name length should be from 1 to 31
-        /// and name should be free of following characters':', '\', '/', '?', '*', '[' or ']'.
+        /// and name should be free of following characters: ':', '\', '/', '?', '*', '[' or ']'.
         /// </param>
         /// <param name="box">A root box of creating sheet.</param>
         [Pure]
@@ -96,7 +96,7 @@
         /// <param name="name">
         /// A name of creating sheet.
         /// Name length should be from 1 to 31
-        /// and name should be free of following characters':', '\', '/', '?', '*', '[' or ']'.
+        /// and name should be free of following characters: ':', '\', '/', '?', '*', '[' or ']'.
         /// </param>
         /// <param name="protoBook">Bytes of book package which contains the copying sheet.</param>
         /// <param name="protoName">A name of copying sheet.</param>

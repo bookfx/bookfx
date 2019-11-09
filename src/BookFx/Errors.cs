@@ -64,6 +64,14 @@
             public static ManyPrintAreasError ManyPrintAreas() => new ManyPrintAreasError();
 
             [Pure]
+            public static FitToHeightIsInvalidError FitToHeightIsInvalid(int scale) =>
+                new FitToHeightIsInvalidError(scale);
+
+            [Pure]
+            public static FitToWidthIsInvalidError FitToWidthIsInvalid(int scale) =>
+                new FitToWidthIsInvalidError(scale);
+
+            [Pure]
             public static ScaleIsInvalidError ScaleIsInvalid(int scale) => new ScaleIsInvalidError(scale);
 
             [Pure]
@@ -110,6 +118,22 @@
             {
                 public ManyPrintAreasError()
                     : base("Many print areas found.")
+                {
+                }
+            }
+
+            public sealed class FitToHeightIsInvalidError : Error
+            {
+                public FitToHeightIsInvalidError(int fit)
+                    : base($"Fit to {fit} pages in height is invalid. It should be from {MinFit} to {MaxFit}.")
+                {
+                }
+            }
+
+            public sealed class FitToWidthIsInvalidError : Error
+            {
+                public FitToWidthIsInvalidError(int fit)
+                    : base($"Fit to {fit} pages in width is invalid. It should be from {MinFit} to {MaxFit}.")
                 {
                 }
             }
