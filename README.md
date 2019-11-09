@@ -229,7 +229,11 @@ Coming soon.
     - `Book.ToBytes`
 - `Sheet`
     - `Sheet.Name`
+    - `Sheet.TabColor`
     - `Sheet.SetPageView`
+    - `Sheet.Fit`
+    - `Sheet.FitToHeight`
+    - `Sheet.FitToWidth`
     - `Sheet.Scale`
     - `Sheet.ToBook`
 - `Box`
@@ -245,6 +249,7 @@ Coming soon.
     - `Box.HideCols`
     - `Box.FreezeRows`
     - `Box.FreezeCols`
+    - `Box.AutoFilter`
     - `Box.ToSheet`
 - `CompositeBox`
     - `CompositeBox.Add`
@@ -277,6 +282,7 @@ Coming soon.
     - `BoxStyle.Format`
     - `BoxStyle.DefaultFormat`
     - `BoxStyle.Text`
+    - `BoxStyle.Integer`
     - `BoxStyle.Money`
     - `BoxStyle.Percent`
     - `BoxStyle.DateShort`
