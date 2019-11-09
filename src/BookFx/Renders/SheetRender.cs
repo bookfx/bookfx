@@ -18,6 +18,8 @@
         private static Act<ExcelWorksheet> SettingsRender(this SheetCore sheet) =>
             excelSheet =>
             {
+                sheet.TabColor.ForEach(color => excelSheet.TabColor = color);
+
                 sheet.PageView.ForEach(pageView =>
                 {
                     excelSheet.View.PageLayoutView = pageView == PageView.Layout;

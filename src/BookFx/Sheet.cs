@@ -1,5 +1,6 @@
 ﻿namespace BookFx
 {
+    using System.Drawing;
     using BookFx.Cores;
     using JetBrains.Annotations;
     using static BookFx.Functional.F;
@@ -21,6 +22,12 @@
 
         [Pure]
         public Sheet Name(string name) => Get.With(name: Some(name));
+
+        /// <summary>
+        /// Set sheet tab color.
+        /// </summary>
+        [Pure]
+        public Sheet TabColor(Color color) => Get.With(tabColor: color);
 
         [Pure]
         public Sheet SetPageView(PageView pageView) => Get.With(pageView: pageView);

@@ -1,5 +1,6 @@
 ﻿namespace BookFx.Cores
 {
+    using System.Drawing;
     using BookFx.Functional;
     using JetBrains.Annotations;
     using OfficeOpenXml;
@@ -10,6 +11,7 @@
     {
         internal static readonly SheetCore Empty = new SheetCore(
             name: None,
+            tabColor: None,
             box: None,
             pageView: None,
             fitToHeight: None,
@@ -21,6 +23,7 @@
 
         private SheetCore(
             Option<string> name,
+            Option<Color> tabColor,
             Option<BoxCore> box,
             Option<PageView> pageView,
             Option<int> fitToHeight,
@@ -31,6 +34,7 @@
             Option<ExcelWorksheet> protoSheet)
         {
             Name = name;
+            TabColor = tabColor;
             Box = box;
             PageView = pageView;
             FitToHeight = fitToHeight;
@@ -42,6 +46,8 @@
         }
 
         public Option<string> Name { get; }
+
+        public Option<Color> TabColor { get; }
 
         public Option<BoxCore> Box { get; }
 
@@ -68,6 +74,7 @@
         [Pure]
         internal SheetCore With(
             Option<string>? name = null,
+            Option<Color>? tabColor = null,
             Option<BoxCore>? box = null,
             Option<PageView>? pageView = null,
             Option<int>? fitToHeight = null,
@@ -78,6 +85,7 @@
             Option<ExcelWorksheet>? protoSheet = null) =>
             new SheetCore(
                 name ?? Name,
+                tabColor ?? TabColor,
                 box ?? Box,
                 pageView ?? PageView,
                 fitToHeight ?? FitToHeight,
