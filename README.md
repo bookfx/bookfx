@@ -321,7 +321,7 @@ along with this library. If not, see <https://www.gnu.org/licenses/>.
 
 <!-- links -->
 
-[nuget-img]: https://img.shields.io/nuget/vpre/BookFx
+[nuget-img]: https://img.shields.io/nuget/v/BookFx
 [nuget-link]: https://www.nuget.org/packages/BookFx
 [DOM]: https://en.wikipedia.org/wiki/Document_Object_Model
 [Immutable object]: https://en.wikipedia.org/wiki/Immutable_object
