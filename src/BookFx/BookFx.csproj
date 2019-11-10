@@ -6,7 +6,7 @@
 
   <PropertyGroup>
     <PackageId>BookFx</PackageId>
-    <Version>0.1.0-alpha.7</Version>
+    <Version>0.1.0</Version>
     <Description>Making complex Excel workbooks out of simple components.</Description>
     <Authors>Zhenya Gusev</Authors>
     <Copyright>Copyright © 2019 Zhenya Gusev</Copyright>
