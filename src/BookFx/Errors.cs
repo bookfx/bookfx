@@ -54,13 +54,6 @@
             public static NameIsInvalidError NameIsInvalid(string name) => new NameIsInvalidError(name);
 
             [Pure]
-            public static RootBoxWidthTooBigError RootBoxWidthTooBig(int width) => new RootBoxWidthTooBigError(width);
-
-            [Pure]
-            public static RootBoxHeightTooBigError RootBoxHeightTooBig(int height) =>
-                new RootBoxHeightTooBigError(height);
-
-            [Pure]
             public static ManyPrintAreasError ManyPrintAreas() => new ManyPrintAreasError();
 
             [Pure]
@@ -97,22 +90,6 @@
                         "Take care that name is not empty, " +
                         "name length is not longer than 31 and " +
                         @"name is free of following characters: ':', '\', '/', '?', '*', '[' or ']'.")
-                {
-                }
-            }
-
-            public sealed class RootBoxWidthTooBigError : Error
-            {
-                public RootBoxWidthTooBigError(int width)
-                    : base($"Root box width {width} is too big. Max width is {MaxColumn}.")
-                {
-                }
-            }
-
-            public sealed class RootBoxHeightTooBigError : Error
-            {
-                public RootBoxHeightTooBigError(int height)
-                    : base($"Root box height {height} is too big. Max height is {MaxRow}.")
                 {
                 }
             }
@@ -351,10 +328,33 @@
             }
         }
 
-        public static class Position
+        public static class Placement
         {
             [Pure]
+            public static RootBoxWidthTooBigError RootBoxWidthTooBig(int width) => new RootBoxWidthTooBigError(width);
+
+            [Pure]
+            public static RootBoxHeightTooBigError RootBoxHeightTooBig(int height) =>
+                new RootBoxHeightTooBigError(height);
+
+            [Pure]
             public static IsInvalidError IsInvalid(int row, int col) => new IsInvalidError(row, col);
+
+            public sealed class RootBoxWidthTooBigError : Error
+            {
+                public RootBoxWidthTooBigError(int width)
+                    : base($"Root box width {width} is too big. Max width is {MaxColumn}.")
+                {
+                }
+            }
+
+            public sealed class RootBoxHeightTooBigError : Error
+            {
+                public RootBoxHeightTooBigError(int height)
+                    : base($"Root box height {height} is too big. Max height is {MaxRow}.")
+                {
+                }
+            }
 
             public class IsInvalidError : Error
             {

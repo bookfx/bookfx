@@ -2,7 +2,6 @@
 {
     using System.Linq;
     using BookFx.Calculation;
-    using BookFx.Cores;
     using BookFx.Functional;
     using BookFx.Validation;
     using FluentAssertions;
@@ -80,62 +79,6 @@
             var result = SheetValidator.Boxes(sheet);
 
             result.ErrorsUnsafe().Single().Inners.Should().HaveCount(2);
-        }
-
-        [Fact]
-        public void RootBoxWidth_SmallBox_Valid()
-        {
-            var sheet = Make.Sheet(Make.Value().SpanCols(5)).Get.Place();
-
-            var result = SheetValidator.RootBoxWidth(sheet);
-
-            result.IsValid.Should().BeTrue();
-        }
-
-        [Fact]
-        public void RootBoxWidth_BigBox_Invalid()
-        {
-            var sheet = Make.Sheet(
-                    Make.Row(
-                        Make.Value().SpanCols(16_000),
-                        Make.Value().SpanCols(16_000)
-                    )
-                )
-                .Get
-                .Place();
-
-            var result = SheetValidator.RootBoxWidth(sheet);
-
-            result.IsValid.Should().BeFalse();
-            result.ErrorsUnsafe().First().Should().BeOfType<Errors.Sheet.RootBoxWidthTooBigError>();
-        }
-
-        [Fact]
-        public void RootBoxHeight_SmallBox_Valid()
-        {
-            var sheet = Make.Sheet(Make.Value().SpanRows(5)).Get.Place();
-
-            var result = SheetValidator.RootBoxHeight(sheet);
-
-            result.IsValid.Should().BeTrue();
-        }
-
-        [Fact]
-        public void RootBoxHeight_BigBox_Invalid()
-        {
-            var sheet = Make.Sheet(
-                    Make.Col(
-                        Make.Value().SpanRows(1_000_000),
-                        Make.Value().SpanRows(1_000_000)
-                    )
-                )
-                .Get
-                .Place();
-
-            var result = SheetValidator.RootBoxHeight(sheet);
-
-            result.IsValid.Should().BeFalse();
-            result.ErrorsUnsafe().First().Should().BeOfType<Errors.Sheet.RootBoxHeightTooBigError>();
         }
     }
 }

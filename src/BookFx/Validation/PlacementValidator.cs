@@ -1,9 +1,10 @@
 ﻿namespace BookFx.Validation
 {
     using BookFx.Cores;
-    using BookFx.Epplus;
     using BookFx.Functional;
+    using static BookFx.Epplus.Constraint;
     using static BookFx.Functional.F;
+    using static BookFx.Functional.TeeComposition;
 
     internal static class PlacementValidator
     {
@@ -23,6 +24,22 @@
                     valid: _ => Valid(sheet));
 
         public static Tee<BoxCore> RootBox =>
+            HarvestErrors(
+                RootBoxWidth,
+                RootBoxHeight,
+                AllBoxes);
+
+        public static Tee<BoxCore> RootBoxWidth =>
+            box => box.Placement.Dimension.Width > MaxColumn
+                ? Invalid<BoxCore>(Errors.Placement.RootBoxWidthTooBig(box.Placement.Dimension.Width))
+                : Valid(box);
+
+        public static Tee<BoxCore> RootBoxHeight =>
+            box => box.Placement.Dimension.Height > MaxRow
+                ? Invalid<BoxCore>(Errors.Placement.RootBoxHeightTooBig(box.Placement.Dimension.Height))
+                : Valid(box);
+
+        public static Tee<BoxCore> AllBoxes =>
             box => box
                 .SelfAndDescendants()
                 .Map(Position.Invoke)
@@ -32,10 +49,10 @@
         public static Tee<BoxCore> Position =>
             box =>
                 box.Placement.Position.Row < 1 ||
-                box.Placement.Position.Row > Constraint.MaxRow ||
+                box.Placement.Position.Row > MaxRow ||
                 box.Placement.Position.Col < 1 ||
-                box.Placement.Position.Col > Constraint.MaxColumn
-                    ? Errors.Position.IsInvalid(box.Placement.Position.Row, box.Placement.Position.Col)
+                box.Placement.Position.Col > MaxColumn
+                    ? Errors.Placement.IsInvalid(box.Placement.Position.Row, box.Placement.Position.Col)
                     : Valid(box);
     }
 }

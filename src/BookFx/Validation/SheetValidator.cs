@@ -10,20 +10,16 @@
     internal static class SheetValidator
     {
         public static Tee<SheetCore> Validate =>
-            FailFast(
-                HarvestErrors(
-                    SheetName,
-                    PrintArea,
-                    FitToHeight,
-                    FitToWidth,
-                    Scale,
-                    FrozenRows,
-                    FrozenCols,
-                    AutoFilter,
-                    Boxes),
-                HarvestErrors(
-                    RootBoxWidth,
-                    RootBoxHeight));
+            HarvestErrors(
+                SheetName,
+                PrintArea,
+                FitToHeight,
+                FitToWidth,
+                Scale,
+                FrozenRows,
+                FrozenCols,
+                AutoFilter,
+                Boxes);
 
         public static Tee<SheetCore> SheetName =>
             sheet => sheet.Name
@@ -105,19 +101,5 @@
                 .Match(
                     invalid: errors => Errors.Sheet.Aggregate(sheet, errors),
                     valid: _ => Valid(sheet));
-
-        public static Tee<SheetCore> RootBoxWidth =>
-            sheet => sheet.Box
-                .Map(box => box.Placement.Dimension.Width)
-                .Where(width => width > MaxColumn)
-                .Map(width => Invalid<SheetCore>(Errors.Sheet.RootBoxWidthTooBig(width)))
-                .GetOrElse(Valid(sheet));
-
-        public static Tee<SheetCore> RootBoxHeight =>
-            sheet => sheet.Box
-                .Map(box => box.Placement.Dimension.Height)
-                .Where(height => height > MaxRow)
-                .Map(height => Invalid<SheetCore>(Errors.Sheet.RootBoxHeightTooBig(height)))
-                .GetOrElse(Valid(sheet));
     }
 }
