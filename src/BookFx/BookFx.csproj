@@ -7,7 +7,6 @@
 
   <PropertyGroup>
     <PackageId>BookFx</PackageId>
-    <Version>0.1.0</Version>
     <Description>Making complex Excel workbooks out of simple components.</Description>
     <Authors>Zhenya Gusev</Authors>
     <Copyright>Copyright © 2019 Zhenya Gusev</Copyright>
@@ -16,6 +15,10 @@
     <PackageTags>excel;xlsx;openxml;ooxml</PackageTags>
     <PackageProjectUrl>https://github.com/bookfx/bookfx</PackageProjectUrl>
     <RepositoryUrl>https://github.com/bookfx/bookfx.git</RepositoryUrl>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <NoWarn>1701;1702;1591</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
