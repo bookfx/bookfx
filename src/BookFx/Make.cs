@@ -22,7 +22,7 @@
         public static Book Book() => BookFx.Book.Empty;
 
         /// <summary>
-        /// Creates a book with <see cref="sheets"/>.
+        /// Creates a book with <paramref name="sheets"/>.
         /// </summary>
         /// <param name="sheets">IEnumerable of creating book sheets.</param>
         [Pure]
@@ -30,7 +30,7 @@
             BookCore.Create(sheets.Map(x => x.Get));
 
         /// <summary>
-        /// Creates a book with <see cref="sheets"/>.
+        /// Creates a book with <paramref name="sheets"/>.
         /// </summary>
         /// <param name="sheets">Arrays of creating book sheets.</param>
         [Pure]
@@ -74,7 +74,7 @@
         public static Sheet Sheet(Box box) => SheetCore.Create().With(box: box.Get);
 
         /// <summary>
-        /// Creates an unnamed sheet as a copy of only sheet of <see cref="protoBook"/>.
+        /// Creates an unnamed sheet as a copy of only sheet of <paramref name="protoBook"/>.
         /// </summary>
         /// <param name="protoBook">Bytes of book package which contains the copying sheet.</param>
         [Pure]
@@ -82,7 +82,7 @@
             SheetCore.Create().With(protoBook: Some(protoBook));
 
         /// <summary>
-        /// Creates an unnamed sheet as a copy of <see cref="protoName"/> sheet of <see cref="protoBook"/>.
+        /// Creates an unnamed sheet as a copy of <paramref name="protoName"/> sheet of <paramref name="protoBook"/>.
         /// </summary>
         /// <param name="protoBook">Bytes of book package which contains the copying sheet.</param>
         /// <param name="protoName">A name of copying sheet.</param>
@@ -91,7 +91,7 @@
             SheetCore.Create().With(protoBook: Some(protoBook), protoName: Some(protoName));
 
         /// <summary>
-        /// Creates a named sheet as a copy of <see cref="protoName"/> sheet of <see cref="protoBook"/>.
+        /// Creates a named sheet as a copy of <paramref name="protoName"/> sheet of <paramref name="protoBook"/>.
         /// </summary>
         /// <param name="name">
         /// A name of creating sheet.
@@ -444,7 +444,7 @@
         /// Creates a <see cref="ProtoBox"/>.
         /// </summary>
         /// <param name="book">Bytes of workbook package with box prototype.</param>
-        /// <param name="reference">Reference to a box prototype in the <see cref="book"/>.</param>
+        /// <param name="reference">Reference to a box prototype in the <paramref name="book"/>.</param>
         [Pure]
         public static ProtoBox Proto(byte[] book, Reference reference) =>
             BoxCore.Create(BoxType.Proto).With(proto: ProtoCore.Create(book, reference));
@@ -491,7 +491,7 @@
         public static BoxBorder Border() => BoxBorder.Empty;
 
         /// <summary>
-        /// Creates a <see cref="BoxBorder"/> with restriction to a <see cref="part"/>.
+        /// Creates a <see cref="BoxBorder"/> with restriction to a <paramref name="part"/>.
         /// </summary>
         /// <param name="part">The part of border.</param>
         [Pure]
@@ -505,7 +505,7 @@
         public static BoxBorder Border(BorderStyle style) => BoxBorder.Empty.Style(style);
 
         /// <summary>
-        /// Creates a <see cref="BoxBorder"/> with a <see cref="style"/> applied to a <see cref="part"/>.
+        /// Creates a <see cref="BoxBorder"/> with a <paramref name="style"/> applied to a <paramref name="part"/>.
         /// </summary>
         /// <param name="part">The part of border.</param>
         /// <param name="style">The border style.</param>

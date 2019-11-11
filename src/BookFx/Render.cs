@@ -10,12 +10,15 @@
     using JetBrains.Annotations;
     using static BookFx.Functional.F;
 
+    /// <summary>
+    /// The rendering entry point.
+    /// </summary>
     [PublicAPI]
     public static class Render
     {
         /// <summary>
-        /// Renders a <see cref="book"/> to XLSX Office Open XML format
-        /// using <see cref="http://github.com/JanKallman/EPPlus">EPPlus</see>.
+        /// Renders a <paramref name="book"/> to XLSX Office Open XML format
+        /// using <see href="http://github.com/JanKallman/EPPlus">EPPlus</see>.
         /// </summary>
         /// <param name="book">A <see cref="Book"/>.</param>
         [Pure]
