@@ -120,16 +120,16 @@
         public new ValueBox SetPrintArea() => Get.With(isPrintArea: true);
 
         [Pure]
-        public new ValueBox HideRows() => Get.With(isRowsHidden: true);
+        public new ValueBox HideRows() => Get.With(areRowsHidden: true);
 
         [Pure]
-        public new ValueBox HideCols() => Get.With(isColsHidden: true);
+        public new ValueBox HideCols() => Get.With(areColsHidden: true);
 
         [Pure]
-        public new ValueBox FreezeRows() => Get.With(isRowsFrozen: true);
+        public new ValueBox FreezeRows() => Get.With(areRowsFrozen: true);
 
         [Pure]
-        public new ValueBox FreezeCols() => Get.With(isColsFrozen: true);
+        public new ValueBox FreezeCols() => Get.With(areColsFrozen: true);
 
         /// <summary>
         /// <inheritdoc cref="Box.AutoFilter"/>

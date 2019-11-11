@@ -70,16 +70,16 @@
         public new StackBox SetPrintArea() => Get.With(isPrintArea: true);
 
         [Pure]
-        public new StackBox HideRows() => Get.With(isRowsHidden: true);
+        public new StackBox HideRows() => Get.With(areRowsHidden: true);
 
         [Pure]
-        public new StackBox HideCols() => Get.With(isColsHidden: true);
+        public new StackBox HideCols() => Get.With(areColsHidden: true);
 
         [Pure]
-        public new StackBox FreezeRows() => Get.With(isRowsFrozen: true);
+        public new StackBox FreezeRows() => Get.With(areRowsFrozen: true);
 
         [Pure]
-        public new StackBox FreezeCols() => Get.With(isColsFrozen: true);
+        public new StackBox FreezeCols() => Get.With(areColsFrozen: true);
 
         /// <summary>
         /// <inheritdoc cref="Box.AutoFilter"/>

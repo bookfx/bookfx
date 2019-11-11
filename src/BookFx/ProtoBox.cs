@@ -62,16 +62,16 @@
         public new ProtoBox SetPrintArea() => Get.With(isPrintArea: true);
 
         [Pure]
-        public new ProtoBox HideRows() => Get.With(isRowsHidden: true);
+        public new ProtoBox HideRows() => Get.With(areRowsHidden: true);
 
         [Pure]
-        public new ProtoBox HideCols() => Get.With(isColsHidden: true);
+        public new ProtoBox HideCols() => Get.With(areColsHidden: true);
 
         [Pure]
-        public new ProtoBox FreezeRows() => Get.With(isRowsFrozen: true);
+        public new ProtoBox FreezeRows() => Get.With(areRowsFrozen: true);
 
         [Pure]
-        public new ProtoBox FreezeCols() => Get.With(isColsFrozen: true);
+        public new ProtoBox FreezeCols() => Get.With(areColsFrozen: true);
 
         /// <summary>
         /// <inheritdoc cref="Box.AutoFilter"/>

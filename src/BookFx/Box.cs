@@ -89,16 +89,16 @@
         public Box SetPrintArea() => Get.With(isPrintArea: true);
 
         [Pure]
-        public Box HideRows() => Get.With(isRowsHidden: true);
+        public Box HideRows() => Get.With(areRowsHidden: true);
 
         [Pure]
-        public Box HideCols() => Get.With(isColsHidden: true);
+        public Box HideCols() => Get.With(areColsHidden: true);
 
         [Pure]
-        public Box FreezeRows() => Get.With(isRowsFrozen: true);
+        public Box FreezeRows() => Get.With(areRowsFrozen: true);
 
         [Pure]
-        public Box FreezeCols() => Get.With(isColsFrozen: true);
+        public Box FreezeCols() => Get.With(areColsFrozen: true);
 
         /// <summary>
         /// Adds auto filter to the box bottom.

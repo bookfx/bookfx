@@ -18,7 +18,7 @@
         private static Act<ExcelWorksheet> HideRowsRender(this BoxCore box) =>
             excelSheet =>
             {
-                if (box.IsRowsHidden)
+                if (box.AreRowsHidden)
                 {
                     Enumerable
                         .Range(box.Placement.Position.Row, box.Placement.Dimension.Height)
@@ -31,7 +31,7 @@
         private static Act<ExcelWorksheet> HideColsRender(this BoxCore box) =>
             excelSheet =>
             {
-                if (box.IsColsHidden)
+                if (box.AreColsHidden)
                 {
                     Enumerable
                         .Range(box.Placement.Position.Col, box.Placement.Dimension.Width)

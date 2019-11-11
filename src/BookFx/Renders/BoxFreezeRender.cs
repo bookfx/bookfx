@@ -13,14 +13,14 @@
             {
                 var frozenRow = box
                     .SelfAndDescendants()
-                    .Where(x => x.IsRowsFrozen)
+                    .Where(x => x.AreRowsFrozen)
                     .Map(x => x.Placement.ToRow)
                     .Head()
                     .GetOrElse(0);
 
                 var frozenCol = box
                     .SelfAndDescendants()
-                    .Where(x => x.IsColsFrozen)
+                    .Where(x => x.AreColsFrozen)
                     .Map(x => x.Placement.ToCol)
                     .Head()
                     .GetOrElse(0);

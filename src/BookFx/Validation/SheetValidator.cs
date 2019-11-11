@@ -47,7 +47,7 @@
                 .Box
                 .AsEnumerable()
                 .Bind(x => x.Descendants())
-                .Where(x => x.IsRowsFrozen)
+                .Where(x => x.AreRowsFrozen)
                 .Match(
                     empty: () => Valid(sheet),
                     one: _ => Valid(sheet),
@@ -58,7 +58,7 @@
                 .Box
                 .AsEnumerable()
                 .Bind(x => x.Descendants())
-                .Where(x => x.IsColsFrozen)
+                .Where(x => x.AreColsFrozen)
                 .Match(
                     empty: () => Valid(sheet),
                     one: _ => Valid(sheet),

@@ -70,16 +70,16 @@
         public new RowBox SetPrintArea() => Get.With(isPrintArea: true);
 
         [Pure]
-        public new RowBox HideRows() => Get.With(isRowsHidden: true);
+        public new RowBox HideRows() => Get.With(areRowsHidden: true);
 
         [Pure]
-        public new RowBox HideCols() => Get.With(isColsHidden: true);
+        public new RowBox HideCols() => Get.With(areColsHidden: true);
 
         [Pure]
-        public new RowBox FreezeRows() => Get.With(isRowsFrozen: true);
+        public new RowBox FreezeRows() => Get.With(areRowsFrozen: true);
 
         [Pure]
-        public new RowBox FreezeCols() => Get.With(isColsFrozen: true);
+        public new RowBox FreezeCols() => Get.With(areColsFrozen: true);
 
         /// <summary>
         /// <inheritdoc cref="Box.AutoFilter"/>

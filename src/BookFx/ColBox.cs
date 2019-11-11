@@ -70,16 +70,16 @@
         public new ColBox SetPrintArea() => Get.With(isPrintArea: true);
 
         [Pure]
-        public new ColBox HideRows() => Get.With(isRowsHidden: true);
+        public new ColBox HideRows() => Get.With(areRowsHidden: true);
 
         [Pure]
-        public new ColBox HideCols() => Get.With(isColsHidden: true);
+        public new ColBox HideCols() => Get.With(areColsHidden: true);
 
         [Pure]
-        public new ColBox FreezeRows() => Get.With(isRowsFrozen: true);
+        public new ColBox FreezeRows() => Get.With(areRowsFrozen: true);
 
         [Pure]
-        public new ColBox FreezeCols() => Get.With(isColsFrozen: true);
+        public new ColBox FreezeCols() => Get.With(areColsFrozen: true);
 
         /// <summary>
         /// <inheritdoc cref="Box.AutoFilter"/>

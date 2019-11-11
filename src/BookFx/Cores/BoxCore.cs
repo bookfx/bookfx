@@ -19,10 +19,10 @@
             IEnumerable<TrackSize> rowSizes,
             IEnumerable<TrackSize> colSizes,
             bool isPrintArea,
-            bool isRowsHidden,
-            bool isColsHidden,
-            bool isRowsFrozen,
-            bool isColsFrozen,
+            bool areRowsHidden,
+            bool areColsHidden,
+            bool areRowsFrozen,
+            bool areColsFrozen,
             bool isAutoFilter,
             Option<object> value,
             Option<int> rowSpan,
@@ -40,10 +40,10 @@
             Name = name;
             Style = style;
             IsPrintArea = isPrintArea;
-            IsRowsHidden = isRowsHidden;
-            IsColsHidden = isColsHidden;
-            IsRowsFrozen = isRowsFrozen;
-            IsColsFrozen = isColsFrozen;
+            AreRowsHidden = areRowsHidden;
+            AreColsHidden = areColsHidden;
+            AreRowsFrozen = areRowsFrozen;
+            AreColsFrozen = areColsFrozen;
             IsAutoFilter = isAutoFilter;
             RowSizes = rowSizes.ToImmutableList();
             ColSizes = colSizes.ToImmutableList();
@@ -72,13 +72,13 @@
 
         public bool IsPrintArea { get; }
 
-        public bool IsRowsHidden { get; }
+        public bool AreRowsHidden { get; }
 
-        public bool IsColsHidden { get; }
+        public bool AreColsHidden { get; }
 
-        public bool IsRowsFrozen { get; }
+        public bool AreRowsFrozen { get; }
 
-        public bool IsColsFrozen { get; }
+        public bool AreColsFrozen { get; }
 
         public bool IsAutoFilter { get; }
 
@@ -116,10 +116,10 @@
                 rowSizes: Enumerable.Empty<TrackSize>(),
                 colSizes: Enumerable.Empty<TrackSize>(),
                 isPrintArea: false,
-                isRowsHidden: false,
-                isColsHidden: false,
-                isRowsFrozen: false,
-                isColsFrozen: false,
+                areRowsHidden: false,
+                areColsHidden: false,
+                areRowsFrozen: false,
+                areColsFrozen: false,
                 isAutoFilter: false,
                 value: value ?? None,
                 rowSpan: None,
@@ -149,10 +149,10 @@
             IEnumerable<TrackSize>? rowSizes = null,
             IEnumerable<TrackSize>? colSizes = null,
             bool? isPrintArea = null,
-            bool? isRowsHidden = null,
-            bool? isColsHidden = null,
-            bool? isRowsFrozen = null,
-            bool? isColsFrozen = null,
+            bool? areRowsHidden = null,
+            bool? areColsHidden = null,
+            bool? areRowsFrozen = null,
+            bool? areColsFrozen = null,
             bool? isAutoFilter = null,
             Option<object>? value = null,
             Option<int>? rowSpan = null,
@@ -172,10 +172,10 @@
                 rowSizes ?? RowSizes,
                 colSizes ?? ColSizes,
                 isPrintArea ?? IsPrintArea,
-                isRowsHidden ?? IsRowsHidden,
-                isColsHidden ?? IsColsHidden,
-                isRowsFrozen ?? IsRowsFrozen,
-                isColsFrozen ?? IsColsFrozen,
+                areRowsHidden ?? AreRowsHidden,
+                areColsHidden ?? AreColsHidden,
+                areRowsFrozen ?? AreRowsFrozen,
+                areColsFrozen ?? AreColsFrozen,
                 isAutoFilter ?? IsAutoFilter,
                 value ?? Value,
                 rowSpan ?? RowSpan,
