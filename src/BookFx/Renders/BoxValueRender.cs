@@ -14,8 +14,7 @@
             {
                 box.Value.ForEach(value =>
                 {
-                    var isMerge = box.Merge.GetOrElse(true) && (excelRange.Columns > 1 || excelRange.Rows > 1);
-                    var valueRange = isMerge ? excelRange.Offset(0, 0, 1, 1) : excelRange;
+                    var valueRange = excelRange.Offset(0, 0, 1, 1);
 
                     switch (value)
                     {
