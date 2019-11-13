@@ -63,6 +63,20 @@
                 Make.Value(formula),
                 range => range.Formula.Should().Be(expected));
 
+        [Fact]
+        public void ValueRender_SpanAndNoMerge_FirstCellOnly() =>
+            Packer.OnSheet(excelSheet =>
+            {
+                var excelRange = excelSheet.Cells[1, 1, 2, 2];
+
+                Make.Value("value").Merge(false).Get.ValueRender()(excelRange);
+
+                excelSheet.Cells[1, 1].Value.Should().NotBeNull();
+                excelSheet.Cells[1, 2].Value.Should().BeNull();
+                excelSheet.Cells[2, 1].Value.Should().BeNull();
+                excelSheet.Cells[2, 2].Value.Should().BeNull();
+            });
+
         private static void CheckValue(ValueBox box, Action<ExcelRange> assertion) =>
             Packer.OnSheet(excelSheet =>
             {
