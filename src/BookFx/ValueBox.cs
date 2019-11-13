@@ -126,6 +126,9 @@
         public new ValueBox HideCols() => Get.With(areColsHidden: true);
 
         [Pure]
+        public new ValueBox Freeze() => Get.With(areRowsFrozen: true, areColsFrozen: true);
+
+        [Pure]
         public new ValueBox FreezeRows() => Get.With(areRowsFrozen: true);
 
         [Pure]
