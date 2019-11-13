@@ -68,6 +68,9 @@
         public new ProtoBox HideCols() => Get.With(areColsHidden: true);
 
         [Pure]
+        public new ProtoBox Freeze() => Get.With(areRowsFrozen: true, areColsFrozen: true);
+
+        [Pure]
         public new ProtoBox FreezeRows() => Get.With(areRowsFrozen: true);
 
         [Pure]

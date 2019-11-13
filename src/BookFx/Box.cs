@@ -95,6 +95,9 @@
         public Box HideCols() => Get.With(areColsHidden: true);
 
         [Pure]
+        public Box Freeze() => Get.With(areRowsFrozen: true, areColsFrozen: true);
+
+        [Pure]
         public Box FreezeRows() => Get.With(areRowsFrozen: true);
 
         [Pure]

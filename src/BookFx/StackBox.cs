@@ -76,6 +76,9 @@
         public new StackBox HideCols() => Get.With(areColsHidden: true);
 
         [Pure]
+        public new StackBox Freeze() => Get.With(areRowsFrozen: true, areColsFrozen: true);
+
+        [Pure]
         public new StackBox FreezeRows() => Get.With(areRowsFrozen: true);
 
         [Pure]

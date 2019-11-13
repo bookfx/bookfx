@@ -76,6 +76,9 @@
         public new ColBox HideCols() => Get.With(areColsHidden: true);
 
         [Pure]
+        public new ColBox Freeze() => Get.With(areRowsFrozen: true, areColsFrozen: true);
+
+        [Pure]
         public new ColBox FreezeRows() => Get.With(areRowsFrozen: true);
 
         [Pure]

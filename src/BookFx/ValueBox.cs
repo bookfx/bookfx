@@ -100,7 +100,7 @@
         public new ValueBox AutoSpanCols(bool autoSpanCols) => Get.With(colAutoSpan: autoSpanCols);
 
         [Pure]
-        public ValueBox Merge() => Get.With(merge: true);
+        public ValueBox Merge(bool merge = true) => Get.With(merge: merge);
 
         [Pure]
         public new ValueBox SizeRows(IEnumerable<TrackSize> sizes) => Get.With(rowSizes: sizes);
@@ -124,6 +124,9 @@
 
         [Pure]
         public new ValueBox HideCols() => Get.With(areColsHidden: true);
+
+        [Pure]
+        public new ValueBox Freeze() => Get.With(areRowsFrozen: true, areColsFrozen: true);
 
         [Pure]
         public new ValueBox FreezeRows() => Get.With(areRowsFrozen: true);

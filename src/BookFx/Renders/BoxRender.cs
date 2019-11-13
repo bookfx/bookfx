@@ -10,9 +10,9 @@
         public static Act<ExcelRangeBase> Render(this BoxCore box) =>
             HarvestErrors(
                 box.ProtoRender(),
-                box.DescendantsRender(),
                 box.MergeRender(),
                 box.StyleRender(),
+                box.DescendantsRender(),
                 box.NameRender(),
                 box.ValueRender(),
                 box.AutoFilterRender(),
