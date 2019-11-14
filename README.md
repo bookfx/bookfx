@@ -5,8 +5,8 @@
 **en** | [ru]
 
 BookFx proposes to use the functional style to describe Excel workbooks.
-To implement this BookFx provides model like the HTML [DOM].
-It is a tree of renderable nodes.
+To implement this it provides model like the HTML [DOM].
+Without details, BookFx model is a tree of nodes, which renders to a xlsx-file.
 
 This approach opens multiple opportunities:
 
@@ -24,7 +24,7 @@ Thus, BookFx:
 - helps to better structure a describing of workbook;
 - takes the pain out of the calculating sizes and addresses of ranges;
 - saves you the trouble of using imperative API came from the world of VBA macros;
-- unlocks the door to the functional programming.
+- opens up opportunities of the functional programming.
 
 In addition, BookFx supports prototyping. That means that you can use parts of xlsx files as components. Slots are supported too.
 
