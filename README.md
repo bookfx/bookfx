@@ -107,7 +107,7 @@ Make.Row("Box A1", "Box B1").ToSheet().ToBook().ToBytes()
 
 ![box-a1-b1]
 
-Here is the complete list of boxes. To getting started we need only the first three.
+Here is the complete list of boxes. To getting started we need the first three.
 
 Type | Creating | Destination
 -- | - | -
