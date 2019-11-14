@@ -247,6 +247,7 @@ Coming soon.
     - `Box.SetPrintArea`
     - `Box.HideRows`
     - `Box.HideCols`
+    - `Box.Freeze`
     - `Box.FreezeRows`
     - `Box.FreezeCols`
     - `Box.AutoFilter`
