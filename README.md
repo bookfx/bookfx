@@ -2,7 +2,7 @@
 
 [![nuget-img]][nuget-link]
 
-en | [ru]
+**en** | [ru]
 
 BookFx proposes to use the functional style to describe Excel workbooks.
 To implement this BookFx provides model like the HTML [DOM].
