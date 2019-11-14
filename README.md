@@ -2,6 +2,8 @@
 
 [![nuget-img]][nuget-link]
 
+en | [ru]
+
 BookFx proposes to use the functional style to describe Excel workbooks.
 To implement this BookFx provides model like the HTML [DOM].
 It is a tree of renderable nodes.
@@ -324,6 +326,7 @@ along with this library. If not, see <https://www.gnu.org/licenses/>.
 
 [nuget-img]: https://img.shields.io/nuget/v/BookFx?color=informational
 [nuget-link]: https://www.nuget.org/packages/BookFx
+[ru]: README-ru.md
 [DOM]: https://en.wikipedia.org/wiki/Document_Object_Model
 [Immutable object]: https://en.wikipedia.org/wiki/Immutable_object
 [Side effect]: https://en.wikipedia.org/wiki/Side_effect_(computer_science)

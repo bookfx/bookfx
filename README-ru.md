@@ -2,6 +2,8 @@
 
 [![nuget-img]][nuget-link]
 
+[en] | ru
+
 BookFx предлагает использовать функциональный стиль для описания книг Excel.
 Для реализации этого BookFx предлагает модель наподобие HTML [DOM].
 Это дерево узлов, которые можно отрисовать.
@@ -326,6 +328,7 @@ Copyright (c) 2019 Zhenya Gusev
 
 [nuget-img]: https://img.shields.io/nuget/v/BookFx?color=informational
 [nuget-link]: https://www.nuget.org/packages/BookFx
+[en]: README.md
 [DOM]: https://en.wikipedia.org/wiki/Document_Object_Model
 [Immutable object]: https://en.wikipedia.org/wiki/Immutable_object
 [Side effect]: https://en.wikipedia.org/wiki/Side_effect_(computer_science)
