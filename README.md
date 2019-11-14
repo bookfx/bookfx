@@ -180,7 +180,18 @@ Wow! Calendar!
 
 ### Layout System
 
-Coming soon.
+Every sheet of book can contain one root box. It is placed in the upper left corner.
+
+Composite boxes contain other boxes and are stretched to fit them:
+
+- boxes are placed in row from left to right inside of `RowBox`;
+- boxes are placed in column from top to bottom inside of `ColBox`;
+- boxes are placed in stack one above the other inside of `StackBox`.
+
+A `ValueBox` cannot contains other boxes, but can be placed in several cells.
+More about it see in the [Spanning and Merging](#spanning-and-merging) section.
+
+The size of a `ProtoBox` is always equal to the size of its prototype, and inner boxes of `ProtoBox` are placed using the mechanism of slots. Further in the [Prototyping](#prototyping) section.
 
 ### Spanning and Merging
 
