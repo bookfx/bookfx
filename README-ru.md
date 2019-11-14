@@ -346,4 +346,4 @@ Copyright (c) 2019 Zhenya Gusev
 [S1Table.cs]: src/BookFx.Usage/S1Table.cs
 [S2Style.cs]: src/BookFx.Usage/S2Style.cs
 [S3Calendar.cs]: src/BookFx.Usage/S3Calendar.cs
-[s-3-calendar]: docs/img/s-3-calendar.png "Результат S3Calendar.cs"
+[s-3-calendar]: docs/img/s-3-calendar-ru.png "Результат S3Calendar.cs"

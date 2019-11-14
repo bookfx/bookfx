@@ -344,4 +344,4 @@ along with this library. If not, see <https://www.gnu.org/licenses/>.
 [S1Table.cs]: src/BookFx.Usage/S1Table.cs
 [S2Style.cs]: src/BookFx.Usage/S2Style.cs
 [S3Calendar.cs]: src/BookFx.Usage/S3Calendar.cs
-[s-3-calendar]: docs/img/s-3-calendar.png "S3Calendar.cs result"
+[s-3-calendar]: docs/img/s-3-calendar-en.png "S3Calendar.cs result"
