@@ -37,8 +37,8 @@ BookFx requires [.NET Standard 2.0] and depends on [EPPlus] which is used as a r
 - [Examples of Use](#examples-of-use)
 - [Concepts](#concepts)
     - [Layout System](#Layout-System)
-    - [Values and Formulas](#Values-and-Formulas)
     - [Spanning and Merging](#Spanning-and-Merging)
+    - [Values and Formulas](#Values-and-Formulas)
     - [Bordering](#Bordering)
     - [Style Mixing](#Style-Mixing)
     - [Sizing](#Sizing)
@@ -186,11 +186,11 @@ Wow! Calendar!
 
 Coming soon.
 
-### Values and Formulas
+### Spanning and Merging
 
 Coming soon.
 
-### Spanning and Merging
+### Values and Formulas
 
 Coming soon.
 
@@ -344,4 +344,4 @@ along with this library. If not, see <https://www.gnu.org/licenses/>.
 [S1Table.cs]: src/BookFx.Usage/S1Table.cs
 [S2Style.cs]: src/BookFx.Usage/S2Style.cs
 [S3Calendar.cs]: src/BookFx.Usage/S3Calendar.cs
-[s-3-calendar]: docs/img/s-3-calendar.png "S3Calendar.cs result"
+[s-3-calendar]: docs/img/s-3-calendar-en.png "S3Calendar.cs result"
