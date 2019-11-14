@@ -24,7 +24,7 @@ Thus, BookFx:
 - saves you the trouble of using imperative API came from the world of VBA macros;
 - unlocks the door to the functional programming.
 
-In addition, BookFx supports prototyping. That means that you can use parts of xlsx files as components. Slots are supported.
+In addition, BookFx supports prototyping. That means that you can use parts of xlsx files as components. Slots are supported too.
 
 BookFx requires [.NET Standard 2.0] and depends on [EPPlus] which is used as a render to XLSX Office Open XML format.
 
