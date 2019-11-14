@@ -37,8 +37,8 @@ BookFx requires [.NET Standard 2.0] and depends on [EPPlus] which is used as a r
 - [Examples of Use](#examples-of-use)
 - [Concepts](#concepts)
     - [Layout System](#Layout-System)
-    - [Values and Formulas](#Values-and-Formulas)
     - [Spanning and Merging](#Spanning-and-Merging)
+    - [Values and Formulas](#Values-and-Formulas)
     - [Bordering](#Bordering)
     - [Style Mixing](#Style-Mixing)
     - [Sizing](#Sizing)
@@ -186,11 +186,11 @@ Wow! Calendar!
 
 Coming soon.
 
-### Values and Formulas
+### Spanning and Merging
 
 Coming soon.
 
-### Spanning and Merging
+### Values and Formulas
 
 Coming soon.
 
