@@ -207,7 +207,13 @@ A `ValueBox` is considered to be stretchable when its `Span` is not specified an
 
 ### Values and Formulas
 
-Coming soon.
+The `ValueBox` is intended for values and formulas. It can be created either by `Make.Value` or using implicit convertion from one of built-in types: `string`, `int`, `decimal`, `DateTime`, etc.
+
+Formulas should begin with `=`. The `'` is used for escaping. Only `R1C1` reference style is supported.
+
+```c#
+Make.Value("=SUM(RC[1]:RC[3])")
+```
 
 ### Prototyping
 
