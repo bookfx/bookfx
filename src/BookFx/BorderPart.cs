@@ -1,11 +1,16 @@
-﻿namespace BookFx
+﻿#pragma warning disable 1591 // CS1591: Missing XML comment for publicly visible type or member
+
+namespace BookFx
 {
     using System;
 
+    /// <summary>
+    /// A part of a box to which the border applied.
+    /// </summary>
     [Flags]
     public enum BorderPart : byte
     {
-        InsideTop = 1 << 0,
+        InsideTop = 1,
         InsideRight = 1 << 1,
         InsideBottom = 1 << 2,
         InsideLeft = 1 << 3,
