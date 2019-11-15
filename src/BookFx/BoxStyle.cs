@@ -10,7 +10,7 @@
     using static Make;
 
     /// <summary>
-    /// A style.
+    /// A box style.
     /// </summary>
     [PublicAPI]
     public sealed class BoxStyle

@@ -318,7 +318,7 @@ Make.Sheet("New Sheet Name", protoBook, "Prototype Sheet Name");
     - `BoxStyle.Percent` - задать формат `0%` (Процентный, целое)
     - `BoxStyle.DateShort` - задать формат `dd.mm.yyyy` (Краткий формат даты)
 - `BoxBorder` - граница
-    - `BoxBorder.Restrict` - ограничить часть, к которой применяется граница
+    - `BoxBorder.Restrict` - ограничить часть box'а, к которой применяется граница
     - `BoxBorder.Style` - задать стиль границы
     - `BoxBorder.Color` - задать цвет границы
 

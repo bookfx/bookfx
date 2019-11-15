@@ -320,7 +320,7 @@ Make.Sheet("New Sheet Name", protoBook, "Prototype Sheet Name");
     - `BoxStyle.Percent` - define the `0%` format (Percentage, integer)
     - `BoxStyle.DateShort` - define the `dd.mm.yyyy` format (Short date)
 - `BoxBorder` - a border
-    - `BoxBorder.Restrict` - restrict a part to which the border applied
+    - `BoxBorder.Restrict` - restrict a part of a box to which the border applied
     - `BoxBorder.Style` - define a border style
     - `BoxBorder.Color` - define a border color
 
