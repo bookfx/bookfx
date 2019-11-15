@@ -262,7 +262,7 @@ Make.Sheet("New Sheet Name", protoBook, "Prototype Sheet Name");
     - `Sheet.Fit` - fit the height and the width of printout to pages
     - `Sheet.FitToHeight` - fit the height of printout to pages
     - `Sheet.FitToWidth` - fit the width of printout to pages
-    - `Sheet.Scale` - define the scale
+    - `Sheet.Scale` - define a scale
     - `Sheet.ToBook` - make a `Book` with one sheet
 - `Box` - a box of any type
     - `Box.Name` - define a name of the range
@@ -270,8 +270,8 @@ Make.Sheet("New Sheet Name", protoBook, "Prototype Sheet Name");
     - `Box.AutoSpanRows` - activate `AutoSpan` mode for rows
     - `Box.AutoSpanCols` - activate `AutoSpan` mode for columns
     - `Box.Style` - define a style
-    - `Box.SizeRows` - define height of rows
-    - `Box.SizeCols` - define width of columns
+    - `Box.SizeRows` - define heights of rows
+    - `Box.SizeCols` - define widths of columns
     - `Box.SetPrintArea` - define print area by the box
     - `Box.HideRows` - hide rows
     - `Box.HideCols` - hide columns
