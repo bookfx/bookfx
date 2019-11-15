@@ -23,6 +23,9 @@
         /// </summary>
         public SheetCore Get { get; }
 
+        /// <summary>
+        /// Implicit convert from <see cref="SheetCore"/> to <see cref="Sheet"/>.
+        /// </summary>
         [Pure]
         public static implicit operator Sheet(SheetCore core) => new Sheet(core);
 
