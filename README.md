@@ -195,7 +195,15 @@ The size of a `ProtoBox` is always equal to the size of its prototype, and inner
 
 ### Spanning and Merging
 
-Coming soon.
+A `ValueBox`, like any other box type, can be placed in several cells.
+A `ValueBox` methods `SpanRows`, `SpanCols` and their combination `Span` are used to define the number of spanned cells.
+The cell spanning inside of `ValueBox` is works like `rowspan` and `colspan` HTML table attributes, but in BookFx cells inside a `ValueBox` is not always should be merged.
+
+The `Merge` method is used to merge cells, but BookFx merges ranges of a `ValueBox` automatically if the box has a value or a formula. In some cases it may be require do not merge cells automatically. For that there is the `Merge(false)`.
+
+In addition to automatically merging, BookFx supports automatically spanning, which is activated by methods `AutoSpanRows`, `AutoSpanCols` and their combination `AutoSpan`.
+In this mode a box and its inners are stretched to sizes of their containers through the last stretchable `ValueBox`.
+A `ValueBox` is considered to be stretchable when its `Span` is not specified and its `AutoSpan` is not deactivated. We've used `AutoSpan` in the [Getting Started](#getting-started) section.
 
 ### Values and Formulas
 
