@@ -242,83 +242,87 @@ Make.Sheet("New Sheet Name", protoBook, "Prototype Sheet Name");
 
 ## API Reference
 
-- `Make`
-    - `Make.Book`
-    - `Make.Sheet`
-    - `Make.Row`
-    - `Make.Col`
-    - `Make.Stack`
-    - `Make.Value`
-    - `Make.Proto`
-    - `Make.Style`
-    - `Make.Border`
-- `Book`
-    - `Book.Add`
-    - `Book.ToBytes`
-- `Sheet`
-    - `Sheet.Name`
-    - `Sheet.TabColor`
-    - `Sheet.SetPageView`
-    - `Sheet.Fit`
-    - `Sheet.FitToHeight`
-    - `Sheet.FitToWidth`
-    - `Sheet.Scale`
-    - `Sheet.ToBook`
-- `Box`
-    - `Box.Name`
-    - `Box.AutoSpan`
-    - `Box.AutoSpanRows`
-    - `Box.AutoSpanCols`
-    - `Box.Style`
-    - `Box.SizeRows`
-    - `Box.SizeCols`
-    - `Box.SetPrintArea`
-    - `Box.HideRows`
-    - `Box.HideCols`
-    - `Box.Freeze`
-    - `Box.FreezeRows`
-    - `Box.FreezeCols`
-    - `Box.AutoFilter`
-    - `Box.ToSheet`
-- `CompositeBox`
-    - `CompositeBox.Add`
-- `ValueBox`
-    - `ValueBox.Span`
-    - `ValueBox.SpanRows`
-    - `ValueBox.SpanCols`
-    - `ValueBox.Merge`
-- `ProtoBox`
-    - `ProtoBox.Add`
-- `BoxStyle`
-    - `BoxStyle.Borders`
-    - `BoxStyle.DefaultBorder`
-    - `BoxStyle.Font`
-    - `BoxStyle.Back`
-    - `BoxStyle.Color`
-    - `BoxStyle.Bold`
-    - `BoxStyle.Italic`
-    - `BoxStyle.Underline`
-    - `BoxStyle.Strike`
-    - `BoxStyle.Wrap`
-    - `BoxStyle.Align`
-    - `BoxStyle.Left`
-    - `BoxStyle.Center`
-    - `BoxStyle.Right`
-    - `BoxStyle.Top`
-    - `BoxStyle.Middle`
-    - `BoxStyle.Bottom`
-    - `BoxStyle.Indent`
-    - `BoxStyle.Format`
-    - `BoxStyle.DefaultFormat`
-    - `BoxStyle.Text`
-    - `BoxStyle.Integer`
-    - `BoxStyle.Money`
-    - `BoxStyle.Percent`
-    - `BoxStyle.DateShort`
-- `BoxBorder`
-    - `BoxBorder.Restrict`
-    - `BoxBorder.Style`
-    - `BoxBorder.Color`
+- `Make` - the model elements factory
+    - `Make.Book` - make a `Book`
+    - `Make.Sheet` - make a `Sheet`
+    - `Make.Row` - make a `RowBox`
+    - `Make.Col` - make a `ColBox`
+    - `Make.Stack` - make a `StackBox`
+    - `Make.Value` - make a `ValueBox`
+    - `Make.Proto` - make a `ProtoBox`
+    - `Make.Style` - make a `BoxStyle`
+    - `Make.Border` - make a `BoxBorder`
+- `Book` - an Excel book
+    - `Book.Add` - add sheet(s)
+    - `Book.ToBytes` - render to xlsx
+- `Sheet` - an Excel sheet
+    - `Sheet.Name` - define a sheet name
+    - `Sheet.TabColor` - define tab color
+    - `Sheet.SetPageView` - define page view
+    - `Sheet.Fit` - fit the height and the width of printout to pages
+    - `Sheet.FitToHeight` - fit the height of printout to pages
+    - `Sheet.FitToWidth` - fit the width of printout to pages
+    - `Sheet.Scale` - define the scale
+    - `Sheet.ToBook` - make a `Book` with one sheet
+- `Box` - a box of any type
+    - `Box.Name` - define a name of the range
+    - `Box.AutoSpan` - activate `AutoSpan` mode for rows and columns
+    - `Box.AutoSpanRows` - activate `AutoSpan` mode for rows
+    - `Box.AutoSpanCols` - activate `AutoSpan` mode for columns
+    - `Box.Style` - define a style
+    - `Box.SizeRows` - define height of rows
+    - `Box.SizeCols` - define width of columns
+    - `Box.SetPrintArea` - define print area by the box
+    - `Box.HideRows` - hide rows
+    - `Box.HideCols` - hide columns
+    - `Box.Freeze` - freeze the box range
+    - `Box.FreezeRows` - freeze rows of the box
+    - `Box.FreezeCols` - freeze columns of the box
+    - `Box.AutoFilter` - add auto filter to the lower row of the box
+    - `Box.ToSheet` - make a `Sheet` with the root box
+- `RowBox` - a row of boxes
+    - `RowBox.Add` - add box(es) in row
+- `ColBox` - a column of boxes
+    - `ColBox.Add` - add box(es) in column
+- `StackBox` - a stack of boxes
+    - `StackBox.Add` - add box(es) in stack
+- `ValueBox` - a box with a value, with a formula or an empty box
+    - `ValueBox.Span` - span rows and columns
+    - `ValueBox.SpanRows` - span rows
+    - `ValueBox.SpanCols` - span columns
+    - `ValueBox.Merge` - merge cells
+- `ProtoBox` - a prototype
+    - `ProtoBox.Add` - add a box into a slot
+- `BoxStyle` - a style
+    - `BoxStyle.Borders` - define borders
+    - `BoxStyle.DefaultBorder` - define regular borders
+    - `BoxStyle.Font` - define a font, its size and color
+    - `BoxStyle.Back` - define a background color
+    - `BoxStyle.Color` - define a font color
+    - `BoxStyle.Bold` - in bold
+    - `BoxStyle.Italic` - in italic
+    - `BoxStyle.Underline` - underline
+    - `BoxStyle.Strike` - strike
+    - `BoxStyle.Wrap` - define a text wrap
+    - `BoxStyle.Align` - define an alignment
+    - `BoxStyle.Left` - align to the left
+    - `BoxStyle.Center` - align at the center horizontally
+    - `BoxStyle.Right` - align to the right
+    - `BoxStyle.Top` - align to the top
+    - `BoxStyle.Middle` - align at the middle vertically
+    - `BoxStyle.Bottom` - align to the bottom
+    - `BoxStyle.Indent` - define an indent
+    - `BoxStyle.Format` - define a custom format
+    - `BoxStyle.DefaultFormat` - define the `General` format
+    - `BoxStyle.Text` - define define the `@` format (Text)
+    - `BoxStyle.Integer` - define the `#,##0` format (Integer)
+    - `BoxStyle.Money` - define the `#,##0.00` format (Number with a thousands separator)
+    - `BoxStyle.Percent` - define the `0%` format (Percentage, integer)
+    - `BoxStyle.DateShort` - define the `dd.mm.yyyy` format (Short date)
+- `BoxBorder` - a border
+    - `BoxBorder.Restrict` - restrict a part to which the border applied
+    - `BoxBorder.Style` - define a border style
+    - `BoxBorder.Color` - define a border color
 
 ## License
 

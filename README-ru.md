@@ -240,83 +240,87 @@ Make.Sheet("New Sheet Name", protoBook, "Prototype Sheet Name");
 
 ## Справочник API
 
-- `Make`
-    - `Make.Book`
-    - `Make.Sheet`
-    - `Make.Row`
-    - `Make.Col`
-    - `Make.Stack`
-    - `Make.Value`
-    - `Make.Proto`
-    - `Make.Style`
-    - `Make.Border`
-- `Book`
-    - `Book.Add`
-    - `Book.ToBytes`
-- `Sheet`
-    - `Sheet.Name`
-    - `Sheet.TabColor`
-    - `Sheet.SetPageView`
-    - `Sheet.Fit`
-    - `Sheet.FitToHeight`
-    - `Sheet.FitToWidth`
-    - `Sheet.Scale`
-    - `Sheet.ToBook`
-- `Box`
-    - `Box.Name`
-    - `Box.AutoSpan`
-    - `Box.AutoSpanRows`
-    - `Box.AutoSpanCols`
-    - `Box.Style`
-    - `Box.SizeRows`
-    - `Box.SizeCols`
-    - `Box.SetPrintArea`
-    - `Box.HideRows`
-    - `Box.HideCols`
-    - `Box.Freeze`
-    - `Box.FreezeRows`
-    - `Box.FreezeCols`
-    - `Box.AutoFilter`
-    - `Box.ToSheet`
-- `CompositeBox`
-    - `CompositeBox.Add`
-- `ValueBox`
-    - `ValueBox.Span`
-    - `ValueBox.SpanRows`
-    - `ValueBox.SpanCols`
-    - `ValueBox.Merge`
-- `ProtoBox`
-    - `ProtoBox.Add`
-- `BoxStyle`
-    - `BoxStyle.Borders`
-    - `BoxStyle.DefaultBorder`
-    - `BoxStyle.Font`
-    - `BoxStyle.Back`
-    - `BoxStyle.Color`
-    - `BoxStyle.Bold`
-    - `BoxStyle.Italic`
-    - `BoxStyle.Underline`
-    - `BoxStyle.Strike`
-    - `BoxStyle.Wrap`
-    - `BoxStyle.Align`
-    - `BoxStyle.Left`
-    - `BoxStyle.Center`
-    - `BoxStyle.Right`
-    - `BoxStyle.Top`
-    - `BoxStyle.Middle`
-    - `BoxStyle.Bottom`
-    - `BoxStyle.Indent`
-    - `BoxStyle.Format`
-    - `BoxStyle.DefaultFormat`
-    - `BoxStyle.Text`
-    - `BoxStyle.Integer`
-    - `BoxStyle.Money`
-    - `BoxStyle.Percent`
-    - `BoxStyle.DateShort`
-- `BoxBorder`
-    - `BoxBorder.Restrict`
-    - `BoxBorder.Style`
-    - `BoxBorder.Color`
+- `Make` - фабрика элементов модели
+    - `Make.Book` - создать `Book`
+    - `Make.Sheet` - создать `Sheet`
+    - `Make.Row` - создать `RowBox`
+    - `Make.Col` - создать `ColBox`
+    - `Make.Stack` - создать `StackBox`
+    - `Make.Value` - создать `ValueBox`
+    - `Make.Proto` - создать `ProtoBox`
+    - `Make.Style` - создать `BoxStyle`
+    - `Make.Border` - создать `BoxBorder`
+- `Book` - книга Excel
+    - `Book.Add` - добавить лист(ы)
+    - `Book.ToBytes` - выполнить рендеринг в xlsx
+- `Sheet` - лист Excel
+    - `Sheet.Name` - задать имя листа
+    - `Sheet.TabColor` - задать цвет вкладки
+    - `Sheet.SetPageView` - задать режим отображения
+    - `Sheet.Fit` - вписать содержимое по высоте и ширине
+    - `Sheet.FitToHeight` - вписать содержимое по высоте
+    - `Sheet.FitToWidth` - вписать содержимое по ширине
+    - `Sheet.Scale` - задать масштаб
+    - `Sheet.ToBook` - создать `Book` с одним листом
+- `Box` - box любого вида
+    - `Box.Name` - задать имя области
+    - `Box.AutoSpan` - включить режим `AutoSpan` для строк и колонок
+    - `Box.AutoSpanRows` - включить режим `AutoSpan` для строк
+    - `Box.AutoSpanCols` - включить режим `AutoSpan` для колонок
+    - `Box.Style` - задать стиль
+    - `Box.SizeRows` - задать высоту строк
+    - `Box.SizeCols` - задать ширину колонок
+    - `Box.SetPrintArea` - задать область печати по box'у
+    - `Box.HideRows` - скрыть строки
+    - `Box.HideCols` - скрыть колонки
+    - `Box.Freeze` - закрепить область box'а
+    - `Box.FreezeRows` - закрепить строки box'а
+    - `Box.FreezeCols` - закрепить колонки box'а
+    - `Box.AutoFilter` - добавить автофильтр в нижней строке box'а
+    - `Box.ToSheet` - создать `Sheet` с корневым box'ом
+- `RowBox` - строка box'ов
+    - `RowBox.Add` - добавить box(ы) в строку
+- `ColBox` - колонка box'ов
+    - `ColBox.Add` - добавить box(ы) в колонку
+- `StackBox` - стопка box'ов
+    - `StackBox.Add` - добавить box(ы) в стопку
+- `ValueBox` - box со значением, формулой, или пустой box
+    - `ValueBox.Span` - охватить строки и колонки
+    - `ValueBox.SpanRows` - охватить строки
+    - `ValueBox.SpanCols` - охватить колонки
+    - `ValueBox.Merge` - объединить ячейки
+- `ProtoBox` - прототип
+    - `ProtoBox.Add` - добавить box в слот
+- `BoxStyle` - стиль
+    - `BoxStyle.Borders` - задать границы
+    - `BoxStyle.DefaultBorder` - задать обычные границы
+    - `BoxStyle.Font` - задать шрифт, его размер и цвет
+    - `BoxStyle.Back` - задать цвет фона
+    - `BoxStyle.Color` - задать цвет шрифта
+    - `BoxStyle.Bold` - выделить жирным
+    - `BoxStyle.Italic` - выделить курсивом
+    - `BoxStyle.Underline` - подчеркнуть
+    - `BoxStyle.Strike` - зачеркнуть
+    - `BoxStyle.Wrap` - задать перенос текста
+    - `BoxStyle.Align` - задать выравнивание
+    - `BoxStyle.Left` - выровнять по левому краю
+    - `BoxStyle.Center` - выровнять горизонтально по центру
+    - `BoxStyle.Right` - выровнять по правому краю
+    - `BoxStyle.Top` - выровнять по верхнему краю
+    - `BoxStyle.Middle` - выровнять вертикально по середине
+    - `BoxStyle.Bottom` - выровнять по нижнему краю
+    - `BoxStyle.Indent` - задать отступ
+    - `BoxStyle.Format` - задать произвольный формат
+    - `BoxStyle.DefaultFormat` - задать формат `General` (Общий)
+    - `BoxStyle.Text` - задать формат `@` (Текстовый)
+    - `BoxStyle.Integer` - задать формат `#,##0` (Целое число)
+    - `BoxStyle.Money` - задать формат `#,##0.00` (Числовой с разделителем триад)
+    - `BoxStyle.Percent` - задать формат `0%` (Процентный, целое)
+    - `BoxStyle.DateShort` - задать формат `dd.mm.yyyy` (Краткий формат даты)
+- `BoxBorder` - граница
+    - `BoxBorder.Restrict` - ограничить часть, к которой применяется граница
+    - `BoxBorder.Style` - задать стиль границы
+    - `BoxBorder.Color` - задать цвет границы
 
 ## Лицензия
 
