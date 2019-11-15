@@ -41,10 +41,13 @@
 
         public bool IsNone => _mode == Mode.None;
 
-        [System.Diagnostics.Contracts.Pure]
+        /// <summary>
+        /// Implicit convert from <see cref="float"/> to <see cref="TrackSize"/>.
+        /// </summary>
+        [Pure]
         public static implicit operator TrackSize(float value) => Some(value);
 
-        [System.Diagnostics.Contracts.Pure]
+        [Pure]
         public static TrackSize Some(float value) => new TrackSize(value);
 
         public T Match<T>(Func<T> none, Func<T> fit, Func<float, T> some) =>

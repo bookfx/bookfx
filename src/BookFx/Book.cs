@@ -24,6 +24,9 @@
         /// </summary>
         public BookCore Get { get; }
 
+        /// <summary>
+        /// Implicit convert from <see cref="BookCore"/> to <see cref="Book"/>.
+        /// </summary>
         [Pure]
         public static implicit operator Book(BookCore core) => new Book(core);
 

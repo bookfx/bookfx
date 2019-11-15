@@ -20,13 +20,16 @@
         /// </summary>
         public static readonly BoxStyle Empty = BoxStyleCore.Empty;
 
-        public BoxStyle(BoxStyleCore core) => Get = core;
+        private BoxStyle(BoxStyleCore core) => Get = core;
 
         /// <summary>
         /// Gets properties of the style.
         /// </summary>
         public BoxStyleCore Get { get; }
 
+        /// <summary>
+        /// Implicit convert from <see cref="BoxStyleCore"/> to <see cref="BoxStyle"/>.
+        /// </summary>
         public static implicit operator BoxStyle(BoxStyleCore core) => new BoxStyle(core);
 
         /// <summary>

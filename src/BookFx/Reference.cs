@@ -9,6 +9,9 @@
 
         private Reference(string value) => _value = value;
 
+        /// <summary>
+        /// Implicit convert from <see cref="string"/> to <see cref="Reference"/>.
+        /// </summary>
         public static implicit operator Reference(string reference) => new Reference(reference);
 
         /// <summary>
