@@ -257,7 +257,7 @@ Make.Sheet("New Sheet Name", protoBook, "Prototype Sheet Name");
     - `Book.ToBytes` - render to xlsx
 - `Sheet` - an Excel sheet
     - `Sheet.Name` - define a sheet name
-    - `Sheet.TabColor` - define tab color
+    - `Sheet.TabColor` - define a tab color
     - `Sheet.SetPageView` - define page view
     - `Sheet.Fit` - fit the height and the width of printout to pages
     - `Sheet.FitToHeight` - fit the height of printout to pages

@@ -37,7 +37,7 @@
         public Sheet Name(string name) => Get.With(name: Some(name));
 
         /// <summary>
-        /// Define tab color.
+        /// Define a tab color.
         /// </summary>
         [Pure]
         public Sheet TabColor(Color color) => Get.With(tabColor: color);
