@@ -253,7 +253,7 @@ Make.Sheet("New Sheet Name", protoBook, "Prototype Sheet Name");
 - `Book` - книга Excel
     - `Book.Add` - добавить лист(ы)
     - `Book.ToBytes` - выполнить рендеринг в xlsx
-- `Sheet` - лист книги Excel
+- `Sheet` - лист Excel
     - `Sheet.Name` - задать имя листа
     - `Sheet.TabColor` - задать цвет вкладки
     - `Sheet.SetPageView` - задать режим отображения
@@ -263,7 +263,7 @@ Make.Sheet("New Sheet Name", protoBook, "Prototype Sheet Name");
     - `Sheet.Scale` - задать масштаб
     - `Sheet.ToBook` - создать `Book` с одним листом
 - `Box` - box любого вида
-    - `Box.Name` - задать имя для области
+    - `Box.Name` - задать имя области
     - `Box.AutoSpan` - включить режим `AutoSpan` для строк и колонок
     - `Box.AutoSpanRows` - включить режим `AutoSpan` для строк
     - `Box.AutoSpanCols` - включить режим `AutoSpan` для колонок
