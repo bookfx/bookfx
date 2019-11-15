@@ -5,7 +5,7 @@
     using JetBrains.Annotations;
     using static F;
 
-    internal struct Option<T> : IEquatable<Option.None>, IEquatable<Option<T>>
+    public struct Option<T> : IEquatable<Option.None>, IEquatable<Option<T>>
     {
         private readonly T _value;
 
