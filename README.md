@@ -180,19 +180,65 @@ Wow! Calendar!
 
 ### Layout System
 
-Coming soon.
+Every sheet of book can contain one root box. It is placed in the upper left corner.
+
+Composite boxes contain other boxes and are stretched to fit them:
+
+- boxes are placed in row from left to right inside of `RowBox`;
+- boxes are placed in column from top to bottom inside of `ColBox`;
+- boxes are placed in stack one above the other inside of `StackBox`.
+
+A `ValueBox` cannot contains other boxes, but can be placed in several cells.
+More about it see in the [Spanning and Merging](#spanning-and-merging) section.
+
+The size of a `ProtoBox` is always equal to the size of its prototype, and inner boxes of `ProtoBox` are placed using the mechanism of slots. Further in the [Prototyping](#prototyping) section.
 
 ### Spanning and Merging
 
-Coming soon.
+A `ValueBox`, like any other box type, can be placed in several cells.
+A `ValueBox` methods `SpanRows`, `SpanCols` and their combination `Span` are used to define the number of spanned cells.
+The cell spanning inside of `ValueBox` is works like `rowspan` and `colspan` HTML table attributes, but in BookFx cells inside a `ValueBox` is not always should be merged.
+
+The `Merge` method is used to merge cells, but BookFx merges ranges of a `ValueBox` automatically if the box has a value or a formula. In some cases it may be require do not merge cells automatically. For that there is the `Merge(false)`.
+
+In addition to automatically merging, BookFx supports automatically spanning, which is activated by methods `AutoSpanRows`, `AutoSpanCols` and their combination `AutoSpan`.
+In this mode a box and its inners are stretched to sizes of their containers through the last stretchable `ValueBox`.
+A `ValueBox` is considered to be stretchable when its `Span` is not specified and its `AutoSpan` is not deactivated. We've used `AutoSpan` in the [Getting Started](#getting-started) section.
 
 ### Values and Formulas
 
-Coming soon.
+The `ValueBox` is intended for values and formulas. It can be created either by `Make.Value` or using implicit convertion from one of built-in types: `string`, `int`, `decimal`, `DateTime`, etc.
+
+Formulas should begin with `=`. The `'` is used for escaping. Only `R1C1` reference style is supported.
+
+```c#
+Make.Value("=SUM(RC[1]:RC[3])")
+```
 
 ### Prototyping
 
-Coming soon.
+BookFx supports using parts of other books as prototypes.
+
+```c#
+Make
+    .Proto(protoBook, "Prototype1")
+    .Add("Slot1", "Value1")
+    .Add("Slot2", Make.Row("Value2", "Value3"));
+```
+
+Here
+
+- `protoBook` – `byte[]` of a xlsx-file content;
+- `"Prototype1"` – name of the range in `protoBook`;
+- `"Slot1"` и `"Slot2"` – names of ranges in `Prototype1`, in which other boxes can be placed.
+
+Also BookFx supports adding whole sheets from other books.
+
+```c#
+Make.Sheet("New Sheet Name", protoBook, "Prototype Sheet Name");
+```
+
+`"Prototype Sheet Name"` sheet will be copied from `protoBook` xlsx-file and then it will be renamed to `"New Sheet Name"`. See also other overloads of `Make.Sheet`.
 
 ## API Reference
 
