@@ -2,7 +2,7 @@
 {
     using System;
 
-    public static class Option
+    internal static class Option
     {
         public struct None
         {

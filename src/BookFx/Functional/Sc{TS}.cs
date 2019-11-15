@@ -6,7 +6,7 @@
     /// <summary>
     /// Stateful computation.
     /// </summary>
-    public static class Sc<TS>
+    internal static class Sc<TS>
     {
         public static Sc<TS, TS> GetState => state => (state, state);
 
