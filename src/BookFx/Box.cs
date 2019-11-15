@@ -66,15 +66,11 @@
         [Pure]
         public Box AutoSpan(bool autoSpan = true) => Get.With(rowAutoSpan: autoSpan, colAutoSpan: autoSpan);
 
-        /// <summary>
         /// <inheritdoc cref="AutoSpan"/>
-        /// </summary>
         [Pure]
         public Box AutoSpanRows(bool autoSpanRows = true) => Get.With(rowAutoSpan: autoSpanRows);
 
-        /// <summary>
         /// <inheritdoc cref="AutoSpan"/>
-        /// </summary>
         [Pure]
         public Box AutoSpanCols(bool autoSpanCols) => Get.With(colAutoSpan: autoSpanCols);
 
