@@ -23,6 +23,9 @@
         {
         }
 
+        /// <summary>
+        /// Implicit convert from <see cref="BoxCore"/> to <see cref="ColBox"/>.
+        /// </summary>
         [Pure]
         public static implicit operator ColBox(BoxCore core) => new ColBox(core);
 

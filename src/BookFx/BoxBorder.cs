@@ -22,6 +22,9 @@
         /// </summary>
         public BoxBorderCore Get { get; }
 
+        /// <summary>
+        /// Implicit convert from <see cref="BoxBorderCore"/> to <see cref="BoxBorder"/>.
+        /// </summary>
         [Pure]
         public static implicit operator BoxBorder(BoxBorderCore core) => new BoxBorder(core);
 

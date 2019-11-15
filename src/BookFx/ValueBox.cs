@@ -24,51 +24,99 @@
         {
         }
 
+        /// <summary>
+        /// Implicit convert from <see cref="BoxCore"/> to <see cref="ValueBox"/>.
+        /// </summary>
         [Pure]
         public static implicit operator ValueBox(BoxCore core) => new ValueBox(core);
 
+        /// <summary>
+        /// Implicit convert from <see cref="string"/> to <see cref="ValueBox"/>.
+        /// </summary>
         [Pure]
         public static implicit operator ValueBox(string value) => Value(value);
 
+        /// <summary>
+        /// Implicit convert from <see cref="bool"/> to <see cref="ValueBox"/>.
+        /// </summary>
         [Pure]
         public static implicit operator ValueBox(bool value) => Value(value);
 
+        /// <summary>
+        /// Implicit convert from <see cref="byte"/> to <see cref="ValueBox"/>.
+        /// </summary>
         [Pure]
         public static implicit operator ValueBox(byte value) => Value(value);
 
+        /// <summary>
+        /// Implicit convert from <see cref="sbyte"/> to <see cref="ValueBox"/>.
+        /// </summary>
         [Pure]
         public static implicit operator ValueBox(sbyte value) => Value(value);
 
+        /// <summary>
+        /// Implicit convert from <see cref="short"/> to <see cref="ValueBox"/>.
+        /// </summary>
         [Pure]
         public static implicit operator ValueBox(short value) => Value(value);
 
+        /// <summary>
+        /// Implicit convert from <see cref="ushort"/> to <see cref="ValueBox"/>.
+        /// </summary>
         [Pure]
         public static implicit operator ValueBox(ushort value) => Value(value);
 
+        /// <summary>
+        /// Implicit convert from <see cref="int"/> to <see cref="ValueBox"/>.
+        /// </summary>
         [Pure]
         public static implicit operator ValueBox(int value) => Value(value);
 
+        /// <summary>
+        /// Implicit convert from <see cref="uint"/> to <see cref="ValueBox"/>.
+        /// </summary>
         [Pure]
         public static implicit operator ValueBox(uint value) => Value(value);
 
+        /// <summary>
+        /// Implicit convert from <see cref="long"/> to <see cref="ValueBox"/>.
+        /// </summary>
         [Pure]
         public static implicit operator ValueBox(long value) => Value(value);
 
+        /// <summary>
+        /// Implicit convert from <see cref="ulong"/> to <see cref="ValueBox"/>.
+        /// </summary>
         [Pure]
         public static implicit operator ValueBox(ulong value) => Value(value);
 
+        /// <summary>
+        /// Implicit convert from <see cref="float"/> to <see cref="ValueBox"/>.
+        /// </summary>
         [Pure]
         public static implicit operator ValueBox(float value) => Value(value);
 
+        /// <summary>
+        /// Implicit convert from <see cref="double"/> to <see cref="ValueBox"/>.
+        /// </summary>
         [Pure]
         public static implicit operator ValueBox(double value) => Value(value);
 
+        /// <summary>
+        /// Implicit convert from <see cref="decimal"/> to <see cref="ValueBox"/>.
+        /// </summary>
         [Pure]
         public static implicit operator ValueBox(decimal value) => Value(value);
 
+        /// <summary>
+        /// Implicit convert from <see cref="DateTime"/> to <see cref="ValueBox"/>.
+        /// </summary>
         [Pure]
         public static implicit operator ValueBox(DateTime value) => Value(value);
 
+        /// <summary>
+        /// Implicit convert from <see cref="Guid"/> to <see cref="ValueBox"/>.
+        /// </summary>
         [Pure]
         public static implicit operator ValueBox(Guid value) => Value(value);
 
@@ -114,6 +162,10 @@
         [Pure]
         public new ValueBox AutoSpanCols(bool autoSpanCols) => Get.With(colAutoSpan: autoSpanCols);
 
+        /// <summary>
+        /// Merge cells.
+        /// </summary>
+        /// <param name="merge">true - merge cells; false - unmerge cells.</param>
         [Pure]
         public ValueBox Merge(bool merge = true) => Get.With(merge: merge);
 

@@ -23,6 +23,9 @@
         {
         }
 
+        /// <summary>
+        /// Implicit convert from <see cref="BoxCore"/> to <see cref="StackBox"/>.
+        /// </summary>
         [Pure]
         public static implicit operator StackBox(BoxCore core) => new StackBox(core);
 

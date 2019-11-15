@@ -17,6 +17,9 @@
         {
         }
 
+        /// <summary>
+        /// Implicit convert from <see cref="BoxCore"/> to <see cref="ProtoBox"/>.
+        /// </summary>
         [Pure]
         public static implicit operator ProtoBox(BoxCore core) => new ProtoBox(core);
 
