@@ -298,7 +298,7 @@ Make.Sheet("New Sheet Name", protoBook, "Prototype Sheet Name");
     - `BoxStyle.DefaultBorder` - define regular borders
     - `BoxStyle.Font` - define a font, its size and color
     - `BoxStyle.Back` - define a background color
-    - `BoxStyle.Color` - define a font color
+    - `BoxStyle.Color` - define a font color and/or a background color
     - `BoxStyle.Bold` - in bold
     - `BoxStyle.Italic` - in italic
     - `BoxStyle.Underline` - underline
