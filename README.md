@@ -217,7 +217,28 @@ Make.Value("=SUM(RC[1]:RC[3])")
 
 ### Prototyping
 
-Coming soon.
+BookFx supports using parts of other books as prototypes.
+
+```c#
+Make
+    .Proto(protoBook, "Prototype1")
+    .Add("Slot1", "Value1")
+    .Add("Slot2", Make.Row("Value2", "Value3"));
+```
+
+Here
+
+- `protoBook` – `byte[]` of a xlsx-file content;
+- `"Prototype1"` – name of the range in `protoBook`;
+- `"Slot1"` и `"Slot2"` – names of ranges in `Prototype1`, in which other boxes can be placed.
+
+Also BookFx supports adding whole sheets from other books.
+
+```c#
+Make.Sheet("New Sheet Name", protoBook, "Prototype Sheet Name");
+```
+
+`"Prototype Sheet Name"` sheet will be copied from `protoBook` xlsx-file and then it will be renamed to `"New Sheet Name"`. See also other overloads of `Make.Sheet`.
 
 ## API Reference
 
