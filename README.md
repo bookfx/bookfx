@@ -323,6 +323,12 @@ Make.Sheet("New Sheet Name", protoBook, "Prototype Sheet Name");
     - `BoxBorder.Restrict` - restrict a part of a box to which the border applied
     - `BoxBorder.Style` - define a border style
     - `BoxBorder.Color` - define a border color
+- `EnumerableExt` - IEnumerable extensions for BookFx types
+    - `IEnumerable<Box>.ToBook` - make a `Book` from sheets
+    - `IEnumerable<Box>.ToRow` - make a `RowBox` from other boxes
+    - `IEnumerable<Box>.ToCol` - make a `ColBox` from other boxes
+    - `IEnumerable<Box>.ToStack` - make a `StackBox` from other boxes
+    - `IEnumerable<BoxStyle>.Mix` - mix styles into a new style
 
 ## License
 

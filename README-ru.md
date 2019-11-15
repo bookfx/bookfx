@@ -321,6 +321,12 @@ Make.Sheet("New Sheet Name", protoBook, "Prototype Sheet Name");
     - `BoxBorder.Restrict` - ограничить часть box'а, к которой применяется граница
     - `BoxBorder.Style` - задать стиль границы
     - `BoxBorder.Color` - задать цвет границы
+- `EnumerableExt` - расширения IEnumerable для типов BookFx
+    - `IEnumerable<Box>.ToBook` - создать `Book` из листов
+    - `IEnumerable<Box>.ToRow` - создать `RowBox` из других box'ов
+    - `IEnumerable<Box>.ToCol` - создать `ColBox` из других box'ов
+    - `IEnumerable<Box>.ToStack` - создать `StackBox` из других box'ов
+    - `IEnumerable<BoxStyle>.Mix` - смешать стили и создать новый
 
 ## Лицензия
 
