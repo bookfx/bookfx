@@ -230,7 +230,7 @@ Here
 
 - `protoBook` – `byte[]` of a xlsx-file content;
 - `"Prototype1"` – name of the range in `protoBook`;
-- `"Slot1"` и `"Slot2"` – names of ranges in `Prototype1`, in which other boxes can be placed.
+- `"Slot1"` and `"Slot2"` – names of ranges in `Prototype1`, in which other boxes can be placed.
 
 Also BookFx supports adding whole sheets from other books.
 
