@@ -3,6 +3,7 @@
     using BookFx.Functional;
     using JetBrains.Annotations;
     using OfficeOpenXml;
+    using static BookFx.Functional.F;
 
     /// <summary>
     /// Gets a proto properties.
@@ -31,7 +32,7 @@
 
         [Pure]
         internal static ProtoCore Create(byte[] book, Reference reference) =>
-            new ProtoCore(book: book, reference: reference, range: F.None);
+            new ProtoCore(book: book, reference: reference, range: None);
 
         [Pure]
         internal ProtoCore With(

@@ -2,6 +2,7 @@
 {
     using BookFx.Functional;
     using JetBrains.Annotations;
+    using static BookFx.Functional.F;
 
     /// <summary>
     /// Gets a slot properties.
@@ -30,7 +31,7 @@
 
         [Pure]
         internal static SlotCore Create(Reference reference, BoxCore box) =>
-            new SlotCore(reference: reference, box: box, position: F.None);
+            new SlotCore(reference: reference, box: box, position: None);
 
         [Pure]
         internal SlotCore With(

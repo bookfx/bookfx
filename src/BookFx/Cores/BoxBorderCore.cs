@@ -3,6 +3,7 @@
     using System.Drawing;
     using BookFx.Functional;
     using JetBrains.Annotations;
+    using static BookFx.Functional.F;
 
     /// <summary>
     /// Gets a border properties.
@@ -11,9 +12,9 @@
     public sealed class BoxBorderCore
     {
         internal static readonly BoxBorderCore Empty = new BoxBorderCore(
-            part: F.None,
-            style: F.None,
-            color: F.None);
+            part: None,
+            style: None,
+            color: None);
 
         private BoxBorderCore(
             Option<BorderPart> part,
