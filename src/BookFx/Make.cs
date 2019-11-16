@@ -443,8 +443,8 @@
         /// <summary>
         /// Creates a <see cref="ProtoBox"/>.
         /// </summary>
-        /// <param name="book">Bytes of workbook package with box prototype.</param>
-        /// <param name="reference">Reference to a box prototype in the <paramref name="book"/>.</param>
+        /// <param name="book">Bytes of book with box prototype.</param>
+        /// <param name="reference">Reference to a prototype in the <paramref name="book"/>.</param>
         [Pure]
         public static ProtoBox Proto(byte[] book, Reference reference) =>
             BoxCore.Create(BoxType.Proto).With(proto: ProtoCore.Create(book, reference));
