@@ -101,15 +101,21 @@ Make.Row(Make.Value("Box A1"), Make.Value("Box B1")).ToSheet().ToBook().ToBytes(
 
 ![box-a1-b1]
 
+Логично. Два значения расположились в строку.
+
 ### Преобразования
 
-`ValueBox` умеет неявно преобразовываться из некоторых встроенных типов, поэтому выражение выше может быть написано короче:
+В `ValueBox` реализованы [неявные преобразования][Implicit convertions] из большинства встроенных типов.
+Что это значит?
+Это значит, что не обязательно каждый раз повторять `Make.Value`, потому что `ValueBox` будет создан автоматически!
 
 ```c#
 Make.Row("Box A1", "Box B1").ToSheet().ToBook().ToBytes()
 ```
 
 ![box-a1-b1]
+
+Результат тот же самый!
 
 ### Композиция
 
@@ -395,6 +401,7 @@ Copyright (c) 2019 Zhenya Gusev
 [sheet-name]: docs/img/sheet-name.svg "Именованные листы"
 [box-a1]: docs/img/box-a1.svg "Box A1"
 [box-a1-b1]: docs/img/box-a1-b1.svg "Box A1, Box B1"
+[Implicit convertions]: https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/conversions#implicit-conversions
 [box-header]: docs/img/box-header.svg "Box шапки"
 [box-header-model]: docs/img/box-header-model.svg "Модель box'а шапки"
 [box-plan-fact]: docs/img/box-plan-fact.svg "PlanFact box"

@@ -101,15 +101,22 @@ Make.Row(Make.Value("Box A1"), Make.Value("Box B1")).ToSheet().ToBook().ToBytes(
 
 ![box-a1-b1]
 
+Logical. Two values have been placed in row.
+
 ### Conversions
 
-`ValueBox` can be implicitly converted from some of built-in types, so above expression can be written shorter:
+In the `ValueBox` have been implemented [implicit convertions][Implicit convertions] from most of built-in types.
+What does this means?
+This means that we don't have to repeat `Make.Value` every time,
+because the `ValueBox` will be created automatically!
 
 ```c#
 Make.Row("Box A1", "Box B1").ToSheet().ToBook().ToBytes()
 ```
 
 ![box-a1-b1]
+
+The result is the same!
 
 ### Composition
 
@@ -396,6 +403,7 @@ along with this library. If not, see <https://www.gnu.org/licenses/>.
 [book-empty]: docs/img/book-empty.svg "Empty book"
 [sheet-name]: docs/img/sheet-name.svg "Named sheets"
 [box-a1]: docs/img/box-a1.svg "Box A1"
+[Implicit convertions]: https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/conversions#implicit-conversions
 [box-a1-b1]: docs/img/box-a1-b1.svg "Box A1, Box B1"
 [box-header]: docs/img/box-header.svg "Header box"
 [box-header-model]: docs/img/box-header-model.svg "Header box model"
