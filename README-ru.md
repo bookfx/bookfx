@@ -103,7 +103,7 @@ Make.Row(Make.Value("Box A1"), Make.Value("Box B1")).ToSheet().ToBook().ToBytes(
 
 ### Преобразования
 
-`ValueBox` умеет неявно преобразовываться из некоторых встроенных типов, поэтому выражение выше может быть написано короче.
+`ValueBox` умеет неявно преобразовываться из некоторых встроенных типов, поэтому выражение выше может быть написано короче:
 
 ```c#
 Make.Row("Box A1", "Box B1").ToSheet().ToBook().ToBytes()
@@ -125,13 +125,13 @@ Make.Row("Box A1", "Box B1").ToSheet().ToBook().ToBytes()
 
 ![box-plan-fact-model]
 
-Мы можем извлечь этот паттерн в функцию. По сути это компонент.
+Мы можем извлечь этот паттерн в функцию. По сути это компонент:
 
 ```c#
 Box PlanFact(string title) => Make.Col(title, Make.Row("Plan", "Fact"));
 ```
 
-Протестируем его.
+Протестируем его:
 
 ```c#
 PlanFact("Beginning of year").ToSheet().ToBook().ToBytes()
@@ -139,7 +139,7 @@ PlanFact("Beginning of year").ToSheet().ToBook().ToBytes()
 
 ![box-plan-fact]
 
-Теперь используем `PlanFact` как компонент.
+Теперь используем `PlanFact` как компонент:
 
 ```c#
 Make
@@ -237,7 +237,7 @@ Make.Value("=SUM(RC[1]:RC[3])")
 
 ### Прототипирование
 
-BookFx поддерживает использование фрагментов других книг в качестве прототипов.
+BookFx поддерживает использование фрагментов других книг в качестве прототипов:
 
 ```c#
 Make
@@ -252,7 +252,7 @@ Make
 - `"Prototype1"` – имя диапазона в `protoBook`;
 - `"Slot1"` и `"Slot2"` – имена диапазонов внутри `Prototype1`, в которых могут размещаться другие box'ы.
 
-Также BookFx поддерживает добавление целых листов из других книг.
+Также BookFx поддерживает добавление целых листов из других книг:
 
 ```c#
 Make.Sheet("New Sheet Name", protoBook, "Prototype Sheet Name");

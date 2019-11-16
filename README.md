@@ -125,13 +125,13 @@ Is is easy to see the common pattern.
 
 ![box-plan-fact-model]
 
-We can extract this pattern in a function. Essentially it is a component.
+We can extract this pattern in a function. Essentially it is a component:
 
 ```c#
 Box PlanFact(string title) => Make.Col(title, Make.Row("Plan", "Fact"));
 ```
 
-Test it.
+Test it:
 
 ```c#
 PlanFact("Beginning of year").ToSheet().ToBook().ToBytes()
@@ -139,7 +139,7 @@ PlanFact("Beginning of year").ToSheet().ToBook().ToBytes()
 
 ![box-plan-fact]
 
-Now let's use `PlanFact` as component.
+Now let's use `PlanFact` as component:
 
 ```c#
 Make
@@ -241,7 +241,7 @@ Make.Value("=SUM(RC[1]:RC[3])")
 
 ### Prototyping
 
-BookFx supports using parts of other books as prototypes.
+BookFx supports using parts of other books as prototypes:
 
 ```c#
 Make
@@ -256,7 +256,7 @@ Here
 - `"Prototype1"` – name of the range in `protoBook`;
 - `"Slot1"` and `"Slot2"` – names of ranges in `Prototype1`, in which other boxes can be placed.
 
-Also BookFx supports adding whole sheets from other books.
+Also BookFx supports adding whole sheets from other books:
 
 ```c#
 Make.Sheet("New Sheet Name", protoBook, "Prototype Sheet Name");
