@@ -64,9 +64,9 @@
         /// <summary>
         /// Pattern matching.
         /// </summary>
-        /// <typeparam name="TR">Type of the result.</typeparam>
-        /// <param name="none">A function for none case.</param>
-        /// <param name="some">A function for some case.</param>
+        /// <typeparam name="TR">A type of the result.</typeparam>
+        /// <param name="none">A function for the none case.</param>
+        /// <param name="some">A function for the some case.</param>
         /// <returns>A result either of the <paramref name="none"/> or the <paramref name="some"/> function.</returns>
         public TR Match<TR>(Func<TR> none, Func<T, TR> some) => IsSome ? some(_value) : none();
 
