@@ -11,7 +11,7 @@
     /// One of the composite <see cref="Box"/> types. Inner boxes are placed in column from top to bottom.
     /// </summary>
     [PublicAPI]
-    public sealed class ColBox : CompositeBox
+    public sealed class ColBox : Box
     {
         /// <summary>
         /// The empty <see cref="ColBox"/>.

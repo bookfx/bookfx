@@ -11,7 +11,7 @@
     /// One of the composite <see cref="Box"/> types. Inner boxes are placed in row from left to right.
     /// </summary>
     [PublicAPI]
-    public sealed class RowBox : CompositeBox
+    public sealed class RowBox : Box
     {
         /// <summary>
         /// The empty <see cref="RowBox"/>.

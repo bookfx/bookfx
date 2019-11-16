@@ -11,7 +11,7 @@
     /// One of the composite <see cref="Box"/> types. Inner boxes are placed in stack one above the other.
     /// </summary>
     [PublicAPI]
-    public sealed class StackBox : CompositeBox
+    public sealed class StackBox : Box
     {
         /// <summary>
         /// The empty <see cref="StackBox"/>.
