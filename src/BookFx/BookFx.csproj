@@ -17,10 +17,6 @@
     <RepositoryUrl>https://github.com/bookfx/bookfx.git</RepositoryUrl>
   </PropertyGroup>
 
-  <PropertyGroup>
-    <NoWarn>1701;1702;1591</NoWarn>
-  </PropertyGroup>
-
   <ItemGroup>
     <None Include="..\..\icon\icon.png" Pack="true" Visible="false" PackagePath="" />
   </ItemGroup>
