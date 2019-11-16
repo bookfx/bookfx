@@ -4,6 +4,9 @@
     using System.Collections.Immutable;
     using JetBrains.Annotations;
 
+    /// <summary>
+    /// Gets a book properties.
+    /// </summary>
     [PublicAPI]
     public sealed class BookCore
     {
@@ -11,6 +14,9 @@
 
         private BookCore(IEnumerable<SheetCore> sheets) => Sheets = sheets.ToImmutableList();
 
+        /// <summary>
+        /// Gets sheets.
+        /// </summary>
         public ImmutableList<SheetCore> Sheets { get; }
 
         [Pure]

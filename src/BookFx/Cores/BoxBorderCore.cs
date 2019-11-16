@@ -4,9 +4,13 @@
     using BookFx.Functional;
     using JetBrains.Annotations;
 
+    /// <summary>
+    /// Gets a border properties.
+    /// </summary>
+    [PublicAPI]
     public sealed class BoxBorderCore
     {
-        public static readonly BoxBorderCore Empty = new BoxBorderCore(
+        internal static readonly BoxBorderCore Empty = new BoxBorderCore(
             part: F.None,
             style: F.None,
             color: F.None);
@@ -21,10 +25,19 @@
             Color = color;
         }
 
+        /// <summary>
+        /// Gets the part part of the box to which the border applied.
+        /// </summary>
         public Option<BorderPart> Part { get; }
 
+        /// <summary>
+        /// Gets the style of the border.
+        /// </summary>
         public Option<BorderStyle> Style { get; }
 
+        /// <summary>
+        /// Gets the color of the border.
+        /// </summary>
         public Option<Color> Color { get; }
 
         [Pure]

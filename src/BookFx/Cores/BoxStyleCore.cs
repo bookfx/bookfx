@@ -6,25 +6,29 @@
     using System.Linq;
     using BookFx.Functional;
     using JetBrains.Annotations;
+    using static BookFx.Functional.F;
 
+    /// <summary>
+    /// Gets a box style properties.
+    /// </summary>
     [PublicAPI]
     public sealed class BoxStyleCore
     {
         internal static readonly BoxStyleCore Empty = new BoxStyleCore(
             borders: Enumerable.Empty<BoxBorderCore>(),
-            fontSize: F.None,
-            fontName: F.None,
-            fontColor: F.None,
-            backColor: F.None,
-            isBold: F.None,
-            isItalic: F.None,
-            isUnderline: F.None,
-            isStrike: F.None,
-            isWrap: F.None,
-            hAlign: F.None,
-            vAlign: F.None,
-            indent: F.None,
-            format: F.None);
+            fontSize: None,
+            fontName: None,
+            fontColor: None,
+            backColor: None,
+            isBold: None,
+            isItalic: None,
+            isUnderline: None,
+            isStrike: None,
+            isWrap: None,
+            hAlign: None,
+            vAlign: None,
+            indent: None,
+            format: None);
 
         private BoxStyleCore(
             IEnumerable<BoxBorderCore> borders,
@@ -58,32 +62,74 @@
             Format = format;
         }
 
+        /// <summary>
+        /// Gets borders.
+        /// </summary>
         public ImmutableList<BoxBorderCore> Borders { get; }
 
+        /// <summary>
+        /// Gets the font size.
+        /// </summary>
         public Option<float> FontSize { get; }
 
+        /// <summary>
+        /// Gets the font name.
+        /// </summary>
         public Option<string> FontName { get; }
 
+        /// <summary>
+        /// Gets the font color.
+        /// </summary>
         public Option<Color> FontColor { get; }
 
+        /// <summary>
+        /// Gets the background color.
+        /// </summary>
         public Option<Color> BackColor { get; }
 
+        /// <summary>
+        /// Gets a value indicating whether is text bold.
+        /// </summary>
         public Option<bool> IsBold { get; }
 
+        /// <summary>
+        /// Gets a value indicating whether is text italic.
+        /// </summary>
         public Option<bool> IsItalic { get; }
 
+        /// <summary>
+        /// Gets a value indicating whether is text underlined.
+        /// </summary>
         public Option<bool> IsUnderline { get; }
 
+        /// <summary>
+        /// Gets a value indicating whether is text struck.
+        /// </summary>
         public Option<bool> IsStrike { get; }
 
+        /// <summary>
+        /// Gets a value indicating whether is text wrapped.
+        /// </summary>
         public Option<bool> IsWrap { get; }
 
+        /// <summary>
+        /// Gets the horizontal alignment.
+        /// </summary>
         public Option<HAlign> HAlign { get; }
 
+        /// <summary>
+        /// Gets the vertical alignment.
+        /// </summary>
         public Option<VAlign> VAlign { get; }
 
+        /// <summary>
+        /// Gets the indent size.
+        /// </summary>
         public Option<int> Indent { get; }
 
+        /// <summary>
+        /// Gets the format.
+        /// </summary>
         public Option<string> Format { get; }
 
         [Pure]
