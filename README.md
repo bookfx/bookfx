@@ -105,7 +105,7 @@ Logical. Two values have been placed in row!
 
 ### Conversions
 
-In the `ValueBox` have been implemented [implicit convertions][Implicit convertions] from most of built-in types.
+In the `ValueBox` have been implemented [implicit convertions][Implicit convertions] from all necessary value types.
 What does this means?
 This means that we don't have to repeat `Make.Value` every time,
 because the `ValueBox` will be created automatically!
@@ -244,7 +244,7 @@ A `ValueBox` is considered to be stretchable when its `Span` is not specified an
 
 ### Values and Formulas
 
-The `ValueBox` is intended for values and formulas. It can be created either by `Make.Value` or using implicit convertion from one of built-in types: `string`, `int`, `decimal`, `DateTime`, etc.
+The `ValueBox` is intended for values and formulas. It can be created either by `Make.Value` or using implicit convertion from all necessary value types: `string`, `int`, `decimal`, `DateTime`, etc.
 
 Formulas should begin with `=`. The `'` is used for escaping. Only `R1C1` reference style is supported.
 
