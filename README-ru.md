@@ -296,7 +296,7 @@ Make.Sheet("New Sheet Name", protoBook, "Prototype Sheet Name");
     - `BoxStyle.DefaultBorder` - задать обычные границы
     - `BoxStyle.Font` - задать шрифт, его размер и цвет
     - `BoxStyle.Back` - задать цвет фона
-    - `BoxStyle.Color` - задать цвет шрифта
+    - `BoxStyle.Color` - задать цвет шрифта и/или цвет фона
     - `BoxStyle.Bold` - выделить жирным
     - `BoxStyle.Italic` - выделить курсивом
     - `BoxStyle.Underline` - подчеркнуть
@@ -318,9 +318,15 @@ Make.Sheet("New Sheet Name", protoBook, "Prototype Sheet Name");
     - `BoxStyle.Percent` - задать формат `0%` (Процентный, целое)
     - `BoxStyle.DateShort` - задать формат `dd.mm.yyyy` (Краткий формат даты)
 - `BoxBorder` - граница
-    - `BoxBorder.Restrict` - ограничить часть, к которой применяется граница
+    - `BoxBorder.Restrict` - ограничить часть box'а, к которой применяется граница
     - `BoxBorder.Style` - задать стиль границы
     - `BoxBorder.Color` - задать цвет границы
+- `EnumerableExt` - расширения IEnumerable для типов BookFx
+    - `IEnumerable<Box>.ToBook` - создать `Book` из листов
+    - `IEnumerable<Box>.ToRow` - создать `RowBox` из других box'ов
+    - `IEnumerable<Box>.ToCol` - создать `ColBox` из других box'ов
+    - `IEnumerable<Box>.ToStack` - создать `StackBox` из других box'ов
+    - `IEnumerable<BoxStyle>.Mix` - смешать стили и создать новый
 
 ## Лицензия
 

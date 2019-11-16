@@ -7,6 +7,9 @@
     using JetBrains.Annotations;
     using static BookFx.Functional.F;
 
+    /// <summary>
+    /// Gets a box properties.
+    /// </summary>
     [PublicAPI]
     public sealed class BoxCore
     {
@@ -60,44 +63,104 @@
             Placement = placement;
         }
 
+        /// <summary>
+        /// Gets the type.
+        /// </summary>
         public BoxType Type { get; }
 
+        /// <summary>
+        /// Gets the range name.
+        /// </summary>
         public Option<string> Name { get; }
 
+        /// <summary>
+        /// Gets the style.
+        /// </summary>
         public Option<BoxStyleCore> Style { get; }
 
+        /// <summary>
+        /// Gets row heights.
+        /// </summary>
         public ImmutableList<TrackSize> RowSizes { get; }
 
+        /// <summary>
+        /// Gets column widths.
+        /// </summary>
         public ImmutableList<TrackSize> ColSizes { get; }
 
+        /// <summary>
+        /// Gets a value indicating whether is print area defined by the box.
+        /// </summary>
         public bool IsPrintArea { get; }
 
+        /// <summary>
+        /// Gets a value indicating whether is rows of the box are hidden.
+        /// </summary>
         public bool AreRowsHidden { get; }
 
+        /// <summary>
+        /// Gets a value indicating whether is columns of the box are hidden.
+        /// </summary>
         public bool AreColsHidden { get; }
 
+        /// <summary>
+        /// Gets a value indicating whether is rows of the box are frozen.
+        /// </summary>
         public bool AreRowsFrozen { get; }
 
+        /// <summary>
+        /// Gets a value indicating whether is columns of the box are frozen.
+        /// </summary>
         public bool AreColsFrozen { get; }
 
+        /// <summary>
+        /// Gets a value indicating whether is auto filter added to the lower row of the box.
+        /// </summary>
         public bool IsAutoFilter { get; }
 
+        /// <summary>
+        /// Gets the value or the formula.
+        /// </summary>
         public Option<object> Value { get; }
 
+        /// <summary>
+        /// Gets the number of rows to span.
+        /// </summary>
         public Option<int> RowSpan { get; }
 
+        /// <summary>
+        /// Gets the number of columns to span.
+        /// </summary>
         public Option<int> ColSpan { get; }
 
+        /// <summary>
+        /// Gets a value indicating whether is automatic span of rows activated.
+        /// </summary>
         public Option<bool> RowAutoSpan { get; }
 
+        /// <summary>
+        /// Gets a value indicating whether is automatic span of columns activated.
+        /// </summary>
         public Option<bool> ColAutoSpan { get; }
 
+        /// <summary>
+        /// Gets a value indicating whether are cells merged.
+        /// </summary>
         public Option<bool> Merge { get; }
 
+        /// <summary>
+        /// Gets children.
+        /// </summary>
         public ImmutableList<BoxCore> Children { get; }
 
+        /// <summary>
+        /// Gets the prototype.
+        /// </summary>
         public Option<ProtoCore> Proto { get; }
 
+        /// <summary>
+        /// Gets slots.
+        /// </summary>
         public ImmutableList<SlotCore> Slots { get; }
 
         internal int Number { get; }

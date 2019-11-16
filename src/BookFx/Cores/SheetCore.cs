@@ -6,6 +6,9 @@
     using OfficeOpenXml;
     using static BookFx.Functional.F;
 
+    /// <summary>
+    /// Gets a sheet properties.
+    /// </summary>
     [PublicAPI]
     public sealed class SheetCore
     {
@@ -45,22 +48,49 @@
             ProtoSheet = protoSheet;
         }
 
+        /// <summary>
+        /// Gets the name.
+        /// </summary>
         public Option<string> Name { get; }
 
+        /// <summary>
+        /// Gets the tab color.
+        /// </summary>
         public Option<Color> TabColor { get; }
 
+        /// <summary>
+        /// Gets the root box.
+        /// </summary>
         public Option<BoxCore> Box { get; }
 
+        /// <summary>
+        /// Gets the page view.
+        /// </summary>
         public Option<PageView> PageView { get; }
 
+        /// <summary>
+        /// Gets the number of pages to fit the height of printout.
+        /// </summary>
         public Option<int> FitToHeight { get; }
 
+        /// <summary>
+        /// Gets the number of pages to fit the width of printout.
+        /// </summary>
         public Option<int> FitToWidth { get; }
 
+        /// <summary>
+        /// Gets the scale.
+        /// </summary>
         public Option<int> Scale { get; }
 
+        /// <summary>
+        /// Gets bytes of the prototype book xlsx-file.
+        /// </summary>
         public Option<byte[]> ProtoBook { get; }
 
+        /// <summary>
+        /// Gets the name of range with the prototype.
+        /// </summary>
         public Option<string> ProtoName { get; }
 
         internal Option<ExcelWorksheet> ProtoSheet { get; }

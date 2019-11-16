@@ -257,12 +257,12 @@ Make.Sheet("New Sheet Name", protoBook, "Prototype Sheet Name");
     - `Book.ToBytes` - render to xlsx
 - `Sheet` - an Excel sheet
     - `Sheet.Name` - define a sheet name
-    - `Sheet.TabColor` - define tab color
+    - `Sheet.TabColor` - define a tab color
     - `Sheet.SetPageView` - define page view
     - `Sheet.Fit` - fit the height and the width of printout to pages
     - `Sheet.FitToHeight` - fit the height of printout to pages
     - `Sheet.FitToWidth` - fit the width of printout to pages
-    - `Sheet.Scale` - define the scale
+    - `Sheet.Scale` - define a scale
     - `Sheet.ToBook` - make a `Book` with one sheet
 - `Box` - a box of any type
     - `Box.Name` - define a name of the range
@@ -270,8 +270,8 @@ Make.Sheet("New Sheet Name", protoBook, "Prototype Sheet Name");
     - `Box.AutoSpanRows` - activate `AutoSpan` mode for rows
     - `Box.AutoSpanCols` - activate `AutoSpan` mode for columns
     - `Box.Style` - define a style
-    - `Box.SizeRows` - define height of rows
-    - `Box.SizeCols` - define width of columns
+    - `Box.SizeRows` - define heights of rows
+    - `Box.SizeCols` - define widths of columns
     - `Box.SetPrintArea` - define print area by the box
     - `Box.HideRows` - hide rows
     - `Box.HideCols` - hide columns
@@ -298,7 +298,7 @@ Make.Sheet("New Sheet Name", protoBook, "Prototype Sheet Name");
     - `BoxStyle.DefaultBorder` - define regular borders
     - `BoxStyle.Font` - define a font, its size and color
     - `BoxStyle.Back` - define a background color
-    - `BoxStyle.Color` - define a font color
+    - `BoxStyle.Color` - define a font color and/or a background color
     - `BoxStyle.Bold` - in bold
     - `BoxStyle.Italic` - in italic
     - `BoxStyle.Underline` - underline
@@ -320,9 +320,15 @@ Make.Sheet("New Sheet Name", protoBook, "Prototype Sheet Name");
     - `BoxStyle.Percent` - define the `0%` format (Percentage, integer)
     - `BoxStyle.DateShort` - define the `dd.mm.yyyy` format (Short date)
 - `BoxBorder` - a border
-    - `BoxBorder.Restrict` - restrict a part to which the border applied
+    - `BoxBorder.Restrict` - restrict a part of a box to which the border applied
     - `BoxBorder.Style` - define a border style
     - `BoxBorder.Color` - define a border color
+- `EnumerableExt` - IEnumerable extensions for BookFx types
+    - `IEnumerable<Box>.ToBook` - make a `Book` from sheets
+    - `IEnumerable<Box>.ToRow` - make a `RowBox` from other boxes
+    - `IEnumerable<Box>.ToCol` - make a `ColBox` from other boxes
+    - `IEnumerable<Box>.ToStack` - make a `StackBox` from other boxes
+    - `IEnumerable<BoxStyle>.Mix` - mix styles into a new style
 
 ## License
 

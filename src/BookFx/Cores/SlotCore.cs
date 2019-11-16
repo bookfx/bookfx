@@ -2,7 +2,11 @@
 {
     using BookFx.Functional;
     using JetBrains.Annotations;
+    using static BookFx.Functional.F;
 
+    /// <summary>
+    /// Gets a slot properties.
+    /// </summary>
     [PublicAPI]
     public sealed class SlotCore
     {
@@ -13,15 +17,21 @@
             Position = position;
         }
 
+        /// <summary>
+        /// Gets the range name in the prototype, in which the <see cref="Box"/> will be placed.
+        /// </summary>
         public Reference Reference { get; }
 
+        /// <summary>
+        /// Gets a box to place in the slot.
+        /// </summary>
         public BoxCore Box { get; }
 
         internal Option<Position> Position { get; }
 
         [Pure]
         internal static SlotCore Create(Reference reference, BoxCore box) =>
-            new SlotCore(reference: reference, box: box, position: F.None);
+            new SlotCore(reference: reference, box: box, position: None);
 
         [Pure]
         internal SlotCore With(

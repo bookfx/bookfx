@@ -7,7 +7,7 @@
     /// <summary>
     /// Stateful computation.
     /// </summary>
-    public static class Sc
+    internal static class Sc
     {
         public static TV Run<TS, TV>(this Sc<TS, TV> f, TS state) => f(state).Value;
 
