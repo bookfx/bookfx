@@ -4,29 +4,30 @@
 
 **en** | [ru]
 
-BookFx proposes to use the functional style to describe Excel workbooks.
-To implement this it provides model like the HTML [DOM].
-Without details, BookFx model is a tree of nodes, which renders to a xlsx-file.
+BookFx provides an extremely effective method for creating Excel books of any complexity.
 
-This approach opens multiple opportunities:
+```c#
+Make.Book().ToBytes()
+```
 
-- nodes can be implemented as reusable components;
-- placing of nodes can be driven by composition of nodes;
-- hierarchy of nodes is convenient to applying styles;
-- unit testing of components doesn't require to render workbook.
+And we already have the xlsx with one empty sheet!
 
-BookFx model is [immutable][Immutable object],
-and methods of the library has no [side effects][Side effect],
-hence BookFx allows you to write [pure functions][Pure function].
+![book-empty]
 
-Thus, BookFx:
+The more friendly version:
 
-- helps to better structure a describing of workbook;
-- takes the pain out of the calculating sizes and addresses of ranges;
-- saves you the trouble of using imperative API came from the world of VBA macros;
-- opens up opportunities of the functional programming.
+```c#
+Make.Value("Hi, World!").ToSheet().ToBook().ToBytes()
+```
 
-In addition, BookFx supports prototyping. That means that you can use parts of xlsx files as components. Slots are supported too.
+![box-a1]
+
+Composition instead of address ciphering,
+component approach for tackle complexity,
+functional style instead of VBA-like imperativeness,
+components prototyping with slots made of parts of beforehand prepared xlsx-files,
+formulas, fonts, colors, alignments, formats.
+About all this below.
 
 BookFx requires [.NET Standard 2.0] and depends on [EPPlus] which is used as a render to XLSX Office Open XML format.
 
@@ -36,6 +37,7 @@ BookFx requires [.NET Standard 2.0] and depends on [EPPlus] which is used as a r
 - [Getting Started](#getting-started)
 - [Examples of Use](#examples-of-use)
 - [Concepts](#concepts)
+    - [Model Description](#model-description)
     - [Layout System](#Layout-System)
     - [Spanning and Merging](#Spanning-and-Merging)
     - [Values and Formulas](#Values-and-Formulas)
@@ -51,21 +53,18 @@ PM> Install-Package BookFx
 
 ## Getting Started
 
-The `Make` class is the entry point of BookFx. It exposes methods to create books, sheets, boxes, styles and borders. The exit point is `ToBytes()`.
+### Making
 
-```c#
-Make.Book().ToBytes()
-```
-
-![book-empty]
-
-The main properties of BookFx classes can be defined using overloads of `Make` methods.
+The `Make` class is the entry point of BookFx.
+It exposes methods to create books, sheets, boxes, styles and borders.
+The exit point is `ToBytes()`.
+The main properties of BookFx classes can be defined using overloads of `Make` methods:
 
 ```c#
 Make.Book(Make.Sheet("First"), Make.Sheet("Second")).ToBytes()
 ```
 
-Another way is chaining.
+Another way is chaining:
 
 ```c#
 Make
@@ -79,31 +78,12 @@ Both examples gives the same result.
 
 ![sheet-name]
 
-`Box` is the building block of a spreadsheet. It can be composite and always describes a range — cell, row, column or rectangle of cells. There are several types of box. The first is `ValueBox`.
+### Boxes
 
-```c#
-Make.Value("Box A1").ToSheet().ToBook().ToBytes()
-```
+`Box` is a building block of a spreadsheet.
+It can be composite and always describes a range — cell, row, column or rectangle of cells.
 
-![box-a1]
-
-The second box type is `RowBox`.
-
-```c#
-Make.Row(Make.Value("Box A1"), Make.Value("Box B1")).ToSheet().ToBook().ToBytes()
-```
-
-![box-a1-b1]
-
-`ValueBox` can be implicitly converted from some of built-in types, so above expression can be written shorter.
-
-```c#
-Make.Row("Box A1", "Box B1").ToSheet().ToBook().ToBytes()
-```
-
-![box-a1-b1]
-
-Here is the complete list of boxes. To getting started we need the first three.
+Here is the complete list of boxes.
 
 Type | Creating | Destination
 -- | - | -
@@ -112,6 +92,26 @@ Type | Creating | Destination
 `ColBox` | `Make.Col()` | From top to bottom box placement.
 `StackBox` | `Make.Stack()` | Layer by layer box placement.
 `ProtoBox` | `Make.Proto()` | Composing from templates.
+
+What if we put two `ValueBox`es into the `RowBox`?
+
+```c#
+Make.Row(Make.Value("Box A1"), Make.Value("Box B1")).ToSheet().ToBook().ToBytes()
+```
+
+![box-a1-b1]
+
+### Conversions
+
+`ValueBox` can be implicitly converted from some of built-in types, so above expression can be written shorter:
+
+```c#
+Make.Row("Box A1", "Box B1").ToSheet().ToBook().ToBytes()
+```
+
+![box-a1-b1]
+
+### Composition
 
 Let's describe this table header.
 
@@ -177,6 +177,30 @@ Wow! Calendar!
 [![s-3-calendar]][S3Calendar.cs]
 
 ## Concepts
+
+### Model Description
+
+BookFx proposes to use the functional style to describe Excel workbooks.
+Therefore BookFx book model anything like the HTML [DOM].
+This is a tree of nodes, which renders to a xlsx-file.
+
+This approach opens multiple opportunities:
+
+- nodes can be implemented as reusable components;
+- placing of nodes can be driven by composition of nodes;
+- hierarchy of nodes is convenient to applying styles;
+- unit testing of components doesn't require to render workbook.
+
+BookFx model is [immutable][Immutable object],
+and methods of the library has no [side effects][Side effect],
+hence BookFx allows you to write [pure functions][Pure function].
+
+Thus, BookFx:
+
+- helps to better structure a describing of workbook;
+- takes the pain out of the calculating sizes and addresses of ranges;
+- saves you the trouble of using imperative API came from the world of VBA macros;
+- opens up opportunities of the functional programming.
 
 ### Layout System
 
