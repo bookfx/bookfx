@@ -101,7 +101,7 @@ Make.Row(Make.Value("Box A1"), Make.Value("Box B1")).ToSheet().ToBook().ToBytes(
 
 ![box-a1-b1]
 
-Logical. Two values have been placed in row.
+Logical. Two values have been placed in row!
 
 ### Conversions
 
@@ -124,7 +124,7 @@ Let's describe this table header.
 
 ![box-header]
 
-In terms of BookFx it can be thought of as composition of elements, like this.
+In terms of BookFx it can be thought of as composition of elements, like this:
 
 ![box-header-model]
 
@@ -132,13 +132,13 @@ Is is easy to see the common pattern.
 
 ![box-plan-fact-model]
 
-We can extract this pattern in a function. Essentially it is a component:
+We can extract this pattern in a function:
 
 ```c#
 Box PlanFact(string title) => Make.Col(title, Make.Row("Plan", "Fact"));
 ```
 
-Test it:
+Essentially it is a simple component. Test it:
 
 ```c#
 PlanFact("Beginning of year").ToSheet().ToBook().ToBytes()
@@ -146,23 +146,29 @@ PlanFact("Beginning of year").ToSheet().ToBook().ToBytes()
 
 ![box-plan-fact]
 
-Now let's use `PlanFact` as component:
+Now let's use `PlanFact` as component and add the style:
 
 ```c#
-Make
+Box Head() => Make
     .Row()
     .Add("Code", "Name", PlanFact("Beginning of year"), PlanFact("End of year"))
-    .AutoSpan()
-    .Style(Make.Style().Center().Middle().Bold().DefaultBorder())
-    .ToSheet()
-    .ToBook()
-    .ToBytes()
+    .Style(Make.Style().Center().Middle().Bold().DefaultBorder());
+```
+
+Wait a second, that is another component! Let me get this straight. A component is a function. A function is a component...
+It looks like infinite possibilities are in our hands!
+
+Now it is easy:
+
+```c#
+Head().AutoSpan().ToSheet().ToBook().ToBytes()
 ```
 
 ![box-header]
 
 Done.
 
+About the `AutoSpan` you can read in the [Spanning and Merging](#spanning-and-merging) section.
 The full version is in examples of use, see below.
 
 ## Examples of Use

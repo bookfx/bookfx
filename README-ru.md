@@ -101,7 +101,7 @@ Make.Row(Make.Value("Box A1"), Make.Value("Box B1")).ToSheet().ToBook().ToBytes(
 
 ![box-a1-b1]
 
-Логично. Два значения расположились в строку.
+Логично. Два значения расположились в строку!
 
 ### Преобразования
 
@@ -123,7 +123,7 @@ Make.Row("Box A1", "Box B1").ToSheet().ToBook().ToBytes()
 
 ![box-header]
 
-В терминах BookFx она может быть представлена как композиция элементов, вот так.
+В терминах BookFx она может быть представлена как композиция элементов, вот так:
 
 ![box-header-model]
 
@@ -131,13 +131,13 @@ Make.Row("Box A1", "Box B1").ToSheet().ToBook().ToBytes()
 
 ![box-plan-fact-model]
 
-Мы можем извлечь этот паттерн в функцию. По сути это компонент:
+Мы можем извлечь этот паттерн в функцию:
 
 ```c#
 Box PlanFact(string title) => Make.Col(title, Make.Row("Plan", "Fact"));
 ```
 
-Протестируем его:
+По сути это простой компонент. Протестируем его:
 
 ```c#
 PlanFact("Beginning of year").ToSheet().ToBook().ToBytes()
@@ -145,23 +145,31 @@ PlanFact("Beginning of year").ToSheet().ToBook().ToBytes()
 
 ![box-plan-fact]
 
-Теперь используем `PlanFact` как компонент:
+Теперь используем `PlanFact` как компонент и добавим стиль:
 
 ```c#
-Make
+Box Head() => Make
     .Row()
     .Add("Code", "Name", PlanFact("Beginning of year"), PlanFact("End of year"))
-    .AutoSpan()
-    .Style(Make.Style().Center().Middle().Bold().DefaultBorder())
-    .ToSheet()
-    .ToBook()
-    .ToBytes()
+    .Style(Make.Style().Center().Middle().Bold().DefaultBorder());
+```
+
+О, так это же еще один компонент!
+Что же это получается?
+Компонент – это функция. Функция – это компонент...
+Похоже в наших руках безграничные возможности!
+
+Теперь все просто:
+
+```c#
+Head().AutoSpan().ToSheet().ToBook().ToBytes()
 ```
 
 ![box-header]
 
 Готово.
 
+Про `AutoSpan` можно почитать в разделе [Охват и объединение](#охват-и-объединение).
 Полная версия в примерах использования ниже.
 
 ## Примеры использования
