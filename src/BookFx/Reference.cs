@@ -2,6 +2,9 @@
 {
     using JetBrains.Annotations;
 
+    /// <summary>
+    /// Represents a sheet reference.
+    /// </summary>
     [PublicAPI]
     public struct Reference
     {
@@ -21,6 +24,7 @@
         /// <returns>Reference.</returns>
         public static Reference From(string reference) => new Reference(reference);
 
+        /// <inheritdoc />
         public override string ToString() => _value;
     }
 }
