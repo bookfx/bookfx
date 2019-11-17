@@ -4,13 +4,13 @@
 
 **en** | [ru]
 
-BookFx provides an extremely effective method for creating Excel books of any complexity.
+BookFx provides an extremely effective method for creating Excel workbooks of any complexity.
 
 ```c#
 Make.Book().ToBytes()
 ```
 
-And we already have the xlsx with one empty sheet!
+And we already have the xlsx with one empty spreadsheet!
 
 ![book-empty]
 
@@ -195,7 +195,7 @@ Wow! Calendar!
 
 ### Model Description
 
-BookFx book model anything like the HTML [DOM].
+BookFx workbook model anything like the HTML [DOM].
 This is a tree of nodes, which renders to a xlsx-file.
 
 This approach opens multiple opportunities:
@@ -256,7 +256,7 @@ Make.Value("=SUM(RC[1]:RC[3])")
 
 ### Prototyping
 
-BookFx supports using parts of other books as prototypes:
+BookFx supports using parts of other workbooks as prototypes:
 
 ```c#
 Make
@@ -271,13 +271,13 @@ Here
 - `"Prototype1"` – name of the range in `protoBook`;
 - `"Slot1"` and `"Slot2"` – names of ranges in `Prototype1`, in which other boxes can be placed.
 
-Also BookFx supports adding whole sheets from other books:
+Also BookFx supports adding whole spreadsheets from other workbooks:
 
 ```c#
 Make.Sheet("New Sheet Name", protoBook, "Prototype Sheet Name");
 ```
 
-`"Prototype Sheet Name"` sheet will be copied from `protoBook` xlsx-file and then it will be renamed to `"New Sheet Name"`. See also other overloads of `Make.Sheet`.
+`"Prototype Sheet Name"` spreadsheet will be copied from `protoBook` xlsx-file and then it will be renamed to `"New Sheet Name"`. See also other overloads of `Make.Sheet`.
 
 ## API Reference
 
@@ -291,10 +291,10 @@ Make.Sheet("New Sheet Name", protoBook, "Prototype Sheet Name");
     - `Make.Proto` - make a `ProtoBox`
     - `Make.Style` - make a `BoxStyle`
     - `Make.Border` - make a `BoxBorder`
-- `Book` - an Excel book
+- `Book` - an Excel workbook
     - `Book.Add` - add sheet(s)
     - `Book.ToBytes` - render to xlsx
-- `Sheet` - an Excel sheet
+- `Sheet` - an Excel spreadsheet
     - `Sheet.Name` - define a sheet name
     - `Sheet.TabColor` - define a tab color
     - `Sheet.SetPageView` - define page view
@@ -409,7 +409,7 @@ along with this library. If not, see <https://www.gnu.org/licenses/>.
 [.NET Standard 2.0]: https://github.com/dotnet/standard/blob/master/docs/versions/netstandard2.0.md
 [EPPlus]: https://github.com/JanKallman/EPPlus
 [Implicit convertions]: https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/conversions#implicit-conversions
-[book-empty]: docs/img/book-empty.svg "Empty book"
+[book-empty]: docs/img/book-empty.svg "Empty workbook"
 [sheet-name]: docs/img/sheet-name.svg "Named sheets"
 [box-a1]: docs/img/box-a1.svg "Box A1"
 [box-a1-b1]: docs/img/box-a1-b1.svg "Box A1, Box B1"
