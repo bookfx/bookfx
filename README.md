@@ -108,7 +108,7 @@ Logical. Two values have been placed in row!
 In the `ValueBox` have been implemented [implicit convertions][Implicit convertions] from all necessary value types.
 What does this means?
 This means that we don't have to repeat `Make.Value` every time,
-because the `ValueBox` will be created automatically!
+because the `ValueBox` will be created automatically.
 
 ```c#
 Make.Row("Box A1", "Box B1").ToSheet().ToBook().ToBytes()
@@ -155,7 +155,9 @@ Box Head() => Make
     .Style(Make.Style().Center().Middle().Bold().DefaultBorder());
 ```
 
-Wait a second, that is another component! Let me get this straight. A component is a function. A function is a component...
+Wait a second, that is another component!
+Let me get this straight.
+A component is a function. A function is a component...
 It looks like infinite possibilities are in our hands!
 
 Now it is easy:
@@ -244,7 +246,8 @@ A `ValueBox` is considered to be stretchable when its `Span` is not specified an
 
 ### Values and Formulas
 
-The `ValueBox` is intended for values and formulas. It can be created either by `Make.Value` or using implicit convertion from all necessary value types: `string`, `int`, `decimal`, `DateTime`, etc.
+The `ValueBox` is intended for values and formulas.
+It can be created either by `Make.Value` or using implicit convertion from all necessary value types: `string`, `int`, `decimal`, `DateTime`, etc.
 
 Formulas should begin with `=`. The `'` is used for escaping. Only `R1C1` reference style is supported.
 
@@ -406,10 +409,10 @@ along with this library. If not, see <https://www.gnu.org/licenses/>.
 [Pure function]: https://en.wikipedia.org/wiki/Functional_programming#Pure_functions
 [.NET Standard 2.0]: https://github.com/dotnet/standard/blob/master/docs/versions/netstandard2.0.md
 [EPPlus]: https://github.com/JanKallman/EPPlus
+[Implicit convertions]: https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/conversions#implicit-conversions
 [book-empty]: docs/img/book-empty.svg "Empty book"
 [sheet-name]: docs/img/sheet-name.svg "Named sheets"
 [box-a1]: docs/img/box-a1.svg "Box A1"
-[Implicit convertions]: https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/conversions#implicit-conversions
 [box-a1-b1]: docs/img/box-a1-b1.svg "Box A1, Box B1"
 [box-header]: docs/img/box-header.svg "Header box"
 [box-header-model]: docs/img/box-header-model.svg "Header box model"
