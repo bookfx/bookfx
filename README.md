@@ -195,8 +195,7 @@ Wow! Calendar!
 
 ### Model Description
 
-BookFx proposes to use the functional style to describe Excel workbooks.
-Therefore BookFx book model anything like the HTML [DOM].
+BookFx book model anything like the HTML [DOM].
 This is a tree of nodes, which renders to a xlsx-file.
 
 This approach opens multiple opportunities:
