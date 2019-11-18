@@ -126,37 +126,67 @@
         /// <summary>
         /// In bold.
         /// </summary>
+        [Pure]
+        public BoxStyle Bold() => Get.With(isBold: true);
+
+        /// <summary>
+        /// Set or unset bold.
+        /// </summary>
         /// <param name="bold">true - set bold; false - unset bold.</param>
         [Pure]
-        public BoxStyle Bold(bool bold = true) => Get.With(isBold: bold);
+        public BoxStyle Bold(bool bold) => Get.With(isBold: bold);
 
         /// <summary>
         /// In italic.
         /// </summary>
+        [Pure]
+        public BoxStyle Italic() => Get.With(isItalic: true);
+
+        /// <summary>
+        /// Set or unset italic.
+        /// </summary>
         /// <param name="italic">true - set italic; false - unset italic.</param>
         [Pure]
-        public BoxStyle Italic(bool italic = true) => Get.With(isItalic: italic);
+        public BoxStyle Italic(bool italic) => Get.With(isItalic: italic);
 
         /// <summary>
         /// Underline.
         /// </summary>
+        [Pure]
+        public BoxStyle Underline() => Get.With(isUnderline: true);
+
+        /// <summary>
+        /// Set or unset underline.
+        /// </summary>
         /// <param name="underline">true - set underline; false - unset underline.</param>
         [Pure]
-        public BoxStyle Underline(bool underline = true) => Get.With(isUnderline: underline);
+        public BoxStyle Underline(bool underline) => Get.With(isUnderline: underline);
 
         /// <summary>
         /// Strike.
         /// </summary>
-        /// <param name="strike">true - set strike; false - unset strike.</param>
         [Pure]
-        public BoxStyle Strike(bool strike = true) => Get.With(isStrike: strike);
+        public BoxStyle Strike() => Get.With(isStrike: true);
 
         /// <summary>
-        /// Define a text wrap.
+        /// Set or unset strike.
+        /// </summary>
+        /// <param name="strike">true - set strike; false - unset strike.</param>
+        [Pure]
+        public BoxStyle Strike(bool strike) => Get.With(isStrike: strike);
+
+        /// <summary>
+        /// Wrap text.
+        /// </summary>
+        [Pure]
+        public BoxStyle Wrap() => Get.With(isWrap: true);
+
+        /// <summary>
+        /// Set or unset the text wrap.
         /// </summary>
         /// <param name="wrap">true - set text wrap; false - unset text wrap.</param>
         [Pure]
-        public BoxStyle Wrap(bool wrap = true) => Get.With(isWrap: wrap);
+        public BoxStyle Wrap(bool wrap) => Get.With(isWrap: wrap);
 
         /// <summary>
         /// Define a horizontal alignment.
