@@ -177,9 +177,15 @@
         /// <summary>
         /// Merge cells.
         /// </summary>
+        [Pure]
+        public ValueBox Merge() => Get.With(merge: true);
+
+        /// <summary>
+        /// Merge or unmerge cells.
+        /// </summary>
         /// <param name="merge">true - merge cells; false - unmerge cells.</param>
         [Pure]
-        public ValueBox Merge(bool merge = true) => Get.With(merge: merge);
+        public ValueBox Merge(bool merge) => Get.With(merge: merge);
 
         /// <summary>
         /// Define heights of rows.
