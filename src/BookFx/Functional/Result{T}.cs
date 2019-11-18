@@ -4,12 +4,9 @@
     using System.Collections.Generic;
     using System.Linq;
     using static F;
-    using Unit = System.ValueTuple;
 
     internal struct Result<T>
     {
-        public static Func<T, Result<T>> Return = Valid;
-
         private readonly Option<T> _value;
 
         private readonly IEnumerable<Error> _errors;
@@ -35,17 +32,8 @@
 
         public static implicit operator Result<T>(T value) => Valid(value);
 
-        public static Result<T> Fail(IEnumerable<Error> errors) => new Result<T>(errors);
-
-        public static Result<T> Fail(params Error[] errors) => new Result<T>(errors.AsEnumerable());
-
         public TR Match<TR>(Func<IEnumerable<Error>, TR> invalid, Func<T, TR> valid) =>
             IsValid ? valid(_value.ValueUnsafe()) : invalid(_errors);
-
-        public Unit Match(Action<IEnumerable<Error>> invalid, Action<T> valid) =>
-            Match(invalid.ToFunc(), valid.ToFunc());
-
-        public IEnumerable<T> AsEnumerable() => _value.AsEnumerable();
 
         public override bool Equals(object obj) =>
             obj is Result<T> other &&

@@ -54,6 +54,7 @@
 
             public void Dispose()
             {
+                // There is nothing to be disposed.
             }
         }
     }

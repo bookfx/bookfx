@@ -4,7 +4,7 @@
 [![build-img]][build-link]
 [![tests-img]][tests-link]
 
-[en] | **ru**
+[en][] | **ru**
 
 BookFx предоставляет экстремально эффективный способ создания книг Excel любой сложности.
 

@@ -150,24 +150,42 @@
         [Pure]
         public ValueBox SpanCols(int count) => Get.With(colSpan: count);
 
-        /// <inheritdoc cref="Box.AutoSpan"/>
+        /// <inheritdoc cref="Box.AutoSpan()"/>
         [Pure]
-        public new ValueBox AutoSpan(bool autoSpan = true) => Get.With(rowAutoSpan: autoSpan, colAutoSpan: autoSpan);
+        public new ValueBox AutoSpan() => Get.With(rowAutoSpan: true, colAutoSpan: true);
 
-        /// <inheritdoc cref="Box.AutoSpanRows"/>
+        /// <inheritdoc cref="Box.AutoSpan(bool)"/>
         [Pure]
-        public new ValueBox AutoSpanRows(bool autoSpanRows = true) => Get.With(rowAutoSpan: autoSpanRows);
+        public new ValueBox AutoSpan(bool isEnabled) => Get.With(rowAutoSpan: isEnabled, colAutoSpan: isEnabled);
 
-        /// <inheritdoc cref="Box.AutoSpanCols"/>
+        /// <inheritdoc cref="Box.AutoSpanRows()"/>
         [Pure]
-        public new ValueBox AutoSpanCols(bool autoSpanCols) => Get.With(colAutoSpan: autoSpanCols);
+        public new ValueBox AutoSpanRows() => Get.With(rowAutoSpan: true);
+
+        /// <inheritdoc cref="Box.AutoSpanRows(bool)"/>
+        [Pure]
+        public new ValueBox AutoSpanRows(bool isEnabled) => Get.With(rowAutoSpan: isEnabled);
+
+        /// <inheritdoc cref="Box.AutoSpanCols()"/>
+        [Pure]
+        public new ValueBox AutoSpanCols() => Get.With(colAutoSpan: true);
+
+        /// <inheritdoc cref="Box.AutoSpanCols(bool)"/>
+        [Pure]
+        public new ValueBox AutoSpanCols(bool isEnabled) => Get.With(colAutoSpan: isEnabled);
 
         /// <summary>
         /// Merge cells.
         /// </summary>
-        /// <param name="merge">true - merge cells; false - unmerge cells.</param>
         [Pure]
-        public ValueBox Merge(bool merge = true) => Get.With(merge: merge);
+        public ValueBox Merge() => Get.With(merge: true);
+
+        /// <summary>
+        /// Merge or unmerge cells.
+        /// </summary>
+        /// <param name="isMerged">true - merge cells; false - unmerge cells.</param>
+        [Pure]
+        public ValueBox Merge(bool isMerged) => Get.With(merge: isMerged);
 
         /// <summary>
         /// Define heights of rows.

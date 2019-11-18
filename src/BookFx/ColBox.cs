@@ -33,17 +33,29 @@
         [Pure]
         public new ColBox Name(string name) => Get.With(name: Some(name));
 
-        /// <inheritdoc cref="Box.AutoSpan"/>
+        /// <inheritdoc cref="Box.AutoSpan()"/>
         [Pure]
-        public new ColBox AutoSpan(bool autoSpan = true) => Get.With(rowAutoSpan: autoSpan, colAutoSpan: autoSpan);
+        public new ColBox AutoSpan() => Get.With(rowAutoSpan: true, colAutoSpan: true);
 
-        /// <inheritdoc cref="Box.AutoSpanRows"/>
+        /// <inheritdoc cref="Box.AutoSpan(bool)"/>
         [Pure]
-        public new ColBox AutoSpanRows(bool autoSpanRows = true) => Get.With(rowAutoSpan: autoSpanRows);
+        public new ColBox AutoSpan(bool isEnabled) => Get.With(rowAutoSpan: isEnabled, colAutoSpan: isEnabled);
 
-        /// <inheritdoc cref="Box.AutoSpanCols"/>
+        /// <inheritdoc cref="Box.AutoSpanRows()"/>
         [Pure]
-        public new ColBox AutoSpanCols(bool autoSpanCols = true) => Get.With(colAutoSpan: autoSpanCols);
+        public new ColBox AutoSpanRows() => Get.With(rowAutoSpan: true);
+
+        /// <inheritdoc cref="Box.AutoSpanRows(bool)"/>
+        [Pure]
+        public new ColBox AutoSpanRows(bool isEnabled) => Get.With(rowAutoSpan: isEnabled);
+
+        /// <inheritdoc cref="Box.AutoSpanCols()"/>
+        [Pure]
+        public new ColBox AutoSpanCols() => Get.With(colAutoSpan: true);
+
+        /// <inheritdoc cref="Box.AutoSpanCols(bool)"/>
+        [Pure]
+        public new ColBox AutoSpanCols(bool isEnabled) => Get.With(colAutoSpan: isEnabled);
 
         /// <inheritdoc cref="Box.Style"/>
         [Pure]

@@ -6,7 +6,7 @@ if ($version.StartsWith("v")) {
     $version = $version.Substring(1)
 }
 
-Write-Host "Version: $version"
+Write-Output "Version: $version"
 
 if ($version.Contains("-g"))
 {
@@ -14,7 +14,7 @@ if ($version.Contains("-g"))
 
     if (-Not ($confirmation -match "^[yY]$"))
     {
-        write-host "Cancelled."
+        Write-Output "Cancelled."
         Exit
     }
 }

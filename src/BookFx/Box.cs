@@ -131,20 +131,36 @@
         public Box Name(string name) => Get.With(name: Some(name));
 
         /// <summary>
+        /// Enables automatic span when a box can be stretched to its contrainer.
+        /// Applies to the box and its descendants, but AutoSpan of descendants has priority.
+        /// By default is disabled.
+        /// </summary>
+        [Pure]
+        public Box AutoSpan() => Get.With(rowAutoSpan: true, colAutoSpan: true);
+
+        /// <summary>
         /// Enables or disables automatic span when a box can be stretched to its contrainer.
         /// Applies to the box and its descendants, but AutoSpan of descendants has priority.
         /// By default is disabled.
         /// </summary>
         [Pure]
-        public Box AutoSpan(bool autoSpan = true) => Get.With(rowAutoSpan: autoSpan, colAutoSpan: autoSpan);
+        public Box AutoSpan(bool isEnabled) => Get.With(rowAutoSpan: isEnabled, colAutoSpan: isEnabled);
 
-        /// <inheritdoc cref="AutoSpan"/>
+        /// <inheritdoc cref="AutoSpan()"/>
         [Pure]
-        public Box AutoSpanRows(bool autoSpanRows = true) => Get.With(rowAutoSpan: autoSpanRows);
+        public Box AutoSpanRows() => Get.With(rowAutoSpan: true);
 
-        /// <inheritdoc cref="AutoSpan"/>
+        /// <inheritdoc cref="AutoSpan(bool)"/>
         [Pure]
-        public Box AutoSpanCols(bool autoSpanCols) => Get.With(colAutoSpan: autoSpanCols);
+        public Box AutoSpanRows(bool isEnabled) => Get.With(rowAutoSpan: isEnabled);
+
+        /// <inheritdoc cref="AutoSpan()"/>
+        [Pure]
+        public Box AutoSpanCols() => Get.With(colAutoSpan: true);
+
+        /// <inheritdoc cref="AutoSpan(bool)"/>
+        [Pure]
+        public Box AutoSpanCols(bool isEnabled) => Get.With(colAutoSpan: isEnabled);
 
         /// <summary>
         /// Define a style.
