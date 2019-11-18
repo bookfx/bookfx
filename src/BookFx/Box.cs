@@ -144,7 +144,7 @@
         /// By default is disabled.
         /// </summary>
         [Pure]
-        public Box AutoSpan(bool autoSpan) => Get.With(rowAutoSpan: autoSpan, colAutoSpan: autoSpan);
+        public Box AutoSpan(bool isEnabled) => Get.With(rowAutoSpan: isEnabled, colAutoSpan: isEnabled);
 
         /// <inheritdoc cref="AutoSpan()"/>
         [Pure]
@@ -152,7 +152,7 @@
 
         /// <inheritdoc cref="AutoSpan(bool)"/>
         [Pure]
-        public Box AutoSpanRows(bool autoSpanRows) => Get.With(rowAutoSpan: autoSpanRows);
+        public Box AutoSpanRows(bool isEnabled) => Get.With(rowAutoSpan: isEnabled);
 
         /// <inheritdoc cref="AutoSpan()"/>
         [Pure]
@@ -160,7 +160,7 @@
 
         /// <inheritdoc cref="AutoSpan(bool)"/>
         [Pure]
-        public Box AutoSpanCols(bool autoSpanCols) => Get.With(colAutoSpan: autoSpanCols);
+        public Box AutoSpanCols(bool isEnabled) => Get.With(colAutoSpan: isEnabled);
 
         /// <summary>
         /// Define a style.

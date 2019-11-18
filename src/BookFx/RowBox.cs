@@ -39,7 +39,7 @@
 
         /// <inheritdoc cref="Box.AutoSpan(bool)"/>
         [Pure]
-        public new RowBox AutoSpan(bool autoSpan) => Get.With(rowAutoSpan: autoSpan, colAutoSpan: autoSpan);
+        public new RowBox AutoSpan(bool isEnabled) => Get.With(rowAutoSpan: isEnabled, colAutoSpan: isEnabled);
 
         /// <inheritdoc cref="Box.AutoSpanRows()"/>
         [Pure]
@@ -47,7 +47,7 @@
 
         /// <inheritdoc cref="Box.AutoSpanRows(bool)"/>
         [Pure]
-        public new RowBox AutoSpanRows(bool autoSpanRows) => Get.With(rowAutoSpan: autoSpanRows);
+        public new RowBox AutoSpanRows(bool isEnabled) => Get.With(rowAutoSpan: isEnabled);
 
         /// <inheritdoc cref="Box.AutoSpanCols()"/>
         [Pure]
@@ -55,7 +55,7 @@
 
         /// <inheritdoc cref="Box.AutoSpanCols(bool)"/>
         [Pure]
-        public new RowBox AutoSpanCols(bool autoSpanCols) => Get.With(colAutoSpan: autoSpanCols);
+        public new RowBox AutoSpanCols(bool isEnabled) => Get.With(colAutoSpan: isEnabled);
 
         /// <inheritdoc cref="Box.Style"/>
         [Pure]
