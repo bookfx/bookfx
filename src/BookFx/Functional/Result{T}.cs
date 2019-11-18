@@ -8,8 +8,6 @@
 
     internal struct Result<T>
     {
-        public static Func<T, Result<T>> Return = Valid;
-
         private readonly Option<T> _value;
 
         private readonly IEnumerable<Error> _errors;
