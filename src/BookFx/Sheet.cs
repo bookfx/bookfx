@@ -49,26 +49,44 @@
         public Sheet SetPageView(PageView pageView) => Get.With(pageView: pageView);
 
         /// <summary>
+        /// Fit the height and the width of printout to the one page.
+        /// </summary>
+        [Pure]
+        public Sheet Fit() => Get.With(fitToHeight: 1, fitToWidth: 1);
+
+        /// <summary>
         /// Fit the height and the width of printout to pages.
         /// </summary>
         /// <param name="height">Number of pages to fit height.</param>
         /// <param name="width">Number of pages to fit width.</param>
         [Pure]
-        public Sheet Fit(int height = 1, int width = 1) => Get.With(fitToHeight: height, fitToWidth: width);
+        public Sheet Fit(int height, int width) => Get.With(fitToHeight: height, fitToWidth: width);
+
+        /// <summary>
+        /// Fit the height of printout to the one page.
+        /// </summary>
+        [Pure]
+        public Sheet FitToHeight() => Get.With(fitToHeight: 1);
 
         /// <summary>
         /// Fit the height of printout to pages.
         /// </summary>
         /// <param name="pages">Number of pages to fit.</param>
         [Pure]
-        public Sheet FitToHeight(int pages = 1) => Get.With(fitToHeight: pages);
+        public Sheet FitToHeight(int pages) => Get.With(fitToHeight: pages);
+
+        /// <summary>
+        /// Fit the width of printout to the one page.
+        /// </summary>
+        [Pure]
+        public Sheet FitToWidth() => Get.With(fitToWidth: 1);
 
         /// <summary>
         /// Fit the width of printout to pages.
         /// </summary>
         /// <param name="pages">Number of pages to fit.</param>
         [Pure]
-        public Sheet FitToWidth(int pages = 1) => Get.With(fitToWidth: pages);
+        public Sheet FitToWidth(int pages) => Get.With(fitToWidth: pages);
 
         /// <summary>
         /// Define a scale.
