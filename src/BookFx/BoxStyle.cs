@@ -132,9 +132,9 @@
         /// <summary>
         /// Set or unset bold.
         /// </summary>
-        /// <param name="bold">true - set bold; false - unset bold.</param>
+        /// <param name="isBold">true - set bold; false - unset bold.</param>
         [Pure]
-        public BoxStyle Bold(bool bold) => Get.With(isBold: bold);
+        public BoxStyle Bold(bool isBold) => Get.With(isBold: isBold);
 
         /// <summary>
         /// In italic.
@@ -145,9 +145,9 @@
         /// <summary>
         /// Set or unset italic.
         /// </summary>
-        /// <param name="italic">true - set italic; false - unset italic.</param>
+        /// <param name="isItalic">true - set italic; false - unset italic.</param>
         [Pure]
-        public BoxStyle Italic(bool italic) => Get.With(isItalic: italic);
+        public BoxStyle Italic(bool isItalic) => Get.With(isItalic: isItalic);
 
         /// <summary>
         /// Underline.
@@ -158,9 +158,9 @@
         /// <summary>
         /// Set or unset underline.
         /// </summary>
-        /// <param name="underline">true - set underline; false - unset underline.</param>
+        /// <param name="isUnderlined">true - set underline; false - unset underline.</param>
         [Pure]
-        public BoxStyle Underline(bool underline) => Get.With(isUnderline: underline);
+        public BoxStyle Underline(bool isUnderlined) => Get.With(isUnderline: isUnderlined);
 
         /// <summary>
         /// Strike.
@@ -171,9 +171,9 @@
         /// <summary>
         /// Set or unset strike.
         /// </summary>
-        /// <param name="strike">true - set strike; false - unset strike.</param>
+        /// <param name="isStruck">true - set strike; false - unset strike.</param>
         [Pure]
-        public BoxStyle Strike(bool strike) => Get.With(isStrike: strike);
+        public BoxStyle Strike(bool isStruck) => Get.With(isStrike: isStruck);
 
         /// <summary>
         /// Wrap text.
@@ -184,9 +184,9 @@
         /// <summary>
         /// Set or unset the text wrap.
         /// </summary>
-        /// <param name="wrap">true - set text wrap; false - unset text wrap.</param>
+        /// <param name="isWrapped">true - set text wrap; false - unset text wrap.</param>
         [Pure]
-        public BoxStyle Wrap(bool wrap) => Get.With(isWrap: wrap);
+        public BoxStyle Wrap(bool isWrapped) => Get.With(isWrap: isWrapped);
 
         /// <summary>
         /// Define a horizontal alignment.
