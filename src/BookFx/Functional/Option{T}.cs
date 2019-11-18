@@ -92,7 +92,7 @@
         public override int GetHashCode() => IsSome ? _value!.GetHashCode() : 0;
 
         /// <inheritdoc />
-        public bool Equals(Option.None none) => IsNone;
+        public bool Equals(Option.None other) => IsNone;
 
         /// <inheritdoc />
         public bool Equals(Option<T> other) =>
