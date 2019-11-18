@@ -4,7 +4,7 @@
 [![build-img]][build-link]
 [![tests-img]][tests-link]
 
-**en** | [ru]
+**en** | [ru][]
 
 BookFx provides an extremely effective method for creating Excel workbooks of any complexity.
 
