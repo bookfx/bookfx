@@ -1,6 +1,8 @@
 # BookFx
 
 [![nuget-img]][nuget-link]
+[![build-img]][build-link]
+[![tests-img]][tests-link]
 
 [en] | **ru**
 
@@ -401,6 +403,10 @@ Copyright (c) 2019 Zhenya Gusev
 
 [nuget-img]: https://img.shields.io/nuget/v/BookFx?color=informational
 [nuget-link]: https://www.nuget.org/packages/BookFx
+[build-img]: https://img.shields.io/appveyor/ci/bookfx/bookfx
+[build-link]: https://ci.appveyor.com/project/bookfx/bookfx
+[tests-img]: https://img.shields.io/appveyor/tests/bookfx/bookfx
+[tests-link]: https://ci.appveyor.com/project/bookfx/bookfx
 [en]: README.md
 [DOM]: https://en.wikipedia.org/wiki/Document_Object_Model
 [Immutable object]: https://en.wikipedia.org/wiki/Immutable_object
