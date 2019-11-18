@@ -150,15 +150,27 @@
         [Pure]
         public ValueBox SpanCols(int count) => Get.With(colSpan: count);
 
-        /// <inheritdoc cref="Box.AutoSpan"/>
+        /// <inheritdoc cref="Box.AutoSpan()"/>
         [Pure]
-        public new ValueBox AutoSpan(bool autoSpan = true) => Get.With(rowAutoSpan: autoSpan, colAutoSpan: autoSpan);
+        public new ValueBox AutoSpan() => Get.With(rowAutoSpan: true, colAutoSpan: true);
 
-        /// <inheritdoc cref="Box.AutoSpanRows"/>
+        /// <inheritdoc cref="Box.AutoSpan(bool)"/>
         [Pure]
-        public new ValueBox AutoSpanRows(bool autoSpanRows = true) => Get.With(rowAutoSpan: autoSpanRows);
+        public new ValueBox AutoSpan(bool autoSpan) => Get.With(rowAutoSpan: autoSpan, colAutoSpan: autoSpan);
 
-        /// <inheritdoc cref="Box.AutoSpanCols"/>
+        /// <inheritdoc cref="Box.AutoSpanRows()"/>
+        [Pure]
+        public new ValueBox AutoSpanRows() => Get.With(rowAutoSpan: true);
+
+        /// <inheritdoc cref="Box.AutoSpanRows(bool)"/>
+        [Pure]
+        public new ValueBox AutoSpanRows(bool autoSpanRows) => Get.With(rowAutoSpan: autoSpanRows);
+
+        /// <inheritdoc cref="Box.AutoSpanCols()"/>
+        [Pure]
+        public new ValueBox AutoSpanCols() => Get.With(colAutoSpan: true);
+
+        /// <inheritdoc cref="Box.AutoSpanCols(bool)"/>
         [Pure]
         public new ValueBox AutoSpanCols(bool autoSpanCols) => Get.With(colAutoSpan: autoSpanCols);
 

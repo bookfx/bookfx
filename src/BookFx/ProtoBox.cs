@@ -31,15 +31,27 @@
         [Pure]
         public ProtoBox Add(Reference slot, Box box) => Get.Add(slot, box.Get);
 
-        /// <inheritdoc cref="Box.AutoSpan"/>
+        /// <inheritdoc cref="Box.AutoSpan()"/>
         [Pure]
-        public new ProtoBox AutoSpan(bool autoSpan = true) => Get.With(rowAutoSpan: autoSpan, colAutoSpan: autoSpan);
+        public new ProtoBox AutoSpan() => Get.With(rowAutoSpan: true, colAutoSpan: true);
 
-        /// <inheritdoc cref="Box.AutoSpanRows"/>
+        /// <inheritdoc cref="Box.AutoSpan(bool)"/>
         [Pure]
-        public new ProtoBox AutoSpanRows(bool autoSpanRows = true) => Get.With(rowAutoSpan: autoSpanRows);
+        public new ProtoBox AutoSpan(bool autoSpan) => Get.With(rowAutoSpan: autoSpan, colAutoSpan: autoSpan);
 
-        /// <inheritdoc cref="Box.AutoSpanCols"/>
+        /// <inheritdoc cref="Box.AutoSpanRows()"/>
+        [Pure]
+        public new ProtoBox AutoSpanRows() => Get.With(rowAutoSpan: true);
+
+        /// <inheritdoc cref="Box.AutoSpanRows(bool)"/>
+        [Pure]
+        public new ProtoBox AutoSpanRows(bool autoSpanRows) => Get.With(rowAutoSpan: autoSpanRows);
+
+        /// <inheritdoc cref="Box.AutoSpanCols()"/>
+        [Pure]
+        public new ProtoBox AutoSpanCols() => Get.With(colAutoSpan: true);
+
+        /// <inheritdoc cref="Box.AutoSpanCols(bool)"/>
         [Pure]
         public new ProtoBox AutoSpanCols(bool autoSpanCols) => Get.With(colAutoSpan: autoSpanCols);
 
