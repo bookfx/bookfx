@@ -47,9 +47,9 @@
         /// Implicit convert from <typeparamref name="T"/> to <see cref="Option{T}"/>.
         /// </summary>
         /// <param name="value">
-        /// A value of any type. Nulls converts to None, others to Some.
+        /// A value of any type.
         /// </param>
-        public static implicit operator Option<T>(T value) => value == null ? None : Some(value);
+        public static implicit operator Option<T>(T value) => Some(value);
 
         /// <summary>
         /// Equal to operator.
