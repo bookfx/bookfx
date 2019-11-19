@@ -14,11 +14,6 @@
 
         private Option(T value)
         {
-            if (value == null)
-            {
-                throw new ArgumentNullException(nameof(value));
-            }
-
             IsSome = true;
             _value = value;
         }

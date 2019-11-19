@@ -1,8 +1,8 @@
 # BookFx
 
-[![nuget-img]][nuget-link]
-[![build-img]][build-link]
-[![tests-img]][tests-link]
+[![nuget-img][]][nuget-link]
+[![build-img][]][build-link]
+[![tests-img][]][tests-link]
 
 [en][] | **ru**
 
@@ -14,7 +14,7 @@ Make.Book().ToBytes()
 
 И у нас уже есть xlsx с одним пустым листом!
 
-![book-empty]
+![book-empty][]
 
 Более приветливый вариант:
 
@@ -22,7 +22,7 @@ Make.Book().ToBytes()
 Make.Value("Hi, World!").ToSheet().ToBook().ToBytes()
 ```
 
-![box-a1]
+![box-a1][]
 
 Композиция вместо высчитывания адресов,
 компонентный подход для устранения сложности,
@@ -31,7 +31,7 @@ Make.Value("Hi, World!").ToSheet().ToBook().ToBytes()
 формулы, шрифты, цвета, выравнивания, форматы.
 Обо всем этом ниже.
 
-BookFx требует [.NET Standard 2.0] и зависит от [EPPlus], который используется в качестве рендера в формат XLSX Office Open XML.
+BookFx требует [.NET Standard 2.0][] и зависит от [EPPlus][], который используется в качестве рендера в формат XLSX Office Open XML.
 
 ## Содержание
 
@@ -78,7 +78,7 @@ Make
 
 Результат обоих примеров один и тот же.
 
-![sheet-name]
+![sheet-name][]
 
 ### Боксы
 
@@ -116,7 +116,7 @@ Make.Row(Make.Value("Box A1"), Make.Value("Box B1")).ToSheet().ToBook().ToBytes(
 Make.Row("Box A1", "Box B1").ToSheet().ToBook().ToBytes()
 ```
 
-![box-a1-b1]
+![box-a1-b1][]
 
 Результат тот же самый!
 
@@ -124,15 +124,15 @@ Make.Row("Box A1", "Box B1").ToSheet().ToBook().ToBytes()
 
 Опишем вот такую шапку таблицы:
 
-![box-header]
+![box-header][]
 
 В терминах BookFx она может быть представлена как композиция элементов, вот так:
 
-![box-header-model]
+![box-header-model][]
 
 Легко увидеть общий паттерн.
 
-![box-plan-fact-model]
+![box-plan-fact-model][]
 
 Мы можем извлечь этот паттерн в функцию:
 
@@ -146,7 +146,7 @@ Box PlanFact(string title) => Make.Col(title, Make.Row("Plan", "Fact"));
 PlanFact("Beginning of year").ToSheet().ToBook().ToBytes()
 ```
 
-![box-plan-fact]
+![box-plan-fact][]
 
 Теперь используем `PlanFact` как компонент и добавим стиль:
 
@@ -168,7 +168,7 @@ Box Head() => Make
 Head().AutoSpan().ToSheet().ToBook().ToBytes()
 ```
 
-![box-header]
+![box-header][]
 
 Готово.
 
@@ -179,19 +179,19 @@ Head().AutoSpan().ToSheet().ToBook().ToBytes()
 
 Проект `BookFx.Usage` содержит несколько примеров использования. Результаты его выполнения сохраняются в папку `src\BookFx.Usage\bin\Debug\netcoreapp2.1\Results\`.
 
-### [S1Table.cs]
+### [S1Table.cs][]
 
 Это полная версия примера из [Начало работы](#начало-работы). Она создает таблицу с итогами.
 
-### [S2Style.cs]
+### [S2Style.cs][]
 
 Этот пример демонстрирует некоторые возможности стилей BookFx.
 
-### [S3Calendar.cs]
+### [S3Calendar.cs][]
 
 Ого! Календарь!
 
-[![s-3-calendar]][S3Calendar.cs]
+[![s-3-calendar][]][S3Calendar.cs]
 
 ## Концепции
 
