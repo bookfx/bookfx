@@ -19,103 +19,81 @@
         public void Render_All_All() =>
             CheckOn2X2(
                 border: Make.Border(BorderPart.All).Get,
-                assert: border =>
-                {
-                    border.Top.Style.Should().Be(ExcelBorderStyle.Thin);
-                    border.Right.Style.Should().Be(ExcelBorderStyle.Thin);
-                    border.Bottom.Style.Should().Be(ExcelBorderStyle.Thin);
-                    border.Left.Style.Should().Be(ExcelBorderStyle.Thin);
-                });
+                assert: border => border.BorderShouldBe(
+                    top: ExcelBorderStyle.Thin,
+                    right: ExcelBorderStyle.Thin,
+                    bottom: ExcelBorderStyle.Thin,
+                    left: ExcelBorderStyle.Thin));
 
         [Fact]
         public void Render_Outside_OutsideOnly() =>
             CheckOn2X2(
                 border: Make.Border(BorderPart.Outside).Get,
-                assertR1C1: border =>
-                {
-                    border.Top.Style.Should().Be(ExcelBorderStyle.Thin);
-                    border.Right.Style.Should().Be(ExcelBorderStyle.None);
-                    border.Bottom.Style.Should().Be(ExcelBorderStyle.None);
-                    border.Left.Style.Should().Be(ExcelBorderStyle.Thin);
-                },
-                assertR1C2: border =>
-                {
-                    border.Top.Style.Should().Be(ExcelBorderStyle.Thin);
-                    border.Right.Style.Should().Be(ExcelBorderStyle.Thin);
-                    border.Bottom.Style.Should().Be(ExcelBorderStyle.None);
-                    border.Left.Style.Should().Be(ExcelBorderStyle.None);
-                },
-                assertR2C2: border =>
-                {
-                    border.Top.Style.Should().Be(ExcelBorderStyle.None);
-                    border.Right.Style.Should().Be(ExcelBorderStyle.Thin);
-                    border.Bottom.Style.Should().Be(ExcelBorderStyle.Thin);
-                    border.Left.Style.Should().Be(ExcelBorderStyle.None);
-                },
-                assertR2C1: border =>
-                {
-                    border.Top.Style.Should().Be(ExcelBorderStyle.None);
-                    border.Right.Style.Should().Be(ExcelBorderStyle.None);
-                    border.Bottom.Style.Should().Be(ExcelBorderStyle.Thin);
-                    border.Left.Style.Should().Be(ExcelBorderStyle.Thin);
-                });
+                assertR1C1: border => border.BorderShouldBe(
+                    top: ExcelBorderStyle.Thin,
+                    right: ExcelBorderStyle.None,
+                    bottom: ExcelBorderStyle.None,
+                    left: ExcelBorderStyle.Thin),
+                assertR1C2: border => border.BorderShouldBe(
+                    top: ExcelBorderStyle.Thin,
+                    right: ExcelBorderStyle.Thin,
+                    bottom: ExcelBorderStyle.None,
+                    left: ExcelBorderStyle.None),
+                assertR2C2: border => border.BorderShouldBe(
+                    top: ExcelBorderStyle.None,
+                    right: ExcelBorderStyle.Thin,
+                    bottom: ExcelBorderStyle.Thin,
+                    left: ExcelBorderStyle.None),
+                assertR2C1: border => border.BorderShouldBe(
+                    top: ExcelBorderStyle.None,
+                    right: ExcelBorderStyle.None,
+                    bottom: ExcelBorderStyle.Thin,
+                    left: ExcelBorderStyle.Thin));
 
         [Fact]
         public void Render_Inside_InsideOnly() =>
             CheckOn2X2(
                 border: Make.Border(BorderPart.Inside).Get,
-                assertR1C1: border =>
-                {
-                    border.Top.Style.Should().Be(ExcelBorderStyle.None);
-                    border.Right.Style.Should().Be(ExcelBorderStyle.Thin);
-                    border.Bottom.Style.Should().Be(ExcelBorderStyle.Thin);
-                    border.Left.Style.Should().Be(ExcelBorderStyle.None);
-                },
-                assertR1C2: border =>
-                {
-                    border.Top.Style.Should().Be(ExcelBorderStyle.None);
-                    border.Right.Style.Should().Be(ExcelBorderStyle.None);
-                    border.Bottom.Style.Should().Be(ExcelBorderStyle.Thin);
-                    border.Left.Style.Should().Be(ExcelBorderStyle.Thin);
-                },
-                assertR2C2: border =>
-                {
-                    border.Top.Style.Should().Be(ExcelBorderStyle.Thin);
-                    border.Right.Style.Should().Be(ExcelBorderStyle.None);
-                    border.Bottom.Style.Should().Be(ExcelBorderStyle.None);
-                    border.Left.Style.Should().Be(ExcelBorderStyle.Thin);
-                },
-                assertR2C1: border =>
-                {
-                    border.Top.Style.Should().Be(ExcelBorderStyle.Thin);
-                    border.Right.Style.Should().Be(ExcelBorderStyle.Thin);
-                    border.Bottom.Style.Should().Be(ExcelBorderStyle.None);
-                    border.Left.Style.Should().Be(ExcelBorderStyle.None);
-                });
+                assertR1C1: border => border.BorderShouldBe(
+                    top: ExcelBorderStyle.None,
+                    right: ExcelBorderStyle.Thin,
+                    bottom: ExcelBorderStyle.Thin,
+                    left: ExcelBorderStyle.None),
+                assertR1C2: border => border.BorderShouldBe(
+                    top: ExcelBorderStyle.None,
+                    right: ExcelBorderStyle.None,
+                    bottom: ExcelBorderStyle.Thin,
+                    left: ExcelBorderStyle.Thin),
+                assertR2C2: border => border.BorderShouldBe(
+                    top: ExcelBorderStyle.Thin,
+                    right: ExcelBorderStyle.None,
+                    bottom: ExcelBorderStyle.None,
+                    left: ExcelBorderStyle.Thin),
+                assertR2C1: border => border.BorderShouldBe(
+                    top: ExcelBorderStyle.Thin,
+                    right: ExcelBorderStyle.Thin,
+                    bottom: ExcelBorderStyle.None,
+                    left: ExcelBorderStyle.None));
 
         [Fact]
         public void Render_Horizontal_HorizontalOnly() =>
             CheckOn2X2(
                 border: Make.Border(BorderPart.Horizontal).Get,
-                assert: border =>
-                {
-                    border.Top.Style.Should().Be(ExcelBorderStyle.Thin);
-                    border.Right.Style.Should().Be(ExcelBorderStyle.None);
-                    border.Bottom.Style.Should().Be(ExcelBorderStyle.Thin);
-                    border.Left.Style.Should().Be(ExcelBorderStyle.None);
-                });
+                assert: border => border.BorderShouldBe(
+                    top: ExcelBorderStyle.Thin,
+                    right: ExcelBorderStyle.None,
+                    bottom: ExcelBorderStyle.Thin,
+                    left: ExcelBorderStyle.None));
 
         [Fact]
         public void Render_Vertical_VerticalOnly() =>
             CheckOn2X2(
                 border: Make.Border(BorderPart.Vertical).Get,
-                assert: border =>
-                {
-                    border.Top.Style.Should().Be(ExcelBorderStyle.None);
-                    border.Right.Style.Should().Be(ExcelBorderStyle.Thin);
-                    border.Bottom.Style.Should().Be(ExcelBorderStyle.None);
-                    border.Left.Style.Should().Be(ExcelBorderStyle.Thin);
-                });
+                assert: border => border.BorderShouldBe(
+                    top: ExcelBorderStyle.None,
+                    right: ExcelBorderStyle.Thin,
+                    bottom: ExcelBorderStyle.None,
+                    left: ExcelBorderStyle.Thin));
 
         [Fact]
         public void Render_AllNoColor_NoColor() =>
