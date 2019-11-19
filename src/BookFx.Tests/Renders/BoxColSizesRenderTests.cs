@@ -1,8 +1,6 @@
 ﻿namespace BookFx.Tests.Renders
 {
-    using System;
     using BookFx.Calculation;
-    using BookFx.Cores;
     using BookFx.Epplus;
     using BookFx.Renders;
     using FluentAssertions;
@@ -64,7 +62,7 @@
         public void ColSizesRender_FitColSize_Set() =>
             Packer.OnSheet(excelSheet =>
             {
-                excelSheet.Cells[1, 1].Value = Guid.NewGuid().ToString();
+                excelSheet.Cells[1, 1].Value = "the long long long long string";
                 var box = Make.Value().SizeCols(TrackSize.Fit).Get.Place();
 
                 box.ColSizesRender()(excelSheet);
