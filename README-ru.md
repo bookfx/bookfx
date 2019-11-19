@@ -403,9 +403,9 @@ Copyright (c) 2019 Zhenya Gusev
 
 [nuget-img]: https://img.shields.io/nuget/v/BookFx?color=informational
 [nuget-link]: https://www.nuget.org/packages/BookFx
-[build-img]: https://img.shields.io/appveyor/ci/bookfx/bookfx
+[build-img]: https://img.shields.io/appveyor/ci/bookfx/bookfx/master
 [build-link]: https://ci.appveyor.com/project/bookfx/bookfx
-[tests-img]: https://img.shields.io/appveyor/tests/bookfx/bookfx
+[tests-img]: https://img.shields.io/appveyor/tests/bookfx/bookfx/master
 [tests-link]: https://ci.appveyor.com/project/bookfx/bookfx
 [en]: README.md
 [DOM]: https://en.wikipedia.org/wiki/Document_Object_Model
