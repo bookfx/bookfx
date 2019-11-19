@@ -1,8 +1,8 @@
 # BookFx
 
-[![nuget-img]][nuget-link]
-[![build-img]][build-link]
-[![tests-img]][tests-link]
+[![nuget-img][]][nuget-link]
+[![build-img][]][build-link]
+[![tests-img][]][tests-link]
 
 **en** | [ru][]
 
@@ -14,7 +14,7 @@ Make.Book().ToBytes()
 
 And we already have the xlsx with one empty spreadsheet!
 
-![book-empty]
+![book-empty][]
 
 The more friendly version:
 
@@ -22,7 +22,7 @@ The more friendly version:
 Make.Value("Hi, World!").ToSheet().ToBook().ToBytes()
 ```
 
-![box-a1]
+![box-a1][]
 
 Composition instead of address ciphering,
 component approach for tackle complexity,
@@ -31,7 +31,7 @@ components prototyping with slots made of parts of beforehand prepared xlsx-file
 formulas, fonts, colors, alignments, formats.
 About all this below.
 
-BookFx requires [.NET Standard 2.0] and depends on [EPPlus] which is used as a render to XLSX Office Open XML format.
+BookFx requires [.NET Standard 2.0][] and depends on [EPPlus][] which is used as a render to XLSX Office Open XML format.
 
 ## Table of Contents
 
@@ -78,7 +78,7 @@ Make
 
 Both examples gives the same result.
 
-![sheet-name]
+![sheet-name][]
 
 ### Boxes
 
@@ -116,7 +116,7 @@ because the `ValueBox` will be created automatically.
 Make.Row("Box A1", "Box B1").ToSheet().ToBook().ToBytes()
 ```
 
-![box-a1-b1]
+![box-a1-b1][]
 
 The result is the same!
 
@@ -124,15 +124,15 @@ The result is the same!
 
 Let's describe this table header.
 
-![box-header]
+![box-header][]
 
 In terms of BookFx it can be thought of as composition of elements, like this:
 
-![box-header-model]
+![box-header-model][]
 
 Is is easy to see the common pattern.
 
-![box-plan-fact-model]
+![box-plan-fact-model][]
 
 We can extract this pattern in a function:
 
@@ -146,7 +146,7 @@ Essentially it is a simple component. Test it:
 PlanFact("Beginning of year").ToSheet().ToBook().ToBytes()
 ```
 
-![box-plan-fact]
+![box-plan-fact][]
 
 Now let's use `PlanFact` as component and add the style:
 
@@ -168,7 +168,7 @@ Now it is easy:
 Head().AutoSpan().ToSheet().ToBook().ToBytes()
 ```
 
-![box-header]
+![box-header][]
 
 Done.
 
@@ -179,19 +179,19 @@ The full version is in examples of use, see below.
 
 The `BookFx.Usage` project contains a few examples of use. Run it and get results in the `src\BookFx.Usage\bin\Debug\netcoreapp2.1\Results\` folder.
 
-### [S1Table.cs]
+### [S1Table.cs][]
 
 This is a full version of [Getting Started](#getting-started) example. It makes a table with totals.
 
-### [S2Style.cs]
+### [S2Style.cs][]
 
 This demonstrates some style features of BookFx.
 
-### [S3Calendar.cs]
+### [S3Calendar.cs][]
 
 Wow! Calendar!
 
-[![s-3-calendar]][S3Calendar.cs]
+[![s-3-calendar][]][S3Calendar.cs]
 
 ## Concepts
 
