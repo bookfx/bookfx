@@ -20,4 +20,7 @@
     <Rule Id="SX1101" Action="Warning" />
     <Rule Id="SX1309" Action="Warning" />
   </Rules>
+  <Rules AnalyzerId="SonarAnalyzer.CSharp" RuleNamespace="SonarAnalyzer.CSharp">
+    <Rule Id="S1128" Action="None" /> <!-- XML doc refs are not detected. -->
+  </Rules>
 </RuleSet>
