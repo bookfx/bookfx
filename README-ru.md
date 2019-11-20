@@ -87,13 +87,13 @@ Make
 
 В таблице перечислены все типы box'ов.
 
-Тип | Создание | Назначение
--- | - | -
-`ValueBox` | `Make.Value()` | Значения, формулы и пустые диапазоны.
-`RowBox` | `Make.Row()` | Размещение box'ов слева направо.
-`ColBox` | `Make.Col()` | Размещение box'ов сверху вниз.
-`StackBox` | `Make.Stack()` | Размещение box'ов слоями.
-`ProtoBox` | `Make.Proto()` | Составление из шаблонов.
+| Тип | Создание | Назначение |
+| -- | -- | -- |
+| `ValueBox` | `Make.Value()` | Значения, формулы и пустые диапазоны. |
+| `RowBox` | `Make.Row()` | Размещение box'ов слева направо. |
+| `ColBox` | `Make.Col()` | Размещение box'ов сверху вниз. |
+| `StackBox` | `Make.Stack()` | Размещение box'ов слоями. |
+| `ProtoBox` | `Make.Proto()` | Составление из шаблонов. |
 
 Что если поместить в `RowBox` два `ValueBox`'а?
 
@@ -101,7 +101,7 @@ Make
 Make.Row(Make.Value("Box A1"), Make.Value("Box B1")).ToSheet().ToBook().ToBytes()
 ```
 
-![box-a1-b1]
+![box-a1-b1][]
 
 Логично. Два значения расположились в строку!
 
