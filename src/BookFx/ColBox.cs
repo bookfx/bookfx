@@ -31,7 +31,7 @@
 
         /// <inheritdoc cref="Box.Name"/>
         [Pure]
-        public new ColBox Name(string name) => Get.With(name: Some(name));
+        public new ColBox Name(string rangeName) => Get.With(name: Some(rangeName));
 
         /// <inheritdoc cref="Box.AutoSpan()"/>
         [Pure]
@@ -59,7 +59,7 @@
 
         /// <inheritdoc cref="Box.Style"/>
         [Pure]
-        public new ColBox Style(BoxStyle style) => Get.With(style: style.Get);
+        public new ColBox Style(BoxStyle boxStyle) => Get.With(style: boxStyle.Get);
 
         /// <summary>
         /// Add box(es) in column.

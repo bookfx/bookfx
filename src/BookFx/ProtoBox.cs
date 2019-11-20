@@ -57,11 +57,11 @@
 
         /// <inheritdoc cref="Box.Name"/>
         [Pure]
-        public new ProtoBox Name(string name) => Get.With(name: Some(name));
+        public new ProtoBox Name(string rangeName) => Get.With(name: Some(rangeName));
 
         /// <inheritdoc cref="Box.Style"/>
         [Pure]
-        public new ProtoBox Style(BoxStyle style) => Get.With(style: style.Get);
+        public new ProtoBox Style(BoxStyle boxStyle) => Get.With(style: boxStyle.Get);
 
         /// <summary>
         /// Define heights of rows.

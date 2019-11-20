@@ -126,9 +126,9 @@
         /// <summary>
         /// Define a name of the range.
         /// </summary>
-        /// <param name="name">A range name.</param>
+        /// <param name="rangeName">A range name.</param>
         [Pure]
-        public Box Name(string name) => Get.With(name: Some(name));
+        public Box Name(string rangeName) => Get.With(name: Some(rangeName));
 
         /// <summary>
         /// Enables automatic span when a box can be stretched to its contrainer.
@@ -166,7 +166,7 @@
         /// Define a style.
         /// </summary>
         [Pure]
-        public Box Style(BoxStyle style) => Get.With(style: style.Get);
+        public Box Style(BoxStyle boxStyle) => Get.With(style: boxStyle.Get);
 
         /// <summary>
         /// Define heights of rows.
