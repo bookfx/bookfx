@@ -59,7 +59,7 @@
 
         /// <inheritdoc cref="Box.Style"/>
         [Pure]
-        public new ColBox Style(BoxStyle style) => Get.With(style: style.Get);
+        public new ColBox Style(BoxStyle boxStyle) => Get.With(style: boxStyle.Get);
 
         /// <summary>
         /// Add box(es) in column.

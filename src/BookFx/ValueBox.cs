@@ -126,7 +126,7 @@
 
         /// <inheritdoc cref="Box.Style"/>
         [Pure]
-        public new ValueBox Style(BoxStyle style) => Get.With(style: style.Get);
+        public new ValueBox Style(BoxStyle boxStyle) => Get.With(style: boxStyle.Get);
 
         /// <summary>
         /// Span rows and columns.

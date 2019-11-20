@@ -166,7 +166,7 @@
         /// Define a style.
         /// </summary>
         [Pure]
-        public Box Style(BoxStyle style) => Get.With(style: style.Get);
+        public Box Style(BoxStyle boxStyle) => Get.With(style: boxStyle.Get);
 
         /// <summary>
         /// Define heights of rows.

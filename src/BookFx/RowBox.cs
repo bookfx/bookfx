@@ -59,7 +59,7 @@
 
         /// <inheritdoc cref="Box.Style"/>
         [Pure]
-        public new RowBox Style(BoxStyle style) => Get.With(style: style.Get);
+        public new RowBox Style(BoxStyle boxStyle) => Get.With(style: boxStyle.Get);
 
         /// <summary>
         /// Add box(es) in row.
