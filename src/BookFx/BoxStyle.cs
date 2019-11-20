@@ -35,18 +35,18 @@
         /// <summary>
         /// Define borders.
         /// </summary>
-        /// <param name="border">The first border.</param>
-        /// <param name="borders">Other borders.</param>
+        /// <param name="first">The first border.</param>
+        /// <param name="others">Other borders.</param>
         [Pure]
-        public BoxStyle Borders(BoxBorder border, params BoxBorder[] borders) =>
-            Borders(borders.Prepend(border));
+        public BoxStyle Borders(BoxBorder first, params BoxBorder[] others) =>
+            Borders(others.Prepend(first));
 
         /// <summary>
         /// Define borders.
         /// </summary>
         [Pure]
-        public BoxStyle Borders(IEnumerable<BoxBorder> borders) =>
-            Get.With(borders: borders.Map(x => x.Get));
+        public BoxStyle Borders(IEnumerable<BoxBorder> boxBorders) =>
+            Get.With(borders: boxBorders.Map(x => x.Get));
 
         /// <summary>
         /// Define regular borders.
@@ -191,16 +191,16 @@
         /// <summary>
         /// Define a horizontal alignment.
         /// </summary>
-        /// <param name="align">A horizontal alignment.</param>
+        /// <param name="horizontalAlign">A horizontal alignment.</param>
         [Pure]
-        public BoxStyle Align(HAlign align) => Get.With(hAlign: align);
+        public BoxStyle Align(HAlign horizontalAlign) => Get.With(hAlign: horizontalAlign);
 
         /// <summary>
         /// Define a vertical alignment.
         /// </summary>
-        /// <param name="align">A vertical alignment.</param>
+        /// <param name="verticalAlign">A vertical alignment.</param>
         [Pure]
-        public BoxStyle Align(VAlign align) => Get.With(vAlign: align);
+        public BoxStyle Align(VAlign verticalAlign) => Get.With(vAlign: verticalAlign);
 
         /// <summary>
         /// Align to the left.
@@ -248,9 +248,9 @@
         /// <summary>
         /// Set number format.
         /// </summary>
-        /// <param name="format">Number format.</param>
+        /// <param name="numberFormat">Number format.</param>
         [Pure]
-        public BoxStyle Format(string format) => Get.With(format: Some(format));
+        public BoxStyle Format(string numberFormat) => Get.With(format: Some(numberFormat));
 
         /// <summary>
         /// Equivalent to:
