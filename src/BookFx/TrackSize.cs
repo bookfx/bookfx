@@ -73,11 +73,13 @@
         /// or the <paramref name="some"/> function.
         /// </returns>
         public T Match<T>(Func<T> none, Func<T> fit, Func<float, T> some) =>
-            _mode == Mode.None
-                ? none()
-                : _mode == Mode.Some
-                    ? some(_value)
-                    : fit();
+            _mode switch
+            {
+                Mode.None => none(),
+                Mode.Some => some(_value),
+                Mode.Fit => fit(),
+                _ => throw new InvalidOperationException()
+            };
 
         /// <summary>
         /// Converts a <see cref="TrackSize"/> to an <see cref="IEnumerable{Float}"/>.
