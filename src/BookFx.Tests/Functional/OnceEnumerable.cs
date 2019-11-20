@@ -29,7 +29,7 @@
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
-        private class OnceEnumerator : IEnumerator<int>
+        private sealed class OnceEnumerator : IEnumerator<int>
         {
             private readonly int _size;
             private int _current;

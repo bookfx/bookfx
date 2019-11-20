@@ -13,7 +13,9 @@
             var error = CreateError(message, inners);
 
             // ReSharper disable once EqualExpressionComparison
+#pragma warning disable S1764 // Identical expressions should not be used on both sides of a binary operator
             var result = error.Equals(error);
+#pragma warning restore S1764 // Identical expressions should not be used on both sides of a binary operator
 
             result.Should().BeTrue();
         }
