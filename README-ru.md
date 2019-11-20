@@ -31,7 +31,7 @@ Make.Value("Hi, World!").ToSheet().ToBook().ToBytes()
 формулы, шрифты, цвета, выравнивания, форматы.
 Обо всем этом ниже.
 
-BookFx требует [.NET Standard 2.0][] и зависит от [EPPlus][], который используется в качестве рендера в формат XLSX Office Open XML.
+BookFx требует [.NET Standard 2.0][.net standard 2.0] и зависит от [EPPlus][epplus], который используется в качестве рендера в формат XLSX Office Open XML.
 
 ## Содержание
 
@@ -107,7 +107,7 @@ Make.Row(Make.Value("Box A1"), Make.Value("Box B1")).ToSheet().ToBook().ToBytes(
 
 ### Преобразования
 
-В `ValueBox` реализованы [неявные преобразования][Implicit convertions] из всех необходимых типов значений.
+В `ValueBox` реализованы [неявные преобразования][implicit convertions] из всех необходимых типов значений.
 Что это значит?
 Это значит, что не обязательно каждый раз повторять `Make.Value`,
 потому что `ValueBox` будет создан автоматически.
@@ -179,25 +179,25 @@ Head().AutoSpan().ToSheet().ToBook().ToBytes()
 
 Проект `BookFx.Usage` содержит несколько примеров использования. Результаты его выполнения сохраняются в папку `src\BookFx.Usage\bin\Debug\netcoreapp2.1\Results\`.
 
-### [S1Table.cs][]
+### [S1Table.cs][s1table.cs]
 
 Это полная версия примера из [Начало работы](#начало-работы). Она создает таблицу с итогами.
 
-### [S2Style.cs][]
+### [S2Style.cs][s2style.cs]
 
 Этот пример демонстрирует некоторые возможности стилей BookFx.
 
-### [S3Calendar.cs][]
+### [S3Calendar.cs][s3calendar.cs]
 
 Ого! Календарь!
 
-[![s-3-calendar][]][S3Calendar.cs]
+[![s-3-calendar][]][s3calendar.cs]
 
 ## Концепции
 
 ### Описание модели
 
-Модель книги BookFx чем-то похожа на HTML [DOM][].
+Модель книги BookFx чем-то похожа на HTML [DOM][dom].
 Это дерево узлов, которое рендерится в xlsx-файл.
 
 Такой подход открывает множество возможностей:
@@ -207,9 +207,9 @@ Head().AutoSpan().ToSheet().ToBook().ToBytes()
 - к иерархии узлов удобно применять стили;
 - для unit-тестирования не требуется рендеринг книги.
 
-Модель BookFx неизменяемая ([immutable][Immutable object]),
-и у методов библиотеки нет побочных эффектов ([side effects][Side effect]),
-поэтому BookFx позволяет писать чистые функции ([pure functions][Pure function]).
+Модель BookFx неизменяемая ([immutable][immutable object]),
+и у методов библиотеки нет побочных эффектов ([side effects][side effect]),
+поэтому BookFx позволяет писать чистые функции ([pure functions][pure function]).
 
 Таким образом, BookFx:
 
@@ -408,13 +408,13 @@ Copyright (c) 2019 Zhenya Gusev
 [tests-img]: https://img.shields.io/appveyor/tests/bookfx/bookfx/master
 [tests-link]: https://ci.appveyor.com/project/bookfx/bookfx
 [en]: README.md
-[DOM]: https://en.wikipedia.org/wiki/Document_Object_Model
+[dom]: https://en.wikipedia.org/wiki/Document_Object_Model
 [Immutable object]: https://en.wikipedia.org/wiki/Immutable_object
 [Side effect]: https://en.wikipedia.org/wiki/Side_effect_(computer_science)
 [Pure function]: https://en.wikipedia.org/wiki/Functional_programming#Pure_functions
-[.NET Standard 2.0]: https://github.com/dotnet/standard/blob/master/docs/versions/netstandard2.0.md
-[EPPlus]: https://github.com/JanKallman/EPPlus
-[Implicit convertions]: https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/conversions#implicit-conversions
+[.net standard 2.0]: https://github.com/dotnet/standard/blob/master/docs/versions/netstandard2.0.md
+[epplus]: https://github.com/JanKallman/EPPlus
+[implicit convertions]: https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/conversions#implicit-conversions
 [book-empty]: docs/img/book-empty.svg "Пустая книга"
 [sheet-name]: docs/img/sheet-name.svg "Именованные листы"
 [box-a1]: docs/img/box-a1.svg "Box A1"
@@ -423,7 +423,7 @@ Copyright (c) 2019 Zhenya Gusev
 [box-header-model]: docs/img/box-header-model.svg "Модель box'а шапки"
 [box-plan-fact]: docs/img/box-plan-fact.svg "PlanFact box"
 [box-plan-fact-model]: docs/img/box-plan-fact-model.svg "Модель PlanFact box'а"
-[S1Table.cs]: src/BookFx.Usage/S1Table.cs
-[S2Style.cs]: src/BookFx.Usage/S2Style.cs
-[S3Calendar.cs]: src/BookFx.Usage/S3Calendar.cs
+[s1table.cs]: src/BookFx.Usage/S1Table.cs
+[s2style.cs]: src/BookFx.Usage/S2Style.cs
+[s3calendar.cs]: src/BookFx.Usage/S3Calendar.cs
 [s-3-calendar]: docs/img/s-3-calendar-ru.png "Результат S3Calendar.cs"
