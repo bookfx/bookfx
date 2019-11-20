@@ -67,7 +67,7 @@
 
                 box.ColSizesRender()(excelSheet);
 
-                excelSheet.Column(1).Width.Should().BeGreaterThan(excelSheet.DefaultColWidth);
+                excelSheet.Column(1).Width.Should().NotBe(excelSheet.DefaultColWidth);
             });
 
         [Fact]
