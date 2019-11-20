@@ -197,7 +197,7 @@ Wow! Calendar!
 
 ### Model Description
 
-BookFx workbook model anything like the HTML [DOM].
+BookFx workbook model anything like the HTML [DOM][].
 This is a tree of nodes, which renders to a xlsx-file.
 
 This approach opens multiple opportunities:
