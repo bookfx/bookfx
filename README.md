@@ -87,13 +87,13 @@ It can be composite and always describes a range — cell, row, column or rectan
 
 Here is the complete list of boxes.
 
-Type | Creating | Destination
--- | - | -
-`ValueBox` | `Make.Value()` | Values, formulas and empty ranges.
-`RowBox` | `Make.Row()` | From left to right box placement.
-`ColBox` | `Make.Col()` | From top to bottom box placement.
-`StackBox` | `Make.Stack()` | Layer by layer box placement.
-`ProtoBox` | `Make.Proto()` | Composing from templates.
+| Type | Creating | Destination |
+| -- | -- | -- |
+| `ValueBox` | `Make.Value()` | Values, formulas and empty ranges. |
+| `RowBox` | `Make.Row()` | From left to right box placement. |
+| `ColBox` | `Make.Col()` | From top to bottom box placement. |
+| `StackBox` | `Make.Stack()` | Layer by layer box placement. |
+| `ProtoBox` | `Make.Proto()` | Composing from templates. |
 
 What if we put two `ValueBox`es into the `RowBox`?
 
@@ -101,7 +101,7 @@ What if we put two `ValueBox`es into the `RowBox`?
 Make.Row(Make.Value("Box A1"), Make.Value("Box B1")).ToSheet().ToBook().ToBytes()
 ```
 
-![box-a1-b1]
+![box-a1-b1][]
 
 Logical. Two values have been placed in row!
 
@@ -197,7 +197,7 @@ Wow! Calendar!
 
 ### Model Description
 
-BookFx workbook model anything like the HTML [DOM].
+BookFx workbook model anything like the HTML [DOM][].
 This is a tree of nodes, which renders to a xlsx-file.
 
 This approach opens multiple opportunities:
