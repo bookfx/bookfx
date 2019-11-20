@@ -31,22 +31,22 @@
         /// <summary>
         /// Restrict a part of a box to which the border applied.
         /// </summary>
-        /// <param name="part">A part of a box.</param>
+        /// <param name="borderPart">A part of a box.</param>
         [Pure]
-        public BoxBorder Restrict(BorderPart part) => Get.With(part: part);
+        public BoxBorder Restrict(BorderPart borderPart) => Get.With(part: borderPart);
 
         /// <summary>
         /// Define a border style.
         /// </summary>
-        /// <param name="style">A border style.</param>
+        /// <param name="borderStyle">A border style.</param>
         [Pure]
-        public BoxBorder Style(BorderStyle style) => Get.With(style: style);
+        public BoxBorder Style(BorderStyle borderStyle) => Get.With(style: borderStyle);
 
         /// <summary>
         /// Define a border color.
         /// </summary>
-        /// <param name="color">A border color.</param>
+        /// <param name="borderColor">A border color.</param>
         [Pure]
-        public BoxBorder Color(Color color) => Get.With(color: color);
+        public BoxBorder Color(Color borderColor) => Get.With(color: borderColor);
     }
 }
