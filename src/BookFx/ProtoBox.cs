@@ -57,7 +57,7 @@
 
         /// <inheritdoc cref="Box.Name"/>
         [Pure]
-        public new ProtoBox Name(string name) => Get.With(name: Some(name));
+        public new ProtoBox Name(string rangeName) => Get.With(name: Some(rangeName));
 
         /// <inheritdoc cref="Box.Style"/>
         [Pure]

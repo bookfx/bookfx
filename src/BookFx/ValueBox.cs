@@ -122,7 +122,7 @@
 
         /// <inheritdoc cref="Box.Name"/>
         [Pure]
-        public new ValueBox Name(string name) => Get.With(name: Some(name));
+        public new ValueBox Name(string rangeName) => Get.With(name: Some(rangeName));
 
         /// <inheritdoc cref="Box.Style"/>
         [Pure]
