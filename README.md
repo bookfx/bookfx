@@ -31,7 +31,7 @@ components prototyping with slots made of parts of beforehand prepared xlsx-file
 formulas, fonts, colors, alignments, formats.
 About all this below.
 
-BookFx requires [.NET Standard 2.0][] and depends on [EPPlus][] which is used as a render to XLSX Office Open XML format.
+BookFx requires [.NET Standard 2.0][.net standard 2.0] and depends on [EPPlus][epplus] which is used as a render to XLSX Office Open XML format.
 
 ## Table of Contents
 
@@ -40,10 +40,10 @@ BookFx requires [.NET Standard 2.0][] and depends on [EPPlus][] which is used as
 - [Examples of Use](#examples-of-use)
 - [Concepts](#concepts)
     - [Model Description](#model-description)
-    - [Layout System](#Layout-System)
-    - [Spanning and Merging](#Spanning-and-Merging)
-    - [Values and Formulas](#Values-and-Formulas)
-    - [Prototyping](#Prototyping)
+    - [Layout System](#layout-system)
+    - [Spanning and Merging](#spanning-and-merging)
+    - [Values and Formulas](#values-and-formulas)
+    - [Prototyping](#prototyping)
 - [API Reference](#api-reference)
 - [License](#license)
 
@@ -107,7 +107,7 @@ Logical. Two values have been placed in row!
 
 ### Conversions
 
-In the `ValueBox` have been implemented [implicit convertions][Implicit convertions] from all necessary value types.
+In the `ValueBox` have been implemented [implicit convertions][] from all necessary value types.
 What does this means?
 This means that we don't have to repeat `Make.Value` every time,
 because the `ValueBox` will be created automatically.
@@ -179,25 +179,25 @@ The full version is in examples of use, see below.
 
 The `BookFx.Usage` project contains a few examples of use. Run it and get results in the `src\BookFx.Usage\bin\Debug\netcoreapp2.1\Results\` folder.
 
-### [S1Table.cs][]
+### [S1Table.cs][s1table.cs]
 
 This is a full version of [Getting Started](#getting-started) example. It makes a table with totals.
 
-### [S2Style.cs][]
+### [S2Style.cs][s2style.cs]
 
 This demonstrates some style features of BookFx.
 
-### [S3Calendar.cs][]
+### [S3Calendar.cs][s3calendar.cs]
 
 Wow! Calendar!
 
-[![s-3-calendar][]][S3Calendar.cs]
+[![s-3-calendar][]][s3calendar.cs]
 
 ## Concepts
 
 ### Model Description
 
-BookFx workbook model anything like the HTML [DOM][].
+BookFx workbook model anything like the HTML [DOM][dom].
 This is a tree of nodes, which renders to a xlsx-file.
 
 This approach opens multiple opportunities:
@@ -207,9 +207,9 @@ This approach opens multiple opportunities:
 - hierarchy of nodes is convenient to applying styles;
 - unit testing of components doesn't require to render workbook.
 
-BookFx model is [immutable][Immutable object],
-and methods of the library has no [side effects][Side effect],
-hence BookFx allows you to write [pure functions][Pure function].
+BookFx model is [immutable][immutable object],
+and methods of the library has no [side effects][side effect],
+hence BookFx allows you to write [pure functions][pure function].
 
 Thus, BookFx:
 
@@ -408,13 +408,13 @@ along with this library. If not, see <https://www.gnu.org/licenses/>.
 [tests-img]: https://img.shields.io/appveyor/tests/bookfx/bookfx/master
 [tests-link]: https://ci.appveyor.com/project/bookfx/bookfx
 [ru]: README-ru.md
-[DOM]: https://en.wikipedia.org/wiki/Document_Object_Model
-[Immutable object]: https://en.wikipedia.org/wiki/Immutable_object
-[Side effect]: https://en.wikipedia.org/wiki/Side_effect_(computer_science)
-[Pure function]: https://en.wikipedia.org/wiki/Functional_programming#Pure_functions
-[.NET Standard 2.0]: https://github.com/dotnet/standard/blob/master/docs/versions/netstandard2.0.md
-[EPPlus]: https://github.com/JanKallman/EPPlus
-[Implicit convertions]: https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/conversions#implicit-conversions
+[dom]: https://en.wikipedia.org/wiki/Document_Object_Model
+[immutable object]: https://en.wikipedia.org/wiki/Immutable_object
+[side effect]: https://en.wikipedia.org/wiki/Side_effect_(computer_science)
+[pure function]: https://en.wikipedia.org/wiki/Functional_programming#Pure_functions
+[.net standard 2.0]: https://github.com/dotnet/standard/blob/master/docs/versions/netstandard2.0.md
+[epplus]: https://github.com/JanKallman/EPPlus
+[implicit convertions]: https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/conversions#implicit-conversions
 [book-empty]: docs/img/book-empty.svg "Empty workbook"
 [sheet-name]: docs/img/sheet-name.svg "Named sheets"
 [box-a1]: docs/img/box-a1.svg "Box A1"
@@ -423,7 +423,7 @@ along with this library. If not, see <https://www.gnu.org/licenses/>.
 [box-header-model]: docs/img/box-header-model.svg "Header box model"
 [box-plan-fact]: docs/img/box-plan-fact.svg "PlanFact box"
 [box-plan-fact-model]: docs/img/box-plan-fact-model.svg "PlanFact box model"
-[S1Table.cs]: src/BookFx.Usage/S1Table.cs
-[S2Style.cs]: src/BookFx.Usage/S2Style.cs
-[S3Calendar.cs]: src/BookFx.Usage/S3Calendar.cs
+[s1table.cs]: src/BookFx.Usage/S1Table.cs
+[s2style.cs]: src/BookFx.Usage/S2Style.cs
+[s3calendar.cs]: src/BookFx.Usage/S3Calendar.cs
 [s-3-calendar]: docs/img/s-3-calendar-en.png "S3Calendar.cs result"
