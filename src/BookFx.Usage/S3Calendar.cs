@@ -23,13 +23,13 @@
                 .Select(culture => new CultureInfo(culture));
 
         private static Sheet CalendarSheet(Year year, CultureInfo culture) =>
-            List(CalendarTitleBox(year), CalendarBodyBox(year, culture))
+            List(CalendarTitleBox(year, culture), CalendarBodyBox(year, culture))
                 .ToGridCol(gap: 15f)
                 .ToSheet()
                 .Name(culture.TwoLetterISOLanguageName);
 
-        private static Box CalendarTitleBox(Year year) =>
-            Value(year.Number)
+        private static Box CalendarTitleBox(Year year, CultureInfo culture) =>
+            Value(year.Number.ToString(culture))
                 .AutoSpan()
                 .Style(Style.YearTitle);
 

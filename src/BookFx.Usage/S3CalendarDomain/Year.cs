@@ -9,7 +9,5 @@
         public static implicit operator Year(int number) => new Year(number);
 
         public static implicit operator int(Year year) => year.Number;
-
-        public override string ToString() => Number.ToString();
     }
 }
