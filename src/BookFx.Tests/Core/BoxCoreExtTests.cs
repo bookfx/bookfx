@@ -7,6 +7,8 @@
 
     public class BoxCoreExtTests
     {
+        private const string ProtoRangeName = "Header";
+
         [Fact]
         public void SelfAndDescendants_Leaf_Self()
         {
@@ -54,7 +56,7 @@
         [Fact]
         public void SelfAndDescendants_EmptyProtoBox_Self()
         {
-            var box = Make.Proto(new byte[0], "Header").Get;
+            var box = Make.Proto(new byte[0], ProtoRangeName).Get;
 
             var result = box.SelfAndDescendants();
 
@@ -67,7 +69,7 @@
             var child1 = BoxCore.Create(BoxType.Value);
             var child2 = BoxCore.Create(BoxType.Value);
             var box = Make
-                .Proto(new byte[0], "Header")
+                .Proto(new byte[0], ProtoRangeName)
                 .Add("Child1", child1)
                 .Add("Child2", child2)
                 .Get;
@@ -124,7 +126,7 @@
         [Fact]
         public void Descendants_EmptyProtoBox_Empty()
         {
-            var box = Make.Proto(new byte[0], "Header").Get;
+            var box = Make.Proto(new byte[0], ProtoRangeName).Get;
 
             var result = box.Descendants();
 
@@ -137,7 +139,7 @@
             var child1 = BoxCore.Create(BoxType.Value);
             var child2 = BoxCore.Create(BoxType.Value);
             var box = Make
-                .Proto(new byte[0], "Header")
+                .Proto(new byte[0], ProtoRangeName)
                 .Add("Child1", child1)
                 .Add("Child2", child2)
                 .Get;
@@ -194,7 +196,7 @@
         [Fact]
         public void ImmediateDescendants_EmptyProtoBox_Empty()
         {
-            var box = Make.Proto(new byte[0], "Header").Get;
+            var box = Make.Proto(new byte[0], ProtoRangeName).Get;
 
             var result = box.ImmediateDescendants();
 
@@ -207,7 +209,7 @@
             var child1 = BoxCore.Create(BoxType.Value);
             var child2 = BoxCore.Create(BoxType.Value);
             var box = Make
-                .Proto(new byte[0], "Header")
+                .Proto(new byte[0], ProtoRangeName)
                 .Add("Child1", child1)
                 .Add("Child2", child2)
                 .Get;
