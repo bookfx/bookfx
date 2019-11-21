@@ -64,19 +64,13 @@
         }
 
         [Fact]
-        public void SelfAndDescendants_ProtoBoxWithSlots_SelfAndSlots()
+        public void SelfAndDescendants_ProtoBoxWithTwoSlots_SelfAndSlots()
         {
-            var child1 = BoxCore.Create(BoxType.Value);
-            var child2 = BoxCore.Create(BoxType.Value);
-            var box = Make
-                .Proto(new byte[0], ProtoRangeName)
-                .Add("Child1", child1)
-                .Add("Child2", child2)
-                .Get;
+            var box = GetProtoBoxWithTwoSlots();
 
             var result = box.SelfAndDescendants();
 
-            result.Should().Equal(box, child1, child2);
+            result.Should().Equal(box, box.Slots[0].Box, box.Slots[1].Box);
         }
 
         [Fact]
@@ -134,19 +128,13 @@
         }
 
         [Fact]
-        public void Descendants_ProtoBoxWithSlots_SlotBoxes()
+        public void Descendants_ProtoBoxWithTwoSlots_SlotBoxes()
         {
-            var child1 = BoxCore.Create(BoxType.Value);
-            var child2 = BoxCore.Create(BoxType.Value);
-            var box = Make
-                .Proto(new byte[0], ProtoRangeName)
-                .Add("Child1", child1)
-                .Add("Child2", child2)
-                .Get;
+            var box = GetProtoBoxWithTwoSlots();
 
             var result = box.Descendants();
 
-            result.Should().Equal(child1, child2);
+            result.Should().Equal(box.Slots[0].Box, box.Slots[1].Box);
         }
 
         [Fact]
@@ -204,19 +192,20 @@
         }
 
         [Fact]
-        public void ImmediateDescendants_ProtoBoxWithSlots_SlotBoxes()
+        public void ImmediateDescendants_ProtoBoxWithTwoSlots_SlotBoxes()
         {
-            var child1 = BoxCore.Create(BoxType.Value);
-            var child2 = BoxCore.Create(BoxType.Value);
-            var box = Make
-                .Proto(new byte[0], ProtoRangeName)
-                .Add("Child1", child1)
-                .Add("Child2", child2)
-                .Get;
+            var box = GetProtoBoxWithTwoSlots();
 
             var result = box.ImmediateDescendants();
 
-            result.Should().Equal(child1, child2);
+            result.Should().Equal(box.Slots[0].Box, box.Slots[1].Box);
         }
+
+        private static BoxCore GetProtoBoxWithTwoSlots() =>
+            Make
+                .Proto(new byte[0], ProtoRangeName)
+                .Add("Child1", BoxCore.Create(BoxType.Value))
+                .Add("Child2", BoxCore.Create(BoxType.Value))
+                .Get;
     }
 }
