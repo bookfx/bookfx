@@ -12,11 +12,11 @@
         public static Act<ExcelRangeBase> Render(this BoxBorderCore border) =>
             excelRange =>
             {
-                var borderPart = border.Part.GetOrElse(BorderPart.All);
+                var borderPart = border.Part.GetOrElse(BorderParts.All);
 
                 switch (borderPart)
                 {
-                    case BorderPart.All:
+                    case BorderParts.All:
                         SetBorder(excelRange.Style.Border.Top, border);
                         SetBorder(excelRange.Style.Border.Right, border);
                         SetBorder(excelRange.Style.Border.Bottom, border);
@@ -24,7 +24,7 @@
 
                         break;
 
-                    case BorderPart.Outside:
+                    case BorderParts.Outside:
                         border.Color.Match(
                             none: () => excelRange.Style.Border.BorderAround(GetExcelBorderStyle(border.Style)),
                             some: color =>
@@ -74,33 +74,33 @@
         private static bool IsApplicableForTop(
             ExcelRangeBase excelRange,
             ExcelRangeBase cell,
-            BorderPart part) =>
+            BorderParts parts) =>
             excelRange.Start.Row == cell.Start.Row
-                ? (part & BorderPart.OutsideTop) == BorderPart.OutsideTop
-                : (part & BorderPart.InsideTop) == BorderPart.InsideTop;
+                ? (parts & BorderParts.OutsideTop) == BorderParts.OutsideTop
+                : (parts & BorderParts.InsideTop) == BorderParts.InsideTop;
 
         private static bool IsApplicableForRight(
             ExcelRangeBase excelRange,
             ExcelRangeBase cell,
-            BorderPart part) =>
+            BorderParts parts) =>
             excelRange.End.Column == cell.End.Column
-                ? (part & BorderPart.OutsideRight) == BorderPart.OutsideRight
-                : (part & BorderPart.InsideRight) == BorderPart.InsideRight;
+                ? (parts & BorderParts.OutsideRight) == BorderParts.OutsideRight
+                : (parts & BorderParts.InsideRight) == BorderParts.InsideRight;
 
         private static bool IsApplicableForBottom(
             ExcelRangeBase excelRange,
             ExcelRangeBase cell,
-            BorderPart part) =>
+            BorderParts parts) =>
             excelRange.End.Row == cell.End.Row
-                ? (part & BorderPart.OutsideBottom) == BorderPart.OutsideBottom
-                : (part & BorderPart.InsideBottom) == BorderPart.InsideBottom;
+                ? (parts & BorderParts.OutsideBottom) == BorderParts.OutsideBottom
+                : (parts & BorderParts.InsideBottom) == BorderParts.InsideBottom;
 
         private static bool IsApplicableForLeft(
             ExcelRangeBase excelRange,
             ExcelRangeBase cell,
-            BorderPart part) =>
+            BorderParts parts) =>
             excelRange.Start.Column == cell.Start.Column
-                ? (part & BorderPart.OutsideLeft) == BorderPart.OutsideLeft
-                : (part & BorderPart.InsideLeft) == BorderPart.InsideLeft;
+                ? (parts & BorderParts.OutsideLeft) == BorderParts.OutsideLeft
+                : (parts & BorderParts.InsideLeft) == BorderParts.InsideLeft;
     }
 }

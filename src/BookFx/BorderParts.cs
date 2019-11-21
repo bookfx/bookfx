@@ -5,10 +5,10 @@ namespace BookFx
     using System;
 
     /// <summary>
-    /// A part of a box to which the border applied.
+    /// A part of a box to which the border applied. This is a flags enum.
     /// </summary>
     [Flags]
-    public enum BorderPart : byte
+    public enum BorderParts : byte
     {
         InsideTop = 1,
         InsideRight = 1 << 1,

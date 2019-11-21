@@ -31,9 +31,9 @@
         /// <summary>
         /// Restrict a part of a box to which the border applied.
         /// </summary>
-        /// <param name="borderPart">A part of a box.</param>
+        /// <param name="borderParts">Parts of a box. This is a flags enum.</param>
         [Pure]
-        public BoxBorder Restrict(BorderPart borderPart) => Get.With(part: borderPart);
+        public BoxBorder Restrict(BorderParts borderParts) => Get.With(part: borderParts);
 
         /// <summary>
         /// Define a border style.

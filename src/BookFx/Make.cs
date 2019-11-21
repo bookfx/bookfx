@@ -491,11 +491,11 @@
         public static BoxBorder Border() => BoxBorder.Empty;
 
         /// <summary>
-        /// Creates a <see cref="BoxBorder"/> with restriction to a <paramref name="part"/>.
+        /// Creates a <see cref="BoxBorder"/> with restriction to a <paramref name="parts"/>.
         /// </summary>
-        /// <param name="part">The part of border.</param>
+        /// <param name="parts">Parts of border. This is a flags enum.</param>
         [Pure]
-        public static BoxBorder Border(BorderPart part) => BoxBorder.Empty.Restrict(part);
+        public static BoxBorder Border(BorderParts parts) => BoxBorder.Empty.Restrict(parts);
 
         /// <summary>
         /// Creates a <see cref="BoxBorder"/> a border style.
@@ -505,12 +505,12 @@
         public static BoxBorder Border(BorderStyle style) => BoxBorder.Empty.Style(style);
 
         /// <summary>
-        /// Creates a <see cref="BoxBorder"/> with a <paramref name="style"/> applied to a <paramref name="part"/>.
+        /// Creates a <see cref="BoxBorder"/> with a <paramref name="style"/> applied to a <paramref name="parts"/>.
         /// </summary>
-        /// <param name="part">The part of border.</param>
+        /// <param name="parts">Parts of border. This is a flags enum.</param>
         /// <param name="style">The border style.</param>
         [Pure]
-        public static BoxBorder Border(BorderPart part, BorderStyle style) =>
-            BoxBorder.Empty.Restrict(part).Style(style);
+        public static BoxBorder Border(BorderParts parts, BorderStyle style) =>
+            BoxBorder.Empty.Restrict(parts).Style(style);
     }
 }
