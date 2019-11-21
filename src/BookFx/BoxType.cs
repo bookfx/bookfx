@@ -6,7 +6,7 @@
     /// Box type.
     /// </summary>
     [PublicAPI]
-    public enum BoxType : byte
+    public enum BoxType
     {
         /// <summary>
         /// A box with a value, with a formula or an empty box.

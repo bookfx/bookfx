@@ -6,7 +6,7 @@
     /// A part of a box to which the border applied. This is a flags enum.
     /// </summary>
     [Flags]
-    public enum BorderParts : byte
+    public enum BorderParts
     {
         /// <summary>
         /// Inside top part.
