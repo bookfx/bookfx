@@ -12,7 +12,7 @@
     /// Box is the building block of a sheet.
     /// </summary>
     [PublicAPI]
-    public abstract class Box
+    public class Box
     {
         private protected Box(BoxCore core) => Get = core;
 
