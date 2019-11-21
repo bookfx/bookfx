@@ -1,6 +1,4 @@
-﻿#pragma warning disable 1591 // CS1591: Missing XML comment for publicly visible type or member
-
-namespace BookFx
+﻿namespace BookFx
 {
     using JetBrains.Annotations;
 
@@ -10,10 +8,29 @@ namespace BookFx
     [PublicAPI]
     public enum VAlign
     {
+        /// <summary>
+        /// To the top alignment.
+        /// </summary>
         Top,
+
+        /// <summary>
+        /// At the middle vertical alignment.
+        /// </summary>
         Middle,
+
+        /// <summary>
+        /// To the bottom alignment.
+        /// </summary>
         Bottom,
+
+        /// <summary>
+        /// Distributed vertical alignment.
+        /// </summary>
         Distributed,
+
+        /// <summary>
+        /// Justify vertical alignment.
+        /// </summary>
         Justify,
     }
 }

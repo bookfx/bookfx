@@ -8,7 +8,7 @@
     /// Track size is a column or row size.
     /// </summary>
     [PublicAPI]
-    public struct TrackSize
+    public struct TrackSize : IEquatable<TrackSize>
     {
         /// <summary>
         /// Track size is absense.
@@ -54,6 +54,16 @@
         public static implicit operator TrackSize(float value) => Some(value);
 
         /// <summary>
+        /// Equality operator.
+        /// </summary>
+        public static bool operator ==(TrackSize left, TrackSize right) => left.Equals(right);
+
+        /// <summary>
+        /// Inequality operator.
+        /// </summary>
+        public static bool operator !=(TrackSize left, TrackSize right) => !(left == right);
+
+        /// <summary>
         /// Creates a <see cref="TrackSize"/> with value.
         /// </summary>
         /// <param name="value">A track size.</param>
@@ -95,5 +105,16 @@
                 yield return _value;
             }
         }
+
+        /// <inheritdoc />
+        public bool Equals(TrackSize other) =>
+            _mode == other._mode &&
+            (_mode != Mode.Some || _value.Equals(other._value));
+
+        /// <inheritdoc />
+        public override bool Equals(object obj) => obj is TrackSize other && Equals(other);
+
+        /// <inheritdoc />
+        public override int GetHashCode() => ((int)_mode * 397) ^ _value.GetHashCode();
     }
 }

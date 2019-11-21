@@ -1,8 +1,9 @@
 ﻿namespace BookFx
 {
+    using System;
     using JetBrains.Annotations;
 
-    internal readonly struct Position
+    internal readonly struct Position : IEquatable<Position>
     {
         public static readonly Position Initial = new Position(1, 1);
 
@@ -15,6 +16,10 @@
         public int Row { get; }
 
         public int Col { get; }
+
+        public static bool operator ==(Position left, Position right) => left.Equals(right);
+
+        public static bool operator !=(Position left, Position right) => !(left == right);
 
         [Pure]
         public static Position At(int row, int col) => new Position(row, col);
@@ -29,5 +34,11 @@
 
         [Pure]
         public override string ToString() => $"R{Row}C{Col}";
+
+        public bool Equals(Position other) => Row == other.Row && Col == other.Col;
+
+        public override bool Equals(object obj) => obj is Position other && Equals(other);
+
+        public override int GetHashCode() => (Row << 16) ^ Col;
     }
 }

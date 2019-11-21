@@ -48,11 +48,11 @@
 
         public static Tee<BoxCore> Position =>
             box =>
-                box.Placement.Position.Row < 1 ||
-                box.Placement.Position.Row > MaxRow ||
-                box.Placement.Position.Col < 1 ||
-                box.Placement.Position.Col > MaxColumn
-                    ? Errors.Placement.IsInvalid(box.Placement.Position.Row, box.Placement.Position.Col)
-                    : Valid(box);
+                box.Placement.Position.Row.IsBetween(1, MaxRow) &&
+                box.Placement.Position.Col.IsBetween(1, MaxColumn)
+                    ? Valid(box)
+                    : Errors.Placement.IsInvalid(box.Placement.Position.Row, box.Placement.Position.Col);
+
+        private static bool IsBetween(this int @this, int from, int to) => @this >= from && @this <= to;
     }
 }

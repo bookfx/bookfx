@@ -30,12 +30,6 @@
 
         public override bool Equals(object obj) => obj is Dimension other && Equals(other);
 
-        public override int GetHashCode()
-        {
-            unchecked
-            {
-                return (Height * 397) ^ Width;
-            }
-        }
+        public override int GetHashCode() => (Height << 16) ^ Width;
     }
 }

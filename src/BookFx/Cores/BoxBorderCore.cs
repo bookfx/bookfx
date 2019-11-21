@@ -17,7 +17,7 @@
             color: None);
 
         private BoxBorderCore(
-            Option<BorderPart> part,
+            Option<BorderParts> part,
             Option<BorderStyle> style,
             Option<Color> color)
         {
@@ -29,7 +29,7 @@
         /// <summary>
         /// Gets the part part of the box to which the border applied.
         /// </summary>
-        public Option<BorderPart> Part { get; }
+        public Option<BorderParts> Part { get; }
 
         /// <summary>
         /// Gets the style of the border.
@@ -43,7 +43,7 @@
 
         [Pure]
         internal BoxBorderCore With(
-            Option<BorderPart>? part = null,
+            Option<BorderParts>? part = null,
             Option<BorderStyle>? style = null,
             Option<Color>? color = null) =>
             new BoxBorderCore(

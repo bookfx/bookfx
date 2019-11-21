@@ -18,7 +18,7 @@
         [Fact]
         public void Render_All_All() =>
             CheckOn2X2(
-                border: Make.Border(BorderPart.All).Get,
+                border: Make.Border(BorderParts.All).Get,
                 assert: border => border.BorderShouldBe(
                     top: ExcelBorderStyle.Thin,
                     right: ExcelBorderStyle.Thin,
@@ -28,7 +28,7 @@
         [Fact]
         public void Render_Outside_OutsideOnly() =>
             CheckOn2X2(
-                border: Make.Border(BorderPart.Outside).Get,
+                border: Make.Border(BorderParts.Outside).Get,
                 assertR1C1: border => border.BorderShouldBe(
                     top: ExcelBorderStyle.Thin,
                     right: ExcelBorderStyle.None,
@@ -53,7 +53,7 @@
         [Fact]
         public void Render_Inside_InsideOnly() =>
             CheckOn2X2(
-                border: Make.Border(BorderPart.Inside).Get,
+                border: Make.Border(BorderParts.Inside).Get,
                 assertR1C1: border => border.BorderShouldBe(
                     top: ExcelBorderStyle.None,
                     right: ExcelBorderStyle.Thin,
@@ -78,7 +78,7 @@
         [Fact]
         public void Render_Horizontal_HorizontalOnly() =>
             CheckOn2X2(
-                border: Make.Border(BorderPart.Horizontal).Get,
+                border: Make.Border(BorderParts.Horizontal).Get,
                 assert: border => border.BorderShouldBe(
                     top: ExcelBorderStyle.Thin,
                     right: ExcelBorderStyle.None,
@@ -88,7 +88,7 @@
         [Fact]
         public void Render_Vertical_VerticalOnly() =>
             CheckOn2X2(
-                border: Make.Border(BorderPart.Vertical).Get,
+                border: Make.Border(BorderParts.Vertical).Get,
                 assert: border => border.BorderShouldBe(
                     top: ExcelBorderStyle.None,
                     right: ExcelBorderStyle.Thin,

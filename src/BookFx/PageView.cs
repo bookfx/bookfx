@@ -1,6 +1,4 @@
-﻿#pragma warning disable 1591 // CS1591: Missing XML comment for publicly visible type or member
-
-namespace BookFx
+﻿namespace BookFx
 {
     using JetBrains.Annotations;
 
@@ -10,8 +8,19 @@ namespace BookFx
     [PublicAPI]
     public enum PageView
     {
+        /// <summary>
+        /// Normal page view mode.
+        /// </summary>
         Normal,
+
+        /// <summary>
+        /// Layout page view mode.
+        /// </summary>
         Layout,
+
+        /// <summary>
+        /// Break page view mode.
+        /// </summary>
         Break,
     }
 }

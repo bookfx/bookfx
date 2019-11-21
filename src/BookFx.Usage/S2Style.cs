@@ -9,8 +9,8 @@
             Col()
                 .Style(Style()
                     .Borders(
-                        Border(BorderPart.Outside, BorderStyle.Medium),
-                        Border(BorderPart.Inside, BorderStyle.Thin))
+                        Border(BorderParts.Outside, BorderStyle.Medium),
+                        Border(BorderParts.Inside, BorderStyle.Thin))
                 )
                 .Add(Row()
                     .Add(Value("Default"))

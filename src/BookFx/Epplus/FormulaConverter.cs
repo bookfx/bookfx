@@ -1,5 +1,6 @@
 ﻿namespace BookFx.Epplus
 {
+    using System.Globalization;
     using System.Linq;
     using System.Text.RegularExpressions;
     using BookFx.Functional;
@@ -24,7 +25,7 @@
         |(?:C(?<ColAbs>\d+))
         |(?:C(?<ColEmpty>))
     )?
-	(?![\w[_])
+    (?![\w[_])
 )
 |(?<Identifier>[a-z_][\w]*)
 |(?<Other>[\s\S])
@@ -80,10 +81,10 @@
 
         private static Option<string> GetRowRel(int baseRow, Match match) =>
             GetNumber(match.Groups["RowRel"])
-                .Map(rel => (baseRow + rel).ToString());
+                .Map(rel => (baseRow + rel).ToString(CultureInfo.InvariantCulture));
 
         private static Option<string> GetRowEmpty(int baseRow, Match match) =>
-            Some(baseRow.ToString())
+            Some(baseRow.ToString(CultureInfo.InvariantCulture))
                 .Where(_ => match.Groups["RowEmpty"].Success);
 
         private static Option<string> GetCol(int baseCol, Match match) =>

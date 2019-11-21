@@ -32,9 +32,14 @@
         /// <summary>
         /// Define a sheet name.
         /// </summary>
-        /// <param name="name">A sheet name.</param>
+        /// <param name="sheetName">
+        /// A sheet name.
+        /// Take care that the name is not empty,
+        /// the name length is not longer than 31 and
+        /// the name is free of following characters: ':', '\', '/', '?', '*', '[' or ']'.
+        /// </param>
         [Pure]
-        public Sheet Name(string name) => Get.With(name: Some(name));
+        public Sheet Name(string sheetName) => Get.With(name: Some(sheetName));
 
         /// <summary>
         /// Define a tab color.
@@ -91,9 +96,9 @@
         /// <summary>
         /// Define a scale.
         /// </summary>
-        /// <param name="scale">A scale in percents.</param>
+        /// <param name="percents">A scale in percents.</param>
         [Pure]
-        public Sheet Scale(int scale) => Get.With(scale: scale);
+        public Sheet Scale(int percents) => Get.With(scale: percents);
 
         /// <summary>
         /// Make a <see cref="Book"/> with one sheet.
