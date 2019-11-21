@@ -86,10 +86,10 @@
             {
                 public NameIsInvalidError(string name)
                     : base(
-                        $"Sheet name «{name}» is invalid. " +
-                        "Take care that name is not empty, " +
-                        "name length is not longer than 31 and " +
-                        @"name is free of following characters: ':', '\', '/', '?', '*', '[' or ']'.")
+                        $"The sheet name «{name}» is invalid. " +
+                        "Take care that the name is not empty, " +
+                        "the name length is not longer than 31 and " +
+                        @"the name is free of following characters: ':', '\', '/', '?', '*', '[' or ']'.")
                 {
                 }
             }
