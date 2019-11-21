@@ -16,6 +16,20 @@
         {
         }
 
+        private InvalidBookException()
+        {
+        }
+
+        private InvalidBookException(string message)
+            : base(message)
+        {
+        }
+
+        private InvalidBookException(string message, Exception innerException)
+            : base(message, innerException)
+        {
+        }
+
         private InvalidBookException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
