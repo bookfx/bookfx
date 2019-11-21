@@ -10,12 +10,10 @@
         [Property]
         public void Equals_Same_True(NonNull<string> message, NonNull<string>[] inners)
         {
-            var error = CreateError(message, inners);
+            var error1 = CreateError(message, inners);
+            var error2 = error1;
 
-            // ReSharper disable once EqualExpressionComparison
-#pragma warning disable S1764 // Identical expressions should not be used on both sides of a binary operator
-            var result = error.Equals(error);
-#pragma warning restore S1764 // Identical expressions should not be used on both sides of a binary operator
+            var result = error1.Equals(error2);
 
             result.Should().BeTrue();
         }
