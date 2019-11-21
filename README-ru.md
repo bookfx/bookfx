@@ -409,9 +409,9 @@ Copyright (c) 2019 Zhenya Gusev
 [tests-link]: https://ci.appveyor.com/project/bookfx/bookfx
 [en]: README.md
 [dom]: https://en.wikipedia.org/wiki/Document_Object_Model
-[Immutable object]: https://en.wikipedia.org/wiki/Immutable_object
-[Side effect]: https://en.wikipedia.org/wiki/Side_effect_(computer_science)
-[Pure function]: https://en.wikipedia.org/wiki/Functional_programming#Pure_functions
+[immutable object]: https://en.wikipedia.org/wiki/Immutable_object
+[side effect]: https://en.wikipedia.org/wiki/Side_effect_(computer_science)
+[pure function]: https://en.wikipedia.org/wiki/Functional_programming#Pure_functions
 [.net standard 2.0]: https://github.com/dotnet/standard/blob/master/docs/versions/netstandard2.0.md
 [epplus]: https://github.com/JanKallman/EPPlus
 [implicit convertions]: https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/conversions#implicit-conversions
