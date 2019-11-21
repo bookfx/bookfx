@@ -41,6 +41,8 @@
             }
         }
 
-        private bool Equals(Error other) => string.Equals(Message, other.Message) && Inners.SequenceEqual(other.Inners);
+        private bool Equals(Error other) =>
+            string.Equals(Message, other.Message, StringComparison.Ordinal) &&
+            Inners.SequenceEqual(other.Inners);
     }
 }
