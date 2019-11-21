@@ -115,12 +115,6 @@
         public override bool Equals(object obj) => obj is TrackSize other && Equals(other);
 
         /// <inheritdoc />
-        public override int GetHashCode()
-        {
-            unchecked
-            {
-                return ((int)_mode * 397) ^ _value.GetHashCode();
-            }
-        }
+        public override int GetHashCode() => ((int)_mode * 397) ^ _value.GetHashCode();
     }
 }

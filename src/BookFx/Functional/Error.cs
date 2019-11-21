@@ -33,13 +33,7 @@
 
         public override bool Equals(object obj) => obj is Error other && Equals(other);
 
-        public override int GetHashCode()
-        {
-            unchecked
-            {
-                return (Message.GetHashCode() * 397) ^ Inners.GetHashCode();
-            }
-        }
+        public override int GetHashCode() => (Message.GetHashCode() * 397) ^ Inners.GetHashCode();
 
         private bool Equals(Error other) =>
             string.Equals(Message, other.Message, StringComparison.Ordinal) &&

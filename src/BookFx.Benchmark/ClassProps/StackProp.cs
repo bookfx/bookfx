@@ -22,12 +22,6 @@
 
         public override bool Equals(object obj) => obj is StackProp other && Equals(other);
 
-        public override int GetHashCode()
-        {
-            unchecked
-            {
-                return ((int)Key * 397) ^ Value.GetHashCode();
-            }
-        }
+        public override int GetHashCode() => ((int)Key * 397) ^ Value.GetHashCode();
     }
 }

@@ -40,12 +40,6 @@
 
         public override bool Equals(object obj) => obj is Placement other && Equals(other);
 
-        public override int GetHashCode()
-        {
-            unchecked
-            {
-                return (Position.GetHashCode() * 397) ^ Dimension.GetHashCode();
-            }
-        }
+        public override int GetHashCode() => (Position.GetHashCode() * 397) ^ Dimension.GetHashCode();
     }
 }
