@@ -1,6 +1,8 @@
 ﻿namespace BookFx
 {
-    internal readonly struct Placement
+    using System;
+
+    internal readonly struct Placement : IEquatable<Placement>
     {
         public static readonly Placement Empty = default;
 
@@ -20,6 +22,10 @@
 
         public bool IsAbsent => Dimension.IsEmpty;
 
+        public static bool operator ==(Placement left, Placement right) => left.Equals(right);
+
+        public static bool operator !=(Placement left, Placement right) => !(left == right);
+
         public static Placement At(Position position, Dimension dimension) => new Placement(position, dimension);
 
         public static Placement At(int row, int col, int height, int width) =>
@@ -29,5 +35,17 @@
             Dimension.IsCell
                 ? $"{Position}"
                 : $"{Position}:R{ToRow}C{ToCol}";
+
+        public bool Equals(Placement other) => Position.Equals(other.Position) && Dimension.Equals(other.Dimension);
+
+        public override bool Equals(object obj) => obj is Placement other && Equals(other);
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                return (Position.GetHashCode() * 397) ^ Dimension.GetHashCode();
+            }
+        }
     }
 }

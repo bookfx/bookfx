@@ -47,12 +47,12 @@
         public static implicit operator Option<T>(T value) => Some(value);
 
         /// <summary>
-        /// Equal to operator.
+        /// Equality operator.
         /// </summary>
         public static bool operator ==(Option<T> @this, Option<T> other) => @this.Equals(other);
 
         /// <summary>
-        /// Not equal to operator.
+        /// Inequality operator.
         /// </summary>
         public static bool operator !=(Option<T> @this, Option<T> other) => !(@this == other);
 
