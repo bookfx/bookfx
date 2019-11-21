@@ -3,6 +3,7 @@
 [![nuget-img][]][nuget-link]
 [![build-img][]][build-link]
 [![tests-img][]][tests-link]
+[![quality-img][]][quality-link]
 
 **en** | [ru][]
 
@@ -407,6 +408,8 @@ along with this library. If not, see <https://www.gnu.org/licenses/>.
 [build-link]: https://ci.appveyor.com/project/bookfx/bookfx
 [tests-img]: https://img.shields.io/appveyor/tests/bookfx/bookfx/master
 [tests-link]: https://ci.appveyor.com/project/bookfx/bookfx
+[quality-img]: https://img.shields.io/codacy/grade/bccabc29ebf943ba89ac4a1d03b5e70a/master
+[quality-link]: https://app.codacy.com/gh/bookfx/bookfx/dashboard
 [ru]: README-ru.md
 [dom]: https://en.wikipedia.org/wiki/Document_Object_Model
 [immutable object]: https://en.wikipedia.org/wiki/Immutable_object
