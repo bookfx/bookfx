@@ -25,7 +25,7 @@
         |(?:C(?<ColAbs>\d+))
         |(?:C(?<ColEmpty>))
     )?
-	(?![\w[_])
+    (?![\w[_])
 )
 |(?<Identifier>[a-z_][\w]*)
 |(?<Other>[\s\S])
