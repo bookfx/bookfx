@@ -17,34 +17,34 @@
         private const string OldFormula = "\"old formula\"";
 
         [Fact]
-        public void ValueRender_NoValue_ValueNotSet() =>
+        public void ContentRender_NoValue_ValueNotSet() =>
             CheckValue(
                 Make.Value(),
                 range => range.Value.Should().Be(OldValue));
 
         [Fact]
-        public void ValueRender_NoValue_FormulaNotSet() =>
+        public void ContentRender_NoValue_FormulaNotSet() =>
             CheckFormula(
                 Make.Value(),
                 range => range.Formula.Should().Be(OldFormula));
 
         [Property]
-        public void ValueRender_EscapedValue_Set(NonNull<string> value) =>
+        public void ContentRender_EscapedValue_Set(NonNull<string> content) =>
             CheckValue(
-                Make.Value($"'{value.Get}"),
-                range => range.Value.Should().Be(value.Get));
+                Make.Value($"'{content.Get}"),
+                range => range.Value.Should().Be(content.Get));
 
         [Property(Arbitrary = new[] { typeof(GeneralStringValueArb) })]
-        public void ValueRender_Object_Set(string value) =>
+        public void ContentRender_Object_Set(string content) =>
             CheckValue(
-                Make.Value(value),
-                range => range.Value.Should().Be(value));
+                Make.Value(content),
+                range => range.Value.Should().Be(content));
 
         [Property]
-        public void ValueRender_Int_Set(int value) =>
+        public void ContentRender_Int_Set(int content) =>
             CheckValue(
-                Make.Value(value),
-                range => range.Value.Should().Be(value));
+                Make.Value(content),
+                range => range.Value.Should().Be(content));
 
         [Theory]
         [InlineData("=1+2", "1+2")]
@@ -58,18 +58,18 @@
         [InlineData("=SUM(Data1 Data2 Data3)", "SUM(Data1 Data2 Data3)")]
         [InlineData("=SUM(R Data1 Data2 Data3)", "SUM(4:4 Data1 Data2 Data3)")]
         [InlineData("=SUM(R1 Data1 Data2 Data3)", "SUM($1:$1 Data1 Data2 Data3)")]
-        public void ValueRender_ValidFormulas_SetExpected(string formula, string expected) =>
+        public void ContentRender_ValidFormulas_SetExpected(string formula, string expected) =>
             CheckFormula(
                 Make.Value(formula),
                 range => range.Formula.Should().Be(expected));
 
         [Fact]
-        public void ValueRender_SpanAndNoMerge_FirstCellOnly() =>
+        public void ContentRender_SpanAndNoMerge_FirstCellOnly() =>
             Packer.OnSheet(excelSheet =>
             {
                 var excelRange = excelSheet.Cells[1, 1, 2, 2];
 
-                Make.Value("value").Merge(false).Get.ValueRender()(excelRange);
+                Make.Value("content").Merge(false).Get.ContentRender()(excelRange);
 
                 excelSheet.Cells[1, 1].Value.Should().NotBeNull();
                 excelSheet.Cells[1, 2].Value.Should().BeNull();
@@ -83,7 +83,7 @@
                 var excelRange = excelSheet.Cells[1, 1];
                 excelRange.Value = OldValue;
 
-                box.Get.ValueRender()(excelRange);
+                box.Get.ContentRender()(excelRange);
 
                 assertion(excelRange);
             });
@@ -94,7 +94,7 @@
                 var excelRange = excelSheet.Cells[Row: 4, Col: 5];
                 excelRange.Formula = OldFormula;
 
-                box.Get.ValueRender()(excelRange);
+                box.Get.ContentRender()(excelRange);
 
                 assertion(excelRange);
             });
