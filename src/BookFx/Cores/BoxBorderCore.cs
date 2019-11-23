@@ -12,24 +12,24 @@
     public sealed class BoxBorderCore
     {
         internal static readonly BoxBorderCore Empty = new BoxBorderCore(
-            part: None,
+            parts: None,
             style: None,
             color: None);
 
         private BoxBorderCore(
-            Option<BorderParts> part,
+            Option<BorderParts> parts,
             Option<BorderStyle> style,
             Option<Color> color)
         {
-            Part = part;
+            Parts = parts;
             Style = style;
             Color = color;
         }
 
         /// <summary>
-        /// Gets the part part of the box to which the border applied.
+        /// Gets the parts of the box to whom the border applied.
         /// </summary>
-        public Option<BorderParts> Part { get; }
+        public Option<BorderParts> Parts { get; }
 
         /// <summary>
         /// Gets the style of the border.
@@ -43,11 +43,11 @@
 
         [Pure]
         internal BoxBorderCore With(
-            Option<BorderParts>? part = null,
+            Option<BorderParts>? parts = null,
             Option<BorderStyle>? style = null,
             Option<Color>? color = null) =>
             new BoxBorderCore(
-                part ?? Part,
+                parts ?? Parts,
                 style ?? Style,
                 color ?? Color);
     }

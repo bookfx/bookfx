@@ -101,7 +101,7 @@
                         : BorderParts.InsideLeft);
         }
 
-        private static BorderParts GetParts(this BoxBorderCore border) => border.Part.GetOrElse(BorderParts.All);
+        private static BorderParts GetParts(this BoxBorderCore border) => border.Parts.GetOrElse(BorderParts.All);
 
         private static ExcelBorderStyle ToExcelBorderStyle(this Option<BorderStyle> style) =>
             (ExcelBorderStyle)style.GetOrElse(BorderStyle.Thin);
