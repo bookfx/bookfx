@@ -17,10 +17,10 @@
                 switch (parts)
                 {
                     case BorderParts.All:
-                        SetBorder(excelRange.Style.Border.Top);
-                        SetBorder(excelRange.Style.Border.Right);
-                        SetBorder(excelRange.Style.Border.Bottom);
-                        SetBorder(excelRange.Style.Border.Left);
+                        border.ApplyTo(excelRange.Style.Border.Top);
+                        border.ApplyTo(excelRange.Style.Border.Right);
+                        border.ApplyTo(excelRange.Style.Border.Bottom);
+                        border.ApplyTo(excelRange.Style.Border.Left);
 
                         break;
 
@@ -43,32 +43,26 @@
 
                 return Unit();
 
-                void SetBorder(ExcelBorderItem excelBorderItem)
-                {
-                    excelBorderItem.Style = border.Style.ToExcelBorderStyle();
-                    border.Color.ForEach(color => excelBorderItem.Color.SetColor(color));
-                }
-
                 void SetCellBorder(ExcelRangeBase cell)
                 {
                     if (IsApplicableForTop())
                     {
-                        SetBorder(cell.Style.Border.Top);
+                        border.ApplyTo(cell.Style.Border.Top);
                     }
 
                     if (IsApplicableForRight())
                     {
-                        SetBorder(cell.Style.Border.Right);
+                        border.ApplyTo(cell.Style.Border.Right);
                     }
 
                     if (IsApplicableForBottom())
                     {
-                        SetBorder(cell.Style.Border.Bottom);
+                        border.ApplyTo(cell.Style.Border.Bottom);
                     }
 
                     if (IsApplicableForLeft())
                     {
-                        SetBorder(cell.Style.Border.Left);
+                        border.ApplyTo(cell.Style.Border.Left);
                     }
 
                     bool IsApplicableForTop() =>
@@ -96,6 +90,12 @@
                                 : BorderParts.InsideLeft);
                 }
             };
+
+        private static void ApplyTo(this BoxBorderCore border, ExcelBorderItem excelBorderItem)
+        {
+            excelBorderItem.Style = border.Style.ToExcelBorderStyle();
+            border.Color.ForEach(color => excelBorderItem.Color.SetColor(color));
+        }
 
         private static ExcelBorderStyle ToExcelBorderStyle(this Option<BorderStyle> style) =>
             (ExcelBorderStyle)style.GetOrElse(BorderStyle.Thin);
