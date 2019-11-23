@@ -37,91 +37,91 @@
         /// Implicit convert from <see cref="string"/> to <see cref="Box"/>.
         /// </summary>
         [Pure]
-        public static implicit operator Box(string value) => Value(value);
+        public static implicit operator Box(string content) => Value(content);
 
         /// <summary>
         /// Implicit convert from <see cref="bool"/> to <see cref="Box"/>.
         /// </summary>
         [Pure]
-        public static implicit operator Box(bool value) => Value(value);
+        public static implicit operator Box(bool content) => Value(content);
 
         /// <summary>
         /// Implicit convert from <see cref="byte"/> to <see cref="Box"/>.
         /// </summary>
         [Pure]
-        public static implicit operator Box(byte value) => Value(value);
+        public static implicit operator Box(byte content) => Value(content);
 
         /// <summary>
         /// Implicit convert from <see cref="sbyte"/> to <see cref="Box"/>.
         /// </summary>
         [Pure]
-        public static implicit operator Box(sbyte value) => Value(value);
+        public static implicit operator Box(sbyte content) => Value(content);
 
         /// <summary>
         /// Implicit convert from <see cref="short"/> to <see cref="Box"/>.
         /// </summary>
         [Pure]
-        public static implicit operator Box(short value) => Value(value);
+        public static implicit operator Box(short content) => Value(content);
 
         /// <summary>
         /// Implicit convert from <see cref="ushort"/> to <see cref="Box"/>.
         /// </summary>
         [Pure]
-        public static implicit operator Box(ushort value) => Value(value);
+        public static implicit operator Box(ushort content) => Value(content);
 
         /// <summary>
         /// Implicit convert from <see cref="int"/> to <see cref="Box"/>.
         /// </summary>
         [Pure]
-        public static implicit operator Box(int value) => Value(value);
+        public static implicit operator Box(int content) => Value(content);
 
         /// <summary>
         /// Implicit convert from <see cref="uint"/> to <see cref="Box"/>.
         /// </summary>
         [Pure]
-        public static implicit operator Box(uint value) => Value(value);
+        public static implicit operator Box(uint content) => Value(content);
 
         /// <summary>
         /// Implicit convert from <see cref="long"/> to <see cref="Box"/>.
         /// </summary>
         [Pure]
-        public static implicit operator Box(long value) => Value(value);
+        public static implicit operator Box(long content) => Value(content);
 
         /// <summary>
         /// Implicit convert from <see cref="ulong"/> to <see cref="Box"/>.
         /// </summary>
         [Pure]
-        public static implicit operator Box(ulong value) => Value(value);
+        public static implicit operator Box(ulong content) => Value(content);
 
         /// <summary>
         /// Implicit convert from <see cref="float"/> to <see cref="Box"/>.
         /// </summary>
         [Pure]
-        public static implicit operator Box(float value) => Value(value);
+        public static implicit operator Box(float content) => Value(content);
 
         /// <summary>
         /// Implicit convert from <see cref="double"/> to <see cref="Box"/>.
         /// </summary>
         [Pure]
-        public static implicit operator Box(double value) => Value(value);
+        public static implicit operator Box(double content) => Value(content);
 
         /// <summary>
         /// Implicit convert from <see cref="decimal"/> to <see cref="Box"/>.
         /// </summary>
         [Pure]
-        public static implicit operator Box(decimal value) => Value(value);
+        public static implicit operator Box(decimal content) => Value(content);
 
         /// <summary>
         /// Implicit convert from <see cref="DateTime"/> to <see cref="Box"/>.
         /// </summary>
         [Pure]
-        public static implicit operator Box(DateTime value) => Value(value);
+        public static implicit operator Box(DateTime content) => Value(content);
 
         /// <summary>
         /// Implicit convert from <see cref="Guid"/> to <see cref="Box"/>.
         /// </summary>
         [Pure]
-        public static implicit operator Box(Guid value) => Value(value);
+        public static implicit operator Box(Guid content) => Value(content);
 
         /// <summary>
         /// Define a name of the range.
