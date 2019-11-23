@@ -52,22 +52,10 @@
         public static implicit operator Box(byte content) => Value(content);
 
         /// <summary>
-        /// Implicit convert from <see cref="sbyte"/> to <see cref="Box"/>.
-        /// </summary>
-        [Pure]
-        public static implicit operator Box(sbyte content) => Value(content);
-
-        /// <summary>
         /// Implicit convert from <see cref="short"/> to <see cref="Box"/>.
         /// </summary>
         [Pure]
         public static implicit operator Box(short content) => Value(content);
-
-        /// <summary>
-        /// Implicit convert from <see cref="ushort"/> to <see cref="Box"/>.
-        /// </summary>
-        [Pure]
-        public static implicit operator Box(ushort content) => Value(content);
 
         /// <summary>
         /// Implicit convert from <see cref="int"/> to <see cref="Box"/>.
@@ -76,22 +64,10 @@
         public static implicit operator Box(int content) => Value(content);
 
         /// <summary>
-        /// Implicit convert from <see cref="uint"/> to <see cref="Box"/>.
-        /// </summary>
-        [Pure]
-        public static implicit operator Box(uint content) => Value(content);
-
-        /// <summary>
         /// Implicit convert from <see cref="long"/> to <see cref="Box"/>.
         /// </summary>
         [Pure]
         public static implicit operator Box(long content) => Value(content);
-
-        /// <summary>
-        /// Implicit convert from <see cref="ulong"/> to <see cref="Box"/>.
-        /// </summary>
-        [Pure]
-        public static implicit operator Box(ulong content) => Value(content);
 
         /// <summary>
         /// Implicit convert from <see cref="float"/> to <see cref="Box"/>.

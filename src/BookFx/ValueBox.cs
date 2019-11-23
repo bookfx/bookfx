@@ -49,22 +49,10 @@
         public static implicit operator ValueBox(byte content) => Value(content);
 
         /// <summary>
-        /// Implicit convert from <see cref="sbyte"/> to <see cref="ValueBox"/>.
-        /// </summary>
-        [Pure]
-        public static implicit operator ValueBox(sbyte content) => Value(content);
-
-        /// <summary>
         /// Implicit convert from <see cref="short"/> to <see cref="ValueBox"/>.
         /// </summary>
         [Pure]
         public static implicit operator ValueBox(short content) => Value(content);
-
-        /// <summary>
-        /// Implicit convert from <see cref="ushort"/> to <see cref="ValueBox"/>.
-        /// </summary>
-        [Pure]
-        public static implicit operator ValueBox(ushort content) => Value(content);
 
         /// <summary>
         /// Implicit convert from <see cref="int"/> to <see cref="ValueBox"/>.
@@ -73,22 +61,10 @@
         public static implicit operator ValueBox(int content) => Value(content);
 
         /// <summary>
-        /// Implicit convert from <see cref="uint"/> to <see cref="ValueBox"/>.
-        /// </summary>
-        [Pure]
-        public static implicit operator ValueBox(uint content) => Value(content);
-
-        /// <summary>
         /// Implicit convert from <see cref="long"/> to <see cref="ValueBox"/>.
         /// </summary>
         [Pure]
         public static implicit operator ValueBox(long content) => Value(content);
-
-        /// <summary>
-        /// Implicit convert from <see cref="ulong"/> to <see cref="ValueBox"/>.
-        /// </summary>
-        [Pure]
-        public static implicit operator ValueBox(ulong content) => Value(content);
 
         /// <summary>
         /// Implicit convert from <see cref="float"/> to <see cref="ValueBox"/>.
