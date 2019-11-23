@@ -7,7 +7,7 @@
     using static BookFx.Functional.F;
     using Unit = System.ValueTuple;
 
-    internal static class BoxValueRender
+    internal static class BoxContentRender
     {
         public static Act<ExcelRangeBase> ValueRender(this BoxCore box) =>
             excelRange =>

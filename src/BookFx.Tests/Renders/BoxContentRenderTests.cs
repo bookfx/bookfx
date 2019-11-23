@@ -11,7 +11,7 @@
     using Xunit;
 
     [Properties(MaxTest = 10)]
-    public class BoxValueRenderTests
+    public class BoxContentRenderTests
     {
         private const string OldValue = "old value";
         private const string OldFormula = "\"old formula\"";
