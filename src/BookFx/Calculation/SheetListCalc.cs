@@ -17,21 +17,18 @@
         {
             var sheets = book.Sheets;
 
-            while (true)
+            var indexOfUnnamed = sheets.FindIndex(x => x.Name.IsNone);
+
+            if (indexOfUnnamed == -1)
             {
-                var indexOfUnnamed = sheets.FindIndex(x => x.Name.IsNone);
-
-                if (indexOfUnnamed == -1)
-                {
-                    break;
-                }
-
-                var usedNames = sheets.Bind(x => x.Name).ToImmutableHashSet();
-                var namedSheet = sheets[indexOfUnnamed].With(name: GetNewName(usedNames));
-                sheets = sheets.SetItem(indexOfUnnamed, namedSheet);
+                return book;
             }
 
-            return book.With(sheets);
+            var usedNames = sheets.Bind(x => x.Name).ToImmutableHashSet();
+            var namedSheet = sheets[indexOfUnnamed].With(name: GetNewName(usedNames));
+            sheets = sheets.SetItem(indexOfUnnamed, namedSheet);
+
+            return book.With(sheets).NameSheetsIfUnnamed();
         }
 
         [Pure]
