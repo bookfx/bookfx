@@ -9,7 +9,7 @@
     using static BookFx.Make;
 
     /// <summary>
-    /// A box with a value, with a formula or an empty box.
+    /// A box with a content (a value or a formula) or an empty box.
     /// </summary>
     [PublicAPI]
     public sealed class ValueBox : Box
@@ -34,91 +34,91 @@
         /// Implicit convert from <see cref="string"/> to <see cref="ValueBox"/>.
         /// </summary>
         [Pure]
-        public static implicit operator ValueBox(string value) => Value(value);
+        public static implicit operator ValueBox(string content) => Value(content);
 
         /// <summary>
         /// Implicit convert from <see cref="bool"/> to <see cref="ValueBox"/>.
         /// </summary>
         [Pure]
-        public static implicit operator ValueBox(bool value) => Value(value);
+        public static implicit operator ValueBox(bool content) => Value(content);
 
         /// <summary>
         /// Implicit convert from <see cref="byte"/> to <see cref="ValueBox"/>.
         /// </summary>
         [Pure]
-        public static implicit operator ValueBox(byte value) => Value(value);
+        public static implicit operator ValueBox(byte content) => Value(content);
 
         /// <summary>
         /// Implicit convert from <see cref="sbyte"/> to <see cref="ValueBox"/>.
         /// </summary>
         [Pure]
-        public static implicit operator ValueBox(sbyte value) => Value(value);
+        public static implicit operator ValueBox(sbyte content) => Value(content);
 
         /// <summary>
         /// Implicit convert from <see cref="short"/> to <see cref="ValueBox"/>.
         /// </summary>
         [Pure]
-        public static implicit operator ValueBox(short value) => Value(value);
+        public static implicit operator ValueBox(short content) => Value(content);
 
         /// <summary>
         /// Implicit convert from <see cref="ushort"/> to <see cref="ValueBox"/>.
         /// </summary>
         [Pure]
-        public static implicit operator ValueBox(ushort value) => Value(value);
+        public static implicit operator ValueBox(ushort content) => Value(content);
 
         /// <summary>
         /// Implicit convert from <see cref="int"/> to <see cref="ValueBox"/>.
         /// </summary>
         [Pure]
-        public static implicit operator ValueBox(int value) => Value(value);
+        public static implicit operator ValueBox(int content) => Value(content);
 
         /// <summary>
         /// Implicit convert from <see cref="uint"/> to <see cref="ValueBox"/>.
         /// </summary>
         [Pure]
-        public static implicit operator ValueBox(uint value) => Value(value);
+        public static implicit operator ValueBox(uint content) => Value(content);
 
         /// <summary>
         /// Implicit convert from <see cref="long"/> to <see cref="ValueBox"/>.
         /// </summary>
         [Pure]
-        public static implicit operator ValueBox(long value) => Value(value);
+        public static implicit operator ValueBox(long content) => Value(content);
 
         /// <summary>
         /// Implicit convert from <see cref="ulong"/> to <see cref="ValueBox"/>.
         /// </summary>
         [Pure]
-        public static implicit operator ValueBox(ulong value) => Value(value);
+        public static implicit operator ValueBox(ulong content) => Value(content);
 
         /// <summary>
         /// Implicit convert from <see cref="float"/> to <see cref="ValueBox"/>.
         /// </summary>
         [Pure]
-        public static implicit operator ValueBox(float value) => Value(value);
+        public static implicit operator ValueBox(float content) => Value(content);
 
         /// <summary>
         /// Implicit convert from <see cref="double"/> to <see cref="ValueBox"/>.
         /// </summary>
         [Pure]
-        public static implicit operator ValueBox(double value) => Value(value);
+        public static implicit operator ValueBox(double content) => Value(content);
 
         /// <summary>
         /// Implicit convert from <see cref="decimal"/> to <see cref="ValueBox"/>.
         /// </summary>
         [Pure]
-        public static implicit operator ValueBox(decimal value) => Value(value);
+        public static implicit operator ValueBox(decimal content) => Value(content);
 
         /// <summary>
         /// Implicit convert from <see cref="DateTime"/> to <see cref="ValueBox"/>.
         /// </summary>
         [Pure]
-        public static implicit operator ValueBox(DateTime value) => Value(value);
+        public static implicit operator ValueBox(DateTime content) => Value(content);
 
         /// <summary>
         /// Implicit convert from <see cref="Guid"/> to <see cref="ValueBox"/>.
         /// </summary>
         [Pure]
-        public static implicit operator ValueBox(Guid value) => Value(value);
+        public static implicit operator ValueBox(Guid content) => Value(content);
 
         /// <inheritdoc cref="Box.Name"/>
         [Pure]

@@ -7,34 +7,34 @@
     using static BookFx.Functional.F;
     using Unit = System.ValueTuple;
 
-    internal static class BoxValueRender
+    internal static class BoxContentRender
     {
-        public static Act<ExcelRangeBase> ValueRender(this BoxCore box) =>
+        public static Act<ExcelRangeBase> ContentRender(this BoxCore box) =>
             excelRange =>
             {
-                box.Value.ForEach(value =>
+                box.Content.ForEach(content =>
                 {
-                    var valueRange = excelRange.Offset(0, 0, 1, 1);
+                    var contentRange = excelRange.Offset(0, 0, 1, 1);
 
-                    switch (value)
+                    switch (content)
                     {
                         case Unit _:
-                            valueRange.Value = null;
+                            contentRange.Value = null;
                             break;
 
                         case string formula when formula.StartsWith("="):
-                            valueRange.Formula = FormulaConverter.R1C1ToA1(
-                                valueRange.Start.Row,
-                                valueRange.Start.Column,
+                            contentRange.Formula = FormulaConverter.R1C1ToA1(
+                                contentRange.Start.Row,
+                                contentRange.Start.Column,
                                 formula.Substring(1));
                             break;
 
                         case string escaped when escaped.StartsWith("'"):
-                            valueRange.Value = escaped.Substring(1);
+                            contentRange.Value = escaped.Substring(1);
                             break;
 
                         default:
-                            valueRange.Value = value;
+                            contentRange.Value = content;
                             break;
                     }
                 });

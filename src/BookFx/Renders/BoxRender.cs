@@ -14,7 +14,7 @@
                 box.StyleRender(),
                 box.DescendantsRender(),
                 box.NameRender(),
-                box.ValueRender(),
+                box.ContentRender(),
                 box.AutoFilterRender(),
                 box.PrintAreaRender());
     }

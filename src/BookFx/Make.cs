@@ -180,114 +180,114 @@
         /// <summary>
         /// Creates a <see cref="ValueBox"/> with <see cref="Unit"/>. The box content will be cleared.
         /// </summary>
-        /// <param name="content"><see cref="Unit"/>.</param>
+        /// <param name="unit"><see cref="Unit"/>.</param>
         [Pure]
-        public static ValueBox Value(Unit content) => BoxCore.Create(type: BoxType.Value, value: content);
+        public static ValueBox Value(Unit unit) => BoxCore.Create(type: BoxType.Value, content: unit);
 
         /// <summary>
         /// Creates a <see cref="ValueBox"/> with <see cref="string"/> or formula.
         /// </summary>
         /// <param name="content"> Value of <see cref="string"/> or formula. The formula must begin with '='. </param>
         [Pure]
-        public static ValueBox Value(string content) => BoxCore.Create(type: BoxType.Value, value: content);
+        public static ValueBox Value(string content) => BoxCore.Create(type: BoxType.Value, content: content);
 
         /// <summary>
         /// Creates a <see cref="ValueBox"/> with <see cref="bool"/>.
         /// </summary>
         /// <param name="content">Value of <see cref="bool"/>.</param>
         [Pure]
-        public static ValueBox Value(bool content) => BoxCore.Create(type: BoxType.Value, value: content);
+        public static ValueBox Value(bool content) => BoxCore.Create(type: BoxType.Value, content: content);
 
         /// <summary>
         /// Creates a <see cref="ValueBox"/> with <see cref="byte"/>.
         /// </summary>
         /// <param name="content">Value of <see cref="byte"/>.</param>
         [Pure]
-        public static ValueBox Value(byte content) => BoxCore.Create(type: BoxType.Value, value: content);
+        public static ValueBox Value(byte content) => BoxCore.Create(type: BoxType.Value, content: content);
 
         /// <summary>
         /// Creates a <see cref="ValueBox"/> with <see cref="sbyte"/>.
         /// </summary>
         /// <param name="content">Value of <see cref="sbyte"/>.</param>
         [Pure]
-        public static ValueBox Value(sbyte content) => BoxCore.Create(type: BoxType.Value, value: content);
+        public static ValueBox Value(sbyte content) => BoxCore.Create(type: BoxType.Value, content: content);
 
         /// <summary>
         /// Creates a <see cref="ValueBox"/> with <see cref="short"/>.
         /// </summary>
         /// <param name="content">Value of <see cref="short"/>.</param>
         [Pure]
-        public static ValueBox Value(short content) => BoxCore.Create(type: BoxType.Value, value: content);
+        public static ValueBox Value(short content) => BoxCore.Create(type: BoxType.Value, content: content);
 
         /// <summary>
         /// Creates a <see cref="ValueBox"/> with <see cref="ushort"/>.
         /// </summary>
         /// <param name="content">Value of <see cref="ushort"/>.</param>
         [Pure]
-        public static ValueBox Value(ushort content) => BoxCore.Create(type: BoxType.Value, value: content);
+        public static ValueBox Value(ushort content) => BoxCore.Create(type: BoxType.Value, content: content);
 
         /// <summary>
         /// Creates a <see cref="ValueBox"/> with <see cref="int"/>.
         /// </summary>
         /// <param name="content">Value of <see cref="int"/>.</param>
         [Pure]
-        public static ValueBox Value(int content) => BoxCore.Create(type: BoxType.Value, value: content);
+        public static ValueBox Value(int content) => BoxCore.Create(type: BoxType.Value, content: content);
 
         /// <summary>
         /// Creates a <see cref="ValueBox"/> with <see cref="uint"/>.
         /// </summary>
         /// <param name="content">Value of <see cref="uint"/>.</param>
         [Pure]
-        public static ValueBox Value(uint content) => BoxCore.Create(type: BoxType.Value, value: content);
+        public static ValueBox Value(uint content) => BoxCore.Create(type: BoxType.Value, content: content);
 
         /// <summary>
         /// Creates a <see cref="ValueBox"/> with long <see cref="long"/>.
         /// </summary>
         /// <param name="content">Value of <see cref="long"/>.</param>
         [Pure]
-        public static ValueBox Value(long content) => BoxCore.Create(type: BoxType.Value, value: content);
+        public static ValueBox Value(long content) => BoxCore.Create(type: BoxType.Value, content: content);
 
         /// <summary>
         /// Creates a <see cref="ValueBox"/> with long <see cref="ulong"/>.
         /// </summary>
         /// <param name="content">Value of <see cref="ulong"/>.</param>
         [Pure]
-        public static ValueBox Value(ulong content) => BoxCore.Create(type: BoxType.Value, value: content);
+        public static ValueBox Value(ulong content) => BoxCore.Create(type: BoxType.Value, content: content);
 
         /// <summary>
         /// Creates a <see cref="ValueBox"/> with long <see cref="float"/>.
         /// </summary>
         /// <param name="content">Value of <see cref="float"/>.</param>
         [Pure]
-        public static ValueBox Value(float content) => BoxCore.Create(type: BoxType.Value, value: content);
+        public static ValueBox Value(float content) => BoxCore.Create(type: BoxType.Value, content: content);
 
         /// <summary>
         /// Creates a <see cref="ValueBox"/> with long <see cref="double"/>.
         /// </summary>
         /// <param name="content">Value of <see cref="double"/>.</param>
         [Pure]
-        public static ValueBox Value(double content) => BoxCore.Create(type: BoxType.Value, value: content);
+        public static ValueBox Value(double content) => BoxCore.Create(type: BoxType.Value, content: content);
 
         /// <summary>
         /// Creates a <see cref="ValueBox"/> with long <see cref="decimal"/>.
         /// </summary>
         /// <param name="content">Value of <see cref="decimal"/>.</param>
         [Pure]
-        public static ValueBox Value(decimal content) => BoxCore.Create(type: BoxType.Value, value: content);
+        public static ValueBox Value(decimal content) => BoxCore.Create(type: BoxType.Value, content: content);
 
         /// <summary>
         /// Creates a <see cref="ValueBox"/> with long <see cref="DateTime"/>.
         /// </summary>
         /// <param name="content">Value of <see cref="DateTime"/>.</param>
         [Pure]
-        public static ValueBox Value(DateTime content) => BoxCore.Create(type: BoxType.Value, value: content);
+        public static ValueBox Value(DateTime content) => BoxCore.Create(type: BoxType.Value, content: content);
 
         /// <summary>
         /// Creates a <see cref="ValueBox"/> with long <see cref="Guid"/>.
         /// </summary>
         /// <param name="content">Value of <see cref="Guid"/>.</param>
         [Pure]
-        public static ValueBox Value(Guid content) => BoxCore.Create(type: BoxType.Value, value: content);
+        public static ValueBox Value(Guid content) => BoxCore.Create(type: BoxType.Value, content: content);
 
         /// <summary>
         /// Creates an empty <see cref="ValueBox"/> with style. The box content will not be set.
@@ -303,7 +303,7 @@
         /// <param name="style">An instance of <see cref="BoxStyle"/>.</param>
         [Pure]
         public static ValueBox Value(Unit content, BoxStyle style) =>
-            BoxCore.Create(type: BoxType.Value, value: content, style: style.Get);
+            BoxCore.Create(type: BoxType.Value, content: content, style: style.Get);
 
         /// <summary>
         /// Creates a <see cref="ValueBox"/> with <see cref="string"/> or formula and style.
@@ -312,7 +312,7 @@
         /// <param name="style">An instance of <see cref="BoxStyle"/>.</param>
         [Pure]
         public static ValueBox Value(string content, BoxStyle style) =>
-            BoxCore.Create(type: BoxType.Value, value: content, style: style.Get);
+            BoxCore.Create(type: BoxType.Value, content: content, style: style.Get);
 
         /// <summary>
         /// Creates a <see cref="ValueBox"/> with <see cref="bool"/> and style.
@@ -321,7 +321,7 @@
         /// <param name="style">An instance of <see cref="BoxStyle"/>.</param>
         [Pure]
         public static ValueBox Value(bool content, BoxStyle style) =>
-            BoxCore.Create(type: BoxType.Value, value: content, style: style.Get);
+            BoxCore.Create(type: BoxType.Value, content: content, style: style.Get);
 
         /// <summary>
         /// Creates a <see cref="ValueBox"/> with <see cref="byte"/> and style.
@@ -330,7 +330,7 @@
         /// <param name="style">An instance of <see cref="BoxStyle"/>.</param>
         [Pure]
         public static ValueBox Value(byte content, BoxStyle style) =>
-            BoxCore.Create(type: BoxType.Value, value: content, style: style.Get);
+            BoxCore.Create(type: BoxType.Value, content: content, style: style.Get);
 
         /// <summary>
         /// Creates a <see cref="ValueBox"/> with <see cref="sbyte"/> and style.
@@ -339,7 +339,7 @@
         /// <param name="style">An instance of <see cref="BoxStyle"/>.</param>
         [Pure]
         public static ValueBox Value(sbyte content, BoxStyle style) =>
-            BoxCore.Create(type: BoxType.Value, value: content, style: style.Get);
+            BoxCore.Create(type: BoxType.Value, content: content, style: style.Get);
 
         /// <summary>
         /// Creates a <see cref="ValueBox"/> with <see cref="short"/> and style.
@@ -348,7 +348,7 @@
         /// <param name="style">An instance of <see cref="BoxStyle"/>.</param>
         [Pure]
         public static ValueBox Value(short content, BoxStyle style) =>
-            BoxCore.Create(type: BoxType.Value, value: content, style: style.Get);
+            BoxCore.Create(type: BoxType.Value, content: content, style: style.Get);
 
         /// <summary>
         /// Creates a <see cref="ValueBox"/> with <see cref="ushort"/> and style.
@@ -357,7 +357,7 @@
         /// <param name="style">An instance of <see cref="BoxStyle"/>.</param>
         [Pure]
         public static ValueBox Value(ushort content, BoxStyle style) =>
-            BoxCore.Create(type: BoxType.Value, value: content, style: style.Get);
+            BoxCore.Create(type: BoxType.Value, content: content, style: style.Get);
 
         /// <summary>
         /// Creates a <see cref="ValueBox"/> with <see cref="int"/> and style.
@@ -366,7 +366,7 @@
         /// <param name="style">An instance of <see cref="BoxStyle"/>.</param>
         [Pure]
         public static ValueBox Value(int content, BoxStyle style) =>
-            BoxCore.Create(type: BoxType.Value, value: content, style: style.Get);
+            BoxCore.Create(type: BoxType.Value, content: content, style: style.Get);
 
         /// <summary>
         /// Creates a <see cref="ValueBox"/> with <see cref="uint"/> and style.
@@ -375,7 +375,7 @@
         /// <param name="style">An instance of <see cref="BoxStyle"/>.</param>
         [Pure]
         public static ValueBox Value(uint content, BoxStyle style) =>
-            BoxCore.Create(type: BoxType.Value, value: content, style: style.Get);
+            BoxCore.Create(type: BoxType.Value, content: content, style: style.Get);
 
         /// <summary>
         /// Creates a <see cref="ValueBox"/> with long <see cref="long"/> and style.
@@ -384,7 +384,7 @@
         /// <param name="style">An instance of <see cref="BoxStyle"/>.</param>
         [Pure]
         public static ValueBox Value(long content, BoxStyle style) =>
-            BoxCore.Create(type: BoxType.Value, value: content, style: style.Get);
+            BoxCore.Create(type: BoxType.Value, content: content, style: style.Get);
 
         /// <summary>
         /// Creates a <see cref="ValueBox"/> with long <see cref="ulong"/> and style.
@@ -393,7 +393,7 @@
         /// <param name="style">An instance of <see cref="BoxStyle"/>.</param>
         [Pure]
         public static ValueBox Value(ulong content, BoxStyle style) =>
-            BoxCore.Create(type: BoxType.Value, value: content, style: style.Get);
+            BoxCore.Create(type: BoxType.Value, content: content, style: style.Get);
 
         /// <summary>
         /// Creates a <see cref="ValueBox"/> with long <see cref="float"/> and style.
@@ -402,7 +402,7 @@
         /// <param name="style">An instance of <see cref="BoxStyle"/>.</param>
         [Pure]
         public static ValueBox Value(float content, BoxStyle style) =>
-            BoxCore.Create(type: BoxType.Value, value: content, style: style.Get);
+            BoxCore.Create(type: BoxType.Value, content: content, style: style.Get);
 
         /// <summary>
         /// Creates a <see cref="ValueBox"/> with long <see cref="double"/> and style.
@@ -411,7 +411,7 @@
         /// <param name="style">An instance of <see cref="BoxStyle"/>.</param>
         [Pure]
         public static ValueBox Value(double content, BoxStyle style) =>
-            BoxCore.Create(type: BoxType.Value, value: content, style: style.Get);
+            BoxCore.Create(type: BoxType.Value, content: content, style: style.Get);
 
         /// <summary>
         /// Creates a <see cref="ValueBox"/> with long <see cref="decimal"/> and style.
@@ -420,7 +420,7 @@
         /// <param name="style">An instance of <see cref="BoxStyle"/>.</param>
         [Pure]
         public static ValueBox Value(decimal content, BoxStyle style) =>
-            BoxCore.Create(type: BoxType.Value, value: content, style: style.Get);
+            BoxCore.Create(type: BoxType.Value, content: content, style: style.Get);
 
         /// <summary>
         /// Creates a <see cref="ValueBox"/> with long <see cref="DateTime"/> and style.
@@ -429,7 +429,7 @@
         /// <param name="style">An instance of <see cref="BoxStyle"/>.</param>
         [Pure]
         public static ValueBox Value(DateTime content, BoxStyle style) =>
-            BoxCore.Create(type: BoxType.Value, value: content, style: style.Get);
+            BoxCore.Create(type: BoxType.Value, content: content, style: style.Get);
 
         /// <summary>
         /// Creates a <see cref="ValueBox"/> with long <see cref="Guid"/> and style.
@@ -438,7 +438,7 @@
         /// <param name="style">An instance of <see cref="BoxStyle"/>.</param>
         [Pure]
         public static ValueBox Value(Guid content, BoxStyle style) =>
-            BoxCore.Create(type: BoxType.Value, value: content, style: style.Get);
+            BoxCore.Create(type: BoxType.Value, content: content, style: style.Get);
 
         /// <summary>
         /// Creates a <see cref="ProtoBox"/>.

@@ -27,7 +27,7 @@
             bool areRowsFrozen,
             bool areColsFrozen,
             bool isAutoFilter,
-            Option<object> value,
+            Option<object> content,
             Option<int> rowSpan,
             Option<int> colSpan,
             Option<bool> rowAutoSpan,
@@ -50,7 +50,7 @@
             IsAutoFilter = isAutoFilter;
             RowSizes = rowSizes.ToImmutableList();
             ColSizes = colSizes.ToImmutableList();
-            Value = value;
+            Content = content;
             RowSpan = rowSpan;
             ColSpan = colSpan;
             RowAutoSpan = rowAutoSpan;
@@ -119,9 +119,9 @@
         public bool IsAutoFilter { get; }
 
         /// <summary>
-        /// Gets the value or the formula.
+        /// Gets the content (the value or the formula).
         /// </summary>
-        public Option<object> Value { get; }
+        public Option<object> Content { get; }
 
         /// <summary>
         /// Gets the number of rows to span.
@@ -170,7 +170,7 @@
         [Pure]
         internal static BoxCore Create(
             BoxType type,
-            Option<object>? value = null,
+            Option<object>? content = null,
             Option<BoxStyleCore>? style = null) =>
             new BoxCore(
                 type: type,
@@ -184,7 +184,7 @@
                 areRowsFrozen: false,
                 areColsFrozen: false,
                 isAutoFilter: false,
-                value: value ?? None,
+                content: content ?? None,
                 rowSpan: None,
                 colSpan: None,
                 rowAutoSpan: None,
@@ -217,7 +217,7 @@
             bool? areRowsFrozen = null,
             bool? areColsFrozen = null,
             bool? isAutoFilter = null,
-            Option<object>? value = null,
+            Option<object>? content = null,
             Option<int>? rowSpan = null,
             Option<int>? colSpan = null,
             Option<bool>? rowAutoSpan = null,
@@ -240,7 +240,7 @@
                 areRowsFrozen ?? AreRowsFrozen,
                 areColsFrozen ?? AreColsFrozen,
                 isAutoFilter ?? IsAutoFilter,
-                value ?? Value,
+                content ?? Content,
                 rowSpan ?? RowSpan,
                 colSpan ?? ColSpan,
                 rowAutoSpan ?? RowAutoSpan,
