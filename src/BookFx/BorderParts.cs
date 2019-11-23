@@ -3,7 +3,7 @@
     using System;
 
     /// <summary>
-    /// A part of a box to which the border applied. This is a flags enum.
+    /// Parts of a box to whom the border applied. This is a flags enum.
     /// </summary>
     [Flags]
     public enum BorderParts

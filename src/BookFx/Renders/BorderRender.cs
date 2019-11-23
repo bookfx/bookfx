@@ -12,15 +12,13 @@
         public static Act<ExcelRangeBase> Render(this BoxBorderCore border) =>
             excelRange =>
             {
-                var parts = border.Part.GetOrElse(BorderParts.All);
-
-                switch (parts)
+                switch (border.GetParts())
                 {
                     case BorderParts.All:
-                        SetBorder(excelRange.Style.Border.Top);
-                        SetBorder(excelRange.Style.Border.Right);
-                        SetBorder(excelRange.Style.Border.Bottom);
-                        SetBorder(excelRange.Style.Border.Left);
+                        border.ApplyTo(excelRange.Style.Border.Top);
+                        border.ApplyTo(excelRange.Style.Border.Right);
+                        border.ApplyTo(excelRange.Style.Border.Bottom);
+                        border.ApplyTo(excelRange.Style.Border.Left);
 
                         break;
 
@@ -35,67 +33,75 @@
                     default:
                         foreach (var cell in excelRange.GetCells())
                         {
-                            SetCellBorder(cell);
+                            border.ApplyToCell(wholeRange: excelRange, cell);
                         }
 
                         break;
                 }
 
                 return Unit();
-
-                void SetBorder(ExcelBorderItem excelBorderItem)
-                {
-                    excelBorderItem.Style = border.Style.ToExcelBorderStyle();
-                    border.Color.ForEach(color => excelBorderItem.Color.SetColor(color));
-                }
-
-                void SetCellBorder(ExcelRangeBase cell)
-                {
-                    if (IsApplicableForTop())
-                    {
-                        SetBorder(cell.Style.Border.Top);
-                    }
-
-                    if (IsApplicableForRight())
-                    {
-                        SetBorder(cell.Style.Border.Right);
-                    }
-
-                    if (IsApplicableForBottom())
-                    {
-                        SetBorder(cell.Style.Border.Bottom);
-                    }
-
-                    if (IsApplicableForLeft())
-                    {
-                        SetBorder(cell.Style.Border.Left);
-                    }
-
-                    bool IsApplicableForTop() =>
-                        parts.IsSupersetOf(
-                            excelRange.Start.Row == cell.Start.Row
-                                ? BorderParts.OutsideTop
-                                : BorderParts.InsideTop);
-
-                    bool IsApplicableForRight() =>
-                        parts.IsSupersetOf(
-                            excelRange.End.Column == cell.End.Column
-                                ? BorderParts.OutsideRight
-                                : BorderParts.InsideRight);
-
-                    bool IsApplicableForBottom() =>
-                        parts.IsSupersetOf(
-                            excelRange.End.Row == cell.End.Row
-                                ? BorderParts.OutsideBottom
-                                : BorderParts.InsideBottom);
-
-                    bool IsApplicableForLeft() =>
-                        parts.IsSupersetOf(
-                            excelRange.Start.Column == cell.Start.Column
-                                ? BorderParts.OutsideLeft
-                                : BorderParts.InsideLeft);
-                }
             };
+
+        private static void ApplyTo(this BoxBorderCore border, ExcelBorderItem excelBorderItem)
+        {
+            excelBorderItem.Style = border.Style.ToExcelBorderStyle();
+            border.Color.ForEach(color => excelBorderItem.Color.SetColor(color));
+        }
+
+        /// <summary>
+        /// Applies the border to <paramref name="cell"/>
+        /// depending on its placement in the <paramref name="wholeRange"/>.
+        /// </summary>
+        private static void ApplyToCell(this BoxBorderCore border, ExcelRangeBase wholeRange, ExcelRangeBase cell)
+        {
+            var parts = border.GetParts();
+
+            if (IsApplicableForTop())
+            {
+                border.ApplyTo(cell.Style.Border.Top);
+            }
+
+            if (IsApplicableForRight())
+            {
+                border.ApplyTo(cell.Style.Border.Right);
+            }
+
+            if (IsApplicableForBottom())
+            {
+                border.ApplyTo(cell.Style.Border.Bottom);
+            }
+
+            if (IsApplicableForLeft())
+            {
+                border.ApplyTo(cell.Style.Border.Left);
+            }
+
+            bool IsApplicableForTop() =>
+                parts.IsSupersetOf(
+                    wholeRange.Start.Row == cell.Start.Row
+                        ? BorderParts.OutsideTop
+                        : BorderParts.InsideTop);
+
+            bool IsApplicableForRight() =>
+                parts.IsSupersetOf(
+                    wholeRange.End.Column == cell.End.Column
+                        ? BorderParts.OutsideRight
+                        : BorderParts.InsideRight);
+
+            bool IsApplicableForBottom() =>
+                parts.IsSupersetOf(
+                    wholeRange.End.Row == cell.End.Row
+                        ? BorderParts.OutsideBottom
+                        : BorderParts.InsideBottom);
+
+            bool IsApplicableForLeft() =>
+                parts.IsSupersetOf(
+                    wholeRange.Start.Column == cell.Start.Column
+                        ? BorderParts.OutsideLeft
+                        : BorderParts.InsideLeft);
+        }
+
+        private static BorderParts GetParts(this BoxBorderCore border) => border.Parts.GetOrElse(BorderParts.All);
 
         private static ExcelBorderStyle ToExcelBorderStyle(this Option<BorderStyle> style) =>
             (ExcelBorderStyle)style.GetOrElse(BorderStyle.Thin);

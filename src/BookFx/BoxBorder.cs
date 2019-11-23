@@ -29,11 +29,11 @@
         public static implicit operator BoxBorder(BoxBorderCore core) => new BoxBorder(core);
 
         /// <summary>
-        /// Restrict a part of a box to which the border applied.
+        /// Restrict parts of a box to whom the border applied.
         /// </summary>
         /// <param name="borderParts">Parts of a box. This is a flags enum.</param>
         [Pure]
-        public BoxBorder Restrict(BorderParts borderParts) => Get.With(part: borderParts);
+        public BoxBorder Restrict(BorderParts borderParts) => Get.With(parts: borderParts);
 
         /// <summary>
         /// Define a border style.
