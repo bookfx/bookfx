@@ -180,9 +180,9 @@
         /// <summary>
         /// Creates a <see cref="ValueBox"/> with <see cref="Unit"/>. The box content will be cleared.
         /// </summary>
-        /// <param name="content"><see cref="Unit"/>.</param>
+        /// <param name="unit"><see cref="Unit"/>.</param>
         [Pure]
-        public static ValueBox Value(Unit content) => BoxCore.Create(type: BoxType.Value, content: content);
+        public static ValueBox Value(Unit unit) => BoxCore.Create(type: BoxType.Value, content: unit);
 
         /// <summary>
         /// Creates a <see cref="ValueBox"/> with <see cref="string"/> or formula.
