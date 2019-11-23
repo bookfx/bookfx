@@ -12,7 +12,7 @@
         public static Act<ExcelRangeBase> ValueRender(this BoxCore box) =>
             excelRange =>
             {
-                box.Value.ForEach(value =>
+                box.Content.ForEach(value =>
                 {
                     var valueRange = excelRange.Offset(0, 0, 1, 1);
 

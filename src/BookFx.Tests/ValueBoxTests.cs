@@ -17,12 +17,12 @@
         public void Create_Always_Empty() => Make.Value().Should().BeSameAs(ValueBox.Empty);
 
         [Property]
-        public void CreateValue_NonNull_ValueIsValue(NonNull<string> value) =>
-            Make.Value(value.Get).Get.Value.ValueUnsafe().Should().Be(value.Get);
+        public void CreateValue_NonNull_ContentIsContent(NonNull<string> content) =>
+            Make.Value(content.Get).Get.Content.ValueUnsafe().Should().Be(content.Get);
 
         [Fact]
-        public void CreateValue_Unit_ValueIsUnit() =>
-            Make.Value(Unit()).Get.Value.ValueUnsafe().Should().BeOfType<Unit>();
+        public void CreateValue_Unit_ContentIsUnit() =>
+            Make.Value(Unit()).Get.Content.ValueUnsafe().Should().BeOfType<Unit>();
 
         [Property]
         public void Name_NonNull_NameIsName(NonNull<string> name) =>

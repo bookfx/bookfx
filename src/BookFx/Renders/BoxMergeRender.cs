@@ -10,7 +10,7 @@
         public static Act<ExcelRangeBase> MergeRender(this BoxCore box) =>
             excelRange =>
             {
-                if (box.Merge.GetOrElse(box.Value.IsSome) && CanBeMerged(excelRange))
+                if (box.Merge.GetOrElse(box.Content.IsSome) && CanBeMerged(excelRange))
                 {
                     excelRange.Merge = true;
                 }
