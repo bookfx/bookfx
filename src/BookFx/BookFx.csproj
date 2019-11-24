@@ -7,7 +7,7 @@
 
   <PropertyGroup>
     <PackageId>BookFx</PackageId>
-    <Description>Making complex Excel workbooks out of simple components.</Description>
+    <Description>Composing Excel spreadsheets based on a tree of nested components like the HTML DOM.</Description>
     <Authors>Zhenya Gusev</Authors>
     <Copyright>Copyright © 2019 Zhenya Gusev</Copyright>
     <PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
