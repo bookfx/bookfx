@@ -1,5 +1,6 @@
 ﻿namespace BookFx.Validation
 {
+    using System;
     using System.Linq;
     using BookFx.Cores;
     using BookFx.Epplus;
@@ -15,6 +16,7 @@
                 ColSpanSize,
                 RowSizeRange,
                 ColSizeRange,
+                Name,
                 Style);
 
         public static Tee<BoxCore> RowSpanSize =>
@@ -46,6 +48,16 @@
                     empty: () => Valid(box),
                     one: size => Errors.Box.ColSizesAreInvalid(size),
                     more: (size, others) => Errors.Box.ColSizesAreInvalid(size, others));
+
+        public static Tee<BoxCore> Name =>
+            box => box.Name.Match(
+                none: () => Valid(box),
+                some: name =>
+                    Constraint.RangeNameRegex.IsMatch(name) &&
+                    !Constraint.A1RangeNameRegex.IsMatch(name) &&
+                    !Constraint.R1C1RangeNameRegex.IsMatch(name)
+                        ? Valid(box)
+                        : Errors.Box.NameIsInvalid(name));
 
         public static Tee<BoxCore> Style =>
             box => box.Style
