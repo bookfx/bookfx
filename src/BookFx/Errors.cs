@@ -193,6 +193,10 @@
                 new ColSizesAreInvalidError(others.Prepend(size));
 
             [Pure]
+            public static BoxNameIsInvalidError NameIsInvalid(string name) =>
+                new BoxNameIsInvalidError(name);
+
+            [Pure]
             public static AggregateError Aggregate(
                 BoxCore box,
                 IEnumerable<Error> inners) =>
@@ -264,6 +268,14 @@
 
                 private static string ShouldPart() =>
                     $"Column size should be from {MinColSize} to {MaxColSize}.";
+            }
+
+            public sealed class BoxNameIsInvalidError : Error
+            {
+                public BoxNameIsInvalidError(string name)
+                    : base($"Box name {name} is invalid.")
+                {
+                }
             }
 
             public sealed class AggregateError : Error

@@ -2,7 +2,6 @@
 {
     using System.Linq;
     using BookFx.Calculation;
-    using BookFx.Cores;
     using BookFx.Functional;
     using BookFx.Tests.Arbitraries;
     using BookFx.Validation;
@@ -175,6 +174,44 @@
             var box = Make.Value().SizeCols(size).Get.Place();
 
             var result = BoxValidator.ColSizeRange(box);
+
+            result.IsValid.Should().BeFalse();
+        }
+
+        [Theory]
+        [InlineData("_")]
+        [InlineData("_1")]
+        [InlineData("A")]
+        [InlineData("name0")]
+        public void Name_ValidName_ValidResult(string rangeName)
+        {
+            var box = Make.Value().Name(rangeName).Get;
+
+            var result = BoxValidator.Name(box);
+
+            result.IsValid.Should().BeTrue();
+        }
+
+        [Theory]
+        [InlineData("")]
+        [InlineData("1")]
+        [InlineData("A1")]
+        [InlineData("R1C1")]
+        [InlineData("rc")]
+        [InlineData("rc1")]
+        [InlineData("r1c")]
+        [InlineData("r")]
+        [InlineData("c")]
+        [InlineData("XFD1048576")]
+        [InlineData("R1048576C16384")]
+        [InlineData("-")]
+        [InlineData("!")]
+        [InlineData("=")]
+        public void Name_InvalidName_InvalidResult(string rangeName)
+        {
+            var box = Make.Value().Name(rangeName).Get;
+
+            var result = BoxValidator.Name(box);
 
             result.IsValid.Should().BeFalse();
         }
