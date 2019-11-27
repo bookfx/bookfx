@@ -18,6 +18,8 @@
         private static Act<ExcelWorksheet> SettingsRender(this SheetCore sheet) =>
             excelSheet =>
             {
+                var printSettings = excelSheet.PrinterSettings;
+
                 sheet.TabColor.ForEach(color => excelSheet.TabColor = color);
 
                 sheet.PageView.ForEach(pageView =>
@@ -26,9 +28,25 @@
                     excelSheet.View.PageBreakView = pageView == PageView.Break;
                 });
 
-                excelSheet.PrinterSettings.FitToHeight = sheet.FitToHeight.GetOrElse(0);
-                excelSheet.PrinterSettings.FitToWidth = sheet.FitToWidth.GetOrElse(0);
-                excelSheet.PrinterSettings.FitToPage = sheet.FitToHeight.IsSome || sheet.FitToWidth.IsSome;
+                sheet.Orientation.ForEach(orientation =>
+                    printSettings.Orientation = (eOrientation)orientation);
+
+                sheet
+                    .Margins
+                    .Map(x => x.ToInches())
+                    .ForEach(margins =>
+                    {
+                        margins.Top.ForEach(margin => printSettings.TopMargin = margin);
+                        margins.Right.ForEach(margin => printSettings.RightMargin = margin);
+                        margins.Bottom.ForEach(margin => printSettings.BottomMargin = margin);
+                        margins.Left.ForEach(margin => printSettings.LeftMargin = margin);
+                        margins.Header.ForEach(margin => printSettings.HeaderMargin = margin);
+                        margins.Footer.ForEach(margin => printSettings.FooterMargin = margin);
+                    });
+
+                printSettings.FitToHeight = sheet.FitToHeight.GetOrElse(0);
+                printSettings.FitToWidth = sheet.FitToWidth.GetOrElse(0);
+                printSettings.FitToPage = sheet.FitToHeight.IsSome || sheet.FitToWidth.IsSome;
 
                 sheet.Scale.ForEach(scale => excelSheet.View.ZoomScale = scale);
 
