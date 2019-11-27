@@ -17,6 +17,8 @@
             tabColor: None,
             box: None,
             pageView: None,
+            orientation: None,
+            margins: None,
             fitToHeight: None,
             fitToWidth: None,
             scale: None,
@@ -29,6 +31,8 @@
             Option<Color> tabColor,
             Option<BoxCore> box,
             Option<PageView> pageView,
+            Option<PageOrientation> orientation,
+            Option<PageMargins> margins,
             Option<int> fitToHeight,
             Option<int> fitToWidth,
             Option<int> scale,
@@ -40,6 +44,8 @@
             TabColor = tabColor;
             Box = box;
             PageView = pageView;
+            Orientation = orientation;
+            Margins = margins;
             FitToHeight = fitToHeight;
             FitToWidth = fitToWidth;
             Scale = scale;
@@ -67,6 +73,16 @@
         /// Gets the page view.
         /// </summary>
         public Option<PageView> PageView { get; }
+
+        /// <summary>
+        /// Gets the page orientation.
+        /// </summary>
+        public Option<PageOrientation> Orientation { get; }
+
+        /// <summary>
+        /// Gets page margins.
+        /// </summary>
+        public Option<PageMargins> Margins { get; }
 
         /// <summary>
         /// Gets the number of pages to fit the height of printout.
@@ -107,6 +123,8 @@
             Option<Color>? tabColor = null,
             Option<BoxCore>? box = null,
             Option<PageView>? pageView = null,
+            Option<PageOrientation>? orientation = null,
+            Option<PageMargins>? margins = null,
             Option<int>? fitToHeight = null,
             Option<int>? fitToWidth = null,
             Option<int>? scale = null,
@@ -118,6 +136,8 @@
                 tabColor ?? TabColor,
                 box ?? Box,
                 pageView ?? PageView,
+                orientation ?? Orientation,
+                margins ?? Margins,
                 fitToHeight ?? FitToHeight,
                 fitToWidth ?? FitToWidth,
                 scale ?? Scale,

@@ -54,6 +54,18 @@
         public Sheet SetPageView(PageView pageView) => Get.With(pageView: pageView);
 
         /// <summary>
+        /// Define page orientation.
+        /// </summary>
+        [Pure]
+        public Sheet SetOrientation(PageOrientation orientation) => Get.With(orientation: orientation);
+
+        /// <summary>
+        /// Define page margins.
+        /// </summary>
+        [Pure]
+        public Sheet SetMargins(PageMargins margins) => Get.With(margins: margins);
+
+        /// <summary>
         /// Fit the height and the width of printout to the one page.
         /// </summary>
         [Pure]
