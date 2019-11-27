@@ -99,6 +99,19 @@
                     footer: Footer.Map(x => x / CentimetresInInch));
 
         [Pure]
+        internal PageMarginsCore ToCentimetres() =>
+            Unit == UnitOfMeasurement.Centimetre
+                ? this
+                : With(
+                    unit: UnitOfMeasurement.Inch,
+                    top: Top.Map(x => x * CentimetresInInch),
+                    right: Right.Map(x => x * CentimetresInInch),
+                    bottom: Bottom.Map(x => x * CentimetresInInch),
+                    left: Left.Map(x => x * CentimetresInInch),
+                    header: Header.Map(x => x * CentimetresInInch),
+                    footer: Footer.Map(x => x * CentimetresInInch));
+
+        [Pure]
         internal PageMarginsCore With(
             UnitOfMeasurement? unit = null,
             Option<double>? top = null,

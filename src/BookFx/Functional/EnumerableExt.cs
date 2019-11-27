@@ -22,6 +22,9 @@
         public static IEnumerable<TR> Bind<T, TR>(this IEnumerable<T> list, Func<T, Option<TR>> f) =>
             list.SelectMany(x => f(x).AsEnumerable());
 
+        public static IEnumerable<T> Flatten<T>(this IEnumerable<Option<T>> list) =>
+            list.Bind(x => x);
+
         public static IEnumerable<Unit> ForEach<T>(this IEnumerable<T> list, Action<T> action) =>
             list.Map(action.ToFunc()).ToImmutableList();
 
@@ -32,6 +35,12 @@
         {
             var collection = list.ToCollection();
             return collection.Any() ? more(collection.First(), collection.Skip(1)) : empty();
+        }
+
+        public static TR Match<T, TR>(this IEnumerable<T> list, Func<TR> empty, Func<IEnumerable<T>, TR> more)
+        {
+            var collection = list.ToCollection();
+            return collection.Any() ? more(collection) : empty();
         }
 
         public static TR Match<T, TR>(

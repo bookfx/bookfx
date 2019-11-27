@@ -41,6 +41,35 @@
         }
 
         [Fact]
+        public void Margins_Empty_Valid()
+        {
+            var sheet = Make.Sheet().Get;
+
+            SheetValidator.Margins(sheet).IsValid.Should().BeTrue();
+        }
+
+        [Theory]
+        [InlineData(0)]
+        [InlineData(1)]
+        [InlineData(10)]
+        public void Margins_ValidMargins_Valid(double margin)
+        {
+            var sheet = Make.Sheet().SetMargins(PageMargins.InCentimetres(margin)).Get;
+
+            SheetValidator.Margins(sheet).IsValid.Should().BeTrue();
+        }
+
+        [Theory]
+        [InlineData(-1)]
+        [InlineData(1000)]
+        public void Margins_InvalidMargins_Invalid(double margin)
+        {
+            var sheet = Make.Sheet().SetMargins(PageMargins.InCentimetres(margin)).Get;
+
+            SheetValidator.Margins(sheet).IsValid.Should().BeFalse();
+        }
+
+        [Fact]
         public void Boxes_ValidBox_Valid()
         {
             var sheet = Make.Sheet(Make.Value()).Get.Place();
