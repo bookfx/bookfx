@@ -13,6 +13,7 @@
             HarvestErrors(
                 SheetName,
                 PrintArea,
+                Margins,
                 FitToHeight,
                 FitToWidth,
                 Scale,
@@ -70,6 +71,27 @@
                     empty: () => Valid(sheet),
                     one: _ => Valid(sheet),
                     more: (_, __) => Errors.Sheet.ManyAutoFilters());
+
+        public static Tee<SheetCore> Margins =>
+            sheet => sheet
+                .Margins
+                .AsEnumerable()
+                .Map(margins => margins.ToCentimetres())
+                .Bind(margins => F
+                    .List(
+                        margins.Top,
+                        margins.Right,
+                        margins.Bottom,
+                        margins.Left,
+                        margins.Header,
+                        margins.Footer)
+                    .Flatten())
+                .Where(margin => margin < MinMargin || margin > MaxMargin)
+                .Distinct()
+                .Map(Errors.Sheet.MarginIsInvalid)
+                .Match(
+                    empty: () => Valid(sheet),
+                    more: errors => Errors.Sheet.Aggregate(sheet, errors));
 
         public static Tee<SheetCore> FitToHeight =>
             sheet => sheet

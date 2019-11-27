@@ -54,6 +54,24 @@
         public Sheet SetPageView(PageView pageView) => Get.With(pageView: pageView);
 
         /// <summary>
+        /// Define portrait page orientation.
+        /// </summary>
+        [Pure]
+        public Sheet Portrait() => Get.With(orientation: PageOrientation.Portrait);
+
+        /// <summary>
+        /// Define landscape page orientation.
+        /// </summary>
+        [Pure]
+        public Sheet Landscape() => Get.With(orientation: PageOrientation.Landscape);
+
+        /// <summary>
+        /// Define page margins.
+        /// </summary>
+        [Pure]
+        public Sheet Margin(PageMargins margins) => Get.With(margins: margins.Get);
+
+        /// <summary>
         /// Fit the height and the width of printout to the one page.
         /// </summary>
         [Pure]

@@ -1,5 +1,6 @@
 ﻿namespace BookFx.Renders
 {
+    using System;
     using BookFx.Cores;
     using BookFx.Functional;
     using OfficeOpenXml;
@@ -18,6 +19,8 @@
         private static Act<ExcelWorksheet> SettingsRender(this SheetCore sheet) =>
             excelSheet =>
             {
+                var printSettings = excelSheet.PrinterSettings;
+
                 sheet.TabColor.ForEach(color => excelSheet.TabColor = color);
 
                 sheet.PageView.ForEach(pageView =>
@@ -26,9 +29,25 @@
                     excelSheet.View.PageBreakView = pageView == PageView.Break;
                 });
 
-                excelSheet.PrinterSettings.FitToHeight = sheet.FitToHeight.GetOrElse(0);
-                excelSheet.PrinterSettings.FitToWidth = sheet.FitToWidth.GetOrElse(0);
-                excelSheet.PrinterSettings.FitToPage = sheet.FitToHeight.IsSome || sheet.FitToWidth.IsSome;
+                sheet.Orientation.ForEach(orientation =>
+                    printSettings.Orientation = (eOrientation)orientation);
+
+                sheet
+                    .Margins
+                    .Map(x => x.ToInches())
+                    .ForEach(margins =>
+                    {
+                        margins.Top.Map(Convert.ToDecimal).ForEach(margin => printSettings.TopMargin = margin);
+                        margins.Right.Map(Convert.ToDecimal).ForEach(margin => printSettings.RightMargin = margin);
+                        margins.Bottom.Map(Convert.ToDecimal).ForEach(margin => printSettings.BottomMargin = margin);
+                        margins.Left.Map(Convert.ToDecimal).ForEach(margin => printSettings.LeftMargin = margin);
+                        margins.Header.Map(Convert.ToDecimal).ForEach(margin => printSettings.HeaderMargin = margin);
+                        margins.Footer.Map(Convert.ToDecimal).ForEach(margin => printSettings.FooterMargin = margin);
+                    });
+
+                printSettings.FitToHeight = sheet.FitToHeight.GetOrElse(0);
+                printSettings.FitToWidth = sheet.FitToWidth.GetOrElse(0);
+                printSettings.FitToPage = sheet.FitToHeight.IsSome || sheet.FitToWidth.IsSome;
 
                 sheet.Scale.ForEach(scale => excelSheet.View.ZoomScale = scale);
 

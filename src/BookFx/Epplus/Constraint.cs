@@ -24,6 +24,13 @@
 
         internal const float MaxRowSize = 409f;
 
+        internal const double MinMargin = 0;
+
+        /// <summary>
+        /// The max page margin in centimetres. It is the longest size of a A0 paper format.
+        /// </summary>
+        internal const double MaxMargin = 119;
+
         internal const int MinFit = 0;
 
         internal const int MaxFit = 32767;

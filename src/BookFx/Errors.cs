@@ -57,6 +57,10 @@
             public static ManyPrintAreasError ManyPrintAreas() => new ManyPrintAreasError();
 
             [Pure]
+            public static MarginIsInvalidError MarginIsInvalid(double margin) =>
+                new MarginIsInvalidError(margin);
+
+            [Pure]
             public static FitToHeightIsInvalidError FitToHeightIsInvalid(int scale) =>
                 new FitToHeightIsInvalidError(scale);
 
@@ -98,6 +102,14 @@
             {
                 public ManyPrintAreasError()
                     : base("Many print areas found.")
+                {
+                }
+            }
+
+            public sealed class MarginIsInvalidError : Error
+            {
+                public MarginIsInvalidError(double margin)
+                    : base($"The page margin {margin} is invalid. It should be from {MinMargin} to {MaxMargin}.")
                 {
                 }
             }
