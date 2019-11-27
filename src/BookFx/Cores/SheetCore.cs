@@ -32,7 +32,7 @@
             Option<BoxCore> box,
             Option<PageView> pageView,
             Option<PageOrientation> orientation,
-            Option<PageMargins> margins,
+            Option<PageMarginsCore> margins,
             Option<int> fitToHeight,
             Option<int> fitToWidth,
             Option<int> scale,
@@ -82,7 +82,7 @@
         /// <summary>
         /// Gets page margins.
         /// </summary>
-        public Option<PageMargins> Margins { get; }
+        public Option<PageMarginsCore> Margins { get; }
 
         /// <summary>
         /// Gets the number of pages to fit the height of printout.
@@ -124,7 +124,7 @@
             Option<BoxCore>? box = null,
             Option<PageView>? pageView = null,
             Option<PageOrientation>? orientation = null,
-            Option<PageMargins>? margins = null,
+            Option<PageMarginsCore>? margins = null,
             Option<int>? fitToHeight = null,
             Option<int>? fitToWidth = null,
             Option<int>? scale = null,

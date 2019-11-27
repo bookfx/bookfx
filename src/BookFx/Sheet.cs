@@ -63,7 +63,7 @@
         /// Define page margins.
         /// </summary>
         [Pure]
-        public Sheet SetMargins(PageMargins margins) => Get.With(margins: margins);
+        public Sheet SetMargins(PageMargins margins) => Get.With(margins: margins.Get);
 
         /// <summary>
         /// Fit the height and the width of printout to the one page.
