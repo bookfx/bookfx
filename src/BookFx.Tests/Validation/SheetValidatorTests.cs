@@ -54,7 +54,7 @@
         [InlineData(10)]
         public void Margins_ValidMargins_Valid(double margin)
         {
-            var sheet = Make.Sheet().SetMargins(PageMargins.InCentimetres(margin)).Get;
+            var sheet = Make.Sheet().Margin(PageMargins.InCentimetres(margin)).Get;
 
             SheetValidator.Margins(sheet).IsValid.Should().BeTrue();
         }
@@ -64,7 +64,7 @@
         [InlineData(1000)]
         public void Margins_InvalidMargins_Invalid(double margin)
         {
-            var sheet = Make.Sheet().SetMargins(PageMargins.InCentimetres(margin)).Get;
+            var sheet = Make.Sheet().Margin(PageMargins.InCentimetres(margin)).Get;
 
             SheetValidator.Margins(sheet).IsValid.Should().BeFalse();
         }
