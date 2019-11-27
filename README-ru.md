@@ -299,6 +299,9 @@ Make.Sheet("New Sheet Name", protoBook, "Prototype Sheet Name");
     - `Sheet.Name` - задать имя листа
     - `Sheet.TabColor` - задать цвет вкладки
     - `Sheet.SetPageView` - задать режим отображения
+    - `Sheet.Portrait` - задать книжную ориентацию страницы
+    - `Sheet.Landscape` - задать альбомную ориентацию страницы
+    - `Sheet.Margin` - задать поля страницы
     - `Sheet.Fit` - вписать содержимое по высоте и ширине
     - `Sheet.FitToHeight` - вписать содержимое по высоте
     - `Sheet.FitToWidth` - вписать содержимое по ширине

@@ -301,6 +301,9 @@ Make.Sheet("New Sheet Name", protoBook, "Prototype Sheet Name");
     - `Sheet.Name` - define a sheet name
     - `Sheet.TabColor` - define a tab color
     - `Sheet.SetPageView` - define page view
+    - `Sheet.Portrait` - define portrait page orientation
+    - `Sheet.Landscape` - define landscape page orientation
+    - `Sheet.Margin` - define page margins
     - `Sheet.Fit` - fit the height and the width of printout to pages
     - `Sheet.FitToHeight` - fit the height of printout to pages
     - `Sheet.FitToWidth` - fit the width of printout to pages
