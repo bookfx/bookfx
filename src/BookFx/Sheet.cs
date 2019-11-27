@@ -54,13 +54,13 @@
         public Sheet SetPageView(PageView pageView) => Get.With(pageView: pageView);
 
         /// <summary>
-        /// Set page orientation to portrait.
+        /// Define portrait page orientation.
         /// </summary>
         [Pure]
         public Sheet Portrait() => Get.With(orientation: PageOrientation.Portrait);
 
         /// <summary>
-        /// Set page orientation to landscape.
+        /// Define landscape page orientation.
         /// </summary>
         [Pure]
         public Sheet Landscape() => Get.With(orientation: PageOrientation.Landscape);
