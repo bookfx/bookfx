@@ -14,16 +14,16 @@
 
         internal static readonly PageMarginsCore InInches = Create(UnitOfMeasurement.Inch);
 
-        private const decimal CentimetresInInch = 2.54m;
+        private const double CentimetresInInch = 2.54;
 
         private PageMarginsCore(
             UnitOfMeasurement unit,
-            Option<decimal> top,
-            Option<decimal> right,
-            Option<decimal> bottom,
-            Option<decimal> left,
-            Option<decimal> header,
-            Option<decimal> footer)
+            Option<double> top,
+            Option<double> right,
+            Option<double> bottom,
+            Option<double> left,
+            Option<double> header,
+            Option<double> footer)
         {
             Unit = unit;
             Top = top;
@@ -58,32 +58,32 @@
         /// <summary>
         /// Gets the top margin.
         /// </summary>
-        public Option<decimal> Top { get; }
+        public Option<double> Top { get; }
 
         /// <summary>
         /// Gets the right margin.
         /// </summary>
-        public Option<decimal> Right { get; }
+        public Option<double> Right { get; }
 
         /// <summary>
         /// Gets the bottom margin.
         /// </summary>
-        public Option<decimal> Bottom { get; }
+        public Option<double> Bottom { get; }
 
         /// <summary>
         /// Gets the left margin.
         /// </summary>
-        public Option<decimal> Left { get; }
+        public Option<double> Left { get; }
 
         /// <summary>
         /// Gets the header margin.
         /// </summary>
-        public Option<decimal> Header { get; }
+        public Option<double> Header { get; }
 
         /// <summary>
         /// Gets the footer margin.
         /// </summary>
-        public Option<decimal> Footer { get; }
+        public Option<double> Footer { get; }
 
         [Pure]
         internal PageMarginsCore ToInches() =>
@@ -101,12 +101,12 @@
         [Pure]
         internal PageMarginsCore With(
             UnitOfMeasurement? unit = null,
-            Option<decimal>? top = null,
-            Option<decimal>? right = null,
-            Option<decimal>? bottom = null,
-            Option<decimal>? left = null,
-            Option<decimal>? header = null,
-            Option<decimal>? footer = null) => new PageMarginsCore(
+            Option<double>? top = null,
+            Option<double>? right = null,
+            Option<double>? bottom = null,
+            Option<double>? left = null,
+            Option<double>? header = null,
+            Option<double>? footer = null) => new PageMarginsCore(
             unit ?? Unit,
             top ?? Top,
             right ?? Right,

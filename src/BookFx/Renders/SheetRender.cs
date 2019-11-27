@@ -1,5 +1,6 @@
 ﻿namespace BookFx.Renders
 {
+    using System;
     using BookFx.Cores;
     using BookFx.Functional;
     using OfficeOpenXml;
@@ -36,12 +37,12 @@
                     .Map(x => x.ToInches())
                     .ForEach(margins =>
                     {
-                        margins.Top.ForEach(margin => printSettings.TopMargin = margin);
-                        margins.Right.ForEach(margin => printSettings.RightMargin = margin);
-                        margins.Bottom.ForEach(margin => printSettings.BottomMargin = margin);
-                        margins.Left.ForEach(margin => printSettings.LeftMargin = margin);
-                        margins.Header.ForEach(margin => printSettings.HeaderMargin = margin);
-                        margins.Footer.ForEach(margin => printSettings.FooterMargin = margin);
+                        margins.Top.Map(Convert.ToDecimal).ForEach(margin => printSettings.TopMargin = margin);
+                        margins.Right.Map(Convert.ToDecimal).ForEach(margin => printSettings.RightMargin = margin);
+                        margins.Bottom.Map(Convert.ToDecimal).ForEach(margin => printSettings.BottomMargin = margin);
+                        margins.Left.Map(Convert.ToDecimal).ForEach(margin => printSettings.LeftMargin = margin);
+                        margins.Header.Map(Convert.ToDecimal).ForEach(margin => printSettings.HeaderMargin = margin);
+                        margins.Footer.Map(Convert.ToDecimal).ForEach(margin => printSettings.FooterMargin = margin);
                     });
 
                 printSettings.FitToHeight = sheet.FitToHeight.GetOrElse(0);
