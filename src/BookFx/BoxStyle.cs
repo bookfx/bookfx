@@ -245,6 +245,13 @@
         public BoxStyle Bottom() => Align(VAlign.Bottom);
 
         /// <summary>
+        /// Rotate the text counterclockwise.
+        /// </summary>
+        /// <param name="degrees">An angle of rotation in degrees from 0 to 180.</param>
+        [Pure]
+        public BoxStyle Rotate(int degrees) => Get.With(rotation: degrees);
+
+        /// <summary>
         /// Define an indent.
         /// </summary>
         /// <param name="size">A size of indent.</param>

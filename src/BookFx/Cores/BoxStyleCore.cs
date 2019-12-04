@@ -27,6 +27,7 @@
             isWrap: None,
             hAlign: None,
             vAlign: None,
+            rotation: None,
             indent: None,
             format: None);
 
@@ -43,6 +44,7 @@
             Option<bool> isWrap,
             Option<HAlign> hAlign,
             Option<VAlign> vAlign,
+            Option<int> rotation,
             Option<int> indent,
             Option<string> format)
         {
@@ -58,6 +60,7 @@
             IsWrap = isWrap;
             HAlign = hAlign;
             VAlign = vAlign;
+            Rotation = rotation;
             Indent = indent;
             Format = format;
         }
@@ -123,6 +126,11 @@
         public Option<VAlign> VAlign { get; }
 
         /// <summary>
+        /// Gets the text rotation in degrees.
+        /// </summary>
+        public Option<int> Rotation { get; }
+
+        /// <summary>
         /// Gets the indent size.
         /// </summary>
         public Option<int> Indent { get; }
@@ -147,6 +155,7 @@
                 isWrap: b.IsWrap.OrElse(a.IsWrap),
                 hAlign: b.HAlign.OrElse(a.HAlign),
                 vAlign: b.VAlign.OrElse(a.VAlign),
+                rotation: b.Rotation.OrElse(a.Rotation),
                 indent: b.Indent.OrElse(a.Indent),
                 format: b.Format.OrElse(a.Format));
 
@@ -168,6 +177,7 @@
             Option<bool>? isWrap = null,
             Option<HAlign>? hAlign = null,
             Option<VAlign>? vAlign = null,
+            Option<int>? rotation = null,
             Option<int>? indent = null,
             Option<string>? format = null
         ) =>
@@ -184,6 +194,7 @@
                 isWrap ?? IsWrap,
                 hAlign ?? HAlign,
                 vAlign ?? VAlign,
+                rotation ?? Rotation,
                 indent ?? Indent,
                 format ?? Format);
     }
