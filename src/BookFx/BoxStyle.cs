@@ -215,6 +215,12 @@
         public BoxStyle Center() => Align(HAlign.Center);
 
         /// <summary>
+        /// Align horizontally at the center of adjacent cells with the <see cref="HAlign.CenterContinuous"/> alignment.
+        /// </summary>
+        [Pure]
+        public BoxStyle CenterContinuous() => Align(HAlign.CenterContinuous);
+
+        /// <summary>
         /// Align to the right.
         /// </summary>
         [Pure]
