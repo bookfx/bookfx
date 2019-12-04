@@ -352,6 +352,7 @@ Make.Sheet("New Sheet Name", protoBook, "Prototype Sheet Name");
     - `BoxStyle.Align` - define an alignment
     - `BoxStyle.Left` - align to the left
     - `BoxStyle.Center` - align at the center horizontally
+    - `BoxStyle.CenterContinuous` - align horizontally at the center of adjacent cells
     - `BoxStyle.Right` - align to the right
     - `BoxStyle.Top` - align to the top
     - `BoxStyle.Middle` - align at the middle vertically
