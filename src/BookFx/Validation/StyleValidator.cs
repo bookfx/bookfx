@@ -11,6 +11,7 @@
         public static Validator<BoxStyleCore> Validate =>
             HarvestErrors(
                 FontSize,
+                Rotation,
                 IndentSize,
                 FontName,
                 Format);
@@ -19,6 +20,12 @@
             style => style.FontSize
                 .Where(size => size < Constraint.MinFontSize || size > Constraint.MaxFontSize)
                 .Map(size => Invalid<BoxStyleCore>(Errors.Style.FontSizeIsInvalid(size)))
+                .GetOrElse(Valid(style));
+
+        public static Validator<BoxStyleCore> Rotation =>
+            style => style.Rotation
+                .Where(rotation => rotation < Constraint.MinRotation || rotation > Constraint.MaxRotation)
+                .Map(rotation => Invalid<BoxStyleCore>(Errors.Style.RotationIsInvalid(rotation)))
                 .GetOrElse(Valid(style));
 
         public static Validator<BoxStyleCore> IndentSize =>

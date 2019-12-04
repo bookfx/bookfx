@@ -307,6 +307,9 @@
             public static FontSizeIsInvalidError FontSizeIsInvalid(double size) => new FontSizeIsInvalidError(size);
 
             [Pure]
+            public static RotationIsInvalidError RotationIsInvalid(int size) => new RotationIsInvalidError(size);
+
+            [Pure]
             public static IndentSizeIsInvalidError IndentSizeIsInvalid(int size) => new IndentSizeIsInvalidError(size);
 
             [Pure]
@@ -321,6 +324,16 @@
                     : base(
                         $"Font size {size} is invalid. " +
                         $"Font size should be from {MinFontSize} to {MaxFontSize}.")
+                {
+                }
+            }
+
+            public sealed class RotationIsInvalidError : Error
+            {
+                public RotationIsInvalidError(int rotation)
+                    : base(
+                        $"Rotation {rotation} is invalid. " +
+                        $"Rotation should be from {MinRotation} to {MaxRotation}.")
                 {
                 }
             }
