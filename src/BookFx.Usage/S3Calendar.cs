@@ -82,18 +82,18 @@
                 .Select(Row)
                 .ToCol();
 
-        private static Box ToGrid(this IEnumerable<Box> boxes, int width, float rowGap, float colGap) =>
+        private static Box ToGrid(this IEnumerable<Box> boxes, int width, double rowGap, double colGap) =>
             boxes
                 .Split(width)
                 .Select(chunk => chunk.ToGridRow(colGap))
                 .ToGridCol(rowGap);
 
-        private static Box ToGridRow(this IEnumerable<Box> boxes, float gap) =>
+        private static Box ToGridRow(this IEnumerable<Box> boxes, double gap) =>
             boxes
                 .Delimit(Value().SizeCols(gap))
                 .ToRow();
 
-        private static Box ToGridCol(this IEnumerable<Box> boxes, float gap) =>
+        private static Box ToGridCol(this IEnumerable<Box> boxes, double gap) =>
             boxes
                 .Delimit(Value().SizeRows(gap))
                 .ToCol();

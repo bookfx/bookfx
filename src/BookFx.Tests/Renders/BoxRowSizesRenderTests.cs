@@ -12,9 +12,9 @@
     public class BoxRowSizesRenderTests
     {
         [Theory]
-        [InlineData(10f)]
-        [InlineData(20f)]
-        public void RowSizesRender_SomeRowSize_Set(float size) =>
+        [InlineData(10d)]
+        [InlineData(20d)]
+        public void RowSizesRender_SomeRowSize_Set(double size) =>
             Packer.OnSheet(excelSheet =>
             {
                 var box = Make.Value().SizeRows(size).Get.Place();
