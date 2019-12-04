@@ -4,6 +4,9 @@
     using System.Collections.Generic;
     using System.Linq;
 
+    /// <summary>
+    /// <inheritdoc cref="Result{T}"/>
+    /// </summary>
     internal static class Result
     {
         public struct Invalid : IEquatable<Invalid>
