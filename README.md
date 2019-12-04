@@ -352,10 +352,12 @@ Make.Sheet("New Sheet Name", protoBook, "Prototype Sheet Name");
     - `BoxStyle.Align` - define an alignment
     - `BoxStyle.Left` - align to the left
     - `BoxStyle.Center` - align at the center horizontally
+    - `BoxStyle.CenterContinuous` - align horizontally at the center of adjacent cells
     - `BoxStyle.Right` - align to the right
     - `BoxStyle.Top` - align to the top
     - `BoxStyle.Middle` - align at the middle vertically
     - `BoxStyle.Bottom` - align to the bottom
+    - `BoxStyle.Rotate` - rotate the text
     - `BoxStyle.Indent` - define an indent
     - `BoxStyle.Format` - define a custom format
     - `BoxStyle.DefaultFormat` - define the `General` format

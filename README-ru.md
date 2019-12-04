@@ -350,10 +350,12 @@ Make.Sheet("New Sheet Name", protoBook, "Prototype Sheet Name");
     - `BoxStyle.Align` - задать выравнивание
     - `BoxStyle.Left` - выровнять по левому краю
     - `BoxStyle.Center` - выровнять горизонтально по центру
+    - `BoxStyle.CenterContinuous` - выровнять горизонтально по центру смежных ячеек
     - `BoxStyle.Right` - выровнять по правому краю
     - `BoxStyle.Top` - выровнять по верхнему краю
     - `BoxStyle.Middle` - выровнять вертикально по середине
     - `BoxStyle.Bottom` - выровнять по нижнему краю
+    - `BoxStyle.Rotate` - повернуть текст
     - `BoxStyle.Indent` - задать отступ
     - `BoxStyle.Format` - задать произвольный формат
     - `BoxStyle.DefaultFormat` - задать формат `General` (Общий)

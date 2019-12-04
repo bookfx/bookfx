@@ -109,6 +109,12 @@
                 Make.Style().Wrap(wrap),
                 range => range.Style.WrapText.Should().Be(wrap));
 
+        [Property(Arbitrary = new[] { typeof(ValidRotationArb) })]
+        public void Render_Rotation_Set(int rotation) =>
+            Check(
+                Make.Style().Rotate(rotation),
+                range => range.Style.TextRotation.Should().Be(rotation));
+
         /// <summary>
         /// <seealso cref="StyleValidator.IndentSize"/>
         /// </summary>

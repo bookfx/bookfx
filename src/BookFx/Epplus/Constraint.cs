@@ -12,6 +12,10 @@
 
         internal const double MaxFontSize = 409d;
 
+        internal const int MinRotation = 0;
+
+        internal const int MaxRotation = 180;
+
         internal const int MinIndentSize = 0;
 
         internal const int MaxIndentSize = 250;
