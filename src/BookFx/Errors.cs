@@ -304,7 +304,7 @@
         public static class Style
         {
             [Pure]
-            public static FontSizeIsInvalidError FontSizeIsInvalid(float size) => new FontSizeIsInvalidError(size);
+            public static FontSizeIsInvalidError FontSizeIsInvalid(double size) => new FontSizeIsInvalidError(size);
 
             [Pure]
             public static IndentSizeIsInvalidError IndentSizeIsInvalid(int size) => new IndentSizeIsInvalidError(size);
@@ -317,7 +317,7 @@
 
             public sealed class FontSizeIsInvalidError : Error
             {
-                public FontSizeIsInvalidError(float size)
+                public FontSizeIsInvalidError(double size)
                     : base(
                         $"Font size {size} is invalid. " +
                         $"Font size should be from {MinFontSize} to {MaxFontSize}.")

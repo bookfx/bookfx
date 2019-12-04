@@ -229,7 +229,7 @@
         [Fact]
         public void Style_InvalidStyle_Invalid()
         {
-            const float invalidFontSize = -1f;
+            const double invalidFontSize = -1d;
             var box = Make.Value().Style(Make.Style().Font(invalidFontSize)).Get.Place();
 
             var result = BoxValidator.Style(box);

@@ -92,10 +92,10 @@
             };
 
         /// <summary>
-        /// Converts a <see cref="TrackSize"/> to an <see cref="IEnumerable{Float}"/>.
+        /// Converts a <see cref="TrackSize"/> to an <see cref="IEnumerable{Double}"/>.
         /// </summary>
         /// <returns>
-        /// Either an empty <see cref="IEnumerable{T}"/> or an <see cref="IEnumerable{Float}"/> containing one value.
+        /// Either an empty <see cref="IEnumerable{T}"/> or an <see cref="IEnumerable{Double}"/> containing one value.
         /// </returns>
         [Pure]
         public IEnumerable<double> ValueAsEnumerable()

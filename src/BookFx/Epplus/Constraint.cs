@@ -8,9 +8,9 @@
 
         internal const int MaxRow = 1_048_576;
 
-        internal const float MinFontSize = 1f;
+        internal const double MinFontSize = 1d;
 
-        internal const float MaxFontSize = 409f;
+        internal const double MaxFontSize = 409d;
 
         internal const int MinIndentSize = 0;
 
