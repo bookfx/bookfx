@@ -382,7 +382,7 @@ The project is licensed under the [LGPL-3.0-or-later](https://spdx.org/licenses/
 ### The copyright notice
 
 ``` txt
-BookFx. Making complex Excel workbooks out of simple components.
+BookFx. Composing Excel spreadsheets based on a tree of nested components like the HTML DOM.
 Copyright (c) 2019 Zhenya Gusev
 ```
 
