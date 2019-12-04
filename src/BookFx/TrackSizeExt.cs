@@ -9,13 +9,13 @@
 
     internal static class TrackSizeExt
     {
-        public static Unit ForEach(this TrackSize size, Action fit, Action<float> some) =>
+        public static Unit ForEach(this TrackSize size, Action fit, Action<double> some) =>
             size.Match(
                 none: () => Unit(),
                 fit: fit.ToFunc(),
                 some: value => some.ToFunc()(value));
 
-        public static Unit Match(this TrackSize size, Action none, Action fit, Action<float> some) =>
+        public static Unit Match(this TrackSize size, Action none, Action fit, Action<double> some) =>
             size.Match(none.ToFunc(), fit.ToFunc(), some.ToFunc());
 
         public static TrackSize OrElse(this TrackSize size, TrackSize another) =>
@@ -40,7 +40,7 @@
             IEnumerable<TrackSize> complementation) =>
             sizes.Zip(complementation, (s, c) => s.OrElse(c));
 
-        public static IEnumerable<float> Values(this IEnumerable<TrackSize> sizes) =>
+        public static IEnumerable<double> Values(this IEnumerable<TrackSize> sizes) =>
             sizes.Bind(x => x.ValueAsEnumerable());
     }
 }

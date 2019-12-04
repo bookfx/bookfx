@@ -121,11 +121,11 @@
         }
 
         [Theory]
-        [InlineData(-20_000f)]
-        [InlineData(-1f)]
-        [InlineData(410f)]
-        [InlineData(100_000f)]
-        public void RowSizeRange_InvalidSizes_Invalid(int size)
+        [InlineData(-20_000d)]
+        [InlineData(-1d)]
+        [InlineData(410d)]
+        [InlineData(100_000d)]
+        public void RowSizeRange_InvalidSizes_Invalid(double size)
         {
             var box = Make.Value().SizeRows(size).Get.Place();
 
@@ -165,11 +165,11 @@
         }
 
         [Theory]
-        [InlineData(-20_000f)]
-        [InlineData(-1f)]
-        [InlineData(256f)]
-        [InlineData(100_000f)]
-        public void ColSizeRange_InvalidSizes_Invalid(int size)
+        [InlineData(-20_000d)]
+        [InlineData(-1d)]
+        [InlineData(256d)]
+        [InlineData(100_000d)]
+        public void ColSizeRange_InvalidSizes_Invalid(double size)
         {
             var box = Make.Value().SizeCols(size).Get.Place();
 
@@ -229,7 +229,7 @@
         [Fact]
         public void Style_InvalidStyle_Invalid()
         {
-            const float invalidFontSize = -1f;
+            const double invalidFontSize = -1d;
             var box = Make.Value().Style(Make.Style().Font(invalidFontSize)).Get.Place();
 
             var result = BoxValidator.Style(box);

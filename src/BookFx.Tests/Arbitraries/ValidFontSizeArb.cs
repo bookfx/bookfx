@@ -7,12 +7,12 @@
     public static class ValidFontSizeArb
     {
         [UsedImplicitly]
-        public static Arbitrary<float> Size() =>
+        public static Arbitrary<double> Size() =>
             Gen
                 .Choose(
                     (int)Constraint.MinFontSize * 1000,
                     (int)Constraint.MaxFontSize * 1000)
-                .Select(x => x / 1000f)
+                .Select(x => x / 1000d)
                 .ToArbitrary();
     }
 }

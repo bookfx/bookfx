@@ -59,7 +59,7 @@
         /// </summary>
         /// <param name="size">A font size.</param>
         [Pure]
-        public BoxStyle Font(float size) => Get.With(fontSize: size);
+        public BoxStyle Font(double size) => Get.With(fontSize: size);
 
         /// <summary>
         /// Define a font.
@@ -74,7 +74,7 @@
         /// <param name="name">A font name.</param>
         /// <param name="size">A font size.</param>
         [Pure]
-        public BoxStyle Font(string name, float size) => Get.With(fontName: Some(name), fontSize: size);
+        public BoxStyle Font(string name, double size) => Get.With(fontName: Some(name), fontSize: size);
 
         /// <summary>
         /// Define a font size and a font color.
@@ -82,7 +82,7 @@
         /// <param name="size">A font size.</param>
         /// <param name="color">A font color.</param>
         [Pure]
-        public BoxStyle Font(float size, Color color) => Get.With(fontSize: size, fontColor: color);
+        public BoxStyle Font(double size, Color color) => Get.With(fontSize: size, fontColor: color);
 
         /// <summary>
         /// Define a font, its size and color.
@@ -91,7 +91,7 @@
         /// <param name="size">A font size.</param>
         /// <param name="color">A font color.</param>
         [Pure]
-        public BoxStyle Font(string name, float size, Color color) =>
+        public BoxStyle Font(string name, double size, Color color) =>
             Get.With(fontName: Some(name), fontSize: size, fontColor: color);
 
         /// <summary>

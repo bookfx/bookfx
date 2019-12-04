@@ -32,7 +32,7 @@
 
         private BoxStyleCore(
             IEnumerable<BoxBorderCore> borders,
-            Option<float> fontSize,
+            Option<double> fontSize,
             Option<string> fontName,
             Option<Color> fontColor,
             Option<Color> backColor,
@@ -70,7 +70,7 @@
         /// <summary>
         /// Gets the font size.
         /// </summary>
-        public Option<float> FontSize { get; }
+        public Option<double> FontSize { get; }
 
         /// <summary>
         /// Gets the font name.
@@ -157,7 +157,7 @@
         [Pure]
         internal BoxStyleCore With(
             IEnumerable<BoxBorderCore>? borders = null,
-            Option<float>? fontSize = null,
+            Option<double>? fontSize = null,
             Option<string>? fontName = null,
             Option<Color>? fontColor = null,
             Option<Color>? backColor = null,

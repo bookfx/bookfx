@@ -21,7 +21,7 @@
         public static readonly TrackSize Fit = new TrackSize(Mode.Fit);
 
         private readonly Mode _mode;
-        private readonly float _value;
+        private readonly double _value;
 
         private TrackSize(Mode mode)
         {
@@ -29,7 +29,7 @@
             _value = default;
         }
 
-        private TrackSize(float value)
+        private TrackSize(double value)
         {
             _mode = Mode.Some;
             _value = value;
@@ -48,10 +48,10 @@
         public bool IsNone => _mode == Mode.None;
 
         /// <summary>
-        /// Implicit convert from <see cref="float"/> to <see cref="TrackSize"/>.
+        /// Implicit convert from <see cref="double"/> to <see cref="TrackSize"/>.
         /// </summary>
         [Pure]
-        public static implicit operator TrackSize(float value) => Some(value);
+        public static implicit operator TrackSize(double value) => Some(value);
 
         /// <summary>
         /// Equality operator.
@@ -68,7 +68,7 @@
         /// </summary>
         /// <param name="value">A track size.</param>
         [Pure]
-        public static TrackSize Some(float value) => new TrackSize(value);
+        public static TrackSize Some(double value) => new TrackSize(value);
 
         /// <summary>
         /// Pattern matching.
@@ -82,7 +82,7 @@
         /// or the <paramref name="fit"/>
         /// or the <paramref name="some"/> function.
         /// </returns>
-        public T Match<T>(Func<T> none, Func<T> fit, Func<float, T> some) =>
+        public T Match<T>(Func<T> none, Func<T> fit, Func<double, T> some) =>
             _mode switch
             {
                 Mode.None => none(),
@@ -92,13 +92,13 @@
             };
 
         /// <summary>
-        /// Converts a <see cref="TrackSize"/> to an <see cref="IEnumerable{Float}"/>.
+        /// Converts a <see cref="TrackSize"/> to an <see cref="IEnumerable{Double}"/>.
         /// </summary>
         /// <returns>
-        /// Either an empty <see cref="IEnumerable{T}"/> or an <see cref="IEnumerable{Float}"/> containing one value.
+        /// Either an empty <see cref="IEnumerable{T}"/> or an <see cref="IEnumerable{Double}"/> containing one value.
         /// </returns>
         [Pure]
-        public IEnumerable<float> ValueAsEnumerable()
+        public IEnumerable<double> ValueAsEnumerable()
         {
             if (_mode == Mode.Some)
             {

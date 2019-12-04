@@ -8,21 +8,21 @@
 
         internal const int MaxRow = 1_048_576;
 
-        internal const float MinFontSize = 1f;
+        internal const double MinFontSize = 1d;
 
-        internal const float MaxFontSize = 409f;
+        internal const double MaxFontSize = 409d;
 
         internal const int MinIndentSize = 0;
 
         internal const int MaxIndentSize = 250;
 
-        internal const float MinColSize = 0f;
+        internal const double MinColSize = 0d;
 
-        internal const float MaxColSize = 255f;
+        internal const double MaxColSize = 255d;
 
-        internal const float MinRowSize = 0f;
+        internal const double MinRowSize = 0d;
 
-        internal const float MaxRowSize = 409f;
+        internal const double MaxRowSize = 409d;
 
         internal const double MinMargin = 0;
 

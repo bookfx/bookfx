@@ -41,10 +41,10 @@
         /// <seealso cref="StyleValidator.FontSize"/>
         /// </summary>
         [Property(Arbitrary = new[] { typeof(ValidFontSizeArb) })]
-        public void Render_FontSize_Set(float size) =>
+        public void Render_FontSize_Set(double size) =>
             Check(
                 Make.Style().Font(size),
-                range => range.Style.Font.Size.Should().Be(size));
+                range => range.Style.Font.Size.Should().Be((float)size));
 
         /// <summary>
         /// <seealso cref="StyleValidator.FontName"/>

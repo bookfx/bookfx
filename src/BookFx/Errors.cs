@@ -191,17 +191,17 @@
                 new ColSizeCountIsInvalidError(sizeCount, boxWidth);
 
             [Pure]
-            public static RowSizesAreInvalidError RowSizesAreInvalid(float size) => new RowSizesAreInvalidError(size);
+            public static RowSizesAreInvalidError RowSizesAreInvalid(double size) => new RowSizesAreInvalidError(size);
 
             [Pure]
-            public static RowSizesAreInvalidError RowSizesAreInvalid(float size, IEnumerable<float> others) =>
+            public static RowSizesAreInvalidError RowSizesAreInvalid(double size, IEnumerable<double> others) =>
                 new RowSizesAreInvalidError(others.Prepend(size));
 
             [Pure]
-            public static ColSizesAreInvalidError ColSizesAreInvalid(float size) => new ColSizesAreInvalidError(size);
+            public static ColSizesAreInvalidError ColSizesAreInvalid(double size) => new ColSizesAreInvalidError(size);
 
             [Pure]
-            public static ColSizesAreInvalidError ColSizesAreInvalid(float size, IEnumerable<float> others) =>
+            public static ColSizesAreInvalidError ColSizesAreInvalid(double size, IEnumerable<double> others) =>
                 new ColSizesAreInvalidError(others.Prepend(size));
 
             [Pure]
@@ -252,12 +252,12 @@
 
             public sealed class RowSizesAreInvalidError : Error
             {
-                public RowSizesAreInvalidError(float size)
+                public RowSizesAreInvalidError(double size)
                     : base($"Box row size {size} is invalid. " + ShouldPart())
                 {
                 }
 
-                public RowSizesAreInvalidError(IEnumerable<float> sizes)
+                public RowSizesAreInvalidError(IEnumerable<double> sizes)
                     : base($"Box row sizes {string.Join(", ", sizes)} are invalid. " + ShouldPart())
                 {
                 }
@@ -268,12 +268,12 @@
 
             public sealed class ColSizesAreInvalidError : Error
             {
-                public ColSizesAreInvalidError(float size)
+                public ColSizesAreInvalidError(double size)
                     : base($"Box column size {size} is invalid. " + ShouldPart())
                 {
                 }
 
-                public ColSizesAreInvalidError(IEnumerable<float> sizes)
+                public ColSizesAreInvalidError(IEnumerable<double> sizes)
                     : base($"Box column sizes {string.Join(", ", sizes)} are invalid. " + ShouldPart())
                 {
                 }
@@ -304,7 +304,7 @@
         public static class Style
         {
             [Pure]
-            public static FontSizeIsInvalidError FontSizeIsInvalid(float size) => new FontSizeIsInvalidError(size);
+            public static FontSizeIsInvalidError FontSizeIsInvalid(double size) => new FontSizeIsInvalidError(size);
 
             [Pure]
             public static IndentSizeIsInvalidError IndentSizeIsInvalid(int size) => new IndentSizeIsInvalidError(size);
@@ -317,7 +317,7 @@
 
             public sealed class FontSizeIsInvalidError : Error
             {
-                public FontSizeIsInvalidError(float size)
+                public FontSizeIsInvalidError(double size)
                     : base(
                         $"Font size {size} is invalid. " +
                         $"Font size should be from {MinFontSize} to {MaxFontSize}.")

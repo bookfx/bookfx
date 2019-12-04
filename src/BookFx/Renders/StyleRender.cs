@@ -20,7 +20,7 @@
         private static Tee<ExcelRangeBase> OthersRender(this BoxStyleCore style) =>
             excelRange =>
             {
-                style.FontSize.ForEach(size => excelRange.Style.Font.Size = size);
+                style.FontSize.ForEach(size => excelRange.Style.Font.Size = (float)size);
                 style.FontName.ForEach(name => excelRange.Style.Font.Name = name);
                 style.FontColor.ForEach(color => excelRange.Style.Font.Color.SetColor(color));
                 style.BackColor.ForEach(color =>

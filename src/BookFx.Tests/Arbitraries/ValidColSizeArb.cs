@@ -18,7 +18,7 @@
                             .Choose(
                                 (int)Constraint.MinColSize * 1000,
                                 (int)Constraint.MaxColSize * 1000)
-                            .Select(x => x / 1000f)
+                            .Select(x => x / 1000d)
                             .Select(TrackSize.Some)),
                     Tuple.Create(1, Gen.Constant(TrackSize.Fit)))
                 .ToArbitrary();

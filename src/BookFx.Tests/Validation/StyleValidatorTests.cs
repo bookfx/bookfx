@@ -19,7 +19,7 @@
         }
 
         [Property(Arbitrary = new[] { typeof(ValidFontSizeArb) })]
-        public void FontSize_ValidSizes_Valid(float size)
+        public void FontSize_ValidSizes_Valid(double size)
         {
             var style = Make.Style().Font(size).Get;
 
@@ -29,7 +29,7 @@
         }
 
         [Property(Arbitrary = new[] { typeof(InvalidFontSizeArb) })]
-        public void FontSize_InvalidSizes_Invalid(float size)
+        public void FontSize_InvalidSizes_Invalid(double size)
         {
             var style = Make.Style().Font(size).Get;
 

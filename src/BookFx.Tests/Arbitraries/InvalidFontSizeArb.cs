@@ -7,7 +7,7 @@
     public static class InvalidFontSizeArb
     {
         [UsedImplicitly]
-        public static Arbitrary<float> Size() =>
-            Arb.Default.Float32().Filter(size => size < Constraint.MinFontSize || size > Constraint.MaxFontSize);
+        public static Arbitrary<double> Size() =>
+            Arb.Default.Float().Filter(size => size < Constraint.MinFontSize || size > Constraint.MaxFontSize);
     }
 }
