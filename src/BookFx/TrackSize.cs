@@ -48,6 +48,18 @@
         public bool IsNone => _mode == Mode.None;
 
         /// <summary>
+        /// Implicit convert from <see cref="int"/> to <see cref="TrackSize"/>.
+        /// </summary>
+        [Pure]
+        public static implicit operator TrackSize(int value) => Some(value);
+
+        /// <summary>
+        /// Implicit convert from <see cref="float"/> to <see cref="TrackSize"/>.
+        /// </summary>
+        [Pure]
+        public static implicit operator TrackSize(float value) => Some(value);
+
+        /// <summary>
         /// Implicit convert from <see cref="double"/> to <see cref="TrackSize"/>.
         /// </summary>
         [Pure]
@@ -62,6 +74,22 @@
         /// Inequality operator.
         /// </summary>
         public static bool operator !=(TrackSize left, TrackSize right) => !(left == right);
+
+        /// <summary>
+        /// Creates a <see cref="TrackSize"/> with value.
+        /// This is a special overload for the <see cref="int"/>.
+        /// </summary>
+        /// <param name="value">A track size.</param>
+        [Pure]
+        public static TrackSize Some(int value) => new TrackSize(value);
+
+        /// <summary>
+        /// Creates a <see cref="TrackSize"/> with value.
+        /// This is a special overload for the <see cref="float"/>.
+        /// </summary>
+        /// <param name="value">A track size.</param>
+        [Pure]
+        public static TrackSize Some(float value) => new TrackSize(value);
 
         /// <summary>
         /// Creates a <see cref="TrackSize"/> with value.
