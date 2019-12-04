@@ -2,5 +2,5 @@
 {
     using Unit = System.ValueTuple;
 
-    internal delegate Result<Unit> Act<in T>(T x);
+    internal delegate Result<Unit> Tee<in T>(T x);
 }

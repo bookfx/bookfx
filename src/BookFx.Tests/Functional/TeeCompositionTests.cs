@@ -6,28 +6,28 @@
     using FluentAssertions;
     using FsCheck;
     using FsCheck.Xunit;
-    using static BookFx.Functional.ActComposition;
     using static BookFx.Functional.F;
+    using static BookFx.Functional.TeeComposition;
 
-    public class ActCompositionTests
+    public class TeeCompositionTests
     {
         [Property]
-        public void HarvestErrors_ValidActs_Valid(bool[] array, int value)
+        public void HarvestErrors_ValidTees_Valid(bool[] array, int value)
         {
-            var acts = array.Map(_ => GetValidAct());
+            var tees = array.Map(_ => GetValidTee());
 
-            var result = HarvestErrors(acts)(value);
+            var result = HarvestErrors(tees)(value);
 
             result.IsValid.Should().BeTrue();
         }
 
         [Property]
-        public void HarvestErrors_InvalidActs_InvalidWithItsErrors(NonEmptyArray<string> messages, int value)
+        public void HarvestErrors_InvalidTees_InvalidWithItsErrors(NonEmptyArray<string> messages, int value)
         {
             var errors = GetErrors(messages.Get);
-            var acts = errors.Map(GetInvalidAct);
+            var tees = errors.Map(GetInvalidTee);
 
-            var result = HarvestErrors(acts)(value);
+            var result = HarvestErrors(tees)(value);
 
             result.IsValid.Should().BeFalse();
             result.ErrorsUnsafe().Should().Equal(errors);
@@ -40,33 +40,33 @@
             int value)
         {
             var errors = GetErrors(messages.Get);
-            var validActs = array.Map(_ => GetValidAct());
-            var invalidActs = errors.Map(GetInvalidAct);
-            var acts = validActs.Concat(invalidActs);
+            var validTees = array.Map(_ => GetValidTee());
+            var invalidTees = errors.Map(GetInvalidTee);
+            var tees = validTees.Concat(invalidTees);
 
-            var result = HarvestErrors(acts)(value);
+            var result = HarvestErrors(tees)(value);
 
             result.IsValid.Should().BeFalse();
             result.ErrorsUnsafe().Should().Equal(errors);
         }
 
         [Property]
-        public void FailFast_ValidActs_Valid(bool[] array, int value)
+        public void FailFast_ValidTees_Valid(bool[] array, int value)
         {
-            var acts = array.Map(_ => GetValidAct());
+            var tees = array.Map(_ => GetValidTee());
 
-            var result = FailFast(acts)(value);
+            var result = FailFast(tees)(value);
 
             result.IsValid.Should().BeTrue();
         }
 
         [Property]
-        public void FailFast_InvalidActs_InvalidWithFirstError(NonEmptyArray<string> messages, int value)
+        public void FailFast_InvalidTees_InvalidWithFirstError(NonEmptyArray<string> messages, int value)
         {
             var errors = GetErrors(messages.Get);
-            var acts = errors.Map(GetInvalidAct);
+            var tees = errors.Map(GetInvalidTee);
 
-            var result = FailFast(acts)(value);
+            var result = FailFast(tees)(value);
 
             result.IsValid.Should().BeFalse();
             result.ErrorsUnsafe().Should().Equal(errors.First());
@@ -79,11 +79,11 @@
             int value)
         {
             var errors = GetErrors(messages.Get);
-            var validActs = array.Map(_ => GetValidAct());
-            var invalidActs = errors.Map(GetInvalidAct);
-            var acts = validActs.Concat(invalidActs);
+            var validTees = array.Map(_ => GetValidTee());
+            var invalidTees = errors.Map(GetInvalidTee);
+            var tees = validTees.Concat(invalidTees);
 
-            var result = FailFast(acts)(value);
+            var result = FailFast(tees)(value);
 
             result.IsValid.Should().BeFalse();
             result.ErrorsUnsafe().Should().Equal(errors.First());
@@ -91,8 +91,8 @@
 
         private static Error[] GetErrors(IEnumerable<string> messages) => messages.Map(x => new Error(x)).ToArray();
 
-        private static Act<int> GetValidAct() => _ => Valid(Unit());
+        private static Tee<int> GetValidTee() => _ => Valid(Unit());
 
-        private static Act<int> GetInvalidAct(Error error) => _ => Invalid(error);
+        private static Tee<int> GetInvalidTee(Error error) => _ => Invalid(error);
     }
 }

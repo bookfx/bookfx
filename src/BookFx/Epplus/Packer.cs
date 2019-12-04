@@ -8,7 +8,7 @@
 
     internal static class Packer
     {
-        public static Result<byte[]> Pack(Act<ExcelPackage> render) =>
+        public static Result<byte[]> Pack(Tee<ExcelPackage> render) =>
             Using(
                 new ExcelPackage(),
                 package => render(package).Map(_ => package.GetAsByteArray()));

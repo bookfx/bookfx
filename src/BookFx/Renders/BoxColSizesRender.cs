@@ -6,13 +6,13 @@
     using BookFx.Epplus;
     using BookFx.Functional;
     using OfficeOpenXml;
-    using static BookFx.Functional.ActComposition;
+    using static BookFx.Functional.TeeComposition;
 
     internal static class BoxColSizesRender
     {
         private const double MaxDigitWidth = 7; // for Calibri 11
 
-        public static Act<ExcelWorksheet> ColSizesRender(this BoxCore box) =>
+        public static Tee<ExcelWorksheet> ColSizesRender(this BoxCore box) =>
             excelSheet =>
             {
                 if (box.ColSizes.Count > box.Placement.Dimension.Width)
@@ -25,10 +25,10 @@
                 return HarvestErrors(box.ColSizeRenders())(excelSheet);
             };
 
-        private static IEnumerable<Act<ExcelWorksheet>> ColSizeRenders(this BoxCore box) =>
+        private static IEnumerable<Tee<ExcelWorksheet>> ColSizeRenders(this BoxCore box) =>
             box.ColSizes.Map((size, i) => ColSizeRender(size, box.Placement.Position.Col + i));
 
-        private static Act<ExcelWorksheet> ColSizeRender(TrackSize size, int col) =>
+        private static Tee<ExcelWorksheet> ColSizeRender(TrackSize size, int col) =>
             excelSheet => size.ForEach(
                 fit: () =>
                 {

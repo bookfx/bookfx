@@ -4,20 +4,20 @@
     using BookFx.Functional;
     using OfficeOpenXml;
     using OfficeOpenXml.Style;
-    using static BookFx.Functional.ActComposition;
     using static BookFx.Functional.F;
+    using static BookFx.Functional.TeeComposition;
 
     internal static class StyleRender
     {
-        public static Act<ExcelRangeBase> Render(this BoxStyleCore style) =>
+        public static Tee<ExcelRangeBase> Render(this BoxStyleCore style) =>
             HarvestErrors(
                 style.BordersRender(),
                 style.OthersRender());
 
-        private static Act<ExcelRangeBase> BordersRender(this BoxStyleCore style) =>
+        private static Tee<ExcelRangeBase> BordersRender(this BoxStyleCore style) =>
             HarvestErrors(style.Borders.Map(BorderRender.Render));
 
-        private static Act<ExcelRangeBase> OthersRender(this BoxStyleCore style) =>
+        private static Tee<ExcelRangeBase> OthersRender(this BoxStyleCore style) =>
             excelRange =>
             {
                 style.FontSize.ForEach(size => excelRange.Style.Font.Size = size);

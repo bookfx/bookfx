@@ -4,14 +4,14 @@
     using BookFx.Cores;
     using BookFx.Functional;
     using OfficeOpenXml;
-    using static BookFx.Functional.ActComposition;
+    using static BookFx.Functional.TeeComposition;
 
     internal static class BoxDescendantsRender
     {
-        public static Act<ExcelRangeBase> DescendantsRender(this BoxCore box) =>
+        public static Tee<ExcelRangeBase> DescendantsRender(this BoxCore box) =>
             HarvestErrors(box.ImmediateDescendants().Where(x => !x.Placement.IsAbsent).Map(DescendantRender));
 
-        private static Act<ExcelRangeBase> DescendantRender(BoxCore box) =>
+        private static Tee<ExcelRangeBase> DescendantRender(BoxCore box) =>
             parentExcelRange => box.Render()(parentExcelRange.Worksheet.Cells[
                 FromRow: box.Placement.Position.Row,
                 FromCol: box.Placement.Position.Col,

@@ -29,6 +29,6 @@
             };
 
         [Pure]
-        public static Act<T> ToAct<T>(this Action<T> action) => Pipe(action.ToFunc(), Valid).Invoke;
+        public static Tee<T> ToTee<T>(this Action<T> action) => Pipe(action.ToFunc(), Valid).Invoke;
     }
 }

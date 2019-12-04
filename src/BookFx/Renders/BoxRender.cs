@@ -3,11 +3,11 @@
     using BookFx.Cores;
     using BookFx.Functional;
     using OfficeOpenXml;
-    using static BookFx.Functional.ActComposition;
+    using static BookFx.Functional.TeeComposition;
 
     internal static class BoxRender
     {
-        public static Act<ExcelRangeBase> Render(this BoxCore box) =>
+        public static Tee<ExcelRangeBase> Render(this BoxCore box) =>
             HarvestErrors(
                 box.ProtoRender(),
                 box.MergeRender(),

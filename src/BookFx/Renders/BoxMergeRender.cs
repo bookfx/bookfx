@@ -7,7 +7,7 @@
 
     internal static class BoxMergeRender
     {
-        public static Act<ExcelRangeBase> MergeRender(this BoxCore box) =>
+        public static Tee<ExcelRangeBase> MergeRender(this BoxCore box) =>
             excelRange =>
             {
                 if (box.Merge.GetOrElse(box.Content.IsSome) && CanBeMerged(excelRange))

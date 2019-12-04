@@ -4,22 +4,22 @@
     using System.Linq;
     using static F;
 
-    internal static class ActComposition
+    internal static class TeeComposition
     {
-        public static Act<T> FailFast<T>(params Act<T>[] acts) => FailFast(acts.AsEnumerable());
+        public static Tee<T> FailFast<T>(params Tee<T>[] tees) => FailFast(tees.AsEnumerable());
 
-        public static Act<T> FailFast<T>(IEnumerable<Act<T>> acts) =>
-            x => acts
+        public static Tee<T> FailFast<T>(IEnumerable<Tee<T>> tees) =>
+            x => tees
                 .Aggregate(
                     Valid(Unit()),
-                    (acc, act) => acc.Bind(_ => act(x)));
+                    (acc, tee) => acc.Bind(_ => tee(x)));
 
-        public static Act<T> HarvestErrors<T>(params Act<T>[] acts) =>
-            HarvestErrors(acts.AsEnumerable());
+        public static Tee<T> HarvestErrors<T>(params Tee<T>[] tees) =>
+            HarvestErrors(tees.AsEnumerable());
 
-        public static Act<T> HarvestErrors<T>(IEnumerable<Act<T>> acts) =>
-            x => acts
-                .Traverse(act => act(x))
+        public static Tee<T> HarvestErrors<T>(IEnumerable<Tee<T>> tees) =>
+            x => tees
+                .Traverse(tee => tee(x))
                 .Map(_ => Unit());
     }
 }

@@ -9,7 +9,7 @@
 
     internal static class BoxContentRender
     {
-        public static Act<ExcelRangeBase> ContentRender(this BoxCore box) =>
+        public static Tee<ExcelRangeBase> ContentRender(this BoxCore box) =>
             excelRange =>
             {
                 box.Content.ForEach(content =>

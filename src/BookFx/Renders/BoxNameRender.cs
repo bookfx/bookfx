@@ -7,7 +7,7 @@
 
     internal static class BoxNameRender
     {
-        public static Act<ExcelRangeBase> NameRender(this BoxCore box) =>
+        public static Tee<ExcelRangeBase> NameRender(this BoxCore box) =>
             excelRange =>
             {
                 box.Name.ForEach(name =>

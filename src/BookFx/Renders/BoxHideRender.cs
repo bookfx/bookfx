@@ -4,18 +4,18 @@
     using BookFx.Cores;
     using BookFx.Functional;
     using OfficeOpenXml;
-    using static BookFx.Functional.ActComposition;
     using static BookFx.Functional.F;
+    using static BookFx.Functional.TeeComposition;
 
     internal static class BoxHideRender
     {
-        public static Act<ExcelWorksheet> HideRender(this BoxCore box) =>
+        public static Tee<ExcelWorksheet> HideRender(this BoxCore box) =>
             HarvestErrors(
                 HarvestErrors(box.ImmediateDescendants().Map(HideRender)),
                 box.HideRowsRender(),
                 box.HideColsRender());
 
-        private static Act<ExcelWorksheet> HideRowsRender(this BoxCore box) =>
+        private static Tee<ExcelWorksheet> HideRowsRender(this BoxCore box) =>
             excelSheet =>
             {
                 if (box.AreRowsHidden)
@@ -28,7 +28,7 @@
                 return Unit();
             };
 
-        private static Act<ExcelWorksheet> HideColsRender(this BoxCore box) =>
+        private static Tee<ExcelWorksheet> HideColsRender(this BoxCore box) =>
             excelSheet =>
             {
                 if (box.AreColsHidden)
