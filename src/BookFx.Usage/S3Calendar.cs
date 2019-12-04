@@ -24,7 +24,7 @@
 
         private static Sheet CalendarSheet(Year year, CultureInfo culture) =>
             List(CalendarTitleBox(year, culture), CalendarBodyBox(year, culture))
-                .ToGridCol(gap: 15f)
+                .ToGridCol(gap: 15)
                 .ToSheet()
                 .Name(culture.TwoLetterISOLanguageName);
 
@@ -37,11 +37,11 @@
             year
                 .GetMonths()
                 .Select(month => MonthBox(culture, month))
-                .ToGrid(width: 3, rowGap: 15f, colGap: 5f);
+                .ToGrid(width: 3, rowGap: 15, colGap: 5);
 
         private static Box MonthBox(CultureInfo culture, Month month) =>
             List(MonthTitleBox(culture, month), MonthBodyBox(culture, month))
-                .ToGridCol(gap: 4.5f)
+                .ToGridCol(gap: 4.5)
                 .SizeCols(Enumerable.Repeat(TrackSize.Fit, 7));
 
         private static Box MonthTitleBox(CultureInfo culture, Month month) =>
