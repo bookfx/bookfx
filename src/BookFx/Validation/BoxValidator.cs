@@ -5,11 +5,11 @@
     using BookFx.Epplus;
     using BookFx.Functional;
     using static Functional.F;
-    using static Functional.TeeComposition;
+    using static Functional.ValidatorComposition;
 
     internal static class BoxValidator
     {
-        public static Tee<BoxCore> Validate =>
+        public static Validator<BoxCore> Validate =>
             HarvestErrors(
                 RowSpanSize,
                 ColSpanSize,
@@ -18,21 +18,21 @@
                 Name,
                 Style);
 
-        public static Tee<BoxCore> RowSpanSize =>
+        public static Validator<BoxCore> RowSpanSize =>
             box => box.RowSpan
                 .Where(size => size < 1 || size > Constraint.MaxRow)
                 .Match(
                     none: () => Valid(box),
                     some: size => Errors.Box.RowSpanIsInvalid(size));
 
-        public static Tee<BoxCore> ColSpanSize =>
+        public static Validator<BoxCore> ColSpanSize =>
             box => box.ColSpan
                 .Where(size => size < 1 || size > Constraint.MaxColumn)
                 .Match(
                     none: () => Valid(box),
                     some: size => Errors.Box.ColSpanIsInvalid(size));
 
-        public static Tee<BoxCore> RowSizeRange =>
+        public static Validator<BoxCore> RowSizeRange =>
             box => box.RowSizes.Values()
                 .Where(size => size < Constraint.MinRowSize || size > Constraint.MaxRowSize)
                 .Match(
@@ -40,7 +40,7 @@
                     one: size => Errors.Box.RowSizesAreInvalid(size),
                     more: (size, others) => Errors.Box.RowSizesAreInvalid(size, others));
 
-        public static Tee<BoxCore> ColSizeRange =>
+        public static Validator<BoxCore> ColSizeRange =>
             box => box.ColSizes.Values()
                 .Where(size => size < Constraint.MinColSize || size > Constraint.MaxColSize)
                 .Match(
@@ -48,7 +48,7 @@
                     one: size => Errors.Box.ColSizesAreInvalid(size),
                     more: (size, others) => Errors.Box.ColSizesAreInvalid(size, others));
 
-        public static Tee<BoxCore> Name =>
+        public static Validator<BoxCore> Name =>
             box => box.Name.Match(
                 none: () => Valid(box),
                 some: name =>
@@ -58,7 +58,7 @@
                         ? Valid(box)
                         : Errors.Box.NameIsInvalid(name));
 
-        public static Tee<BoxCore> Style =>
+        public static Validator<BoxCore> Style =>
             box => box.Style
                 .Map(StyleValidator.Validate.Invoke)
                 .Match(

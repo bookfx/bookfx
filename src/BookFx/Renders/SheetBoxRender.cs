@@ -3,19 +3,19 @@
     using BookFx.Cores;
     using BookFx.Functional;
     using OfficeOpenXml;
-    using static BookFx.Functional.ActComposition;
     using static BookFx.Functional.F;
+    using static BookFx.Functional.TeeComposition;
 
     internal static class SheetBoxRender
     {
-        public static Act<ExcelWorksheet> RootRender(this BoxCore box) =>
+        public static Tee<ExcelWorksheet> RootRender(this BoxCore box) =>
             FailFast(
                 box.RootContentRender(),
                 box.TrackSizesRender(),
                 box.HideRender(),
                 box.FreezeRender());
 
-        private static Act<ExcelWorksheet> RootContentRender(this BoxCore box) =>
+        private static Tee<ExcelWorksheet> RootContentRender(this BoxCore box) =>
             excelSheet =>
             {
                 if (box.Placement.IsAbsent)
@@ -32,7 +32,7 @@
                 return box.Render()(excelRange);
             };
 
-        private static Act<ExcelWorksheet> TrackSizesRender(this BoxCore box) =>
+        private static Tee<ExcelWorksheet> TrackSizesRender(this BoxCore box) =>
             HarvestErrors(
                 HarvestErrors(box.ImmediateDescendants().Map(TrackSizesRender)),
                 box.ColSizesRender(),

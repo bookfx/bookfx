@@ -26,7 +26,7 @@
 
         public static Result<T> Invalid<T>(IEnumerable<Error> errors) => new Result.Invalid(errors);
 
-        public static Act<object> NoAct() => _ => Unit();
+        public static Tee<object> NoAct() => _ => Unit();
 
         public static IEnumerable<T> List<T>(T item, params T[] others) => others.Prepend(item).ToImmutableList();
 

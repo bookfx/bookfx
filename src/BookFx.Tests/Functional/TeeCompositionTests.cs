@@ -91,7 +91,7 @@
 
         private static Error[] GetErrors(IEnumerable<string> messages) => messages.Map(x => new Error(x)).ToArray();
 
-        private static Tee<int> GetValidTee() => Valid;
+        private static Tee<int> GetValidTee() => _ => Valid(Unit());
 
         private static Tee<int> GetInvalidTee(Error error) => _ => Invalid(error);
     }

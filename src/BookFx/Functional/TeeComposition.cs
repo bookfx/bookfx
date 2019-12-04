@@ -11,7 +11,7 @@
         public static Tee<T> FailFast<T>(IEnumerable<Tee<T>> tees) =>
             x => tees
                 .Aggregate(
-                    Valid(x),
+                    Valid(Unit()),
                     (acc, tee) => acc.Bind(_ => tee(x)));
 
         public static Tee<T> HarvestErrors<T>(params Tee<T>[] tees) =>
@@ -20,6 +20,6 @@
         public static Tee<T> HarvestErrors<T>(IEnumerable<Tee<T>> tees) =>
             x => tees
                 .Traverse(tee => tee(x))
-                .Map(_ => x);
+                .Map(_ => Unit());
     }
 }

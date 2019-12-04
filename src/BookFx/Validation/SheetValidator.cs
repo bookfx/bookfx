@@ -5,11 +5,11 @@
     using BookFx.Functional;
     using static BookFx.Epplus.Constraint;
     using static Functional.F;
-    using static Functional.TeeComposition;
+    using static Functional.ValidatorComposition;
 
     internal static class SheetValidator
     {
-        public static Tee<SheetCore> Validate =>
+        public static Validator<SheetCore> Validate =>
             HarvestErrors(
                 SheetName,
                 PrintArea,
@@ -22,13 +22,13 @@
                 AutoFilter,
                 Boxes);
 
-        public static Tee<SheetCore> SheetName =>
+        public static Validator<SheetCore> SheetName =>
             sheet => sheet.Name
                 .Where(name => !SheetNameRegex.IsMatch(name))
                 .Map(name => Invalid<SheetCore>(Errors.Sheet.NameIsInvalid(name)))
                 .GetOrElse(Valid(sheet));
 
-        public static Tee<SheetCore> PrintArea =>
+        public static Validator<SheetCore> PrintArea =>
             sheet => sheet
                 .Box
                 .AsEnumerable()
@@ -39,7 +39,7 @@
                     one: _ => Valid(sheet),
                     more: (_, __) => Errors.Sheet.ManyPrintAreas());
 
-        public static Tee<SheetCore> FrozenRows =>
+        public static Validator<SheetCore> FrozenRows =>
             sheet => sheet
                 .Box
                 .AsEnumerable()
@@ -50,7 +50,7 @@
                     one: _ => Valid(sheet),
                     more: (_, __) => Errors.Sheet.ManyFrozenRows());
 
-        public static Tee<SheetCore> FrozenCols =>
+        public static Validator<SheetCore> FrozenCols =>
             sheet => sheet
                 .Box
                 .AsEnumerable()
@@ -61,7 +61,7 @@
                     one: _ => Valid(sheet),
                     more: (_, __) => Errors.Sheet.ManyFrozenCols());
 
-        public static Tee<SheetCore> AutoFilter =>
+        public static Validator<SheetCore> AutoFilter =>
             sheet => sheet
                 .Box
                 .AsEnumerable()
@@ -72,7 +72,7 @@
                     one: _ => Valid(sheet),
                     more: (_, __) => Errors.Sheet.ManyAutoFilters());
 
-        public static Tee<SheetCore> Margins =>
+        public static Validator<SheetCore> Margins =>
             sheet => sheet
                 .Margins
                 .AsEnumerable()
@@ -93,28 +93,28 @@
                     empty: () => Valid(sheet),
                     more: errors => Errors.Sheet.Aggregate(sheet, errors));
 
-        public static Tee<SheetCore> FitToHeight =>
+        public static Validator<SheetCore> FitToHeight =>
             sheet => sheet
                 .FitToHeight
                 .Where(fit => fit < MinFit || fit > MaxFit)
                 .Map(scale => Invalid<SheetCore>(Errors.Sheet.FitToHeightIsInvalid(scale)))
                 .GetOrElse(Valid(sheet));
 
-        public static Tee<SheetCore> FitToWidth =>
+        public static Validator<SheetCore> FitToWidth =>
             sheet => sheet
                 .FitToWidth
                 .Where(fit => fit < MinFit || fit > MaxFit)
                 .Map(scale => Invalid<SheetCore>(Errors.Sheet.FitToWidthIsInvalid(scale)))
                 .GetOrElse(Valid(sheet));
 
-        public static Tee<SheetCore> Scale =>
+        public static Validator<SheetCore> Scale =>
             sheet => sheet
                 .Scale
                 .Where(scale => scale < MinScale || scale > MaxScale)
                 .Map(scale => Invalid<SheetCore>(Errors.Sheet.ScaleIsInvalid(scale)))
                 .GetOrElse(Valid(sheet));
 
-        public static Tee<SheetCore> Boxes =>
+        public static Validator<SheetCore> Boxes =>
             sheet => sheet.Box
                 .AsEnumerable()
                 .Bind(BoxCoreExt.SelfAndDescendants)

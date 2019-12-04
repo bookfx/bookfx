@@ -7,7 +7,7 @@
 
     internal static class BoxAutoFilterRender
     {
-        public static Act<ExcelRangeBase> AutoFilterRender(this BoxCore box) =>
+        public static Tee<ExcelRangeBase> AutoFilterRender(this BoxCore box) =>
             excelRange =>
             {
                 if (box.IsAutoFilter)

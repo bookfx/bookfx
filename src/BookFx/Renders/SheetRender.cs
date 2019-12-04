@@ -4,19 +4,19 @@
     using BookFx.Cores;
     using BookFx.Functional;
     using OfficeOpenXml;
-    using static BookFx.Functional.ActComposition;
     using static BookFx.Functional.F;
+    using static BookFx.Functional.TeeComposition;
 
     internal static class SheetRender
     {
-        public static Act<ExcelWorksheet> Render(this SheetCore sheet) =>
+        public static Tee<ExcelWorksheet> Render(this SheetCore sheet) =>
             HarvestErrors(
                 sheet.Box.Match(
                     none: NoAct,
                     some: SheetBoxRender.RootRender),
                 SettingsRender(sheet));
 
-        private static Act<ExcelWorksheet> SettingsRender(this SheetCore sheet) =>
+        private static Tee<ExcelWorksheet> SettingsRender(this SheetCore sheet) =>
             excelSheet =>
             {
                 var printSettings = excelSheet.PrinterSettings;

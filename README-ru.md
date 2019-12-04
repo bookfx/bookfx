@@ -380,7 +380,7 @@ Make.Sheet("New Sheet Name", protoBook, "Prototype Sheet Name");
 ### Уведомление об авторском праве
 
 ``` txt
-BookFx. Making complex Excel workbooks out of simple components.
+BookFx. Composing Excel spreadsheets based on a tree of nested components like the HTML DOM.
 Copyright (c) 2019 Zhenya Gusev
 ```
 

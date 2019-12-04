@@ -5,6 +5,9 @@
     using System.Linq;
     using static F;
 
+    /// <summary>
+    /// Result is a core type of ROP (<see href="https://fsharpforfunandprofit.com/rop/"/>).
+    /// </summary>
     internal struct Result<T> : IEquatable<Result<T>>
     {
         private readonly Option<T> _value;

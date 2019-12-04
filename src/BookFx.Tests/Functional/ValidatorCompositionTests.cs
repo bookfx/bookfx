@@ -6,28 +6,28 @@
     using FluentAssertions;
     using FsCheck;
     using FsCheck.Xunit;
-    using static BookFx.Functional.ActComposition;
     using static BookFx.Functional.F;
+    using static BookFx.Functional.ValidatorComposition;
 
-    public class ActCompositionTests
+    public class ValidatorCompositionTests
     {
         [Property]
-        public void HarvestErrors_ValidActs_Valid(bool[] array, int value)
+        public void HarvestErrors_ValidValidators_Valid(bool[] array, int value)
         {
-            var acts = array.Map(_ => GetValidAct());
+            var validators = array.Map(_ => GetValidValidator());
 
-            var result = HarvestErrors(acts)(value);
+            var result = HarvestErrors(validators)(value);
 
             result.IsValid.Should().BeTrue();
         }
 
         [Property]
-        public void HarvestErrors_InvalidActs_InvalidWithItsErrors(NonEmptyArray<string> messages, int value)
+        public void HarvestErrors_InvalidValidators_InvalidWithItsErrors(NonEmptyArray<string> messages, int value)
         {
             var errors = GetErrors(messages.Get);
-            var acts = errors.Map(GetInvalidAct);
+            var validators = errors.Map(GetInvalidValidator);
 
-            var result = HarvestErrors(acts)(value);
+            var result = HarvestErrors(validators)(value);
 
             result.IsValid.Should().BeFalse();
             result.ErrorsUnsafe().Should().Equal(errors);
@@ -40,33 +40,33 @@
             int value)
         {
             var errors = GetErrors(messages.Get);
-            var validActs = array.Map(_ => GetValidAct());
-            var invalidActs = errors.Map(GetInvalidAct);
-            var acts = validActs.Concat(invalidActs);
+            var validValidators = array.Map(_ => GetValidValidator());
+            var invalidValidators = errors.Map(GetInvalidValidator);
+            var validators = validValidators.Concat(invalidValidators);
 
-            var result = HarvestErrors(acts)(value);
+            var result = HarvestErrors(validators)(value);
 
             result.IsValid.Should().BeFalse();
             result.ErrorsUnsafe().Should().Equal(errors);
         }
 
         [Property]
-        public void FailFast_ValidActs_Valid(bool[] array, int value)
+        public void FailFast_ValidValidators_Valid(bool[] array, int value)
         {
-            var acts = array.Map(_ => GetValidAct());
+            var validators = array.Map(_ => GetValidValidator());
 
-            var result = FailFast(acts)(value);
+            var result = FailFast(validators)(value);
 
             result.IsValid.Should().BeTrue();
         }
 
         [Property]
-        public void FailFast_InvalidActs_InvalidWithFirstError(NonEmptyArray<string> messages, int value)
+        public void FailFast_InvalidValidators_InvalidWithFirstError(NonEmptyArray<string> messages, int value)
         {
             var errors = GetErrors(messages.Get);
-            var acts = errors.Map(GetInvalidAct);
+            var validators = errors.Map(GetInvalidValidator);
 
-            var result = FailFast(acts)(value);
+            var result = FailFast(validators)(value);
 
             result.IsValid.Should().BeFalse();
             result.ErrorsUnsafe().Should().Equal(errors.First());
@@ -79,11 +79,11 @@
             int value)
         {
             var errors = GetErrors(messages.Get);
-            var validActs = array.Map(_ => GetValidAct());
-            var invalidActs = errors.Map(GetInvalidAct);
-            var acts = validActs.Concat(invalidActs);
+            var validValidators = array.Map(_ => GetValidValidator());
+            var invalidValidators = errors.Map(GetInvalidValidator);
+            var validators = validValidators.Concat(invalidValidators);
 
-            var result = FailFast(acts)(value);
+            var result = FailFast(validators)(value);
 
             result.IsValid.Should().BeFalse();
             result.ErrorsUnsafe().Should().Equal(errors.First());
@@ -91,8 +91,8 @@
 
         private static Error[] GetErrors(IEnumerable<string> messages) => messages.Map(x => new Error(x)).ToArray();
 
-        private static Act<int> GetValidAct() => _ => Valid(Unit());
+        private static Validator<int> GetValidValidator() => Valid;
 
-        private static Act<int> GetInvalidAct(Error error) => _ => Invalid(error);
+        private static Validator<int> GetInvalidValidator(Error error) => _ => Invalid(error);
     }
 }

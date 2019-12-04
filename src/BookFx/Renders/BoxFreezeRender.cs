@@ -8,7 +8,7 @@
 
     internal static class BoxFreezeRender
     {
-        public static Act<ExcelWorksheet> FreezeRender(this BoxCore box) =>
+        public static Tee<ExcelWorksheet> FreezeRender(this BoxCore box) =>
             excelSheet =>
             {
                 var frozenRow = box

@@ -9,7 +9,7 @@
 
     internal static class BorderRender
     {
-        public static Act<ExcelRangeBase> Render(this BoxBorderCore border) =>
+        public static Tee<ExcelRangeBase> Render(this BoxBorderCore border) =>
             excelRange =>
             {
                 switch (border.GetParts())

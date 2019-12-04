@@ -7,7 +7,7 @@
 
     internal static class BoxPrintAreaRender
     {
-        public static Act<ExcelRangeBase> PrintAreaRender(this BoxCore box) =>
+        public static Tee<ExcelRangeBase> PrintAreaRender(this BoxCore box) =>
             excelRange =>
             {
                 if (box.IsPrintArea)

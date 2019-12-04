@@ -7,7 +7,7 @@
 
     internal static class BoxRowSizesRender
     {
-        public static Act<ExcelWorksheet> RowSizesRender(this BoxCore box) =>
+        public static Tee<ExcelWorksheet> RowSizesRender(this BoxCore box) =>
             excelSheet =>
             {
                 if (box.RowSizes.Count > box.Placement.Dimension.Height)

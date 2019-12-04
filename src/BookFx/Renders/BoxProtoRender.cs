@@ -8,7 +8,7 @@
 
     internal static class BoxProtoRender
     {
-        public static Act<ExcelRangeBase> ProtoRender(this BoxCore box) =>
+        public static Tee<ExcelRangeBase> ProtoRender(this BoxCore box) =>
             excelRange =>
             {
                 box.Proto.ForEach(proto =>
