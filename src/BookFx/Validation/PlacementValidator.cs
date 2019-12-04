@@ -4,17 +4,17 @@
     using BookFx.Functional;
     using static BookFx.Epplus.Constraint;
     using static BookFx.Functional.F;
-    using static BookFx.Functional.TeeComposition;
+    using static BookFx.Functional.ValidatorComposition;
 
     internal static class PlacementValidator
     {
-        public static Tee<BookCore> Validate =>
+        public static Validator<BookCore> Validate =>
             book => book
                 .Sheets
                 .Traverse(Sheet.Invoke)
                 .Map(_ => book);
 
-        public static Tee<SheetCore> Sheet =>
+        public static Validator<SheetCore> Sheet =>
             sheet => sheet
                 .Box
                 .AsEnumerable()
@@ -23,30 +23,30 @@
                     invalid: errors => Errors.Sheet.Aggregate(sheet, errors),
                     valid: _ => Valid(sheet));
 
-        public static Tee<BoxCore> RootBox =>
+        public static Validator<BoxCore> RootBox =>
             HarvestErrors(
                 RootBoxWidth,
                 RootBoxHeight,
                 AllBoxes);
 
-        public static Tee<BoxCore> RootBoxWidth =>
+        public static Validator<BoxCore> RootBoxWidth =>
             box => box.Placement.Dimension.Width > MaxColumn
                 ? Invalid<BoxCore>(Errors.Placement.RootBoxWidthTooBig(box.Placement.Dimension.Width))
                 : Valid(box);
 
-        public static Tee<BoxCore> RootBoxHeight =>
+        public static Validator<BoxCore> RootBoxHeight =>
             box => box.Placement.Dimension.Height > MaxRow
                 ? Invalid<BoxCore>(Errors.Placement.RootBoxHeightTooBig(box.Placement.Dimension.Height))
                 : Valid(box);
 
-        public static Tee<BoxCore> AllBoxes =>
+        public static Validator<BoxCore> AllBoxes =>
             box => box
                 .SelfAndDescendants()
                 .Map(Position.Invoke)
                 .HarvestErrors()
                 .Map(_ => box);
 
-        public static Tee<BoxCore> Position =>
+        public static Validator<BoxCore> Position =>
             box =>
                 box.Placement.Position.Row.IsBetween(1, MaxRow) &&
                 box.Placement.Position.Col.IsBetween(1, MaxColumn)

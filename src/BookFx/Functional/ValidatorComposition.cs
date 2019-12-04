@@ -4,22 +4,22 @@
     using System.Linq;
     using static F;
 
-    internal static class TeeComposition
+    internal static class ValidatorComposition
     {
-        public static Tee<T> FailFast<T>(params Tee<T>[] tees) => FailFast(tees.AsEnumerable());
+        public static Validator<T> FailFast<T>(params Validator<T>[] validators) => FailFast(validators.AsEnumerable());
 
-        public static Tee<T> FailFast<T>(IEnumerable<Tee<T>> tees) =>
-            x => tees
+        public static Validator<T> FailFast<T>(IEnumerable<Validator<T>> validators) =>
+            x => validators
                 .Aggregate(
                     Valid(x),
-                    (acc, tee) => acc.Bind(_ => tee(x)));
+                    (acc, validator) => acc.Bind(_ => validator(x)));
 
-        public static Tee<T> HarvestErrors<T>(params Tee<T>[] tees) =>
-            HarvestErrors(tees.AsEnumerable());
+        public static Validator<T> HarvestErrors<T>(params Validator<T>[] validators) =>
+            HarvestErrors(validators.AsEnumerable());
 
-        public static Tee<T> HarvestErrors<T>(IEnumerable<Tee<T>> tees) =>
-            x => tees
-                .Traverse(tee => tee(x))
+        public static Validator<T> HarvestErrors<T>(IEnumerable<Validator<T>> validators) =>
+            x => validators
+                .Traverse(validator => validator(x))
                 .Map(_ => x);
     }
 }

@@ -7,27 +7,27 @@
     using FsCheck;
     using FsCheck.Xunit;
     using static BookFx.Functional.F;
-    using static BookFx.Functional.TeeComposition;
+    using static BookFx.Functional.ValidatorComposition;
 
-    public class TeeCompositionTests
+    public class ValidatorCompositionTests
     {
         [Property]
-        public void HarvestErrors_ValidTees_Valid(bool[] array, int value)
+        public void HarvestErrors_ValidValidators_Valid(bool[] array, int value)
         {
-            var tees = array.Map(_ => GetValidTee());
+            var validators = array.Map(_ => GetValidValidator());
 
-            var result = HarvestErrors(tees)(value);
+            var result = HarvestErrors(validators)(value);
 
             result.IsValid.Should().BeTrue();
         }
 
         [Property]
-        public void HarvestErrors_InvalidTees_InvalidWithItsErrors(NonEmptyArray<string> messages, int value)
+        public void HarvestErrors_InvalidValidators_InvalidWithItsErrors(NonEmptyArray<string> messages, int value)
         {
             var errors = GetErrors(messages.Get);
-            var tees = errors.Map(GetInvalidTee);
+            var validators = errors.Map(GetInvalidValidator);
 
-            var result = HarvestErrors(tees)(value);
+            var result = HarvestErrors(validators)(value);
 
             result.IsValid.Should().BeFalse();
             result.ErrorsUnsafe().Should().Equal(errors);
@@ -40,33 +40,33 @@
             int value)
         {
             var errors = GetErrors(messages.Get);
-            var validTees = array.Map(_ => GetValidTee());
-            var invalidTees = errors.Map(GetInvalidTee);
-            var tees = validTees.Concat(invalidTees);
+            var validValidators = array.Map(_ => GetValidValidator());
+            var invalidValidators = errors.Map(GetInvalidValidator);
+            var validators = validValidators.Concat(invalidValidators);
 
-            var result = HarvestErrors(tees)(value);
+            var result = HarvestErrors(validators)(value);
 
             result.IsValid.Should().BeFalse();
             result.ErrorsUnsafe().Should().Equal(errors);
         }
 
         [Property]
-        public void FailFast_ValidTees_Valid(bool[] array, int value)
+        public void FailFast_ValidValidators_Valid(bool[] array, int value)
         {
-            var tees = array.Map(_ => GetValidTee());
+            var validators = array.Map(_ => GetValidValidator());
 
-            var result = FailFast(tees)(value);
+            var result = FailFast(validators)(value);
 
             result.IsValid.Should().BeTrue();
         }
 
         [Property]
-        public void FailFast_InvalidTees_InvalidWithFirstError(NonEmptyArray<string> messages, int value)
+        public void FailFast_InvalidValidators_InvalidWithFirstError(NonEmptyArray<string> messages, int value)
         {
             var errors = GetErrors(messages.Get);
-            var tees = errors.Map(GetInvalidTee);
+            var validators = errors.Map(GetInvalidValidator);
 
-            var result = FailFast(tees)(value);
+            var result = FailFast(validators)(value);
 
             result.IsValid.Should().BeFalse();
             result.ErrorsUnsafe().Should().Equal(errors.First());
@@ -79,11 +79,11 @@
             int value)
         {
             var errors = GetErrors(messages.Get);
-            var validTees = array.Map(_ => GetValidTee());
-            var invalidTees = errors.Map(GetInvalidTee);
-            var tees = validTees.Concat(invalidTees);
+            var validValidators = array.Map(_ => GetValidValidator());
+            var invalidValidators = errors.Map(GetInvalidValidator);
+            var validators = validValidators.Concat(invalidValidators);
 
-            var result = FailFast(tees)(value);
+            var result = FailFast(validators)(value);
 
             result.IsValid.Should().BeFalse();
             result.ErrorsUnsafe().Should().Equal(errors.First());
@@ -91,8 +91,8 @@
 
         private static Error[] GetErrors(IEnumerable<string> messages) => messages.Map(x => new Error(x)).ToArray();
 
-        private static Tee<int> GetValidTee() => Valid;
+        private static Validator<int> GetValidValidator() => Valid;
 
-        private static Tee<int> GetInvalidTee(Error error) => _ => Invalid(error);
+        private static Validator<int> GetInvalidValidator(Error error) => _ => Invalid(error);
     }
 }

@@ -1,4 +1,4 @@
 ﻿namespace BookFx.Functional
 {
-    internal delegate Result<T> Tee<T>(T x);
+    internal delegate Result<T> Validator<T>(T x);
 }
