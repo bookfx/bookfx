@@ -1,7 +1,6 @@
 ﻿namespace BookFx.Functional
 {
     using System;
-    using JetBrains.Annotations;
     using static F;
     using Unit = System.ValueTuple;
 
@@ -27,8 +26,5 @@
                 action(x1, x2);
                 return Unit();
             };
-
-        [Pure]
-        public static Tee<T> ToTee<T>(this Action<T> action) => Pipe(action.ToFunc(), Valid).Invoke;
     }
 }
