@@ -63,12 +63,6 @@
         public static Result<Unit> ForEach<TR>(this Result<TR> result, Action<TR> action) =>
             Map(result, action.ToFunc());
 
-        public static Result<T> Do<T>(this Result<T> result, Action<T> action)
-        {
-            result.ForEach(action);
-            return result;
-        }
-
         public static Result<TR> Bind<T, TR>(this Result<T> result, Func<T, Result<TR>> f) =>
             result.Match(
                 invalid: errors => (Result<TR>)Invalid(errors),
