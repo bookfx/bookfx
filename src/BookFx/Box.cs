@@ -152,6 +152,7 @@
         /// <code>Make.Value().SizeRows(new[] { 10, 20 }).SpanRows(5)</code>
         /// will define the following row sizes: 10, 20, 10, 20, 10.
         /// </para>
+        /// <para>A row size of an outer box has priority over a row size of an inner box.</para>
         /// </summary>
         /// <param name="pattern">A pattern of row sizes.</param>
         [Pure]
@@ -165,6 +166,7 @@
         /// <code>Make.Value().SizeRows(10, 20).SpanRows(5)</code>
         /// will define the following row sizes: 10, 20, 10, 20, 10.
         /// </para>
+        /// <para>A row size of an outer box has priority over a row size of an inner box.</para>
         /// </summary>
         /// <param name="firstPatternPart">The first part of a pattern of row sizes.</param>
         /// <param name="otherPatternParts">Other parts of a pattern of row sizes.</param>
@@ -180,6 +182,7 @@
         /// <code>Make.Value().SizeCols(new[] { 10, 20 }).SpanCols(5)</code>
         /// will define the following column sizes: 10, 20, 10, 20, 10.
         /// </para>
+        /// <para>A column size of an outer box has priority over a column size of an inner box.</para>
         /// </summary>
         /// <param name="pattern">A pattern of column sizes.</param>
         [Pure]
@@ -193,6 +196,7 @@
         /// <code>Make.Value().SizeCols(10, 20).SpanCols(5)</code>
         /// will define the following column sizes: 10, 20, 10, 20, 10.
         /// </para>
+        /// <para>A column size of an outer box has priority over a column size of an inner box.</para>
         /// </summary>
         /// <param name="firstPatternPart">The first part of a pattern of column sizes.</param>
         /// <param name="otherPatternParts">Other parts of a pattern of column sizes.</param>
