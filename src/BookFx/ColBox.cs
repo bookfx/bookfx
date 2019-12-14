@@ -77,37 +77,23 @@
         public ColBox Add(IEnumerable<Box> children) =>
             Get.Add(children.Map(x => x.Get));
 
-        /// <summary>
-        /// Define heights of rows.
-        /// </summary>
-        /// <param name="sizes">Sizes of rows.</param>
+        /// <inheritdoc cref="Box.SizeRows(IEnumerable{TrackSize})"/>
         [Pure]
-        public new ColBox SizeRows(IEnumerable<TrackSize> sizes) => Get.With(rowSizes: sizes);
+        public new ColBox SizeRows(IEnumerable<TrackSize> pattern) => Get.With(rowSizes: pattern);
 
-        /// <summary>
-        /// Define heights of rows.
-        /// </summary>
-        /// <param name="size">A size of the first row.</param>
-        /// <param name="others">Sizes of other rows.</param>
+        /// <inheritdoc cref="Box.SizeRows(TrackSize, TrackSize[])"/>
         [Pure]
-        public new ColBox SizeRows(TrackSize size, params TrackSize[] others) =>
-            Get.With(rowSizes: others.Prepend(size));
+        public new ColBox SizeRows(TrackSize firstPatternPart, params TrackSize[] otherPatternParts) =>
+            Get.With(rowSizes: otherPatternParts.Prepend(firstPatternPart));
 
-        /// <summary>
-        /// Define widths of columns.
-        /// </summary>
-        /// <param name="sizes">Sizes of columns.</param>
+        /// <inheritdoc cref="Box.SizeCols(IEnumerable{TrackSize})"/>
         [Pure]
-        public new ColBox SizeCols(IEnumerable<TrackSize> sizes) => Get.With(colSizes: sizes);
+        public new ColBox SizeCols(IEnumerable<TrackSize> pattern) => Get.With(colSizes: pattern);
 
-        /// <summary>
-        /// Define widths of columns.
-        /// </summary>
-        /// <param name="size">A size of the first column.</param>
-        /// <param name="others">Sizes of other columns.</param>
+        /// <inheritdoc cref="Box.SizeCols(TrackSize, TrackSize[])"/>
         [Pure]
-        public new ColBox SizeCols(TrackSize size, params TrackSize[] others) =>
-            Get.With(colSizes: others.Prepend(size));
+        public new ColBox SizeCols(TrackSize firstPatternPart, params TrackSize[] otherPatternParts) =>
+            Get.With(colSizes: otherPatternParts.Prepend(firstPatternPart));
 
         /// <inheritdoc cref="Box.SetPrintArea"/>
         [Pure]
