@@ -1,7 +1,9 @@
 ﻿namespace BookFx.Tests.Renders
 {
+    using System.Linq;
     using BookFx.Calculation;
     using BookFx.Epplus;
+    using BookFx.Functional;
     using BookFx.Renders;
     using FluentAssertions;
     using Xunit;
@@ -45,6 +47,17 @@
                 box.ColSizesRender()(excelSheet);
 
                 excelSheet.Column(1).Width.Should().Be(expected);
+            });
+
+        [Fact]
+        public void ColSizesRender_NoColSizes_NotSet() =>
+            Packer.OnSheet(excelSheet =>
+            {
+                var box = Make.Value().Get.Place();
+
+                box.ColSizesRender()(excelSheet);
+
+                excelSheet.Column(1).Width.Should().Be(excelSheet.DefaultColWidth);
             });
 
         [Fact]
@@ -93,6 +106,22 @@
 
                 result.Should().Be(
                     Invalid<Unit>(Errors.Box.ColSizeCountIsInvalid(sizeCount: 2, boxWidth: 1)));
+            });
+
+        [Fact]
+        public void ColSizesRender_PatternLessThanBoxWidth_Repeats() =>
+            Packer.OnSheet(excelSheet =>
+            {
+                var box = Make.Value().SizeCols(10, 20).SpanCols(5).Get.Place();
+
+                box.ColSizesRender()(excelSheet);
+
+                var sizes = Enumerable.Range(1, 5).Map(excelSheet.Column).Map(x => x.Width).ToList();
+                sizes[0].Should().BeApproximately(10, 1);
+                sizes[1].Should().BeApproximately(20, 1);
+                sizes[2].Should().BeApproximately(10, 1);
+                sizes[3].Should().BeApproximately(20, 1);
+                sizes[4].Should().BeApproximately(10, 1);
             });
     }
 }

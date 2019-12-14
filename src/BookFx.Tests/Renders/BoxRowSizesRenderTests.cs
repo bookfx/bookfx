@@ -1,8 +1,9 @@
 ﻿namespace BookFx.Tests.Renders
 {
+    using System.Linq;
     using BookFx.Calculation;
-    using BookFx.Cores;
     using BookFx.Epplus;
+    using BookFx.Functional;
     using BookFx.Renders;
     using FluentAssertions;
     using Xunit;
@@ -22,6 +23,17 @@
                 box.RowSizesRender()(excelSheet);
 
                 excelSheet.Row(1).Height.Should().Be(size);
+            });
+
+        [Fact]
+        public void RowSizesRender_NoRowSizes_NotSet() =>
+            Packer.OnSheet(excelSheet =>
+            {
+                var box = Make.Value().Get.Place();
+
+                box.RowSizesRender()(excelSheet);
+
+                excelSheet.Row(1).Height.Should().Be(excelSheet.DefaultRowHeight);
             });
 
         [Fact]
@@ -56,6 +68,17 @@
 
                 result.Should().Be(
                     Invalid<Unit>(Errors.Box.RowSizeCountIsInvalid(sizeCount: 2, boxHeight: 1)));
+            });
+
+        [Fact]
+        public void RowSizesRender_PatternLessThanBoxHeight_Repeats() =>
+            Packer.OnSheet(excelSheet =>
+            {
+                var box = Make.Value().SizeRows(10, 20).SpanRows(5).Get.Place();
+
+                box.RowSizesRender()(excelSheet);
+
+                Enumerable.Range(1, 5).Map(excelSheet.Row).Map(x => x.Height).Should().Equal(10, 20, 10, 20, 10);
             });
     }
 }
