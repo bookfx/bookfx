@@ -2,10 +2,12 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using BookFx.Cores;
     using BookFx.Epplus;
     using BookFx.Functional;
     using OfficeOpenXml;
+    using static BookFx.Functional.F;
     using static BookFx.Functional.TeeComposition;
 
     internal static class BoxColSizesRender
@@ -15,6 +17,11 @@
         public static Tee<ExcelWorksheet> ColSizesRender(this BoxCore box) =>
             excelSheet =>
             {
+                if (box.ColSizes.IsEmpty)
+                {
+                    return Unit();
+                }
+
                 if (box.ColSizes.Count > box.Placement.Dimension.Width)
                 {
                     return Errors.Box.ColSizeCountIsInvalid(
@@ -26,7 +33,11 @@
             };
 
         private static IEnumerable<Tee<ExcelWorksheet>> ColSizeRenders(this BoxCore box) =>
-            box.ColSizes.Map((size, i) => ColSizeRender(size, box.Placement.Position.Col + i));
+            Enumerable
+                .Range(0, box.Placement.Dimension.Width)
+                .Map(offset => ColSizeRender(
+                    box.ColSizes[offset % box.ColSizes.Count],
+                    box.Placement.Position.Col + offset));
 
         private static Tee<ExcelWorksheet> ColSizeRender(TrackSize size, int col) =>
             excelSheet => size.ForEach(

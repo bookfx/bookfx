@@ -1,5 +1,6 @@
 ﻿namespace BookFx.Renders
 {
+    using System.Linq;
     using BookFx.Cores;
     using BookFx.Functional;
     using OfficeOpenXml;
@@ -10,6 +11,11 @@
         public static Tee<ExcelWorksheet> RowSizesRender(this BoxCore box) =>
             excelSheet =>
             {
+                if (box.RowSizes.IsEmpty)
+                {
+                    return Unit();
+                }
+
                 if (box.RowSizes.Count > box.Placement.Dimension.Height)
                 {
                     return Errors.Box.RowSizeCountIsInvalid(
@@ -17,9 +23,13 @@
                         boxHeight: box.Placement.Dimension.Height);
                 }
 
-                box.RowSizes.ForEach((size, i) => size.ForEach(
-                    fit: () => excelSheet.Row(box.Placement.Position.Row + i).CustomHeight = false,
-                    some: value => excelSheet.Row(box.Placement.Position.Row + i).Height = value));
+                Enumerable
+                    .Range(0, box.Placement.Dimension.Height)
+                    .ForEach(offset => box
+                        .RowSizes[offset % box.RowSizes.Count]
+                        .ForEach(
+                            fit: () => excelSheet.Row(box.Placement.Position.Row + offset).CustomHeight = false,
+                            some: value => excelSheet.Row(box.Placement.Position.Row + offset).Height = value));
 
                 return Unit();
             };

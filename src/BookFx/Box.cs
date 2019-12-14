@@ -145,36 +145,64 @@
         public Box Style(BoxStyle boxStyle) => Get.With(style: boxStyle.Get);
 
         /// <summary>
-        /// Define heights of rows.
+        /// <para>Define heights of rows.</para>
+        /// <para>
+        /// Since a box can cover a few rows, the method takes a pattern of sizes.
+        /// The pattern repeats throughout the box height and defines all row heights of the box.
+        /// <code>Make.Value().SizeRows(new[] { 10, 20 }).SpanRows(5)</code>
+        /// will define the following row sizes: 10, 20, 10, 20, 10.
+        /// </para>
+        /// <para>A row size of an outer box has priority over a row size of an inner box.</para>
         /// </summary>
-        /// <param name="sizes">Sizes of rows.</param>
+        /// <param name="pattern">A pattern of row sizes.</param>
         [Pure]
-        public Box SizeRows(IEnumerable<TrackSize> sizes) => Get.With(rowSizes: sizes);
+        public Box SizeRows(IEnumerable<TrackSize> pattern) => Get.With(rowSizes: pattern);
 
         /// <summary>
-        /// Define heights of rows.
+        /// <para>Define heights of rows.</para>
+        /// <para>
+        /// Since a box can cover a few rows, the method takes a pattern of sizes.
+        /// The pattern repeats throughout the box height and defines all row heights of the box.
+        /// <code>Make.Value().SizeRows(10, 20).SpanRows(5)</code>
+        /// will define the following row sizes: 10, 20, 10, 20, 10.
+        /// </para>
+        /// <para>A row size of an outer box has priority over a row size of an inner box.</para>
         /// </summary>
-        /// <param name="size">A size of the first row.</param>
-        /// <param name="others">Sizes of other rows.</param>
+        /// <param name="firstPatternPart">The first part of a pattern of row sizes.</param>
+        /// <param name="otherPatternParts">Other parts of a pattern of row sizes.</param>
         [Pure]
-        public Box SizeRows(TrackSize size, params TrackSize[] others) =>
-            Get.With(rowSizes: others.Prepend(size));
+        public Box SizeRows(TrackSize firstPatternPart, params TrackSize[] otherPatternParts) =>
+            Get.With(rowSizes: otherPatternParts.Prepend(firstPatternPart));
 
         /// <summary>
-        /// Define widths of columns.
+        /// <para>Define widths of columns.</para>
+        /// <para>
+        /// Since a box can cover a few columns, the method takes a pattern of sizes.
+        /// The pattern repeats throughout the box width and defines all column widths of the box.
+        /// <code>Make.Value().SizeCols(new[] { 10, 20 }).SpanCols(5)</code>
+        /// will define the following column sizes: 10, 20, 10, 20, 10.
+        /// </para>
+        /// <para>A column size of an outer box has priority over a column size of an inner box.</para>
         /// </summary>
-        /// <param name="sizes">Sizes of columns.</param>
+        /// <param name="pattern">A pattern of column sizes.</param>
         [Pure]
-        public Box SizeCols(IEnumerable<TrackSize> sizes) => Get.With(colSizes: sizes);
+        public Box SizeCols(IEnumerable<TrackSize> pattern) => Get.With(colSizes: pattern);
 
         /// <summary>
-        /// Define widths of columns.
+        /// <para>Define widths of columns.</para>
+        /// <para>
+        /// Since a box can cover a few columns, the method takes a pattern of sizes.
+        /// The pattern repeats throughout the box width and defines all column widths of the box.
+        /// <code>Make.Value().SizeCols(10, 20).SpanCols(5)</code>
+        /// will define the following column sizes: 10, 20, 10, 20, 10.
+        /// </para>
+        /// <para>A column size of an outer box has priority over a column size of an inner box.</para>
         /// </summary>
-        /// <param name="size">A size of the first column.</param>
-        /// <param name="others">Sizes of other columns.</param>
+        /// <param name="firstPatternPart">The first part of a pattern of column sizes.</param>
+        /// <param name="otherPatternParts">Other parts of a pattern of column sizes.</param>
         [Pure]
-        public Box SizeCols(TrackSize size, params TrackSize[] others) =>
-            Get.With(colSizes: others.Prepend(size));
+        public Box SizeCols(TrackSize firstPatternPart, params TrackSize[] otherPatternParts) =>
+            Get.With(colSizes: otherPatternParts.Prepend(firstPatternPart));
 
         /// <summary>
         /// Define print area by the box.
