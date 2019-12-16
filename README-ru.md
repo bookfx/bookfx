@@ -194,6 +194,10 @@ Head().AutoSpan().ToSheet().ToBook().ToBytes()
 
 [![s-3-calendar][]][s3calendar.cs]
 
+### [S5ProtoSheet.cs][s5protosheet.cs]
+
+Это демонстрация добавления в книгу листов из существующих книг. См. также [Прототипирование](#прототипирование).
+
 ## Концепции
 
 ### Описание модели
@@ -279,6 +283,8 @@ Make.Sheet("New Sheet Name", protoBook, "Prototype Sheet Name");
 ```
 
 Из xlsx-файла `protoBook` будет скопирован лист `"Prototype Sheet Name"` и переименован в `"New Sheet Name"`. См. также другие перегрузки `Make.Sheet`.
+
+См. также пример [S5ProtoSheet.cs][s5protosheet.cs].
 
 ## Справочник API
 
@@ -434,4 +440,5 @@ Copyright (c) 2019 Zhenya Gusev
 [s1table.cs]: src/BookFx.Usage/S1Table.cs
 [s2style.cs]: src/BookFx.Usage/S2Style.cs
 [s3calendar.cs]: src/BookFx.Usage/S3Calendar.cs
+[s5protosheet.cs]: src/BookFx.Usage/S5ProtoSheet.cs
 [s-3-calendar]: docs/img/s-3-calendar-ru.png "Результат S3Calendar.cs"

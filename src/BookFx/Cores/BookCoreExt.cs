@@ -14,6 +14,7 @@
                 .Bind(x => x.Box)
                 .Bind(x => x.Protos())
                 .Map(x => x.Book)
+                .Union(book.Sheets.Bind(x => x.ProtoBook))
                 .Distinct();
     }
 }
