@@ -194,6 +194,10 @@ Wow! Calendar!
 
 [![s-3-calendar][]][s3calendar.cs]
 
+### [S5ProtoSheet.cs][s5protosheet.cs]
+
+This demonstrates an adding worksheets from preexisting workbooks. See also [Prototyping](#prototyping).
+
 ## Concepts
 
 ### Model Description
@@ -281,6 +285,8 @@ Make.Sheet("New Sheet Name", protoBook, "Prototype Sheet Name");
 ```
 
 `"Prototype Sheet Name"` spreadsheet will be copied from `protoBook` xlsx-file and then it will be renamed to `"New Sheet Name"`. See also other overloads of `Make.Sheet`.
+
+See also the example [S5ProtoSheet.cs][s5protosheet.cs].
 
 ## API Reference
 
@@ -434,4 +440,5 @@ along with this library. If not, see <https://www.gnu.org/licenses/>.
 [s1table.cs]: src/BookFx.Usage/S1Table.cs
 [s2style.cs]: src/BookFx.Usage/S2Style.cs
 [s3calendar.cs]: src/BookFx.Usage/S3Calendar.cs
+[s5protosheet.cs]: src/BookFx.Usage/S5ProtoSheet.cs
 [s-3-calendar]: docs/img/s-3-calendar-en.png "S3Calendar.cs result"
