@@ -5,8 +5,9 @@
 
     public static class S2Style
     {
-        public const string PrototypeName = "ThePrototype";
-        public const string SlotName = "TheSlot";
+        public static string PrototypeName => "ThePrototype";
+
+        public static string SlotName => "TheSlot";
 
         public static byte[] Create() =>
             Col()
