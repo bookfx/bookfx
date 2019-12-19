@@ -198,6 +198,10 @@ Wow! Calendar!
 
 This demonstrates an adding worksheets from preexisting workbooks. See also [Prototyping](#prototyping).
 
+### [S6ProtoBox.cs][s6protobox.cs]
+
+This is an example of [prototyping](#prototyping).
+
 ## Concepts
 
 ### Model Description
@@ -277,6 +281,8 @@ Here
 - `protoBook` – `byte[]` of a xlsx-file content;
 - `"Prototype1"` – name of the range in `protoBook`;
 - `"Slot1"` and `"Slot2"` – names of ranges in `Prototype1`, in which other boxes can be placed.
+
+See the example [S6ProtoBox.cs][s6protobox.cs].
 
 Also BookFx supports adding whole spreadsheets from other workbooks:
 
@@ -441,4 +447,5 @@ along with this library. If not, see <https://www.gnu.org/licenses/>.
 [s2style.cs]: src/BookFx.Usage/S2Style.cs
 [s3calendar.cs]: src/BookFx.Usage/S3Calendar.cs
 [s5protosheet.cs]: src/BookFx.Usage/S5ProtoSheet.cs
+[s6protobox.cs]: src/BookFx.Usage/S6ProtoBox.cs
 [s-3-calendar]: docs/img/s-3-calendar-en.png "S3Calendar.cs result"
