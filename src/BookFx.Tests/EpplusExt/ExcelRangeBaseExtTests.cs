@@ -70,7 +70,7 @@
         [Theory]
         [InlineData(1)]
         [InlineData(100)]
-        public void CopyRowSizes_Cell_Copied(int size) =>
+        public void CopyRowSizes_Cell_HeightCopied(int size) =>
             Packer.OnSheet(excelSheet =>
             {
                 var source = excelSheet.Cells[1, 1];
@@ -80,6 +80,19 @@
                 source.CopyRowSizes(target);
 
                 excelSheet.Row(2).Height.Should().Be(excelSheet.Row(1).Height);
+            });
+
+        [Fact]
+        public void CopyRowSizes_Cell_CustomHeightCopied() =>
+            Packer.OnSheet(excelSheet =>
+            {
+                var source = excelSheet.Cells[1, 1];
+                var target = excelSheet.Cells[2, 2];
+                excelSheet.Row(1).CustomHeight = false;
+
+                source.CopyRowSizes(target);
+
+                excelSheet.Row(2).CustomHeight.Should().BeFalse();
             });
     }
 }

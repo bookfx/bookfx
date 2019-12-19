@@ -11,6 +11,7 @@
             ResultStore.Save(S3Calendar.Create(DateTime.Now.AddMonths(2).Year), $"{nameof(S3Calendar)}.xlsx");
             ResultStore.Save(S4BigTable.Create(), $"{nameof(S4BigTable)}.xlsx");
             ResultStore.Save(S5ProtoSheet.Create(), $"{nameof(S5ProtoSheet)}.xlsx");
+            ResultStore.Save(S6ProtoBox.Create(), $"{nameof(S6ProtoBox)}.xlsx");
         }
     }
 }
