@@ -1,4 +1,4 @@
-﻿namespace BookFx.Tests.Core
+﻿namespace BookFx.Tests.Cores
 {
     using BookFx.Cores;
     using FluentAssertions;
