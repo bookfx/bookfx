@@ -3,12 +3,15 @@
     using System.Linq;
     using BookFx.Cores;
     using BookFx.Epplus;
+    using BookFx.Functional;
     using BookFx.Renders;
     using FluentAssertions;
     using Xunit;
 
     public class BookRenderTests
     {
+        private const string TheRangeName = "RangeName";
+
         [Fact]
         public void Render_ProtoSheet_Copied() =>
             Packer.OnPackage(package => Make
@@ -27,6 +30,51 @@
 
                     package.Workbook.Worksheets.Single().Name.Should().Be(sheetName);
                     package.Workbook.Worksheets.Single().Cells[1, 1].Value.Should().Be("A");
+                }));
+
+        [Fact]
+        public void Render_ProtoSheet_NameCopiedInBookScope() =>
+            Packer.OnPackage(package => Make
+                .Value()
+                .Name(TheRangeName)
+                .ToSheet()
+                .ToBook()
+                .ToBytes()
+                .Unpack(protoPackage =>
+                {
+                    const string sheetName = "Sheet name";
+                    var book = BookCore
+                        .Create()
+                        .Add(SheetCore.Create().With(name: sheetName, protoSheet: protoPackage.Worksheets[0]));
+
+                    book.Render()(package);
+
+                    package.Workbook.Names.Map(x => x.Name).Should().Contain(TheRangeName);
+                    package.Workbook.Worksheets[sheetName].Names.Should().NotContain(TheRangeName);
+                }));
+
+        [Fact]
+        public void Render_ProtoSheetAndNameExists_NameCopiedInSheetScope() =>
+            Packer.OnPackage(package => Make
+                .Value()
+                .Name(TheRangeName)
+                .ToSheet()
+                .ToBook()
+                .ToBytes()
+                .Unpack(protoPackage =>
+                {
+                    var existingWorksheet = package.Workbook.Worksheets.Add("Existing Sheet");
+                    package.Workbook.Names.Add(TheRangeName, existingWorksheet.Cells[1, 1]);
+
+                    const string sheetName = "Sheet name";
+                    var book = BookCore
+                        .Create()
+                        .Add(SheetCore.Create().With(name: sheetName, protoSheet: protoPackage.Worksheets[0]));
+
+                    book.Render()(package);
+
+                    package.Workbook.Worksheets[sheetName].Names.Map(x => x.Name).Should().Contain(TheRangeName);
+                    package.Workbook.Names.Should().NotContain(TheRangeName);
                 }));
     }
 }
