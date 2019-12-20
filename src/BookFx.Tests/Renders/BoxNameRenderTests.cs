@@ -30,18 +30,16 @@
                     .And.OnlyContain(x => x.Name == TheValidName && x.Address == range.Address));
 
         [Fact]
-        public void NameRender_NameIsAlreadyExists_NameIsRedefined() =>
+        public void NameRender_NameIsAlreadyExists_Error() =>
             Packer.OnSheet(excelSheet =>
             {
                 excelSheet.Workbook.Names.Add(TheValidName, excelSheet.Cells[2, 2]);
                 var box = Make.Value().Name(TheValidName).Get;
                 var excelRange = excelSheet.Cells[1, 1];
 
-                box.NameRender()(excelRange);
+                var result = box.NameRender()(excelRange);
 
-                excelSheet.Workbook.Names.Should()
-                    .HaveCount(1)
-                    .And.OnlyContain(x => x.Name == TheValidName && x.Address == excelRange.Address);
+                result.IsValid.Should().BeFalse();
             });
 
         private static void Check(BoxCore box, Action<ExcelRange> assertion) =>
