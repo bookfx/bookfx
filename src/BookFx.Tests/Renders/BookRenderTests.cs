@@ -49,8 +49,10 @@
 
                     book.Render()(package);
 
-                    package.Workbook.Names.Map(x => x.Name).Should().Contain(TheRangeName);
-                    package.Workbook.Worksheets[sheetName].Names.Should().NotContain(TheRangeName);
+                    var name = package.Workbook.Names.Single();
+                    name.Name.Should().Be(TheRangeName);
+                    name.FullAddress.Should().Be("'Sheet name'!A1");
+                    package.Workbook.Worksheets[sheetName].Names.Map(x => x.Name).Should().NotContain(TheRangeName);
                 }));
 
         [Fact]
@@ -74,7 +76,6 @@
                     book.Render()(package);
 
                     package.Workbook.Worksheets[sheetName].Names.Map(x => x.Name).Should().Contain(TheRangeName);
-                    package.Workbook.Names.Should().NotContain(TheRangeName);
                 }));
     }
 }

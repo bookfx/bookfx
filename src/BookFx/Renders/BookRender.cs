@@ -15,8 +15,8 @@
             package =>
             {
                 return sheet.Render()(sheet.ProtoSheet.Match(
-                        none: Create,
-                        some: Copy));
+                    none: Create,
+                    some: Copy));
 
                 ExcelWorksheet Create() => package.Workbook.Worksheets.Add(sheet.Name.ValueUnsafe());
 
@@ -32,19 +32,28 @@
         {
             var existingNames = excelTrgSheet.Workbook.Names.Map(x => x.Name).ToImmutableHashSet();
 
-            var names = excelSrcSheet.Workbook.Names.Where(name => name.Worksheet == excelSrcSheet);
+            var names = excelSrcSheet
+                .Workbook
+                .Names
+                .Where(name => name.Worksheet == excelSrcSheet)
+                .Where(name => !name.IsName);
 
             foreach (var name in names)
             {
-                var range = excelTrgSheet.Cells[name.Address];
+                var srcRange = excelSrcSheet.Cells[name.Address];
+                var trgRange = excelTrgSheet.Cells[
+                    srcRange.Start.Row,
+                    srcRange.Start.Column,
+                    srcRange.End.Row,
+                    srcRange.End.Column];
 
                 if (existingNames.Contains(name.Name))
                 {
-                    excelTrgSheet.Names.Add(name.Name, range);
+                    excelTrgSheet.Names.Add(name.Name, trgRange);
                 }
                 else
                 {
-                    excelTrgSheet.Workbook.Names.Add(name.Name, range);
+                    excelTrgSheet.Workbook.Names.Add(name.Name, trgRange);
                 }
             }
         }
