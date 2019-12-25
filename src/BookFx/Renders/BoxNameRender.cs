@@ -8,15 +8,18 @@
     internal static class BoxNameRender
     {
         public static Tee<ExcelRangeBase> NameRender(this BoxCore box) =>
-            excelRange =>
-            {
-                box.Name.ForEach(name =>
+            excelRange => box.Name.Match(
+                none: () => Valid(Unit()),
+                some: name =>
                 {
-                    excelRange.Worksheet.Workbook.Names.Remove(name);
-                    excelRange.Worksheet.Workbook.Names.Add(name, excelRange);
-                });
+                    if (excelRange.Worksheet.Workbook.Names.ContainsKey(name))
+                    {
+                        return Errors.Book.BoxNameIsNotUnique(name);
+                    }
 
-                return Unit();
-            };
+                    excelRange.Worksheet.Workbook.Names.Add(name, excelRange);
+
+                    return Valid(Unit());
+                });
     }
 }

@@ -198,6 +198,10 @@ Head().AutoSpan().ToSheet().ToBook().ToBytes()
 
 Это демонстрация добавления в книгу листов из существующих книг. См. также [Прототипирование](#прототипирование).
 
+### [S6ProtoBox.cs][s6protobox.cs]
+
+Это пример [прототипирования](#прототипирование).
+
 ## Концепции
 
 ### Описание модели
@@ -275,6 +279,8 @@ Make
 - `protoBook` – `byte[]` содержимого xlsx-файла;
 - `"Prototype1"` – имя диапазона в `protoBook`;
 - `"Slot1"` и `"Slot2"` – имена диапазонов внутри `Prototype1`, в которых могут размещаться другие box'ы.
+
+См. пример [S6ProtoBox.cs][s6protobox.cs].
 
 Также BookFx поддерживает добавление целых листов из других книг:
 
@@ -441,4 +447,5 @@ Copyright (c) 2019 Zhenya Gusev
 [s2style.cs]: src/BookFx.Usage/S2Style.cs
 [s3calendar.cs]: src/BookFx.Usage/S3Calendar.cs
 [s5protosheet.cs]: src/BookFx.Usage/S5ProtoSheet.cs
+[s6protobox.cs]: src/BookFx.Usage/S6ProtoBox.cs
 [s-3-calendar]: docs/img/s-3-calendar-ru.png "Результат S3Calendar.cs"

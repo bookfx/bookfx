@@ -39,9 +39,19 @@
                     Range(source.Start.Row, source.Rows),
                     Range(target.Start.Row, source.Rows),
                     (src, trg) => (
-                        src: source.Worksheet.Row(src),
-                        trg: target.Worksheet.Row(trg)))
-                .ForEach(x => x.trg.Height = x.src.Height);
+                        Src: source.Worksheet.Row(src),
+                        Trg: target.Worksheet.Row(trg)))
+                .ForEach(x =>
+                {
+                    if (x.Src.CustomHeight)
+                    {
+                        x.Trg.Height = x.Src.Height;
+                    }
+                    else
+                    {
+                        x.Trg.CustomHeight = false;
+                    }
+                });
 
         public static Position GetPosition(this ExcelRangeBase range) =>
             Position.At(range.Start.Row, range.Start.Column);
