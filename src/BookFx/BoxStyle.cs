@@ -189,6 +189,19 @@
         public BoxStyle Wrap(bool isWrapped) => Get.With(isWrap: isWrapped);
 
         /// <summary>
+        /// Shrink text to fit.
+        /// </summary>
+        [Pure]
+        public BoxStyle Shrink() => Get.With(isShrink: true);
+
+        /// <summary>
+        /// Set or unset the text shrinking to fit.
+        /// </summary>
+        /// <param name="isShrinked">true - set text shrinking; false - unset text shrinking.</param>
+        [Pure]
+        public BoxStyle Shrink(bool isShrinked) => Get.With(isShrink: isShrinked);
+
+        /// <summary>
         /// Define a horizontal alignment.
         /// </summary>
         /// <param name="horizontalAlign">A horizontal alignment.</param>

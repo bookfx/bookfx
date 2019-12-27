@@ -359,6 +359,7 @@ Make.Sheet("New Sheet Name", protoBook, "Prototype Sheet Name");
     - `BoxStyle.Underline` - подчеркнуть
     - `BoxStyle.Strike` - зачеркнуть
     - `BoxStyle.Wrap` - задать перенос текста
+    - `BoxStyle.Shrink` - задать автоподбор ширины текста
     - `BoxStyle.Align` - задать выравнивание
     - `BoxStyle.Left` - выровнять по левому краю
     - `BoxStyle.Center` - выровнять горизонтально по центру
