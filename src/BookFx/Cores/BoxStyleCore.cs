@@ -25,6 +25,7 @@
             isUnderline: None,
             isStrike: None,
             isWrap: None,
+            isShrink: None,
             hAlign: None,
             vAlign: None,
             rotation: None,
@@ -42,6 +43,7 @@
             Option<bool> isUnderline,
             Option<bool> isStrike,
             Option<bool> isWrap,
+            Option<bool> isShrink,
             Option<HAlign> hAlign,
             Option<VAlign> vAlign,
             Option<int> rotation,
@@ -58,6 +60,7 @@
             IsUnderline = isUnderline;
             IsStrike = isStrike;
             IsWrap = isWrap;
+            IsShrink = isShrink;
             HAlign = hAlign;
             VAlign = vAlign;
             Rotation = rotation;
@@ -116,6 +119,11 @@
         public Option<bool> IsWrap { get; }
 
         /// <summary>
+        /// Gets a value indicating whether is text shrinked to fit.
+        /// </summary>
+        public Option<bool> IsShrink { get; }
+
+        /// <summary>
         /// Gets the horizontal alignment.
         /// </summary>
         public Option<HAlign> HAlign { get; }
@@ -153,6 +161,7 @@
                 isUnderline: b.IsUnderline.OrElse(a.IsUnderline),
                 isStrike: b.IsStrike.OrElse(a.IsStrike),
                 isWrap: b.IsWrap.OrElse(a.IsWrap),
+                isShrink: b.IsShrink.OrElse(a.IsShrink),
                 hAlign: b.HAlign.OrElse(a.HAlign),
                 vAlign: b.VAlign.OrElse(a.VAlign),
                 rotation: b.Rotation.OrElse(a.Rotation),
@@ -175,6 +184,7 @@
             Option<bool>? isUnderline = null,
             Option<bool>? isStrike = null,
             Option<bool>? isWrap = null,
+            Option<bool>? isShrink = null,
             Option<HAlign>? hAlign = null,
             Option<VAlign>? vAlign = null,
             Option<int>? rotation = null,
@@ -192,6 +202,7 @@
                 isUnderline ?? IsUnderline,
                 isStrike ?? IsStrike,
                 isWrap ?? IsWrap,
+                isShrink ?? IsShrink,
                 hAlign ?? HAlign,
                 vAlign ?? VAlign,
                 rotation ?? Rotation,
