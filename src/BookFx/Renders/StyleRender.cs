@@ -37,6 +37,7 @@
                 style.VAlign.ForEach(
                     alignment => excelRange.Style.VerticalAlignment = (ExcelVerticalAlignment)alignment);
                 style.IsWrap.ForEach(wrap => excelRange.Style.WrapText = wrap);
+                style.IsShrink.ForEach(shrink => excelRange.Style.ShrinkToFit = shrink);
                 style.Rotation.ForEach(rotation => excelRange.Style.TextRotation = rotation);
                 style.Indent.ForEach(size => excelRange.Style.Indent = size);
                 style.Format.ForEach(format => excelRange.Style.Numberformat.Format = format);

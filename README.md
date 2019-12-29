@@ -361,6 +361,7 @@ See also the example [S5ProtoSheet.cs][s5protosheet.cs].
     - `BoxStyle.Underline` - underline
     - `BoxStyle.Strike` - strike
     - `BoxStyle.Wrap` - define a text wrap
+    - `BoxStyle.Shrink` - define a text shrinking to fit
     - `BoxStyle.Align` - define an alignment
     - `BoxStyle.Left` - align to the left
     - `BoxStyle.Center` - align at the center horizontally
