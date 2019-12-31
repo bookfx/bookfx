@@ -202,6 +202,10 @@ This demonstrates an adding worksheets from preexisting workbooks. See also [Pro
 
 This is an example of [prototyping](#prototyping).
 
+### [S7BalanceSheet.cs][s7balancesheet.cs]
+
+This demonstrates the creation of a Balance Sheet report with headers and a variable number of columns and rows of data.
+
 ## Concepts
 
 ### Model Description
@@ -449,4 +453,5 @@ along with this library. If not, see <https://www.gnu.org/licenses/>.
 [s3calendar.cs]: src/BookFx.Usage/S3Calendar.cs
 [s5protosheet.cs]: src/BookFx.Usage/S5ProtoSheet.cs
 [s6protobox.cs]: src/BookFx.Usage/S6ProtoBox.cs
+[s7balancesheet.cs]: src/BookFx.Usage/S7BalanceSheet.cs
 [s-3-calendar]: docs/img/s-3-calendar-en.png "S3Calendar.cs result"
