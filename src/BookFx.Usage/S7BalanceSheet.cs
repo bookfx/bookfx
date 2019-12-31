@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Collections.Immutable;
-    using BookFx;
 
     using static Make;
 
@@ -86,19 +85,25 @@
 
         private static AccountingDataToWriteToExcel GetAccountingData()
         {
-            DataColumn firstColumn = new DataColumn("2019/01/31", new List<decimal>() { 100, 50, -20, -40, -90 });
-            DataColumn secondColumn = new DataColumn("2019/02/28", new List<decimal>() { 120, 45, -35, -40, -90 });
-            DataColumn thirdColumn = new DataColumn("2019/03/31", new List<decimal>() { 95, 45, -10, -40, -90 });
+            DataColumn firstColumn = new DataColumn("2019/01/31", new List<decimal> { 100, 50, -20, -40, -90 });
+            DataColumn secondColumn = new DataColumn("2019/02/28", new List<decimal> { 120, 45, -35, -40, -90 });
+            DataColumn thirdColumn = new DataColumn("2019/03/31", new List<decimal> { 95, 45, -10, -40, -90 });
 
-            var columnLabels = new List<string>() { "Dates", "Current assets", "Long term assets", "Current liabilities", "Long term liabilities", "Equity" };
-            var dataColumns = new List<DataColumn>() { firstColumn, secondColumn, thirdColumn };
+            var columnLabels = new List<string>
+            { "Dates", "Current assets", "Long term assets", "Current liabilities", "Long term liabilities", "Equity" };
+            var dataColumns = new List<DataColumn> { firstColumn, secondColumn, thirdColumn };
 
             return new AccountingDataToWriteToExcel("Best company", "Balance Sheet", DateTime.Now, columnLabels, dataColumns);
         }
 
         private class AccountingDataToWriteToExcel
         {
-            public AccountingDataToWriteToExcel(string company, string reportName, DateTime reportDate, IEnumerable<string> columnLabels, IEnumerable<DataColumn> dataColumns)
+            public AccountingDataToWriteToExcel(
+                string company,
+                string reportName,
+                DateTime reportDate,
+                IEnumerable<string> columnLabels,
+                IEnumerable<DataColumn> dataColumns)
             {
                 Company = company;
                 ReportName = reportName;
