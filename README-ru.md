@@ -202,6 +202,10 @@ Head().AutoSpan().ToSheet().ToBook().ToBytes()
 
 Это пример [прототипирования](#прототипирование).
 
+### [S7BalanceSheet.cs][s7balancesheet.cs]
+
+Это демонстрация создания балансового отчета с шапкой и переменным количеством колонок и строк данных.
+
 ## Концепции
 
 ### Описание модели
@@ -449,4 +453,5 @@ Copyright (c) 2019 Zhenya Gusev
 [s3calendar.cs]: src/BookFx.Usage/S3Calendar.cs
 [s5protosheet.cs]: src/BookFx.Usage/S5ProtoSheet.cs
 [s6protobox.cs]: src/BookFx.Usage/S6ProtoBox.cs
+[s7balancesheet.cs]: src/BookFx.Usage/S7BalanceSheet.cs
 [s-3-calendar]: docs/img/s-3-calendar-ru.png "Результат S3Calendar.cs"
