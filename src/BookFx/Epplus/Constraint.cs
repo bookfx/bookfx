@@ -43,12 +43,12 @@
 
         internal const int MaxScale = 400;
 
-        internal static readonly Regex SheetNameRegex = new Regex(@"^[^:\\/?*[\]]{1,31}$");
+        internal static readonly Regex SheetNameRegex = new(@"^[^:\\/?*[\]]{1,31}$");
 
-        internal static readonly Regex RangeNameRegex = new Regex(@"(?i)^[a-z_]\w*$");
+        internal static readonly Regex RangeNameRegex = new(@"(?i)^(?=\D)\w+$");
 
-        internal static readonly Regex A1RangeNameRegex = new Regex(@"(?i)^[a-z]{1,3}\d{1,7}$");
+        internal static readonly Regex A1RangeNameRegex = new(@"(?i)^[a-z]{1,3}\d{1,7}$");
 
-        internal static readonly Regex R1C1RangeNameRegex = new Regex(@"(?i)^(?:(?:r|c)(?:[-\[\]\d]*)){1,2}$");
+        internal static readonly Regex R1C1RangeNameRegex = new(@"(?i)^(?:(?:r|c)(?:[-\[\]\d]*)){1,2}$");
     }
 }
