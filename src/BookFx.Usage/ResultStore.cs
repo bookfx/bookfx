@@ -2,7 +2,6 @@
 {
     using System;
     using System.IO;
-    using System.Reflection;
 
     public static class ResultStore
     {
@@ -18,10 +17,10 @@
 
         private static string GetAssemblyDirectory()
         {
-            var codeBase = typeof(ResultStore).Assembly.CodeBase;
-            var uri = new UriBuilder(codeBase);
+            var location = typeof(ResultStore).Assembly.Location;
+            var uri = new UriBuilder(location);
             var path = Uri.UnescapeDataString(uri.Path);
-            return Path.GetDirectoryName(path);
+            return Path.GetDirectoryName(path)!;
         }
     }
 }

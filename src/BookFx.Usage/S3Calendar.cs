@@ -7,8 +7,8 @@
     using System.Linq;
     using BookFx.Usage.Functional;
     using BookFx.Usage.S3CalendarDomain;
+    using static BookFx.Make;
     using static BookFx.Usage.Functional.F;
-    using static Make;
 
     public static class S3Calendar
     {

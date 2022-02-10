@@ -1,7 +1,7 @@
 ﻿namespace BookFx.Usage
 {
     using System.Linq;
-    using static Make;
+    using static BookFx.Make;
 
     public static class S1Table
     {

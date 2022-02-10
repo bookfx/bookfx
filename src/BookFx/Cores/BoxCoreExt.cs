@@ -24,7 +24,7 @@
                 BoxType.Col => col(box),
                 BoxType.Stack => stack(box),
                 BoxType.Proto => proto(box),
-                _ => throw new InvalidOperationException()
+                _ => throw new InvalidOperationException(),
             };
 
         [Pure]

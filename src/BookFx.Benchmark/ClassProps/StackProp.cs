@@ -20,7 +20,7 @@
 
         public bool Equals(StackProp other) => Key == other.Key && Value.Equals(other.Value);
 
-        public override bool Equals(object obj) => obj is StackProp other && Equals(other);
+        public override bool Equals(object? obj) => obj is StackProp other && Equals(other);
 
         public override int GetHashCode() => ((int)Key * 397) ^ Value.GetHashCode();
     }

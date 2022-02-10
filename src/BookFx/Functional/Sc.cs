@@ -7,6 +7,15 @@
     /// <summary>
     /// Stateful computation.
     /// </summary>
+    /// <typeparam name="TS">State type.</typeparam>
+    /// <typeparam name="TV">Value type.</typeparam>
+    /// <param name="state">State.</param>
+    /// <returns>(Value, State) tuple.</returns>
+    internal delegate (TV Value, TS State) Sc<TS, TV>(TS state);
+
+    /// <summary>
+    /// Stateful computation.
+    /// </summary>
     internal static class Sc
     {
         public static TV Run<TS, TV>(this Sc<TS, TV> f, TS state) => f(state).Value;

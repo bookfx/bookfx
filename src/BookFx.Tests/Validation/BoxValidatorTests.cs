@@ -236,7 +236,9 @@
 
             result.ErrorsUnsafe()
                 .Should()
-                .BeEquivalentTo(Errors.Box.Aggregate(box, inners: List(Errors.Style.FontSizeIsInvalid(invalidFontSize))));
+                .BeEquivalentTo(List(Errors.Box.Aggregate(
+                    box,
+                    inners: List(Errors.Style.FontSizeIsInvalid(invalidFontSize)))));
         }
 
         [Fact]

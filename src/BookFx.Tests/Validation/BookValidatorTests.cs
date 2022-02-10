@@ -111,12 +111,13 @@
 
             var result = BookValidator.Validate(book);
 
-            result.ErrorsUnsafe()
+            result
+                .ErrorsUnsafe()
                 .Should()
-                .BeEquivalentTo(
+                .BeEquivalentTo(F.List<Error>(
                     Errors.Book.SheetNameIsNotUnique(invalidName),
                     Errors.Sheet.NameIsInvalid(invalidName),
-                    Errors.Sheet.NameIsInvalid(invalidName));
+                    Errors.Sheet.NameIsInvalid(invalidName)));
         }
     }
 }
