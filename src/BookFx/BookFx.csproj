@@ -9,7 +9,7 @@
     <PackageId>BookFx</PackageId>
     <Description>Composing Excel spreadsheets based on a tree of nested components like the HTML DOM.</Description>
     <Authors>Zhenya Gusev</Authors>
-    <Copyright>Copyright © 2019 Zhenya Gusev</Copyright>
+    <Copyright>Copyright © 2019–2022 Zhenya Gusev</Copyright>
     <PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
     <PackageIcon>icon.png</PackageIcon>
     <PackageTags>excel;xlsx;openxml;ooxml</PackageTags>
