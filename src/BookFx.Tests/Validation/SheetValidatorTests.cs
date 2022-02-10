@@ -89,7 +89,9 @@
 
             result.ErrorsUnsafe()
                 .Should()
-                .BeEquivalentTo(Errors.Sheet.Aggregate(sheet, inners: List(Errors.Box.ColSpanIsInvalid(invalidSpan))));
+                .BeEquivalentTo(List(Errors.Sheet.Aggregate(
+                    sheet,
+                    inners: List(Errors.Box.ColSpanIsInvalid(invalidSpan)))));
         }
 
         [Fact]
