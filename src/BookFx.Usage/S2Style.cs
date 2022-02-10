@@ -1,7 +1,7 @@
 ﻿namespace BookFx.Usage
 {
     using System.Drawing;
-    using static Make;
+    using static BookFx.Make;
 
     public static class S2Style
     {

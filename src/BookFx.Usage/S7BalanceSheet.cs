@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.Collections.Immutable;
 
-    using static Make;
+    using static BookFx.Make;
 
     public static class S7BalanceSheet
     {

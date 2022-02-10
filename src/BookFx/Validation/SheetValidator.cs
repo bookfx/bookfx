@@ -4,8 +4,8 @@
     using BookFx.Cores;
     using BookFx.Functional;
     using static BookFx.Epplus.Constraint;
-    using static Functional.F;
-    using static Functional.ValidatorComposition;
+    using static BookFx.Functional.F;
+    using static BookFx.Functional.ValidatorComposition;
 
     internal static class SheetValidator
     {

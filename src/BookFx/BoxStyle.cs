@@ -6,7 +6,7 @@
     using BookFx.Cores;
     using BookFx.Functional;
     using JetBrains.Annotations;
-    using static Functional.F;
+    using static BookFx.Functional.F;
     using static Make;
 
     /// <summary>
