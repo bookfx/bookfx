@@ -112,7 +112,9 @@
         [Property(Arbitrary = new[] { typeof(ValidRotationArb) })]
         public void Render_Rotation_Set(int rotation) =>
             Check(
-                Make.Style().Rotate(rotation),
+                rotation <= 90
+                    ? Make.Style().RotateCounterclockwise(rotation)
+                    : Make.Style().RotateClockwise(rotation - 90),
                 range => range.Style.TextRotation.Should().Be(rotation));
 
         /// <summary>
