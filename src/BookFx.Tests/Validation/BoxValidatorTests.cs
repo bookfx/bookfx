@@ -181,8 +181,13 @@
         [Theory]
         [InlineData("_")]
         [InlineData("_1")]
+        [InlineData("_123")]
         [InlineData("A")]
         [InlineData("name0")]
+        [InlineData("year")]
+        [InlineData("год")]
+        [InlineData("έτος")]
+        [InlineData("年")]
         public void Name_ValidName_ValidResult(string rangeName)
         {
             var box = Make.Value().Name(rangeName).Get;
@@ -195,6 +200,7 @@
         [Theory]
         [InlineData("")]
         [InlineData("1")]
+        [InlineData("123")]
         [InlineData("A1")]
         [InlineData("R1C1")]
         [InlineData("rc")]
