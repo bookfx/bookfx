@@ -11,7 +11,7 @@
     [PublicAPI]
     public sealed class BoxBorderCore
     {
-        internal static readonly BoxBorderCore Empty = new BoxBorderCore(
+        internal static readonly BoxBorderCore Default = new(
             parts: None,
             style: None,
             color: None);
@@ -46,7 +46,7 @@
             Option<BorderParts>? parts = null,
             Option<BorderStyle>? style = null,
             Option<Color>? color = null) =>
-            new BoxBorderCore(
+            new(
                 parts ?? Parts,
                 style ?? Style,
                 color ?? Color);

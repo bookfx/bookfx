@@ -421,24 +421,24 @@
             Style(others.Prepend(b).Prepend(a));
 
         /// <summary>
-        /// Creates an empty <see cref="BoxBorder"/>.
+        /// Creates a default <see cref="BoxBorder"/>. All border parts are thin.
         /// </summary>
         [Pure]
-        public static BoxBorder Border() => BoxBorder.Empty;
+        public static BoxBorder Border() => BoxBorder.Default;
 
         /// <summary>
         /// Creates a <see cref="BoxBorder"/> with restriction to a <paramref name="parts"/>.
         /// </summary>
         /// <param name="parts">Parts of border. This is a flags enum.</param>
         [Pure]
-        public static BoxBorder Border(BorderParts parts) => BoxBorder.Empty.Restrict(parts);
+        public static BoxBorder Border(BorderParts parts) => BoxBorder.Default.Restrict(parts);
 
         /// <summary>
         /// Creates a <see cref="BoxBorder"/> a border style.
         /// </summary>
         /// <param name="style">The border style.</param>
         [Pure]
-        public static BoxBorder Border(BorderStyle style) => BoxBorder.Empty.Style(style);
+        public static BoxBorder Border(BorderStyle style) => BoxBorder.Default.Style(style);
 
         /// <summary>
         /// Creates a <see cref="BoxBorder"/> with a <paramref name="style"/> applied to a <paramref name="parts"/>.
@@ -447,6 +447,6 @@
         /// <param name="style">The border style.</param>
         [Pure]
         public static BoxBorder Border(BorderParts parts, BorderStyle style) =>
-            BoxBorder.Empty.Restrict(parts).Style(style);
+            BoxBorder.Default.Restrict(parts).Style(style);
     }
 }
