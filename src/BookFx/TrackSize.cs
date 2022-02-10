@@ -116,7 +116,7 @@
                 Mode.None => none(),
                 Mode.Some => some(_value),
                 Mode.Fit => fit(),
-                _ => throw new InvalidOperationException()
+                _ => throw new InvalidOperationException(),
             };
 
         /// <summary>
