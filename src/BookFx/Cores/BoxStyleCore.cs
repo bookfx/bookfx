@@ -135,6 +135,11 @@
 
         /// <summary>
         /// Gets the text rotation in degrees.
+        /// Values are in the range 0 to 180. The first letter of the text is considered the center-point of the arc.
+        /// For 0 - 90, the value represents degrees above horizon.
+        /// For 91 - 180 the degrees below the horizon is calculated as:
+        /// <code>DegreesBelowHorizon = 90 - Rotation</code>
+        /// See also ECMA-376 - Office Open XML Part 1 - Fundamentals And Markup Language Reference - 18.8 Styles.
         /// </summary>
         public Option<int> Rotation { get; }
 
