@@ -372,7 +372,8 @@ Make.Sheet("New Sheet Name", protoBook, "Prototype Sheet Name");
     - `BoxStyle.Top` - выровнять по верхнему краю
     - `BoxStyle.Middle` - выровнять вертикально по середине
     - `BoxStyle.Bottom` - выровнять по нижнему краю
-    - `BoxStyle.Rotate` - повернуть текст
+    - `BoxStyle.RotateCounterclockwise` - повернуть текст против часовой стрелки
+    - `BoxStyle.RotateClockwise` - повернуть текст по часовой стрелке
     - `BoxStyle.Indent` - задать отступ
     - `BoxStyle.Format` - задать произвольный формат
     - `BoxStyle.DefaultFormat` - задать формат `General` (Общий)
@@ -400,7 +401,7 @@ Make.Sheet("New Sheet Name", protoBook, "Prototype Sheet Name");
 
 ``` txt
 BookFx. Composing Excel spreadsheets based on a tree of nested components like the HTML DOM.
-Copyright (c) 2019 Zhenya Gusev
+Copyright (c) 2019–2022 Zhenya Gusev
 ```
 
 ### Уведомление о лицензии

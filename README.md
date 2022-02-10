@@ -374,7 +374,8 @@ See also the example [S5ProtoSheet.cs][s5protosheet.cs].
     - `BoxStyle.Top` - align to the top
     - `BoxStyle.Middle` - align at the middle vertically
     - `BoxStyle.Bottom` - align to the bottom
-    - `BoxStyle.Rotate` - rotate the text
+    - `BoxStyle.RotateCounterclockwise` - rotate the text counterclockwise
+    - `BoxStyle.RotateClockwise` - rotate the text clockwise
     - `BoxStyle.Indent` - define an indent
     - `BoxStyle.Format` - define a custom format
     - `BoxStyle.DefaultFormat` - define the `General` format
@@ -402,7 +403,7 @@ The project is licensed under the [LGPL-3.0-or-later](https://spdx.org/licenses/
 
 ``` txt
 BookFx. Composing Excel spreadsheets based on a tree of nested components like the HTML DOM.
-Copyright (c) 2019 Zhenya Gusev
+Copyright (c) 2019–2022 Zhenya Gusev
 ```
 
 ### The license notice

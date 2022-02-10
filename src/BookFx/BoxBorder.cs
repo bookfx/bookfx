@@ -1,5 +1,6 @@
 ﻿namespace BookFx
 {
+    using System;
     using System.Drawing;
     using BookFx.Cores;
     using JetBrains.Annotations;
@@ -11,9 +12,15 @@
     public sealed class BoxBorder
     {
         /// <summary>
+        /// The default <see cref="BoxBorder"/>. All border parts are thin.
+        /// </summary>
+        public static readonly BoxBorder Default = BoxBorderCore.Default;
+
+        /// <summary>
         /// The empty <see cref="BoxBorder"/>.
         /// </summary>
-        public static readonly BoxBorder Empty = BoxBorderCore.Empty;
+        [Obsolete("Use Default instead.")]
+        public static readonly BoxBorder Empty = BoxBorderCore.Default;
 
         private BoxBorder(BoxBorderCore core) => Get = core;
 
