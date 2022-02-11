@@ -12,6 +12,7 @@
         public static Validator<SheetCore> Validate =>
             HarvestErrors(
                 SheetName,
+                BoxLocalNameUniqueness,
                 PrintArea,
                 Margins,
                 FitToHeight,
@@ -27,6 +28,16 @@
                 .Where(name => !SheetNameRegex.IsMatch(name))
                 .Map(name => Invalid<SheetCore>(Errors.Sheet.NameIsInvalid(name)))
                 .GetOrElse(Valid(sheet));
+
+        public static Validator<SheetCore> BoxLocalNameUniqueness =>
+            sheet => sheet
+                .Box
+                .AsEnumerable()
+                .Bind(x => x.SelfAndDescendants())
+                .Bind(x => x.LocalName)
+                .NonUnique()
+                .Traverse(name => Invalid<SheetCore>(Errors.Sheet.BoxLocalNameIsNotUnique(name)))
+                .Map(_ => sheet);
 
         public static Validator<SheetCore> PrintArea =>
             sheet => sheet

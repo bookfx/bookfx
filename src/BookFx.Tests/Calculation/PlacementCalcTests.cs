@@ -290,8 +290,8 @@
             var protoBook = Make
                 .Col(
                     "A",
-                    Make.Value("Slot default value").Name(slotRef))
-                .Name(protoRef)
+                    Make.Value("Slot default value").NameGlobally(slotRef))
+                .NameGlobally(protoRef)
                 .ToSheet()
                 .ToBook()
                 .ToBytes();

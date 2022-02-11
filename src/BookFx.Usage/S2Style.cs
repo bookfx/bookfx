@@ -5,9 +5,9 @@
 
     public static class S2Style
     {
-        public static string PrototypeName => "ThePrototype";
+        public static string PrototypeName => "ThePrototype"; // will be used in S6ProtoBox
 
-        public static string SlotName => "TheSlot";
+        public static string SlotName => "TheSlot"; // will be used in S6ProtoBox
 
         public static byte[] Create() =>
             Col()
@@ -30,11 +30,11 @@
                 )
                 .Add(Row()
                     .Add(Value("Red", Style().Font(Color.Red)))
-                    .Add(Value("On green", Style().Back(Color.LightGreen)).Name(SlotName)) // will be used in S6ProtoBox
+                    .Add(Value("On green", Style().Back(Color.LightGreen)).NameGlobally(SlotName))
                     .Add(Value("Arial 12", Style().Font("Arial", 12)))
                     .Add(Value("Wrapped long text", Style().Wrap()))
                 )
-                .Name(PrototypeName) // will be used in S6ProtoBox
+                .NameGlobally(PrototypeName)
                 .ToSheet()
                 .ToBook()
                 .ToBytes();

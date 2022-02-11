@@ -10,7 +10,7 @@
         public static Validator<BookCore> Validate =>
             HarvestErrors(
                 SheetNameUniqueness,
-                BoxNameUniqueness,
+                BoxGlobalNameUniqueness,
                 Sheets);
 
         public static Validator<BookCore> SheetNameUniqueness =>
@@ -20,13 +20,13 @@
                 .Traverse(name => Invalid<BookCore>(Errors.Book.SheetNameIsNotUnique(name)))
                 .Map(_ => book);
 
-        public static Validator<BookCore> BoxNameUniqueness =>
+        public static Validator<BookCore> BoxGlobalNameUniqueness =>
             book => book.Sheets
                 .Bind(x => x.Box)
                 .Bind(x => x.SelfAndDescendants())
-                .Bind(x => x.Name)
+                .Bind(x => x.GlobalName)
                 .NonUnique()
-                .Traverse(name => Invalid<BookCore>(Errors.Book.BoxNameIsNotUnique(name)))
+                .Traverse(name => Invalid<BookCore>(Errors.Book.BoxGlobalNameIsNotUnique(name)))
                 .Map(_ => book);
 
         public static Validator<BookCore> Sheets =>

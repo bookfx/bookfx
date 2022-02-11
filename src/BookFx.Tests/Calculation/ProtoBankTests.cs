@@ -14,7 +14,7 @@
         {
             const string theRef = "Ref";
             const string theValue = "Value";
-            var protoBook = Make.Value(theValue).Name(theRef).ToSheet().ToBook().ToBytes();
+            var protoBook = Make.Value(theValue).NameGlobally(theRef).ToSheet().ToBook().ToBytes();
             var sut = new ProtoBank(List(protoBook));
 
             var result = sut.GetRange(protoBook, theRef);
@@ -37,7 +37,7 @@
         public void GetPosition_NameExists_Expected()
         {
             const string theRef = "Ref";
-            var protoBook = Make.Value().Name(theRef).ToSheet().ToBook().ToBytes();
+            var protoBook = Make.Value().NameGlobally(theRef).ToSheet().ToBook().ToBytes();
             var sut = new ProtoBank(List(protoBook));
 
             var result = sut.GetPosition(protoBook, theRef);

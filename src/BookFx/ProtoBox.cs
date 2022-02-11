@@ -1,5 +1,6 @@
 ﻿namespace BookFx
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using BookFx.Cores;
@@ -55,9 +56,18 @@
         [Pure]
         public new ProtoBox AutoSpanCols(bool isEnabled) => Get.With(colAutoSpan: isEnabled);
 
-        /// <inheritdoc cref="Box.Name"/>
+        /// <inheritdoc cref="Box.NameGlobally"/>
         [Pure]
-        public new ProtoBox Name(string rangeName) => Get.With(name: Some(rangeName));
+        public new ProtoBox NameGlobally(string rangeName) => Get.With(globalName: Some(rangeName));
+
+        /// <inheritdoc cref="Box.NameLocally"/>
+        [Pure]
+        public new ProtoBox NameLocally(string rangeName) => Get.With(localName: Some(rangeName));
+
+        /// <inheritdoc cref="Box.Name"/>
+        [Obsolete("Use NameGlobally or NameLocally instead.")]
+        [Pure]
+        public new ProtoBox Name(string rangeName) => NameGlobally(rangeName);
 
         /// <inheritdoc cref="Box.Style"/>
         [Pure]

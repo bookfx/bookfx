@@ -326,7 +326,8 @@ See also the example [S5ProtoSheet.cs][s5protosheet.cs].
     - `Sheet.Scale` - define a scale
     - `Sheet.ToBook` - make a `Book` with one sheet
 - `Box` - a box of any type
-    - `Box.Name` - define a name of the range
+    - `Box.NameGlobally` - define a book scoped name of the range
+    - `Box.NameLocally` - define a sheet scoped name of the range
     - `Box.AutoSpan` - activate `AutoSpan` mode for rows and columns
     - `Box.AutoSpanRows` - activate `AutoSpan` mode for rows
     - `Box.AutoSpanCols` - activate `AutoSpan` mode for columns

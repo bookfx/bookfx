@@ -16,8 +16,8 @@
                 new SheetNameIsNotUniqueError(name);
 
             [Pure]
-            public static BoxNameIsNotUniqueError BoxNameIsNotUnique(string name) =>
-                new BoxNameIsNotUniqueError(name);
+            public static BoxGlobalNameIsNotUniqueError BoxGlobalNameIsNotUnique(string name) =>
+                new BoxGlobalNameIsNotUniqueError(name);
 
             [Pure]
             public static AggregateError Aggregate(IEnumerable<Error> inners) =>
@@ -31,10 +31,10 @@
                 }
             }
 
-            public sealed class BoxNameIsNotUniqueError : Error
+            public sealed class BoxGlobalNameIsNotUniqueError : Error
             {
-                public BoxNameIsNotUniqueError(string name)
-                    : base($"Box name «{name}» is not unique.")
+                public BoxGlobalNameIsNotUniqueError(string name)
+                    : base($"Book scoped name «{name}» of box is not unique.")
                 {
                 }
             }
@@ -52,6 +52,9 @@
         {
             [Pure]
             public static NameIsInvalidError NameIsInvalid(string name) => new NameIsInvalidError(name);
+
+            [Pure]
+            public static BoxLocalNameIsNotUniqueError BoxLocalNameIsNotUnique(string name) => new(name);
 
             [Pure]
             public static ManyPrintAreasError ManyPrintAreas() => new ManyPrintAreasError();
@@ -94,6 +97,14 @@
                         "Take care that the name is not empty, " +
                         "the name length is not longer than 31 and " +
                         @"the name is free of following characters: ':', '\', '/', '?', '*', '[' or ']'.")
+                {
+                }
+            }
+
+            public sealed class BoxLocalNameIsNotUniqueError : Error
+            {
+                public BoxLocalNameIsNotUniqueError(string name)
+                    : base($"Sheet scoped name «{name}» of box is not unique.")
                 {
                 }
             }
@@ -294,10 +305,13 @@
             {
                 public AggregateError(BoxCore box, IEnumerable<Error> inners)
                     : base(
-                        $"{box.Name.Map(name => $"Box «{name}»").GetOrElse("Unnamed box")} has following errors.",
+                        $"{BoxName(box)} has following errors.",
                         inners)
                 {
                 }
+
+                private static string BoxName(BoxCore box) =>
+                    box.LocalName.OrElse(box.GlobalName).Map(name => $"Box «{name}»").GetOrElse("Unnamed box");
             }
         }
 

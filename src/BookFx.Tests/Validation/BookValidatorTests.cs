@@ -38,29 +38,29 @@
         }
 
         [Fact]
-        public void BoxNameUniqueness_UniqueBoxNames_Valid()
+        public void BoxGlobalNameUniqueness_UniqueBoxNames_Valid()
         {
             var book = Make
                 .Book(
-                    Make.Sheet(Make.Row(Make.Value().Name("AA"), Make.Value().Name("AB"))),
-                    Make.Sheet(Make.Row(Make.Value().Name("BA"), Make.Value().Name("BB"))))
+                    Make.Sheet(Make.Row(Make.Value().NameGlobally("AA"), Make.Value().NameGlobally("AB"))),
+                    Make.Sheet(Make.Row(Make.Value().NameGlobally("BA"), Make.Value().NameGlobally("BB"))))
                 .Get;
 
-            var result = BookValidator.BoxNameUniqueness(book);
+            var result = BookValidator.BoxGlobalNameUniqueness(book);
 
             result.IsValid.Should().BeTrue();
         }
 
         [Fact]
-        public void BoxNameUniqueness_NonUniqueBoxNames_Invalid()
+        public void BoxGlobalNameUniqueness_NonUniqueBoxNames_Invalid()
         {
             var book = Make
                 .Book(
-                    Make.Sheet(Make.Value().Name("A")),
-                    Make.Sheet(Make.Value().Name("A")))
+                    Make.Sheet(Make.Value().NameGlobally("A")),
+                    Make.Sheet(Make.Value().NameGlobally("A")))
                 .Get;
 
-            var result = BookValidator.BoxNameUniqueness(book);
+            var result = BookValidator.BoxGlobalNameUniqueness(book);
 
             result.IsValid.Should().BeFalse();
         }
