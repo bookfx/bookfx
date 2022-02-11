@@ -25,7 +25,7 @@
             Make.Value(Unit()).Get.Content.ValueUnsafe().Should().BeOfType<Unit>();
 
         [Property]
-        public void Name_NonNull_NameIsName(NonNull<string> name) =>
-            Make.Value().Name(name.Get).Get.Name.ValueUnsafe().Should().Be(name.Get);
+        public void NameGlobally_NonNull_GlobalNameIsName(NonNull<string> name) =>
+            Make.Value().NameGlobally(name.Get).Get.GlobalName.ValueUnsafe().Should().Be(name.Get);
     }
 }

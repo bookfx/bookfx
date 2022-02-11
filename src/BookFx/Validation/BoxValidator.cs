@@ -1,5 +1,6 @@
 ﻿namespace BookFx.Validation
 {
+    using System;
     using System.Linq;
     using BookFx.Cores;
     using BookFx.Epplus;
@@ -15,7 +16,8 @@
                 ColSpanSize,
                 RowSizeRange,
                 ColSizeRange,
-                Name,
+                Name(box => box.GlobalName),
+                Name(box => box.LocalName),
                 Style);
 
         public static Validator<BoxCore> RowSpanSize =>
@@ -48,16 +50,6 @@
                     one: size => Errors.Box.ColSizesAreInvalid(size),
                     more: (size, others) => Errors.Box.ColSizesAreInvalid(size, others));
 
-        public static Validator<BoxCore> Name =>
-            box => box.Name.Match(
-                none: () => Valid(box),
-                some: name =>
-                    Constraint.RangeNameRegex.IsMatch(name) &&
-                    !Constraint.A1RangeNameRegex.IsMatch(name) &&
-                    !Constraint.R1C1RangeNameRegex.IsMatch(name)
-                        ? Valid(box)
-                        : Errors.Box.NameIsInvalid(name));
-
         public static Validator<BoxCore> Style =>
             box => box.Style
                 .Map(StyleValidator.Validate.Invoke)
@@ -66,5 +58,15 @@
                     some: result => result.Match(
                         invalid: errors => Errors.Box.Aggregate(box, errors),
                         valid: _ => Valid(box)));
+
+        public static Validator<BoxCore> Name(Func<BoxCore, Option<string>> getName) =>
+            box => getName(box).Match(
+                none: () => Valid(box),
+                some: name =>
+                    Constraint.RangeNameRegex.IsMatch(name) &&
+                    !Constraint.A1RangeNameRegex.IsMatch(name) &&
+                    !Constraint.R1C1RangeNameRegex.IsMatch(name)
+                        ? Valid(box)
+                        : Errors.Box.NameIsInvalid(name));
     }
 }

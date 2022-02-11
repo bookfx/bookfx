@@ -96,9 +96,18 @@
         [Pure]
         public static implicit operator ValueBox(Guid content) => Value(content);
 
-        /// <inheritdoc cref="Box.Name"/>
+        /// <inheritdoc cref="Box.NameGlobally"/>
         [Pure]
-        public new ValueBox Name(string rangeName) => Get.With(name: Some(rangeName));
+        public new ValueBox NameGlobally(string rangeName) => Get.With(globalName: Some(rangeName));
+
+        /// <inheritdoc cref="Box.NameLocally"/>
+        [Pure]
+        public new ValueBox NameLocally(string rangeName) => Get.With(localName: Some(rangeName));
+
+        /// <inheritdoc cref="Box.Name"/>
+        [Obsolete("Use NameGlobally or NameLocally instead.")]
+        [Pure]
+        public new ValueBox Name(string rangeName) => NameGlobally(rangeName);
 
         /// <inheritdoc cref="Box.Style"/>
         [Pure]

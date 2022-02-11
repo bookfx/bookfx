@@ -150,7 +150,7 @@
                 .Value()
                 .SpanRows(protoHeight)
                 .SpanCols(protoWidth)
-                .Name(protoRef)
+                .NameGlobally(protoRef)
                 .ToSheet()
                 .ToBook()
                 .ToBytes();
@@ -168,7 +168,7 @@
             const string protoRef = "ProtoRef";
             var protoBook = Make
                 .Value()
-                .Name(protoRef)
+                .NameGlobally(protoRef)
                 .ToSheet()
                 .ToBook()
                 .ToBytes();

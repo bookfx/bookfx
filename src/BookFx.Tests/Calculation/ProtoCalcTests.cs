@@ -14,7 +14,7 @@
         {
             const string protoRef = "ProtoRef";
             // A
-            var protoBook = Make.Value().Name(protoRef).ToSheet().ToBook().ToBytes();
+            var protoBook = Make.Value().NameGlobally(protoRef).ToSheet().ToBook().ToBytes();
             var box = Make.Proto(protoBook, protoRef).Get;
             var bank = new ProtoBank(List(protoBook));
 
@@ -37,8 +37,8 @@
             // A
             // B
             var protoBook = Make
-                .Col("A", Make.Value("B").Name(slotRef))
-                .Name(protoRef)
+                .Col("A", Make.Value("B").NameGlobally(slotRef))
+                .NameGlobally(protoRef)
                 .ToSheet()
                 .ToBook()
                 .ToBytes();

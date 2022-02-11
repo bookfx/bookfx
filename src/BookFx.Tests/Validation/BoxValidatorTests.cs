@@ -190,9 +190,9 @@
         [InlineData("年")]
         public void Name_ValidName_ValidResult(string rangeName)
         {
-            var box = Make.Value().Name(rangeName).Get;
+            var box = Make.Value().NameGlobally(rangeName).Get;
 
-            var result = BoxValidator.Name(box);
+            var result = BoxValidator.Name(x => x.GlobalName)(box);
 
             result.IsValid.Should().BeTrue();
         }
@@ -201,6 +201,8 @@
         [InlineData("")]
         [InlineData("1")]
         [InlineData("123")]
+        [InlineData("1year")]
+        [InlineData("1год")]
         [InlineData("A1")]
         [InlineData("R1C1")]
         [InlineData("rc")]
@@ -215,9 +217,9 @@
         [InlineData("=")]
         public void Name_InvalidName_InvalidResult(string rangeName)
         {
-            var box = Make.Value().Name(rangeName).Get;
+            var box = Make.Value().NameGlobally(rangeName).Get;
 
-            var result = BoxValidator.Name(box);
+            var result = BoxValidator.Name(x => x.GlobalName)(box);
 
             result.IsValid.Should().BeFalse();
         }

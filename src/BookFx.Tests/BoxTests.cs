@@ -20,13 +20,13 @@
         }
 
         [Property]
-        public void Name_NonNull_SetName(NonNull<string> name)
+        public void NameGlobally_NonNull_SetName(NonNull<string> name)
         {
             Box box = Make.Row();
 
-            var result = box.Name(name.Get);
+            var result = box.NameGlobally(name.Get);
 
-            result.Get.Name.Should().Be(Some(name.Get));
+            result.Get.GlobalName.Should().Be(Some(name.Get));
         }
     }
 }

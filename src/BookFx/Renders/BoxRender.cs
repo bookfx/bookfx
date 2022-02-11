@@ -13,7 +13,8 @@
                 box.MergeRender(),
                 box.StyleRender(),
                 box.DescendantsRender(),
-                box.NameRender(),
+                box.GlobalNameRender(),
+                box.LocalNameRender(),
                 box.ContentRender(),
                 box.AutoFilterRender(),
                 box.PrintAreaRender());

@@ -36,7 +36,7 @@
         public void Render_ProtoSheet_NameCopiedInBookScope() =>
             Packer.OnPackage(package => Make
                 .Value()
-                .Name(TheRangeName)
+                .NameGlobally(TheRangeName)
                 .ToSheet()
                 .ToBook()
                 .ToBytes()
@@ -59,7 +59,7 @@
         public void Render_ProtoSheetAndNameExists_NameCopiedInSheetScope() =>
             Packer.OnPackage(package => Make
                 .Value()
-                .Name(TheRangeName)
+                .NameGlobally(TheRangeName)
                 .ToSheet()
                 .ToBook()
                 .ToBytes()

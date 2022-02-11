@@ -1,5 +1,6 @@
 ﻿namespace BookFx
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using BookFx.Cores;
@@ -29,9 +30,18 @@
         [Pure]
         public static implicit operator RowBox(BoxCore core) => new RowBox(core);
 
-        /// <inheritdoc cref="Box.Name"/>
+        /// <inheritdoc cref="Box.NameGlobally"/>
         [Pure]
-        public new RowBox Name(string rangeName) => Get.With(name: Some(rangeName));
+        public new RowBox NameGlobally(string rangeName) => Get.With(globalName: Some(rangeName));
+
+        /// <inheritdoc cref="Box.NameLocally"/>
+        [Pure]
+        public new RowBox NameLocally(string rangeName) => Get.With(localName: Some(rangeName));
+
+        /// <inheritdoc cref="Box.Name"/>
+        [Obsolete("Use NameGlobally or NameLocally instead.")]
+        [Pure]
+        public new RowBox Name(string rangeName) => NameGlobally(rangeName);
 
         /// <inheritdoc cref="Box.AutoSpan()"/>
         [Pure]

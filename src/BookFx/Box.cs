@@ -100,11 +100,23 @@
         public static implicit operator Box(Guid content) => Value(content);
 
         /// <summary>
-        /// Define a name of the range.
+        /// Define a book scoped name of the range.
         /// </summary>
         /// <param name="rangeName">A range name.</param>
         [Pure]
-        public Box Name(string rangeName) => Get.With(name: Some(rangeName));
+        public Box NameGlobally(string rangeName) => Get.With(globalName: Some(rangeName));
+
+        /// <summary>
+        /// Define a sheet scoped name of the range.
+        /// </summary>
+        /// <param name="rangeName">A range name.</param>
+        [Pure]
+        public Box NameLocally(string rangeName) => Get.With(localName: Some(rangeName));
+
+        /// <inheritdoc cref="NameGlobally"/>
+        [Obsolete("Use NameGlobally or NameLocally instead.")]
+        [Pure]
+        public Box Name(string rangeName) => NameGlobally(rangeName);
 
         /// <summary>
         /// Enables automatic span when a box can be stretched to its contrainer.

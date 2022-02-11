@@ -41,6 +41,26 @@
         }
 
         [Fact]
+        public void BoxLocalNameUniqueness_UniqueBoxNames_Valid()
+        {
+            var sheet = Make.Sheet(Make.Row(Make.Value().NameLocally("A"), Make.Value().NameLocally("B"))).Get;
+
+            var result = SheetValidator.BoxLocalNameUniqueness(sheet);
+
+            result.IsValid.Should().BeTrue();
+        }
+
+        [Fact]
+        public void BoxLocalNameUniqueness_NonUniqueBoxNames_Invalid()
+        {
+            var sheet = Make.Sheet(Make.Row(Make.Value().NameLocally("A"), Make.Value().NameLocally("A"))).Get;
+
+            var result = SheetValidator.BoxLocalNameUniqueness(sheet);
+
+            result.IsValid.Should().BeFalse();
+        }
+
+        [Fact]
         public void Margins_Empty_Valid()
         {
             var sheet = Make.Sheet().Get;

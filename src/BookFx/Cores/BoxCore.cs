@@ -1,5 +1,6 @@
 ﻿namespace BookFx.Cores
 {
+    using System;
     using System.Collections.Generic;
     using System.Collections.Immutable;
     using System.Linq;
@@ -17,7 +18,8 @@
 
         private BoxCore(
             BoxType type,
-            Option<string> name,
+            Option<string> globalName,
+            Option<string> localName,
             Option<BoxStyleCore> style,
             IEnumerable<TrackSize> rowSizes,
             IEnumerable<TrackSize> colSizes,
@@ -40,7 +42,8 @@
             Placement placement)
         {
             Type = type;
-            Name = name;
+            GlobalName = globalName;
+            LocalName = localName;
             Style = style;
             IsPrintArea = isPrintArea;
             AreRowsHidden = areRowsHidden;
@@ -69,9 +72,18 @@
         public BoxType Type { get; }
 
         /// <summary>
-        /// Gets the range name.
+        /// Gets the book scoped range name.
         /// </summary>
-        public Option<string> Name { get; }
+        public Option<string> GlobalName { get; }
+
+        /// <summary>
+        /// Gets the sheet scoped range name.
+        /// </summary>
+        public Option<string> LocalName { get; }
+
+        /// <inheritdoc cref="GlobalName"/>
+        [Obsolete("Use GlobalName or LocalName instead.")]
+        public Option<string> Name => GlobalName;
 
         /// <summary>
         /// Gets the style.
@@ -174,7 +186,8 @@
             Option<BoxStyleCore>? style = null) =>
             new BoxCore(
                 type: type,
-                name: None,
+                globalName: None,
+                localName: None,
                 style: style ?? None,
                 rowSizes: Enumerable.Empty<TrackSize>(),
                 colSizes: Enumerable.Empty<TrackSize>(),
@@ -207,7 +220,8 @@
         [Pure]
         internal BoxCore With(
             BoxType? type = null,
-            Option<string>? name = null,
+            Option<string>? globalName = null,
+            Option<string>? localName = null,
             Option<BoxStyleCore>? style = null,
             IEnumerable<TrackSize>? rowSizes = null,
             IEnumerable<TrackSize>? colSizes = null,
@@ -230,7 +244,8 @@
             Placement? placement = null) =>
             new BoxCore(
                 type ?? Type,
-                name ?? Name,
+                globalName ?? GlobalName,
+                localName ?? LocalName,
                 style ?? Style,
                 rowSizes ?? RowSizes,
                 colSizes ?? ColSizes,

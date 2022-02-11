@@ -324,7 +324,8 @@ Make.Sheet("New Sheet Name", protoBook, "Prototype Sheet Name");
     - `Sheet.Scale` - задать масштаб
     - `Sheet.ToBook` - создать `Book` с одним листом
 - `Box` - box любого вида
-    - `Box.Name` - задать имя области
+    - `Box.NameGlobally` - присвоить диапазону имя области книги
+    - `Box.NameLocally` - присвоить диапазону имя области листа
     - `Box.AutoSpan` - включить режим `AutoSpan` для строк и колонок
     - `Box.AutoSpanRows` - включить режим `AutoSpan` для строк
     - `Box.AutoSpanCols` - включить режим `AutoSpan` для колонок
