@@ -13,7 +13,7 @@
                 .Add(Col()
                     .Add(Data("00001", "First long name with auto fit", 1000, 1020, 1500, 1550))
                     .Add(Data("00002", "Second long name with auto fit", 1200, 1240, 1600, 1690))
-                    .NameGlobally("Data"))
+                    .NameLocally("Data"))
                 .Add(Total())
                 .AutoSpan()
                 .Style(Style().DefaultBorder())
